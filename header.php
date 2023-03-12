@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/air-datepicker@3.3.5/air-datepicker.min.css">
+    <link rel="stylesheet" href="/css/index.min.css">
+    
+    <title><?= isset($title) ? $title.' | ' : '' ?>MyHot</title>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header__content">
+                <div class="logo">
+                    <div class="logo__text">
+                        <span class="logo__text-one">My</span><span class="logo__text-two">Hot</span>
+                    </div>
+                </div>
+                <div class="header__buttons">
+                    <button class="header__button">зарегистрировать объект</button>
+                </div>
+                <div class="header__icon">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M16 20C20.4183 20 24 16.4183 24 12C24 7.58172 20.4183 4 16 4C11.5817 4 8 7.58172 8 12C8 16.4183 11.5817 20 16 20Z" stroke="#005382" stroke-width="2" stroke-miterlimit="10"/>
+                        <path d="M4 27C5.216 24.8718 6.96515 23.1044 9.07161 21.8757C11.1781 20.6469 13.5676 20 16 20C18.4324 20 20.8219 20.6469 22.9284 21.8757C25.0348 23.1044 26.784 24.8718 28 27" stroke="#005382" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>    
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+            <div class="container">
+                <div class="main__content">
+                    <?php include 'menu.php' ?>
+
+                    <div class="main__section">
