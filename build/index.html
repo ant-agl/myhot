@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="./css/main.css">
+    
+    <title>Личные данные | MyHot</title>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header__content">
+                <div class="logo">
+                    <div class="logo__text">
+                        <span class="logo__text-one">My</span><span class="logo__text-two">Hot</span>
+                    </div>
+                </div>
+                <div class="header__icon">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M16 20C20.4183 20 24 16.4183 24 12C24 7.58172 20.4183 4 16 4C11.5817 4 8 7.58172 8 12C8 16.4183 11.5817 20 16 20Z" stroke="#005382" stroke-width="2" stroke-miterlimit="10"/>
+                        <path d="M4 27C5.216 24.8718 6.96515 23.1044 9.07161 21.8757C11.1781 20.6469 13.5676 20 16 20C18.4324 20 20.8219 20.6469 22.9284 21.8757C25.0348 23.1044 26.784 24.8718 28 27" stroke="#005382" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>    
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+            <div class="container">
+                <div class="main__content">
+                    <div class="main__menu">
+                      <ul class="main__menu-list">
+                        <li class="main__menu-item main__menu-item_active" data-target="user-data" data-title="Личные данные">
+                          <p class="main__menu-link" >Личные данные</p>
+                        </li>
+                        <li class="main__menu-item" data-target="booking" data-title="Бронирование">
+                          <p class="main__menu-link">Бронирование</p>
+                        </li>
+                        <li class="main__menu-item" data-target="favourites" data-title="Избранное">
+                          <p class="main__menu-link">Избранное</p>
+                        </li>
+                        <li class="main__menu-item" data-target="reviews" data-title="Отзывы">
+                          <p class="main__menu-link">Отзывы</p>
+                        </li>
+                        <li class="main__menu-item" data-target="bonus" data-title="Бонусная программа">
+                          <p class="main__menu-link">Бонусная программа</p>
+                        </li>
+                        <li class="main__menu-item">
+                          <a href="# "class="main__menu-link">Выйти</a>
+                        </li>
+                      </ul>
+                    </div>
+
+                    <div class="main__section">
+
+<div class="tabs-content">
+  <div class="tab-content tab-content_active" id="user-data">
+    <div class="main__photo-and-input-name">
+      <div class="main__photo">
+          <img src="./img/photo.jpg" alt="photo" class="main__photo-img">
+      </div>
+      <div class="main__header-forms">
+          <div class="main__header-form"><input type="text" name="surname" class="input" placeholder="Иванов"><span class="main__header-data">Фамилия</span></div>
+          <div class="main__header-form"><input type="text" name="name" class="input" placeholder="Иван"><span class="main__header-data">Имя</span></div>
+          <div class="main__header-form"><input type="text" name="second_name" class="input" placeholder="Иванович"><span class="main__header-data">Отчество</span></div>
+      </div>
+    
+    </div>
+    <div class="main__footer-forms">
+      <div class="main__footer-form"><input type="email" name="email" class="input footer-input" placeholder="ivanovivan@gmail.com"><span class="main__footer-data">Почта</span></div>
+      <div class="main__footer-form"><input type="text" name="date" class="input footer-input" id="date" placeholder="01.01.2000"><span class="main__footer-data">Дата рождения</span></div>
+      <div class="main__footer-form"><input type="tel" name="number" class="input footer-input number-input"><span class="main__footer-data">Телефон</span></div>
+      <div class="main__footer-form"><input type="text" name="change_password" class="input footer-input" value="Был изменён месяц назад"><span class="main__footer-data">Пароль</span></div>
+    </div>
+    <div class="main__buttons">
+      <div class="msg">Сохранено!</div>
+      <button class="main__button change-data">
+          <span class="change__text">Изменить личные данные</span>
+          <span class="save__text">Сохранить изменения</span>
+      </button>
+    </div>
+  </div>
+  <div class="tab-content" id="booking">
+    <div class="filters booking-filters">
+      <button class="main__button active" data-filter="all">Все отели</button>
+      <button class="main__button" data-filter="active">Действительные</button>
+      <button class="main__button" data-filter="completed">Исполненные</button>
+      <button class="main__button" data-filter="fail">Отказанные</button>
+    </div>
+    
+    <div class="hotels booking-hotels">
+      
+    </div>
+  </div>
+  <div class="tab-content" id="favourites">
+    <div class="table-block">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Наименование отеля</th>
+            <th>Город</th>
+            <th>Рейтинг</th>
+            <th>Стоимость</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="tab-content" id="reviews">
+    <div class="reviews">
+      <div class="reviews__column">
+    
+      </div>
+      <div class="reviews__column">
+    
+      </div>
+    </div>
+  </div>
+  <div class="tab-content" id="bonus">
+    <div class="balance-bonus">
+      <span>Баланс бонусов</span>
+      <span class="balance-bonus__value"></span>
+    </div>
+    
+    <div class="table-block">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Наименование отеля</th>
+            <th>Город</th>
+            <th>Стоимость</th>
+            <th>Количество бонусов</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script src="./js/main.js"></script>
+  </body>
+</html>
