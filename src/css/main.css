@@ -344,7 +344,7 @@ img {
 * {
   padding: 0;
   margin: 0;
-  box-size: border-box;
+  box-sizing: border-box;
 }
 
 .filters {

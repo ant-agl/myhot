@@ -1,3 +1,3 @@
 # MyHot
 
-[Link](build)
+[Link](https://ant-agl.github.io/myhot/build)
