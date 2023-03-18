@@ -16,7 +16,10 @@ var gulp = require('gulp'),
 
 var path = {
   build: {
-    html: 'build/',
+    html: [
+      'build/',
+      'build/lk/'
+    ],
     js: 'build/js/',
     css: 'build/css/',
     img: 'build/img/',
@@ -24,7 +27,10 @@ var path = {
     files: 'build/files/'
   },
   src: {
-    html: 'src/*.html', 
+    html: [
+      'src/*.html',
+      'src/lk/*.html'
+    ],
     js: 'src/js/main.js',
     css: 'src/css/main.css',
     img: 'src/img/**/*.*',
@@ -42,11 +48,14 @@ var path = {
   clean: './build'
 };
 
-function htmlBuild() {
-  return gulp.src(path.src.html)
-    .pipe(rigger())
-    .pipe(gulp.dest(path.build.html))
-    .pipe(reload({stream: true}))
+function htmlBuild(done) {
+  path.src.html.forEach((src, i) => {
+    gulp.src(src)
+      .pipe(rigger())
+      .pipe(gulp.dest(path.build.html[i]))
+      .pipe(reload({stream: true}))
+  });
+  done();
 };
 
 function jsBuild() {
