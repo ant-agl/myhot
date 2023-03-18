@@ -15,6 +15,18 @@ $('.input').prop('disabled', true);
 $('.change-data').on('click', function() {
     $(this).toggleClass('active');
     $('.input').prop('disabled', !$(this).hasClass('active'));
+    if ($(this).hasClass('active')) {
+        $('[name="change_password"]').val('');
+
+        $('.change-data-background').remove();
+        $('body').append('<div class="change-data-background"></div>');
+    } else {
+        let $bg = $('.change-data-background');
+        $bg.addClass('remove');
+        setTimeout(() => {
+            $bg.remove();
+        }, 200);
+    }
 });
 
 $('.change-data').on('click', function() {
@@ -32,6 +44,13 @@ $('.change-data').on('click', function() {
     }, 1500);
     
     console.log(data);
+
+    if (data.change_password != '') {
+        $('[name="change_password"]').val('Был изменен сегодня');
+    } else {
+        let lastVal = $('[name="change_password"]').data('last-value');
+        $('[name="change_password"]').val(lastVal);
+    }
     return;
     $.ajax({
         type: 'POST',

@@ -1,5 +1,18 @@
 import Filter from './Filter';
 
+import moment from 'moment';
+moment.locale('ru');
+moment.updateLocale('ru', {
+  relativeTime: {
+    s: "день",
+    ss : "день",
+    m:  "день",
+    mm: "день",
+    h:  "день",
+    hh: "день",
+  }
+});
+
 export default class GetData {
   path = '';
   getAll() {
@@ -18,15 +31,25 @@ export default class GetData {
         "email": "ivanovivan@gmail.ru",
         "date": "11.10.1992",
         "number": 79617910592,
-        "change_password": "12.03.2023", 
+        "change_password": "10.01.2023", 
         "image": "ссылка"
       };
 
       for (let name in data) {
+        let val = data[name];
         if (name == 'number') 
-          $(`[name="${name}"]`).val($(`[name="${name}"]`).masked(data[name])); 
-        else
-          $(`[name="${name}"]`).val(data[name]);
+          val = $(`[name="${name}"]`).masked(val);
+        if (name == 'change_password') {
+          let date = moment(val, 'DD.MM.YYYY').fromNow();
+          if (date == 'день назад')
+            date = 'сегодня';
+          val = 'Был изменен ' + date;
+        }
+
+        $(`[name="${name}"]`)
+          .data('last-value', val)
+          .val(val);
+
       }
     });
   }
@@ -170,8 +193,8 @@ export default class GetData {
             </td>
             <td>${hotel.geo}</td>
             <td>
-              <div class="stars">
-                <img src="../img/icons/stars-${hotel.stars}.svg">
+              <div class="stars favourites-stars">
+                <img src="../img/icons/stars/${hotel.stars}.png">
               </div>
             </td>
             <td class="nowrap">от ${hotel.price}</td>
@@ -179,7 +202,7 @@ export default class GetData {
         `;
       });
     
-      $('.table tbody').html(html);
+      $('#favourites .table tbody').html(html);
     });
   }
   reviews() {
@@ -227,7 +250,7 @@ export default class GetData {
           geo: 'Москва, Россия',
           dates: '01.01.2023 - 10.01.2023',
           dateReview: '12.01.2023',
-          stars: 8,
+          stars: 6,
           avatar: '../img/reviews/1.png',
           author: 'Наталья',
           good: 'Расположение. Отзывчивый персонал.',
@@ -250,7 +273,7 @@ export default class GetData {
                 </div>
               </div>
               <div class="reviews-card__stars">
-                <img src="../img/icons/stars-${review.stars}.svg">
+                <img src="../img/icons/stars/${review.stars}.png">
               </div>
             </div>
             <div class="reviews-card__hotel-info">
@@ -340,7 +363,7 @@ export default class GetData {
         `;
       });
     
-      $('.table tbody').html(html);
+      $('#bonus .table tbody').html(html);
       $('.balance-bonus__value').text(data.balance);
     });
   }

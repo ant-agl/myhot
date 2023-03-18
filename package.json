@@ -16,7 +16,8 @@
   "dependencies": {
     "air-datepicker": "^3.3.5",
     "jquery": "^3.6.4",
-    "jquery-mask-plugin": "^1.14.16"
+    "jquery-mask-plugin": "^1.14.16",
+    "moment": "^2.29.4"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.14",
