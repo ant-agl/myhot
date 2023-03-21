@@ -1,5 +1,5 @@
 import Filter from './Filter';
-
+import AirDatepicker from 'air-datepicker';
 import moment from 'moment';
 moment.locale('ru');
 moment.updateLocale('ru', {
@@ -32,13 +32,14 @@ export default class GetData {
         "date": "11.10.1992",
         "number": 79617910592,
         "change_password": "10.01.2023", 
-        "image": "ссылка"
+        "image": "../img/photo.jpg"
       };
 
       for (let name in data) {
         let val = data[name];
         if (name == 'number') 
           val = $(`[name="${name}"]`).masked(val);
+
         if (name == 'change_password') {
           let date = moment(val, 'DD.MM.YYYY').fromNow();
           if (date == 'день назад')
@@ -46,10 +47,14 @@ export default class GetData {
           val = 'Был изменен ' + date;
         }
 
+        if (name == 'image') {
+          $('.main__photo-img').attr('src', val);
+          continue;
+        }
+
         $(`[name="${name}"]`)
           .data('last-value', val)
           .val(val);
-
       }
     });
   }

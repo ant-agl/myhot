@@ -1,6 +1,12 @@
 <div class="main__photo-and-input-name">
   <div class="main__photo">
-      <img src="../img/photo.jpg" alt="photo" class="main__photo-img">
+    <label class="label-input-avatar">
+      <input type="file" name="image" class="input input-avatar" accept="image/*">
+      <img src="" alt="photo" class="main__photo-img">
+      <div class="block-input-avatar">
+        Изменить
+      </div>
+    </label>
   </div>
   <div class="main__header-forms">
       <div class="main__header-form"><input type="text" name="surname" class="input" placeholder="Иванов"><span class="main__header-data">Фамилия</span></div>
@@ -12,7 +18,7 @@
 <div class="main__footer-forms">
   <div class="main__footer-form"><input type="email" name="email" class="input footer-input" placeholder="ivanovivan@gmail.com"><span class="main__footer-data">Почта</span></div>
   <div class="main__footer-form"><input type="text" name="date" class="input footer-input" id="date" placeholder="01.01.2000"><span class="main__footer-data">Дата рождения</span></div>
-  <div class="main__footer-form"><input type="tel" name="number" class="input footer-input number-input"><span class="main__footer-data">Телефон</span></div>
+  <div class="main__footer-form"><input type="tel" name="number" class="input footer-input mask-phone"><span class="main__footer-data">Телефон</span></div>
   <div class="main__footer-form"><input type="text" name="change_password" class="input footer-input"><span class="main__footer-data">Пароль</span></div>
 </div>
 <div class="main__buttons">
