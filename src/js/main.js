@@ -30,30 +30,7 @@ let date = new AirDatepicker('#date', {
   autoClose: true,
   position: 'bottom center',
   isMobile: $(window).outerWidth() <= 767,
-  maxDate: moment().subtract(18, 'years'),
-  position({$datepicker, $target, $pointer, done}) {
-    let popper = createPopper($target, $datepicker, {
-      placement: 'bottom',
-      modifiers: [
-        {
-          name: 'offset',
-          options: {
-              offset: [0, 10]
-          }
-        },
-        {
-          name: 'arrow',
-          options: {
-              element: $pointer
-          }
-        }
-      ]
-    });
-    return function completeHide() {
-      popper.destroy();
-      done();
-    }    
-  }
+  maxDate: moment().subtract(18, 'years')
 });
 $(window).resize(() => {
   let w = $(window).outerWidth();
