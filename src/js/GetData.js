@@ -15,14 +15,14 @@ moment.updateLocale('ru', {
 
 export default class GetData {
   path = '';
-  getAll() {
-    this.user();
+  getAll(obj={}) {
+    this.user(obj.user);
     this.booking();
     this.favourites();
     this.reviews();
     this.bonus();
   }
-  user() {
+  user(birthday=false) {
     $.get(this.path + '', data => {
       data = {
         "name": "Иван", 
@@ -49,6 +49,13 @@ export default class GetData {
 
         if (name == 'image') {
           $('.main__photo-img').attr('src', val);
+          continue;
+        }
+
+        if (name == 'date' && birthday) {
+          birthday.update({
+            selectedDates: val
+          });
           continue;
         }
 
