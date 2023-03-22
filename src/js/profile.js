@@ -37,6 +37,8 @@ $('.change-data').on('click', function() {
 $('.change-data').on('click', function() {
     if ($(this).hasClass('active')) return;
 
+    let fio = [];
+
     let data = {};
     $('.input').each((i, item) => {
         let name = $(item).attr('name');
@@ -46,6 +48,14 @@ $('.change-data').on('click', function() {
             data[name] = val;
             $(item).data('last-value', val);
         }
+        switch (name) {
+            case 'surname':
+            case 'name':
+            case 'second_name':
+                fio.push(val);
+                break;
+        }
+        $('.profile-menu__item a').first().text(fio.join(' '));
     });
     
     if (data.change_password) {
@@ -63,6 +73,8 @@ $('.change-data').on('click', function() {
     if (data.email || data.number || data.change_password) {
         modalConfirm.open();
     }
+
+
 
     console.log(data);
     return;

@@ -26,9 +26,10 @@ import AirDatepicker from 'air-datepicker';
 import {createPopper} from '@popperjs/core';
 import moment from 'moment';
 
-new AirDatepicker('#date', {
+let date = new AirDatepicker('#date', {
   autoClose: true,
   position: 'bottom center',
+  isMobile: $(window).outerWidth() <= 767,
   maxDate: moment().subtract(18, 'years'),
   position({$datepicker, $target, $pointer, done}) {
     let popper = createPopper($target, $datepicker, {
@@ -53,6 +54,12 @@ new AirDatepicker('#date', {
       done();
     }    
   }
+});
+$(window).resize(() => {
+  let w = $(window).outerWidth();
+  date.update({
+    isMobile: w <= 767
+  });
 });
 
 import './profile';
