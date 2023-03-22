@@ -19,11 +19,15 @@ $('.change-data').on('click', function() {
     $(this).toggleClass('active');
     $('.input').prop('disabled', !$(this).hasClass('active'));
     if ($(this).hasClass('active')) {
-        $('[name="change_password"]').val('');
+        $('[name="change_password"]')
+            .val('')
+            .attr('type', 'password');
 
         $('.change-data-background').remove();
         $('body').append('<div class="change-data-background"></div>');
     } else {
+        $('[name="change_password"]')
+            .attr('type', 'text');
         let $bg = $('.change-data-background');
         $bg.addClass('remove');
         setTimeout(() => {

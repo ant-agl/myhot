@@ -13,6 +13,8 @@ moment.updateLocale('ru', {
   }
 });
 
+import RemoveRow from './RemoveRow';
+
 export default class GetData {
   path = '';
   getAll(obj={}) {
@@ -232,7 +234,7 @@ export default class GetData {
         `;
 
         htmlMobile += `
-          <div class="hotel-card" data-filter-item="${hotel.status}">
+          <div class="hotel-card">
             <div class="hotel-card__head">
               <div class="hotel-card__img">
                 <img src="${hotel.img}" alt="${hotel.name}">
@@ -269,6 +271,8 @@ export default class GetData {
     
       $('#favourites .table tbody').html(html);
       $('#favourites .hotel-card_mobile').html(htmlMobile);
+
+      new RemoveRow('tr, .hotel-card', '.remove-favourites');
     });
   }
   reviews() {
@@ -430,7 +434,7 @@ export default class GetData {
         `;
 
         htmlMobile += `
-          <div class="hotel-card" data-filter-item="${hotel.status}">
+          <div class="hotel-card">
             <div class="hotel-card__head">
               <div class="hotel-card__img">
                 <img src="${hotel.img}" alt="${hotel.name}">

@@ -845,8 +845,9 @@ span.reviews-card__date-value {
 }
 .hotel-card_mobile {
   display: none;
-  flex-direction: column;
-  gap: 20px;
+}
+.hotel-card_mobile .hotel-card:not(:last-child) {
+  margin-bottom: 20px;
 }
 .hotel-card_mobile .hotel-card__info-row {
   justify-content: space-between;
@@ -875,6 +876,14 @@ span.reviews-card__date-value {
   display: none;
 }
 
+.remove-row {
+  position: absolute;
+  transform: scaleY(0);
+  transition: 0.3s;
+  opacity: 0;
+  transform-origin: top;
+}
+
 @media (max-width: 991px) {
   .main__photo-and-input-name {
     flex-direction: column;
@@ -900,7 +909,7 @@ span.reviews-card__date-value {
     display: none;
   }
   .hotel-card_mobile {
-    display: flex;
+    display: block;
   }
   .balance-bonus {
     max-width: 100%;
