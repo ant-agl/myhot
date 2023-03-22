@@ -1,6 +1,8 @@
 export default class Menu {
   menuActiveClass = 'main__menu-item_active';
   tabActiveClass = 'tab-content_active';
+  selectItemSelector = '.main__menu-select';
+
   constructor(selectorMenu, selectorTabs) {
     this.$menu = $(selectorMenu);
     this.$tabs = $(selectorTabs);
@@ -22,6 +24,12 @@ export default class Menu {
   addActiveClass(id) {
     this.$menu.find(`[data-target="${id}"]`).addClass(this.menuActiveClass);
     this.$tabs.find(`#${id}`).addClass(this.tabActiveClass);
+
+    let title = this.$menu.find(`[data-target="${id}"]`).text();
+    this.changeSelectItemTitle(title);
+  }
+  changeSelectItemTitle(title = '') {
+    $(this.selectItemSelector).text(title);
   }
   changeTitle(title = '') {
     $('title').text((title ? title + ' | ' : '') + 'MyHot');

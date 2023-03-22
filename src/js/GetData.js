@@ -67,7 +67,8 @@ export default class GetData {
           status: 'active',
           geo: 'Москва, Россия',
           dates: '01.01.2023 - 10.01.2023',
-          peoples: '2 взрослых, 1 ребенок',
+          peoplesAdult: 2,
+          peoplesChild: 1,
           price: '10 000 руб.',
           fullPrice: '50 000 руб.'
         },
@@ -77,7 +78,8 @@ export default class GetData {
           status: 'completed',
           geo: 'Москва, Россия',
           dates: '01.01.2023 - 10.01.2023',
-          peoples: '2 взрослых, 1 ребенок',
+          peoplesAdult: 2,
+          peoplesChild: 0,
           price: '10 000 руб.',
           fullPrice: '50 000 руб.'
         },
@@ -87,7 +89,8 @@ export default class GetData {
           status: 'fail',
           geo: 'Манавгат, Турция',
           dates: '01.01.2023 - 10.01.2023',
-          peoples: '2 взрослых, 1 ребенок',
+          peoplesAdult: 1,
+          peoplesChild: 2,
           price: '10 000 руб.',
           fullPrice: '50 000 руб.'
         },
@@ -111,7 +114,18 @@ export default class GetData {
             statusClass = 'value_fail';
             break; 
         }
-    
+
+        let peoples = [];
+        if (hotel.peoplesAdult == 1)
+          peoples.push(hotel.peoplesAdult + ' взрослый');
+        else if (hotel.peoplesAdult > 1)
+          peoples.push(hotel.peoplesAdult + ' взрослых');
+
+        if (hotel.peoplesChild == 1)
+          peoples.push(hotel.peoplesChild + ' ребенок');
+        else if (hotel.peoplesChild > 1)
+          peoples.push(hotel.peoplesChild + ' ребенка');
+
         html += `
           <div class="hotel-card" data-filter-item="${hotel.status}">
             <div class="hotel-card__head">
@@ -138,7 +152,7 @@ export default class GetData {
               </div>
               <div class="hotel-card__info-row">
                 <span class="hotel-card__info-title">Количество человек</span>
-                <span class="hotel-card__info-value">${hotel.peoples}</span>
+                <span class="hotel-card__info-value">${peoples.join(',<br>')}</span>
               </div>
               <div class="hotel-card__info-row">
                 <span class="hotel-card__info-title">Стоимость за номер</span>
@@ -187,6 +201,7 @@ export default class GetData {
       ];
     
       let html = '';
+      let htmlMobile = '';
       data.forEach(hotel => {
         html += `
           <tr>
@@ -202,12 +217,51 @@ export default class GetData {
                 <img src="../img/icons/stars/${hotel.stars}.png">
               </div>
             </td>
-            <td class="nowrap">от ${hotel.price}</td>
+            <td>
+              <span class="nowrap">от ${hotel.price}</span>
+              <img src="../img/icons/cross.png" class="remove-favourites">
+            </td>
           </tr>
+        `;
+
+        htmlMobile += `
+          <div class="hotel-card" data-filter-item="${hotel.status}">
+            <div class="hotel-card__head">
+              <div class="hotel-card__img">
+                <img src="${hotel.img}" alt="${hotel.name}">
+              </div>
+              <div class="hotel-card__main-info">
+                <div class="hotel-card__status">
+                  <img src="../img/icons/cross.png" class="remove-favourites">
+                </div>
+                <div class="hotel-card__name">
+                  ${hotel.name}
+                </div>
+                <div class="hotel-card__geo">
+                  ${hotel.geo}
+                </div>
+              </div>
+            </div>
+            <div class="hotel-card__info">
+              <div class="hotel-card__info-row">
+                <span class="hotel-card__info-title">Рейтинг</span>
+                <span class="hotel-card__info-value">
+                  <div class="stars favourites-stars">
+                    <img src="../img/icons/stars/${hotel.stars}.png">
+                  </div>
+                </span>
+              </div>
+              <div class="hotel-card__info-row">
+                <span class="hotel-card__info-title">Стоимость</span>
+                <span class="hotel-card__info-value">${hotel.price}</span>
+              </div>
+            </div>
+          </div>
         `;
       });
     
       $('#favourites .table tbody').html(html);
+      $('#favourites .hotel-card_mobile').html(htmlMobile);
     });
   }
   reviews() {
@@ -348,6 +402,7 @@ export default class GetData {
       };
     
       let html = '';
+      let htmlMobile = '';
       data.hotels.forEach(hotel => {
         html += `
           <tr>
@@ -366,9 +421,43 @@ export default class GetData {
             </td>
           </tr>
         `;
+
+        htmlMobile += `
+          <div class="hotel-card" data-filter-item="${hotel.status}">
+            <div class="hotel-card__head">
+              <div class="hotel-card__img">
+                <img src="${hotel.img}" alt="${hotel.name}">
+              </div>
+              <div class="hotel-card__main-info">
+                <div class="hotel-card__status"></div>
+                <div class="hotel-card__name">
+                  ${hotel.name}
+                </div>
+                <div class="hotel-card__geo">
+                  ${hotel.geo}
+                </div>
+              </div>
+            </div>
+            <div class="hotel-card__info">
+              <div class="hotel-card__info-row">
+                <span class="hotel-card__info-title">Стоимость</span>
+                <span class="hotel-card__info-value">${hotel.price}</span>
+              </div>
+              <div class="hotel-card__info-row">
+                <span class="hotel-card__info-title">Количество бонусов</span>
+                <span class="hotel-card__info-value">
+                  <span class="${hotel.bonus >= 0 ? 'bonus_positive' : 'bonus_negative'}">
+                    ${hotel.bonus >= 0 ? '+' : ''}${hotel.bonus}
+                  </span>
+                </span>
+              </div>
+            </div>
+          </div>
+        `;
       });
     
       $('#bonus .table tbody').html(html);
+      $('#bonus .hotel-card_mobile').html(htmlMobile);
       $('.balance-bonus__value').text(data.balance);
     });
   }

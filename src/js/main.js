@@ -5,6 +5,8 @@ $(window).resize(() => {
 
 import DropMenu from './DropMenu';
 new DropMenu('.profile-menu');
+let menuMobile = new DropMenu('.main__menu-mobil');
+menuMobile.setBtnToggle('.main__menu-mobil img');
 
 import Menu from './Menu';
 new Menu('.main__menu-list', '.tabs-content');
@@ -21,12 +23,36 @@ $('.mask-phone')
 
 import 'air-datepicker/air-datepicker.css';
 import AirDatepicker from 'air-datepicker';
+import {createPopper} from '@popperjs/core';
 import moment from 'moment';
 
 new AirDatepicker('#date', {
   autoClose: true,
   position: 'bottom center',
-  maxDate: moment().subtract(18, 'years')
+  maxDate: moment().subtract(18, 'years'),
+  position({$datepicker, $target, $pointer, done}) {
+    let popper = createPopper($target, $datepicker, {
+      placement: 'bottom',
+      modifiers: [
+        {
+          name: 'offset',
+          options: {
+              offset: [0, 10]
+          }
+        },
+        {
+          name: 'arrow',
+          options: {
+              element: $pointer
+          }
+        }
+      ]
+    });
+    return function completeHide() {
+      popper.destroy();
+      done();
+    }    
+  }
 });
 
 import './profile';
