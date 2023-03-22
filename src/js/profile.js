@@ -12,6 +12,7 @@ let modalConfirm = new Modal('#modal-confirm-password', {
 });
 confirmPass.afterSendSuccess = () => {
     modalConfirm.close();
+    $('body').focus();
 }
 
 $('.input').prop('disabled', true);
