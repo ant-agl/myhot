@@ -455,7 +455,6 @@ img {
 }
 .hotel-card__head {
   display: flex;
-  align-items: center;
   gap: 10px;
 }
 .hotel-card__img {
