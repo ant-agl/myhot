@@ -56,7 +56,7 @@ export default class GetData {
 
         if (name == 'date' && birthday) {
           birthday.update({
-            selectedDates: val
+            selectedDates: moment(val, 'DD.MM.YYYY')
           });
           continue;
         }
