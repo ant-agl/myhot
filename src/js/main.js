@@ -1,7 +1,12 @@
-$('.main').css('min-height', $(window).outerHeight() - $('.header').outerHeight());
-$(window).resize(() => {
-    $('.main').css('min-height', $(window).outerHeight() - $('.header').outerHeight());
-});
+function changeHeightOnResize() {
+  $('.main').css('min-height', $(window).outerHeight() - $('.header').outerHeight());
+
+  let hMainSection = $(window).outerHeight() - $('.header').outerHeight();
+  hMainSection = Math.max(hMainSection, $('.main__menu').outerHeight(true));
+  $('.main__section').css('max-height', hMainSection);
+}
+changeHeightOnResize();
+$(window).resize(changeHeightOnResize);
 
 import DropMenu from './DropMenu';
 new DropMenu('.profile-menu');

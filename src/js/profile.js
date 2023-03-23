@@ -3,7 +3,6 @@ import ConfirmPassword from './ConfirmPassword.js';
 
 let confirmPass = new ConfirmPassword('.input-code-confirm', '.btn-confirm-password');
 let modalConfirm = new Modal('#modal-confirm-password', {
-    closeToBackground: false,
     beforeOpen: () => {
         confirmPass.clearAll();
         confirmPass.focusFirst();
@@ -11,8 +10,9 @@ let modalConfirm = new Modal('#modal-confirm-password', {
     }
 });
 confirmPass.afterSendSuccess = () => {
-    modalConfirm.close();
-    $('body').focus();
+    setTimeout(() => {
+        modalConfirm.close();
+    }, 750);
 }
 
 $('.input').prop('disabled', true);
@@ -41,6 +41,22 @@ $('.change-data').on('click', function() {
 
 $('.change-data').on('click', function() {
     if ($(this).hasClass('active')) return;
+    let dfo = $('[name="dfo"]').data('last-value');
+    console.log(dfo);
+
+    let placeMessage = '';
+    switch (dfo) {
+        case 'mail':
+            placeMessage = 'на вашу почту';
+            break;
+        case 'phone':
+            placeMessage = 'на ваш телефон';
+            break;
+        case 'app':
+            placeMessage = 'в пуш уведомлении';
+            break;
+    }
+    $('.modal__desc span').text(placeMessage);
 
     let fio = [];
 
@@ -49,7 +65,9 @@ $('.change-data').on('click', function() {
         let name = $(item).attr('name');
         let val = $(item).val().trim();
         let lastVal = $(item).data('last-value');
-        if (val && val != lastVal) {
+        if (name == 'change_password') {
+            data[name] = val;
+        } else if (val && val != lastVal) {
             data[name] = val;
             $(item).data('last-value', val);
         }
@@ -60,11 +78,13 @@ $('.change-data').on('click', function() {
                 fio.push(val);
                 break;
         }
-        $('.profile-menu__item a').first().text(fio.join(' '));
     });
+    $('.profile-menu__item a').first().text(fio.join(' '));
     
     if (data.change_password) {
-        $('[name="change_password"]').val('Был изменен сегодня');
+        $('[name="change_password"]')
+            .val('Был изменен сегодня')
+            .data('last-value', 'Был изменен сегодня');
     } else {
         let lastVal = $('[name="change_password"]').data('last-value');
         $('[name="change_password"]').val(lastVal);
@@ -75,8 +95,13 @@ $('.change-data').on('click', function() {
         $('.msg').removeClass('active');
     }, 1500);
     
-    if (data.email || data.number || data.change_password) {
-        modalConfirm.open();
+    if (dfo != 'no') {
+        if (data.dfo || data.number || data.change_password) {
+            modalConfirm.open();
+        }
+    }
+    if (data.email) {
+        $('.email-hint').removeClass('input-hint__not-active');
     }
 
 

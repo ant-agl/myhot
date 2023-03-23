@@ -34,7 +34,8 @@ export default class GetData {
         "date": "11.10.1992",
         "number": 79617910592,
         "change_password": "10.01.2023", 
-        "image": "../img/photo.jpg"
+        "image": "../img/photo.jpg",
+        "dfo": "mail"
       };
 
       for (let name in data) {
