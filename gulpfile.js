@@ -18,7 +18,8 @@ var path = {
   build: {
     html: [
       'build/',
-      'build/lk/'
+      'build/lk/',
+      'build/hotels-list/',
     ],
     js: 'build/js/',
     css: 'build/css/',
@@ -29,10 +30,17 @@ var path = {
   src: {
     html: [
       'src/*.html',
-      'src/lk/*.html'
+      'src/lk/*.html',
+      'src/hotels-list/*.html',
     ],
-    js: 'src/js/main.js',
-    css: 'src/css/main.css',
+    js: [
+      './src/js/lk.js',
+      './src/js/hotels_list.js'
+    ],
+    css: [
+      'src/css/lk.css',
+      'src/css/hotels-list.css'
+    ],
     img: 'src/img/**/*.*',
     fonts: 'src/fonts/**/*.*',
     files: 'src/files/**/*.*'
@@ -58,41 +66,52 @@ function htmlBuild(done) {
   done();
 };
 
-function jsBuild() {
-  return gulp.src(path.src.js)
-    .pipe(webpackStream({
-      mode: 'development', // production
-      module: {
-        rules: [
-          {
-            test: /\.css$/i,
-            use: ['style-loader', 'css-loader']
-          }
-        ]
-      },
-      plugins: [
-        new webpack.ProvidePlugin({
-          $: 'jquery'
-        })
-      ],
-    }))
-    .pipe(gulp.dest(path.build.js))
-    .pipe(reload({stream: true}))
+function jsBuild(done) {
+  // path.src.js.forEach((src, i) => {
+    gulp.src(path.src.js)
+      .pipe(webpackStream({
+        entry: {
+          lk: path.src.js[0],
+          hotels_list: path.src.js[1],
+        },
+        mode: 'development', // production
+        module: {
+          rules: [
+            {
+              test: /\.css$/i,
+              use: ['style-loader', 'css-loader']
+            }
+          ]
+        },
+        plugins: [
+          new webpack.ProvidePlugin({
+            $: 'jquery'
+          })
+        ],
+      }))
+      .pipe(gulp.dest(path.build.js))
+      .pipe(reload({stream: true}))
+  // });
+
+  done();
 };
 
-function cssBuild() {
-  return gulp.src(path.src.css)
-    .pipe(rigger())
-    .pipe(sourcemaps.init())
-    .pipe(postcss([ prefixer() ]))
-    .pipe(cssmin())
-    .pipe(sourcemaps.write()) 
-    .pipe(gulp.dest(path.build.css))
-    .pipe(reload({stream: true}))
+function cssBuild(done) {
+  path.src.css.forEach((src, i) => {
+    gulp.src(src)
+      .pipe(rigger())
+      .pipe(sourcemaps.init())
+      .pipe(postcss([ prefixer() ]))
+      .pipe(cssmin())
+      .pipe(sourcemaps.write()) 
+      .pipe(gulp.dest(path.build.css))
+      .pipe(reload({stream: true}))
+  });
+  done();
 };
 
-function imgBuild() {
-  return gulp.src(path.src.img)
+function imgBuild(done) {
+  gulp.src(path.src.img)
     .pipe(imagemin({
       progressive: true,
       svgoPlugins: [{removeViewBox: false}],
@@ -101,11 +120,13 @@ function imgBuild() {
     }))
     .pipe(gulp.dest(path.build.img))
     .pipe(reload({stream: true}));
+  done();
 };
 
-function fontsBuild() {
-  return gulp.src(path.src.fonts)
+function fontsBuild(done) {
+  gulp.src(path.src.fonts)
     .pipe(gulp.dest(path.build.fonts))
+  done();
 };
 
 function filesCopy() {

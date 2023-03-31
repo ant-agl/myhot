@@ -1,0 +1,33 @@
+/*= components/header */
+/*= components/datepicker */
+/*= components/mainContent */
+/*= components/btn */
+/*= components/range */
+/*= components/link-underline */
+/*= components/load */
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Montserrat", sans-serif;
+}
+img {
+  max-width: 100%;
+}
+.container {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+label {
+  cursor: pointer;
+}
+
+@media (max-width: 767px) {
+  .container {
+    padding: 0 10px;
+  }
+}

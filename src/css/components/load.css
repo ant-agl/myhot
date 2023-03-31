@@ -1,0 +1,14 @@
+.load {
+  animation: load 3s ease-in-out infinite;
+  filter: invert(1);
+  width: 45px;
+}
+
+@keyframes load {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

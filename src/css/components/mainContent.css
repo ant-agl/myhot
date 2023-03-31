@@ -1,0 +1,44 @@
+.main__content {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  position: relative;
+}
+
+.main__section {
+  width: 100%;
+  overflow-y: auto;
+  padding: 60px 0;
+}
+.main__section::-webkit-scrollbar,
+.main__subsection::-webkit-scrollbar {
+  width: 0;
+}
+
+.main__subsection {
+  display: inline-block;
+  height: 100%;
+  min-width: 260px;
+  max-width: 260px;
+  overflow-y: auto;
+  padding: 60px 0;
+}
+
+@media (max-width: 767px) {
+  .main__content {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .main__section,
+  .main__subsection {
+    max-height: 100% !important;
+    overflow: visible;
+  }
+  .main__section {
+    padding: 0 0 40px;
+  }
+  .main__subsection {
+    padding: 20px 0 0;
+  }
+}

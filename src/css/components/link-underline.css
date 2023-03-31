@@ -1,0 +1,28 @@
+.link-underline {
+  --color: #0e5e6f;
+}
+.link-underline {
+  font-size: 18px;
+  line-height: 22px;
+  color: var(--color);
+  background-color: #fff;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+}
+.link-underline::after {
+  content: "";
+  display: block;
+  width: 0;
+  height: 1px;
+  border-radius: 2px;
+  transition: 0.3s;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: var(--color);
+}
+.link-underline:hover::after {
+  width: 100%;
+}

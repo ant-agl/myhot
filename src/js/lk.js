@@ -1,3 +1,5 @@
+import './default';
+
 function changeHeightOnResize() {
   $('.main').css('min-height', $(window).outerHeight() - $('.header').outerHeight());
 
@@ -8,19 +10,8 @@ function changeHeightOnResize() {
 changeHeightOnResize();
 $(window).resize(changeHeightOnResize);
 
-import DropMenu from './DropMenu';
-new DropMenu('.profile-menu');
-let menuMobile = new DropMenu('.main__menu-mobil');
-menuMobile.setBtnToggle('.main__menu-mobil img');
-
-import Menu from './Menu';
+import Menu from './components/Menu';
 new Menu('.main__menu-list', '.tabs-content');
-
-import 'jquery-mask-plugin';
-$('.mask-phone')
-  .mask('+7 (000) 000-00-00', {
-    placeholder: '+7 (___) ___-__-__'
-  });
 
 import 'air-datepicker/air-datepicker.css';
 import AirDatepicker from 'air-datepicker';
@@ -39,10 +30,10 @@ $(window).resize(() => {
   });
 });
 
-import GetData from './GetData';
+import GetData from './components/GetData';
 let getData = new GetData();
-getData.getAll({
+getData.getLk({
   user: birthday
 });
 
-import './profile';
+import './components/profile';

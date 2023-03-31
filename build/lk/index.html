@@ -1,16 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Raleway&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="../css/main.css">
-    
+    <link rel="stylesheet" href="../css/lk.css">
     <title>Личные данные | MyHot</title>
 </head>
 <body>
@@ -25,7 +23,6 @@
                     </div>
                     <div class="logo__text">
                         WeHotel
-                        <!-- <span class="logo__text-one">My</span><span class="logo__text-two">Hot</span> -->
                     </div>
                 </div>
                 <div class="header__icon">
@@ -35,7 +32,8 @@
                             <path d="M4 27C5.216 24.8718 6.96515 23.1044 9.07161 21.8757C11.1781 20.6469 13.5676 20 16 20C18.4324 20 20.8219 20.6469 22.9284 21.8757C25.0348 23.1044 26.784 24.8718 28 27" stroke="#005382" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                         <ul class="profile-menu__list">
-                            <li class="profile-menu__item"><a href="#">Иванов Иван Иванович</a></li>
+                            <li class="profile-menu__item"><a href="../lk/">Иванов Иван Иванович</a></li>
+                            <li class="profile-menu__item"><a href="../hotels-list/">Отели</a></li>
                             <li class="profile-menu__item"><a href="#">Выход</a></li>
                         </ul>
                     </div>
@@ -45,14 +43,16 @@
     </header>
 
     <main class="main">
-            <div class="container">
-                <div class="main__content">
-                    <div class="main__menu-mobil">
-                      <span class="main__menu-select">Личные данные</span>
-                      <img src="../img/icons/arr.png">
-                    </div>
+        <div class="container">
+            <div class="main__content">
+                <div class="main__subsection">
                     
                     <div class="main__menu">
+                      <div class="main__menu-mobil">
+                        <span class="main__menu-select">Личные данные</span>
+                        <img src="../img/icons/arr.png">
+                      </div>
+                      
                       <ul class="main__menu-list">
                         <li class="main__menu-item main__menu-item_active" data-target="user-data" data-title="Личные данные">
                           <p class="main__menu-link" >Личные данные</p>
@@ -74,8 +74,8 @@
                         </li>
                       </ul>
                     </div>
-
-                    <div class="main__section">
+                </div>
+                <div class="main__section">
 
 <div class="tabs-content">
   <div class="tab-content tab-content_active" id="user-data">
@@ -200,21 +200,21 @@
 
 <div class="modal" id="modal-confirm-password">
   <div class="modal__content">
-      <div class="modal__title">Подтверждение изменений</div>
-      <div class="modal__desc">Мы отправили код <span>на вашу почту</span></div>
-      
-      <div class="inputs-row">
-        <input type="tel" class="input-code-confirm">
-        <input type="tel" class="input-code-confirm">
-        <input type="tel" class="input-code-confirm">
-        <input type="tel" class="input-code-confirm">
-      </div>
+    <div class="modal__title">Подтверждение изменений</div>
+    <div class="modal__desc">Мы отправили код <span>на вашу почту</span></div>
 
-      <div class="modal__message"></div>
+    <div class="inputs-row">
+      <input type="tel" class="input-code-confirm">
+      <input type="tel" class="input-code-confirm">
+      <input type="tel" class="input-code-confirm">
+      <input type="tel" class="input-code-confirm">
+    </div>
 
-      <div class="modal__footer">
-        <button type="button" class="modal__btn btn-confirm-password">Подтвердить</button>
-      </div>
+    <div class="modal__message"></div>
+
+    <div class="modal__footer">
+      <button type="button" class="link-underline modal__btn btn-confirm-password">Подтвердить</button>
+    </div>
   </div>
 </div>
 
@@ -223,6 +223,6 @@
         </div>
       </div>
     </main>
-    <script src="../js/main.js"></script>
+    <script src="../js/lk.js"></script>
   </body>
 </html>

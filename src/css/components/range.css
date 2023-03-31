@@ -1,0 +1,60 @@
+input[type="range"] {
+  width: 100%;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+input[type="range"]::-webkit-slider-runnable-track {
+  border-radius: 5px;
+  height: 3px;
+  border: none;
+  background-color: #005382;
+}
+input[type="range"]::-webkit-slider-thumb {
+  background: #005382;
+  border: 4px solid #eaeaea;
+  border-radius: 10px;
+  cursor: pointer;
+  width: 13px;
+  height: 13px;
+  -webkit-appearance: none;
+  margin-top: -5px;
+}
+
+input[type="range"]::-moz-range-track {
+  border-radius: 10px/100%;
+  height: 5px;
+  border: 1px solid cyan;
+  background-color: #fff;
+}
+input[type="range"]::-moz-range-thumb {
+  background: #ecf0f1;
+  border: 1px solid cyan;
+  border-radius: 10px/100%;
+  cursor: pointer;
+}
+
+.filter .drbar-container.single .drbar-start {
+  visibility: hidden;
+}
+.filter .drbar-container {
+  position: relative;
+  padding: 6px 0;
+
+  /* Colors */
+  --slider-color: #005382;
+  --range-color: #005382;
+  --bg-color: #abd4eb;
+  --slider-active: #005382;
+  --range-active: #005382;
+  /* Sizes */
+  --slider-wh: 5px;
+  --range-thick: 3px;
+  --bg-thick: 3px;
+  --mini-thick: 4px;
+  --mini-ratio: calc(4 / 15);
+}
+.filter .drbar-container .drbar-slider:not(:active),
+.filter .drbar-container .drbar-slider:active {
+  outline: 4px solid #eaeaea;
+}
