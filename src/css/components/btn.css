@@ -11,14 +11,21 @@
   cursor: pointer;
   transition: 0.2s;
   text-decoration: none;
+  display: inline-block;
 }
 .btn:hover {
   background-color: #004a5d;
 }
 .btn_white {
   background-color: #fff;
-  color: #002A31;
+  color: #002a31;
 }
 .btn_white:hover {
   background-color: #daf9ff;
+}
+.btn_big {
+  padding: 22px 53px;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 22px;
 }

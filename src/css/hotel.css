@@ -1,0 +1,111 @@
+/*= default  */
+/*= components/mainMenu */
+/*= components/mainButton */
+
+.main {
+  background: url("../img/hotel/bg.png") center repeat-y #fff;
+  background-size: 100%;
+}
+.main__subsection,
+.main__section {
+  overflow: visible;
+}
+.main__menu-list {
+  box-shadow: 0px 5px 35px 0px rgba(0, 0, 0, 0.1);
+}
+.section__main-info {
+  background: radial-gradient(50% 62.19% at 50% 50%, #238f9b 0%, #005382 100%);
+}
+.hotel__main-info {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 50px 0;
+}
+.hotel__img,
+.hotel__info {
+  width: 50%;
+}
+.hotel__info {
+  color: #fff;
+}
+.hotel__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.hotel__row_left {
+  justify-content: flex-start;
+  gap: 10px;
+}
+.hotel__price {
+  font-size: 15px;
+  line-height: 18px;
+}
+.hotel__price-value {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 22px;
+}
+.hotel__stars {
+  width: 120px;
+  margin: 16px 0;
+}
+.hotel__name {
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 37px;
+  margin-bottom: 5px;
+}
+.hotel__place {
+  margin-bottom: 7px;
+}
+.hotel__reviews {
+  margin-top: 16px;
+  background-color: #f1feff;
+  border-radius: 20px;
+  box-shadow: 0px 5px 35px 0px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  color: #002a31;
+}
+.hotel__estimation {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 22px;
+  color: #31bb00;
+}
+.hotel__reviews-content {
+  margin-top: 8px;
+  gap: 10px;
+}
+.hotel__review {
+  background-color: #fff;
+  border-radius: 20px;
+  box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  width: 50%;
+}
+.hotel__review-img {
+  width: 30px;
+  height: 30px;
+  border-radius: 100px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.hotel__review-name {
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 18px;
+}
+.hotel__review-text {
+  margin: 8px 0 10px;
+  font-size: 15px;
+  line-height: 18px;
+}
+.hotel__btn {
+  margin-top: 20px;
+  text-align: center;
+}

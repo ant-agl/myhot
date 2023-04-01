@@ -481,7 +481,9 @@ export default class GetData {
   }
   filters() {
     //data_filter.php
-    $.get(this.path + "", (data) => {
+    // $.get(this.path + "", (data) => {
+    $.get("https://wehotel.ru/php/data_filter.php", (data) => {
+      console.log(data);
       data = [
         {
           id: 0,
@@ -703,7 +705,7 @@ export default class GetData {
             train: "Белорусский 2км",
             plane: "Шереметьево",
             estimation: 9.0,
-            price: "10 500",
+            price: "120 500",
             link: "#",
           },
           {
@@ -716,13 +718,19 @@ export default class GetData {
             train: "Белорусский 2км",
             plane: "Шереметьево",
             estimation: 9.8,
-            price: "9 385",
+            price: "1 229 385",
             link: "#",
           },
         ];
 
         let html = "";
         data.forEach((hotel) => {
+          let fzPrice = false;
+          if (hotel.price.length > 7) fzPrice = 15;
+          else if (hotel.price.length == 7) fzPrice = 17;
+          let stylePrice = "";
+          if (fzPrice) stylePrice = `font-size:${fzPrice}px`;
+
           html += `
             <div class="hotel-card">
               <div class="hotel-card__img">
@@ -738,7 +746,7 @@ export default class GetData {
                   xmlns="http://www.w3.org/2000/svg">
                   <path
                     d="M8.34984 10.8654L13.0377 6.21726C14.1894 5.06956 14.3572 3.19308 13.2692 1.99373C12.9963 1.69149 12.6642 1.44759 12.293 1.27693C11.9219 1.10627 11.5195 1.01243 11.1106 1.00115C10.7016 0.989875 10.2946 1.06139 9.9145 1.21133C9.53436 1.36127 9.18904 1.58649 8.89965 1.87323L8.01995 2.75121L7.2618 1.99373C6.1043 0.851775 4.2118 0.685359 3.00222 1.76419C2.6974 2.03476 2.45141 2.3641 2.27929 2.7321C2.10718 3.10011 2.01254 3.49905 2.00116 3.90454C1.98979 4.31003 2.06192 4.71357 2.21314 5.09049C2.36436 5.46741 2.5915 5.80981 2.88068 6.09675L7.69007 10.8654C7.77785 10.9516 7.8964 11 8.01995 11C8.1435 11 8.26206 10.9516 8.34984 10.8654Z"
-                    stroke="white" stroke-linecap="round" stroke-linejoin="round" shape-rendering="crispEdges" />
+                    stroke="white"/>
                 </svg>
               </div>
               <div class="hotel-card__main">
@@ -768,9 +776,10 @@ export default class GetData {
               </div>
               <div class="hotel-card__footer">
                 <span class="hotel-card__price">
-                  от <span class="hotel-card__price-value">${
-                    hotel.price
-                  }</span> &#8381;
+                  от <span class="hotel-card__price-value" style="${stylePrice}">${
+            hotel.price
+          }</span>
+                  <span class="hotel-card__price-ruble">&#8381;</span>
                 </span>
                 <a href="${hotel.link}" class="btn">Подробнее</a>
               </div>

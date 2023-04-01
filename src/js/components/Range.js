@@ -4,6 +4,7 @@ export default class Range {
     this.id = options.id;
     this.$inputMin = $(`[name="${options.inputMin ?? ""}"]`);
     this.$inputMax = $(`[name="${options.inputMax ?? ""}"]`);
+    this.single = options.single ?? false;
     this.options = options;
 
     this.drbar = new DualHRangeBar(this.id, options);
@@ -16,6 +17,8 @@ export default class Range {
   updateInput(e) {
     this.$inputMin.val(Math.round(e.detail.lower));
     this.$inputMax.val(Math.round(e.detail.upper));
+
+    if (this.single) this.drbar.lower = 0;
 
     if (this.timerChange) clearTimeout(this.timerChange);
     this.timerChange = setTimeout(() => {

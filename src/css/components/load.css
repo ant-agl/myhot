@@ -1,6 +1,6 @@
 .load {
   animation: load 3s ease-in-out infinite;
-  filter: invert(1);
+  filter: brightness(0) invert(1);
   width: 45px;
 }
 

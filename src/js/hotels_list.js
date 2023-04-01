@@ -18,6 +18,7 @@ new Range({
   upperBound: 10,
   minSpan: 0,
   upper: 9,
+  single: true,
 });
 new Range({
   id: "dual-range-location",
