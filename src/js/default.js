@@ -9,7 +9,7 @@ function changeHeightOnResize() {
   $(".main__subsection").css("max-height", hMainSection);
 
   hMainSection =
-    $(".main__subsection").outerHeight(true) < hMainSection
+    $(".main__subsection").outerHeight(true) > hMainSection
       ? $(".main__subsection").outerHeight(true)
       : hMainSection;
   $(".main__section").css("max-height", hMainSection);
