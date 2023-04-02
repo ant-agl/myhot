@@ -206,9 +206,6 @@
   max-height: 440px;
 }
 .map-big iframe {
-  border-radius: 20px;
-  border: none;
-  width: 100%;
   min-height: 0;
   flex-grow: 1;
 }
@@ -218,5 +215,5 @@
 }
 
 .btn-open-map {
-  width: 152px;
+  min-width: 154px;
 }

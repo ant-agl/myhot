@@ -20,7 +20,8 @@
     "dual-range-bar": "^1.0.3",
     "jquery": "^3.6.4",
     "jquery-mask-plugin": "^1.14.16",
-    "moment": "^2.29.4"
+    "moment": "^2.29.4",
+    "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.14",

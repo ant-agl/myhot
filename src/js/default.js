@@ -4,6 +4,7 @@ function changeHeightOnResize() {
     $(window).outerHeight() - $(".header").outerHeight()
   );
 
+  if ($(".main__subsection").css("overflow-y") != "auto") return;
   let hMainSection = $(window).outerHeight() - $(".header").outerHeight();
   $(".main__subsection").css("max-height", hMainSection);
 

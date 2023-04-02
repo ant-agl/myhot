@@ -55,7 +55,18 @@
     <div class="container">
       <div class="hotel__main-info">
         <div class="hotel__img">
-          <img src="../img/hotels/1.png" alt="Name">
+          <div class="hotel__slider-for">
+            <div class="hotel__slider-for__item" data-url="../img/hotels/1/1.png"></div>
+            <div class="hotel__slider-for__item" data-url="../img/hotels/1/2.png"></div>
+            <div class="hotel__slider-for__item" data-url="../img/hotels/1/3.png"></div>
+            <div class="hotel__slider-for__item" data-url="../img/hotels/1/4.png"></div>
+          </div>
+          <div class="hotel__slider-nav">
+            <div class="hotel__slider-nav__item" data-url="../img/hotels/1/1.png"></div>
+            <div class="hotel__slider-nav__item" data-url="../img/hotels/1/2.png"></div>
+            <div class="hotel__slider-nav__item" data-url="../img/hotels/1/3.png"></div>
+            <div class="hotel__slider-nav__item" data-url="../img/hotels/1/4.png"></div>
+          </div>
         </div>
         <div class="hotel__info">
           <div class="hotel__row">
@@ -131,19 +142,19 @@
             </div>
           
             <ul class="main__menu-list">
-              <li class="main__menu-item main__menu-item_active" data-target="" data-title="Выбрать номер">
+              <li class="main__menu-item main__menu-item_active" data-target="choose-room" data-title="Выбрать номер">
                 <p class="main__menu-link">Выбрать номер</p>
               </li>
-              <li class="main__menu-item" data-target="" data-title="Услуги">
+              <li class="main__menu-item" data-target="services" data-title="Услуги">
                 <p class="main__menu-link">Услуги</p>
               </li>
               <li class="main__menu-item" data-target="reviews" data-title="Отзывы">
                 <p class="main__menu-link">Отзывы</p>
               </li>
-              <li class="main__menu-item" data-target="" data-title="Местоположение">
+              <li class="main__menu-item" data-target="geo" data-title="Местоположение">
                 <p class="main__menu-link">Местоположение</p>
               </li>
-              <li class="main__menu-item" data-target="" data-title="Правила отеля">
+              <li class="main__menu-item" data-target="rules" data-title="Правила отеля">
                 <p class="main__menu-link">Правила отеля</p>
               </li>
             </ul>
@@ -152,20 +163,124 @@
         <div class="main__section">
 
 <div class="tabs-content">
-  <div class="tab-content tab-content_active" id="user-data">
-    <!-- //= pages/user-data -->
+  <div class="tab-content tab-content_active" id="choose-room">
+    choose-room
   </div>
-  <div class="tab-content" id="booking">
-    <!-- //= pages/booking -->
-  </div>
-  <div class="tab-content" id="favourites">
-    <!-- //= pages/favourites -->
+  <div class="tab-content" id="services">
+    <div class="services">
+      <div class="services__block services__block_free page-content">
+        <div class="services__title">Бесплатные</div>
+        <div class="services__list">
+          <div class="services__column"></div>
+          <div class="services__column"></div>
+        </div>
+      </div>
+      <div class="services__block services__block_paid page-content">
+        <div class="services__title">Платные</div>
+        <div class="services__list">
+          <div class="services__column"></div>
+          <div class="services__column"></div>
+        </div>
+      </div>
+    </div>
   </div>
   <div class="tab-content" id="reviews">
-    <!-- //= pages/reviews -->
+    <div class="reviews">
+      <div class="reviews__total page-content">
+        <div class="reviews__total-estimation">
+          <div class="reviews__estimation">8,9</div>
+          <div class="reviews__estimation-text">Отлично</div>
+        </div>
+        <div class="reviews__params">
+          <div class="reviews__param" data-param="clear">
+            <div class="reviews__param-name">Чистота</div>
+            <div class="reviews__param-progressbar">
+              <div class="reviews__param-value"></div>
+              <div class="reviews__param-progress"></div>
+            </div>
+          </div>
+          <div class="reviews__param" data-param="hygiene">
+            <div class="reviews__param-name">Гигиена</div>
+            <div class="reviews__param-progressbar">
+              <div class="reviews__param-value"></div>
+              <div class="reviews__param-progress"></div>
+            </div>
+          </div>
+          <div class="reviews__param" data-param="location">
+            <div class="reviews__param-name">Расположениее</div>
+            <div class="reviews__param-progressbar">
+              <div class="reviews__param-value"></div>
+              <div class="reviews__param-progress"></div>
+            </div>
+          </div>
+          <div class="reviews__param" data-param="food">
+            <div class="reviews__param-name">Питание</div>
+            <div class="reviews__param-progressbar">
+              <div class="reviews__param-value"></div>
+              <div class="reviews__param-progress"></div>
+            </div>
+          </div>
+          <div class="reviews__param" data-param="price">
+            <div class="reviews__param-name">Цена/Качество</div>
+            <div class="reviews__param-progressbar">
+              <div class="reviews__param-value"></div>
+              <div class="reviews__param-progress"></div>
+            </div>
+          </div>
+          <div class="reviews__param" data-param="number">
+            <div class="reviews__param-name">Номер</div>
+            <div class="reviews__param-progressbar">
+              <div class="reviews__param-value"></div>
+              <div class="reviews__param-progress"></div>
+            </div>
+          </div>
+          <div class="reviews__param" data-param="service">
+            <div class="reviews__param-name">Обслуживание</div>
+            <div class="reviews__param-progressbar">
+              <div class="reviews__param-value"></div>
+              <div class="reviews__param-progress"></div>
+            </div>
+          </div>
+          <div class="reviews__param" data-param="wifi">
+            <div class="reviews__param-name">Качество Wi-Fi</div>
+            <div class="reviews__param-progressbar">
+              <div class="reviews__param-value"></div>
+              <div class="reviews__param-progress"></div>
+            </div>
+          </div>
+          <div class="reviews__param reviews__param_hidden"></div>
+        </div>
+      </div>
+    
+      <div class="reviews__list">
+        <div class="reviews__column"></div>
+        <div class="reviews__column"></div>
+      </div>
+    </div>
   </div>
-  <div class="tab-content" id="bonus">
-    <!-- //= pages/bonus -->
+  <div class="tab-content" id="geo">
+    <div class="geo page-content">
+      <div class="geo__map">
+        <iframe class="map-iframe"
+          src="https://yandex.ru/map-widget/v1/?ll=37.769198%2C55.689173&mode=search&ol=geo&ouri=ymapsbm1%3A%2F%2Fgeo%3Fdata%3DCgg1MzAwMDA5NBIa0KDQvtGB0YHQuNGPLCDQnNC-0YHQutCy0LAiCg2GeBZCFQEGX0I%2C&z=9.83"
+          allowfullscreen="true" style="position:relative;"></iframe>
+        <div class="geo__address">
+          <div class="geo__address-title">Адрес:</div>
+          <div class="geo__address-value">Москва, Бульварное кольцо, улица Петровка, дом 11/20</div>
+        </div>
+      </div>
+    
+      <div class="geo__title">Что есть рядом:</div>
+      <div class="geo__list">
+        <div class="geo__column"></div>
+        <div class="geo__column"></div>
+      </div>
+    </div>
+  </div>
+  <div class="tab-content" id="rules">
+    <div class="rules page-content">
+      <ol class="rules__list"></ol>
+    </div>
   </div>
 </div>
 
