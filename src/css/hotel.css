@@ -1,6 +1,7 @@
 /*= default  */
 /*= components/mainMenu */
 /*= components/mainButton */
+/*= components/dates-booking */
 
 .main {
   background: url("../img/hotel/bg.png") top center repeat-y #fff;
@@ -126,13 +127,6 @@
   display: block !important;
 }
 
-.page-content {
-  padding: 20px;
-  background-color: #fff;
-  box-shadow: 0px 5px 35px 0px rgba(0, 0, 0, 0.1);
-  border-radius: 20px;
-  color: #002a31;
-}
 .services__block:not(:last-child) {
   margin-bottom: 20px;
 }
@@ -423,52 +417,10 @@
   line-height: 17px;
 }
 
-.choose-room__dates {
-  display: flex;
-  justify-content: space-between;
-  position: relative;
-  padding: 10px;
-}
-.choose-room__date {
-  flex: 1 1 50%;
-  padding: 10px 20px 10px 10px;
-}
-.choose-room__date:not(:first-child) {
-  border-left: 1px solid #e6e6e6;
-  padding: 10px 10px 10px 20px;
-}
-.choose-room__date-title {
-  font-size: 24px;
-  font-weight: 600;
-  line-height: 29px;
-  margin-bottom: 8px;
-}
-.choose-room__date-row {
-  font-size: 18px;
-  line-height: 22px;
-}
-.choose-room__date-row:not(:last-child) {
-  margin-bottom: 8px;
-}
-.selected,
-.not-selected {
-  display: none;
-}
-.selected.active,
-.not-selected.active {
-  display: block;
-}
-.choose-room__change-dates {
-  position: absolute;
-  bottom: 10px;
-  right: 20px;
-}
-
 input {
   margin: 15px 0 30px;
   width: 100%;
   border: none;
-  /* box-shadow: 0 0 7px 0 darkgray; */
   box-shadow: 0px 0 25px 0px rgba(0, 0, 0, 0.15);
   padding: 10px 15px;
   border-radius: 13px;

@@ -43,6 +43,7 @@
                           <li class="profile-menu__item"><a href="../lk/">Иванов Иван Иванович</a></li>
                           <li class="profile-menu__item"><a href="../hotels-list/">Отели</a></li>
                           <li class="profile-menu__item"><a href="../hotel/">Отель</a></li>
+                          <li class="profile-menu__item"><a href="../booking/">Бронирование</a></li>
                           <li class="profile-menu__item"><a href="#">Выход</a></li>
                       </ul>
                   </div>
@@ -165,30 +166,30 @@
 <div class="tabs-content">
   <div class="tab-content tab-content_active" id="choose-room">
     <div class="choose-room">
-      <div class="choose-room__dates page-content">
-        <div class="choose-room__date">
-          <div class="choose-room__date-title">Дата заезда</div>
+      <div class="dates-booking page-content">
+        <div class="dates-booking__date">
+          <div class="dates-booking__title">Дата заезда</div>
           <div class="selected active">
-            <div class="choose-room__date-row" data-type="from-weekday">Понедельник</div>
-            <div class="choose-room__date-row" data-type="from-date">20 февраля 2023</div>
-            <div class="choose-room__date-row" data-type="from-time">С 14:00</div>
+            <div class="dates-booking__row" data-type="from-weekday">Понедельник</div>
+            <div class="dates-booking__row" data-type="from-date">20 февраля 2023</div>
+            <div class="dates-booking__row" data-type="from-time">С 14:00</div>
           </div>
           <div class="not-selected">
             <input type="text" name="date-from" readonly>
           </div>
         </div>
-        <div class="choose-room__date">
-          <div class="choose-room__date-title">Дата выезда</div>
+        <div class="dates-booking__date">
+          <div class="dates-booking__title">Дата выезда</div>
           <div class="selected active">
-            <div class="choose-room__date-row" data-type="to-weekday">Понедельник</div>
-            <div class="choose-room__date-row" data-type="to-date">20 февраля 2023</div>
-            <div class="choose-room__date-row" data-type="to-time">До 12:00</div>
+            <div class="dates-booking__row" data-type="to-weekday">Понедельник</div>
+            <div class="dates-booking__row" data-type="to-date">20 февраля 2023</div>
+            <div class="dates-booking__row" data-type="to-time">До 12:00</div>
           </div>
           <div class="not-selected">
             <input type="text" name="date-to" readonly>
           </div>
         </div>
-        <button class="link-underline choose-room__change-dates">Изменить</button>
+        <button class="link-underline dates-booking__change-dates">Изменить</button>
       </div>
     
       <div class="choose-room__title">Список номеров</div>

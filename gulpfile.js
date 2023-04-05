@@ -16,7 +16,13 @@ var gulp = require("gulp"),
 
 var path = {
   build: {
-    html: ["build/", "build/lk/", "build/hotels-list/", "build/hotel/"],
+    html: [
+      "build/",
+      "build/lk/",
+      "build/hotels-list/",
+      "build/hotel/",
+      "build/booking/",
+    ],
     js: "build/js/",
     css: "build/css/",
     img: "build/img/",
@@ -29,9 +35,20 @@ var path = {
       "src/lk/*.html",
       "src/hotels-list/*.html",
       "src/hotel/*.html",
+      "src/booking/*.html",
     ],
-    js: ["./src/js/lk.js", "./src/js/hotels_list.js", "./src/js/hotel.js"],
-    css: ["src/css/lk.css", "src/css/hotels-list.css", "src/css/hotel.css"],
+    js: [
+      "./src/js/lk.js",
+      "./src/js/hotels_list.js",
+      "./src/js/hotel.js",
+      "./src/js/booking.js",
+    ],
+    css: [
+      "src/css/lk.css",
+      "src/css/hotels-list.css",
+      "src/css/hotel.css",
+      "src/css/booking.css",
+    ],
     img: "src/img/**/*.*",
     fonts: "src/fonts/**/*.*",
     files: "src/files/**/*.*",
@@ -67,6 +84,7 @@ function jsBuild(done) {
           lk: path.src.js[0],
           hotels_list: path.src.js[1],
           hotel: path.src.js[2],
+          booking: path.src.js[3],
         },
         mode: "development", // production
         module: {

@@ -43,4 +43,4 @@ let getData = new GetData();
 getData.hotel();
 
 import ChangeDateBlock from "./components/ChangeDateBlock";
-new ChangeDateBlock(".choose-room__dates");
+new ChangeDateBlock(".dates-booking");

@@ -1,0 +1,40 @@
+.dates-booking {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+.dates-booking__date {
+  flex: 1 1 50%;
+  padding: 10px 20px 10px 10px;
+}
+.dates-booking__date:not(:first-child) {
+  border-left: 1px solid #e6e6e6;
+  padding: 10px 10px 10px 20px;
+}
+.dates-booking__title {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 29px;
+  margin-bottom: 8px;
+}
+.dates-booking__row {
+  font-size: 18px;
+  line-height: 22px;
+}
+.dates-booking__row:not(:last-child) {
+  margin-bottom: 8px;
+}
+.selected,
+.not-selected {
+  display: none;
+}
+.selected.active,
+.not-selected.active {
+  display: block;
+}
+.dates-booking__change-dates {
+  position: absolute;
+  bottom: 10px;
+  right: 20px;
+}
