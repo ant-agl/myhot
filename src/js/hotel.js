@@ -41,3 +41,6 @@ new BackgroundImage(".hotel__slider-nav__item", {
 import GetData from "./components/GetData";
 let getData = new GetData();
 getData.hotel();
+
+import ChangeDateBlock from "./components/ChangeDateBlock";
+new ChangeDateBlock(".choose-room__dates");

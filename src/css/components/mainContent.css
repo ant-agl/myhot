@@ -45,7 +45,6 @@
   }
   .main__subsection {
     padding: 20px 0 0;
-    /* width: 100%; */
     max-width: none;
   }
 }

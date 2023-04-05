@@ -49,6 +49,8 @@
 .hotel__price {
   font-size: 15px;
   line-height: 18px;
+  margin: 16px 0;
+  text-align: center;
 }
 .hotel__price-value {
   font-size: 18px;
@@ -57,13 +59,15 @@
 }
 .hotel__stars {
   width: 120px;
-  margin: 16px 0;
+}
+.hotel__stars img {
+  vertical-align: middle;
 }
 .hotel__name {
   font-size: 30px;
   font-weight: 700;
   line-height: 37px;
-  margin-bottom: 5px;
+  margin: 16px 0 5px;
 }
 .hotel__place {
   margin-bottom: 7px;
@@ -262,7 +266,7 @@
   background-color: #edbd1a;
 }
 .red {
-  background-color: #c12d2d;
+  background-color: #ff5f5f;
 }
 .reviews__estimation-text {
   font-size: 18px;
@@ -394,12 +398,162 @@
   font-weight: 500;
   line-height: 22px;
 }
+.reviews-card__text-title {
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 14px;
+  margin-bottom: 8px;
+}
+.reviews-card__text-title_green {
+  color: #31bb00;
+}
+.reviews-card__text-title_red {
+  color: #ff5f5f;
+}
 .reviews-card__text {
   font-size: 18px;
   line-height: 22px;
+}
+.reviews-card__text:not(:last-child) {
+  margin-bottom: 16px;
 }
 .reviews-card .reviews__param-name,
 .reviews-card .reviews__param-value {
   font-size: 14px;
   line-height: 17px;
+}
+
+.choose-room__dates {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  padding: 10px;
+}
+.choose-room__date {
+  flex: 1 1 50%;
+  padding: 10px 20px 10px 10px;
+}
+.choose-room__date:not(:first-child) {
+  border-left: 1px solid #e6e6e6;
+  padding: 10px 10px 10px 20px;
+}
+.choose-room__date-title {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 29px;
+  margin-bottom: 8px;
+}
+.choose-room__date-row {
+  font-size: 18px;
+  line-height: 22px;
+}
+.choose-room__date-row:not(:last-child) {
+  margin-bottom: 8px;
+}
+.selected,
+.not-selected {
+  display: none;
+}
+.selected.active,
+.not-selected.active {
+  display: block;
+}
+.choose-room__change-dates {
+  position: absolute;
+  bottom: 10px;
+  right: 20px;
+}
+
+input {
+  margin: 15px 0 30px;
+  width: 100%;
+  border: none;
+  /* box-shadow: 0 0 7px 0 darkgray; */
+  box-shadow: 0px 0 25px 0px rgba(0, 0, 0, 0.15);
+  padding: 10px 15px;
+  border-radius: 13px;
+  font-size: 18px;
+  line-height: 22px;
+}
+input:focus {
+  outline: 2px solid #238f9b;
+}
+
+.choose-room__title {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 29px;
+  margin: 20px 0;
+}
+
+.card-room:not(:last-child) {
+  margin-bottom: 20px;
+}
+.card-room__title {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 22px;
+  text-align: center;
+  margin-bottom: 14px;
+}
+.card-room__body {
+  display: flex;
+  gap: 22px;
+}
+.card-room__images,
+.card-room__info {
+  flex: 1 1 50%;
+}
+.card-room__images {
+  border-radius: 20px;
+  overflow: hidden;
+}
+.card-room__main-img {
+  width: 100%;
+}
+.card-room__second-images {
+  width: 100%;
+  display: flex;
+}
+.card-room__second-img {
+  flex: 1 1 50%;
+}
+.card-room__list {
+  list-style: none;
+  padding: 0;
+  overflow: hidden;
+}
+.card-room__item {
+  font-size: 18px;
+  line-height: 22px;
+}
+.card-room__item:not(:last-child) {
+  margin-bottom: 8px;
+}
+.card-room__show-all {
+  --color: #007895;
+  border-bottom: 1px dashed #007895;
+  font-size: 18px;
+  line-height: 22px;
+  margin-top: 8px;
+}
+.card-room__price-block {
+  background-color: #eaeaea;
+  border-radius: 100px;
+  padding: 10px 10px 10px 20px;
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.card-room__price {
+  font-size: 15px;
+  line-height: 18px;
+  white-space: nowrap;
+}
+.card-room__price-value {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 22px;
+  color: #007895;
 }

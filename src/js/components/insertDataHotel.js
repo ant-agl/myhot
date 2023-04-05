@@ -1,5 +1,8 @@
 import insertColumn from "./insertColumn";
 import CropText from "./CropText";
+import ShowAll from "./ShowAll";
+import BackgroundImage from "./BackgroundImage";
+
 export function insertServices(services) {
   services.free.forEach((item) => {
     let html = `<div class="services__subtitle">${item.name}</div>`;
@@ -169,8 +172,13 @@ export function insertReviewsList(reviews) {
             </div>
             <div class="reviews-card__name">${review.name}</div>
           </div>
+          <div class="reviews-card__text-title reviews-card__text-title_green">Что было хорошо</div>
           <div class="reviews-card__text">
-            ${review.text}
+            ${review.textGood}
+          </div>
+          <div class="reviews-card__text-title reviews-card__text-title_red">Что было плохо</div>
+          <div class="reviews-card__text">
+            ${review.textBad}
           </div>
         </div>
       </div>
@@ -183,6 +191,56 @@ export function insertReviewsList(reviews) {
   new CropText({
     selector: ".reviews-card__text",
     maxHeight: 220,
+  });
+}
+export function insertRooms(rooms) {
+  rooms.forEach((room, i) => {
+    let htmlList = "";
+    room.list.forEach((item) => {
+      htmlList += `<li class="card-room__item">${item}</li>`;
+    });
+    let html = `
+      <div class="card-room page-content">
+        <div class="card-room__title">${room.name}</div>
+        <div class="card-room__body">
+          <div class="card-room__images">
+            <div class="card-room__main-img" data-url="${room.images[0]}"></div>
+            <div class="card-room__second-images">
+              <div class="card-room__second-img" data-url="${room.images[1]}"></div>
+              <div class="card-room__second-img" data-url="${room.images[2]}"></div>
+            </div>
+          </div>
+          <div class="card-room__info">
+            <ul class="card-room__list" id="rooms-list-${i}">
+              ${htmlList}
+            </ul>
+            <button class="link-underline card-room__show-all" id="btn-show-all-${i}" data-target="rooms-list-${i}">Посмотреть
+              полностью</button>
+            <div class="card-room__price-block">
+              <div class="card-room__price">
+                <span class="card-room__price-value">${room.price}</span>
+                руб.
+              </div>
+              <a href="#" class="btn">Забронировать</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+    $(".card-rooms").append(html);
+    new ShowAll("btn-show-all-" + i, {
+      minShowElements: 4,
+      textShow: "Скрыть",
+      textHide: "Посмотреть полностью",
+    });
+  });
+  new BackgroundImage(".card-room__main-img", {
+    paddingBottom: "40%",
+    size: "cover",
+  });
+  new BackgroundImage(".card-room__second-img", {
+    paddingBottom: "20%",
+    size: "cover",
   });
 }
 

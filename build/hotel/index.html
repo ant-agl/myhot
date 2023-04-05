@@ -70,15 +70,10 @@
         </div>
         <div class="hotel__info">
           <div class="hotel__row">
-            <div class="hotel__price">
-              от
-              <span class="hotel__price-value">6 385</span>
-              руб. за 1 ночь
+            <div class="hotel__stars">
+              <img src="../img/icons/stars/10.png">
             </div>
             <a href="../hotels-list" class="main__button">Посмотреть другие варианы</a>
-          </div>
-          <div class="hotel__stars">
-            <img src="../img/icons/stars/10.png">
           </div>
           <div class="hotel__name">Отель Marriott Royal Aurora</div>
           <div class="hotel__place hotel__row hotel__row_left">
@@ -123,6 +118,11 @@
               </div>
             </div>
           </div>
+          <div class="hotel__price">
+            от
+            <span class="hotel__price-value">6 385</span>
+            руб. за 1 ночь
+          </div>
           <div class="hotel__btn">
             <a href="#" class="btn btn_white btn_big">Забронировать</a>
           </div>
@@ -164,7 +164,37 @@
 
 <div class="tabs-content">
   <div class="tab-content tab-content_active" id="choose-room">
-    choose-room
+    <div class="choose-room">
+      <div class="choose-room__dates page-content">
+        <div class="choose-room__date">
+          <div class="choose-room__date-title">Дата заезда</div>
+          <div class="selected active">
+            <div class="choose-room__date-row" data-type="from-weekday">Понедельник</div>
+            <div class="choose-room__date-row" data-type="from-date">20 февраля 2023</div>
+            <div class="choose-room__date-row" data-type="from-time">С 14:00</div>
+          </div>
+          <div class="not-selected">
+            <input type="text" name="date-from" readonly>
+          </div>
+        </div>
+        <div class="choose-room__date">
+          <div class="choose-room__date-title">Дата выезда</div>
+          <div class="selected active">
+            <div class="choose-room__date-row" data-type="to-weekday">Понедельник</div>
+            <div class="choose-room__date-row" data-type="to-date">20 февраля 2023</div>
+            <div class="choose-room__date-row" data-type="to-time">До 12:00</div>
+          </div>
+          <div class="not-selected">
+            <input type="text" name="date-to" readonly>
+          </div>
+        </div>
+        <button class="link-underline choose-room__change-dates">Изменить</button>
+      </div>
+    
+      <div class="choose-room__title">Список номеров</div>
+    
+      <div class="card-rooms"></div>
+    </div>
   </div>
   <div class="tab-content" id="services">
     <div class="services">

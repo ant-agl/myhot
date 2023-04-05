@@ -10,7 +10,7 @@
   height: 60px;
   top: 0px;
   left: 0px;
-  z-index: 4;
+  z-index: 1;
   background: linear-gradient(
     rgb(8, 96, 134) 0%,
     rgba(8, 96, 134, 0.9) 10%,
@@ -452,6 +452,7 @@ select {
   text-align: left;
 }
 .table__image-block img {
+  border-radius: 20px;
   width: 150px;
 }
 .nowrap {
@@ -527,6 +528,9 @@ span.reviews-card__date-value {
   min-width: 100px;
   border-radius: 13px;
   overflow: hidden;
+}
+.reviews-card__img img {
+  display: block;
 }
 .reviews-card__name,
 .reviews-card__geo {
@@ -692,6 +696,15 @@ span.reviews-card__date-value {
     flex-basis: 100%;
   }
 }
+@media (max-width: 1075px) {
+  .favourites-table,
+  .bonus-table {
+    display: none;
+  }
+  .hotel-card_mobile {
+    display: block;
+  }
+}
 @media (max-width: 991px) {
   .input-hint {
     right: auto;
@@ -721,13 +734,6 @@ span.reviews-card__date-value {
   .reviews-card__img {
     width: 120px;
     min-width: 120px;
-  }
-  .favourites-table,
-  .bonus-table {
-    display: none;
-  }
-  .hotel-card_mobile {
-    display: block;
   }
   .balance-bonus {
     max-width: 100%;
