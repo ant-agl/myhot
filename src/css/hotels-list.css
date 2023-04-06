@@ -1,7 +1,9 @@
 /*= default */
-
+body {
+  background-color: #21527d;
+}
 .main {
-  background: url("../img/hotels-list/bg.png") center repeat-y #21527e;
+  background: url("../img/hotels-list/bg.png") top center repeat-y #21527e;
   background-size: 100%;
 }
 
@@ -216,4 +218,98 @@
 
 .btn-open-map {
   min-width: 154px;
+}
+
+.filters-block {
+  position: relative;
+}
+.filters-mobile {
+  display: none;
+  background-color: #fff;
+  border-radius: 10px;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  padding: 10px;
+  position: relative;
+  cursor: pointer;
+}
+
+@media (max-width: 890px) {
+  .hotel-card {
+    flex-basis: 100%;
+  }
+  .map-big {
+    height: 360px;
+  }
+  .map-big.active {
+    max-height: 360px;
+  }
+  .map-iframe {
+    height: 320px;
+  }
+}
+@media (max-width: 767px) {
+  .hotel-card {
+    flex-basis: 45%;
+  }
+  .main__subsection {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .map-block {
+    order: 2;
+    margin-bottom: 0;
+  }
+  .filters-mobile {
+    display: block;
+  }
+  .filters-mobile img {
+    position: absolute;
+    width: 20px;
+    right: 8px;
+    top: 50%;
+    margin-top: -10px;
+    transition: 0.3s;
+    z-index: 4;
+  }
+  .filters-mobile.active img {
+    transform: rotate(180deg);
+  }
+  .filters-mobile.active + .filters {
+    transform: scale(1);
+    opacity: 1;
+  }
+  .filters {
+    transform: scaleY(0);
+    opacity: 0;
+    position: absolute;
+    transform-origin: top;
+    transition: 0.3s;
+    z-index: 3;
+    top: 0;
+    left: 0;
+    height: auto;
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.5);
+  }
+}
+@media (max-width: 575px) {
+  .hotel-card {
+    flex-basis: 100%;
+  }
+  .hotels-list {
+    gap: 20px;
+  }
+  .map-big {
+    height: 260px;
+  }
+  .map-big.active {
+    max-height: 260px;
+  }
+  .map-iframe {
+    height: 220px;
+  }
 }

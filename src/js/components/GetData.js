@@ -14,6 +14,8 @@ moment.updateLocale("ru", {
   },
 });
 
+import BackgroundImage from "./BackgroundImage";
+
 import RemoveRow from "./RemoveRow";
 import insertColumn from "./insertColumn";
 import {
@@ -652,6 +654,10 @@ export default class GetData {
         html += '<div class="hotel-card hotel-card_hidden"></div>';
         html += '<div class="hotel-card hotel-card_hidden"></div>';
         $(".hotels-list").html(html);
+        // new BackgroundImage(".hotel-card__img-filter", {
+        //   paddingBottom: "73%",
+        //   size: "cover",
+        // });
       });
       endLoad($(".hotels-list"));
     }, 2000);

@@ -2,6 +2,11 @@ import "./default";
 import Map from "./components/Map";
 new Map(".btn-open-map");
 
+import DropMenu from "./components/DropMenu";
+new DropMenu(".filters-mobile", {
+  selectorsNotClose: [".filters"],
+});
+
 import Range from "./components/Range";
 new Range({
   id: "dual-range-price",

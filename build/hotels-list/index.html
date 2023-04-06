@@ -59,80 +59,87 @@
                     <div class="map-block">
                       <button type="button" class="btn btn_white btn-open-map" data-target="map-big">Смотреть карту</button>
                     </div>
-                    <div class="filters">
-                      <div class="filter">
-                        <div class="filter__title">Цена за ночь</div>
-                        <div class="filter__body">
-                          <div class="filter__row">
-                            От
-                            <input type="text" class="filter__input" name="price-min" value="0" />
-                            до
-                            <input type="text" class="filter__input" name="price-max" value="20000" />
-                            руб.
-                          </div>
-                          <div id="dual-range-price"></div>
-                        </div>
+                    <div class="filters-block">
+                      <div class="filters-mobile">
+                        <span class="filters-mobile__select">Фильтры</span>
+                        <img src="../img/icons/arr.png">
                       </div>
-                      <div class="filter">
-                        <div class="filter__title">Звёзды отеля</div>
-                        <div class="filter__body">
-                          <label class="filter__row">
-                            <input type="checkbox" name="stars-5" class="filter__checkbox">
-                            <img src="../img/icons/stars/10.png" class="filter__stars">
-                          </label>
-                          <label class="filter__row">
-                            <input type="checkbox" name="stars-4" class="filter__checkbox">
-                            <img src="../img/icons/stars/8.png" class="filter__stars">
-                          </label>
-                          <label class="filter__row">
-                            <input type="checkbox" name="stars-3" class="filter__checkbox">
-                            <img src="../img/icons/stars/6.png" class="filter__stars">
-                          </label>
-                          <label class="filter__row">
-                            <input type="checkbox" name="stars-2" class="filter__checkbox">
-                            <img src="../img/icons/stars/4.png" class="filter__stars">
-                          </label>
-                          <label class="filter__row">
-                            <input type="checkbox" name="stars-1" class="filter__checkbox">
-                            <img src="../img/icons/stars/2.png" class="filter__stars">
-                          </label>
-                          <label class="filter__row">
-                            <input type="checkbox" name="stars-0" class="filter__checkbox">
-                            <img src="../img/icons/stars/0.png" class="filter__stars">
-                          </label>
-                        </div>
-                      </div>
-                      <div class="filter">
-                        <div class="filter__title">Оценка гостей</div>
-                        <div class="filter__body">
-                          <span>от <input type="text" class="filter__input" name="guest-rating" value="9"> и более</span>
-                          <div id="dual-range-guest-rating" class="single"></div>
-                        </div>
-                      </div>
-                      <div class="filter">
-                        <div class="filter__title">Расположение</div>
-                        <div class="filter__body">
-                          <div class="filter__row">
-                            От
-                            <input type="text" class="filter__input" name="location-min" value="0" />
-                            до
-                            <input type="text" class="filter__input" name="location-max" value="50" />
-                            км
-                          </div>
-                          <div id="dual-range-location"></div>
                     
-                          <label class="filter__row">
-                            <input type="radio" name="from_location" value="from_center" checked>
-                            <span>от центра, км</span>
-                          </label>
-                          <label class="filter__row">
-                            <input type="radio" name="from_location" value="from_metro">
-                            <span>от метро, км</span>
-                          </label>
-                          <label class="filter__row">
-                            <input type="radio" name="from_location" value="from_sea">
-                            <span>от моря, км</span>
-                          </label>
+                      <div class="filters">
+                        <div class="filter">
+                          <div class="filter__title">Цена за ночь</div>
+                          <div class="filter__body">
+                            <div class="filter__row">
+                              От
+                              <input type="text" class="filter__input" name="price-min" value="0" />
+                              до
+                              <input type="text" class="filter__input" name="price-max" value="20000" />
+                              руб.
+                            </div>
+                            <div id="dual-range-price"></div>
+                          </div>
+                        </div>
+                        <div class="filter">
+                          <div class="filter__title">Звёзды отеля</div>
+                          <div class="filter__body">
+                            <label class="filter__row">
+                              <input type="checkbox" name="stars-5" class="filter__checkbox">
+                              <img src="../img/icons/stars/10.png" class="filter__stars">
+                            </label>
+                            <label class="filter__row">
+                              <input type="checkbox" name="stars-4" class="filter__checkbox">
+                              <img src="../img/icons/stars/8.png" class="filter__stars">
+                            </label>
+                            <label class="filter__row">
+                              <input type="checkbox" name="stars-3" class="filter__checkbox">
+                              <img src="../img/icons/stars/6.png" class="filter__stars">
+                            </label>
+                            <label class="filter__row">
+                              <input type="checkbox" name="stars-2" class="filter__checkbox">
+                              <img src="../img/icons/stars/4.png" class="filter__stars">
+                            </label>
+                            <label class="filter__row">
+                              <input type="checkbox" name="stars-1" class="filter__checkbox">
+                              <img src="../img/icons/stars/2.png" class="filter__stars">
+                            </label>
+                            <label class="filter__row">
+                              <input type="checkbox" name="stars-0" class="filter__checkbox">
+                              <img src="../img/icons/stars/0.png" class="filter__stars">
+                            </label>
+                          </div>
+                        </div>
+                        <div class="filter">
+                          <div class="filter__title">Оценка гостей</div>
+                          <div class="filter__body">
+                            <span>от <input type="text" class="filter__input" name="guest-rating" value="9"> и более</span>
+                            <div id="dual-range-guest-rating" class="single"></div>
+                          </div>
+                        </div>
+                        <div class="filter">
+                          <div class="filter__title">Расположение</div>
+                          <div class="filter__body">
+                            <div class="filter__row">
+                              От
+                              <input type="text" class="filter__input" name="location-min" value="0" />
+                              до
+                              <input type="text" class="filter__input" name="location-max" value="50" />
+                              км
+                            </div>
+                            <div id="dual-range-location"></div>
+                    
+                            <label class="filter__row">
+                              <input type="radio" name="from_location" value="from_center" checked>
+                              <span>от центра, км</span>
+                            </label>
+                            <label class="filter__row">
+                              <input type="radio" name="from_location" value="from_metro">
+                              <span>от метро, км</span>
+                            </label>
+                            <label class="filter__row">
+                              <input type="radio" name="from_location" value="from_sea">
+                              <span>от моря, км</span>
+                            </label>
+                          </div>
                         </div>
                       </div>
                     </div>
