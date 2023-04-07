@@ -111,8 +111,10 @@
   align-items: center;
   justify-content: space-between;
 }
-.booking-services__row input {
-  margin-right: 5px;
+.booking-services__row label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 .booking-services__price {
   white-space: nowrap;
@@ -193,13 +195,16 @@
 }
 .booking-form__small {
   font-size: 14px;
-  line-height: 29px;
+  line-height: 18px;
 }
 .booking-form__small a {
   color: #469bdf;
 }
-label * {
-  vertical-align: middle;
+.booking-form__small label,
+.booking-form__row label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 input:not([type="checkbox"]),
 textarea {
@@ -266,5 +271,108 @@ input[type="checkbox"] {
   }
   100% {
     opacity: 0;
+  }
+}
+
+@media (max-width: 635px) {
+  .booking-hotel {
+    flex-direction: column;
+  }
+  .booking-hotel__img,
+  .booking-hotel__info {
+    width: 100%;
+  }
+}
+@media (max-width: 615px) {
+  .booking-services__list {
+    flex-direction: column;
+    gap: 0;
+  }
+}
+@media (max-width: 500px) {
+  .booking-hotel {
+    padding: 10px;
+  }
+  .booking-hotel__name {
+    font-size: 18px;
+    line-height: 22px;
+  }
+  .booking-hotel__row {
+    font-size: 14px;
+    line-height: 17px;
+  }
+  .booking-hotel__price-block {
+    margin-top: 16px;
+  }
+  .booking-hotel__price-text,
+  .booking-hotel__price-value {
+    font-size: 18px;
+    line-height: 22px;
+  }
+  .booking-services {
+    padding: 10px;
+  }
+  .booking-services__title {
+    font-size: 16px;
+    line-height: 20px;
+    margin-bottom: 20px;
+  }
+  .booking-services__category {
+    font-size: 16px;
+    line-height: 20px;
+    margin-top: 10px;
+  }
+  .booking-services__row {
+    font-size: 14px;
+    line-height: 17px;
+    margin-left: 0;
+    margin-bottom: 5px;
+  }
+  .booking-services__price {
+    font-size: 12px;
+    line-height: 15px;
+  }
+  .booking-services__total {
+    font-size: 22px;
+    line-height: 29px;
+    margin-top: 10px;
+  }
+  .booking-form {
+    padding: 10px;
+  }
+  .booking-form__title {
+    font-size: 16px;
+    line-height: 20px;
+  }
+  .booking-form__row {
+    flex-direction: column;
+    gap: 8px;
+  }
+  input:not([type="checkbox"]),
+  textarea {
+    font-size: 14px;
+    line-height: 27px;
+    padding: 12px 18px;
+    border-radius: 10px;
+  }
+  .booking-total {
+    padding: 10px;
+  }
+  .booking-total__title {
+    font-size: 16px;
+    line-height: 20px;
+  }
+  .booking-total__row {
+    font-size: 14px;
+    line-height: 17px;
+    margin-left: 0;
+  }
+  .booking-total__price {
+    font-size: 14px;
+    line-height: 17px;
+  }
+  .booking-total__total-price {
+    font-size: 16px;
+    line-height: 20px;
   }
 }
