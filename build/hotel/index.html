@@ -55,21 +55,7 @@
   <div class="section__main-info">
     <div class="container">
       <div class="hotel__main-info">
-        <div class="hotel__img">
-          <div class="hotel__slider-for">
-            <div class="hotel__slider-for__item" data-url="../img/hotels/1/1.png"></div>
-            <div class="hotel__slider-for__item" data-url="../img/hotels/1/2.png"></div>
-            <div class="hotel__slider-for__item" data-url="../img/hotels/1/3.png"></div>
-            <div class="hotel__slider-for__item" data-url="../img/hotels/1/4.png"></div>
-          </div>
-          <div class="hotel__slider-nav">
-            <div class="hotel__slider-nav__item" data-url="../img/hotels/1/1.png"></div>
-            <div class="hotel__slider-nav__item" data-url="../img/hotels/1/2.png"></div>
-            <div class="hotel__slider-nav__item" data-url="../img/hotels/1/3.png"></div>
-            <div class="hotel__slider-nav__item" data-url="../img/hotels/1/4.png"></div>
-          </div>
-        </div>
-        <div class="hotel__info">
+        <div class="mobile-show">
           <div class="hotel__row">
             <div class="hotel__stars">
               <img src="../img/icons/stars/10.png">
@@ -92,6 +78,47 @@
           <div class="hotel__place hotel__row hotel__row_left">
             <img src="../img/icons/plane.svg" class="invert">
             <span>Шереметьево</span>
+          </div>
+        </div>
+        <div class="hotel__img">
+          <div class="hotel__slider-for">
+            <div class="hotel__slider-for__item" data-url="../img/hotels/1/1.png"></div>
+            <div class="hotel__slider-for__item" data-url="../img/hotels/1/2.png"></div>
+            <div class="hotel__slider-for__item" data-url="../img/hotels/1/3.png"></div>
+            <div class="hotel__slider-for__item" data-url="../img/hotels/1/4.png"></div>
+          </div>
+          <div class="hotel__slider-nav">
+            <div class="hotel__slider-nav__item" data-url="../img/hotels/1/1.png"></div>
+            <div class="hotel__slider-nav__item" data-url="../img/hotels/1/2.png"></div>
+            <div class="hotel__slider-nav__item" data-url="../img/hotels/1/3.png"></div>
+            <div class="hotel__slider-nav__item" data-url="../img/hotels/1/4.png"></div>
+          </div>
+        </div>
+        <div class="hotel__info">
+          <div class="mobile-hide">
+            <div class="hotel__row">
+              <div class="hotel__stars">
+                <img src="../img/icons/stars/10.png">
+              </div>
+              <a href="../hotels-list" class="main__button">Посмотреть другие варианы</a>
+            </div>
+            <div class="hotel__name">Отель Marriott Royal Aurora</div>
+            <div class="hotel__place hotel__row hotel__row_left">
+              <img src="../img/icons/geo.svg" class="invert">
+              <span>Москва, ул. Николоямская, д. 83/33</span>
+            </div>
+            <div class="hotel__place hotel__row hotel__row_left">
+              <img src="../img/icons/metro.svg" class="invert">
+              <span>Марксистская</span>
+            </div>
+            <div class="hotel__place hotel__row hotel__row_left">
+              <img src="../img/icons/train.svg" class="invert">
+              <span>Ж/Д Белорусский 2 км</span>
+            </div>
+            <div class="hotel__place hotel__row hotel__row_left">
+              <img src="../img/icons/plane.svg" class="invert">
+              <span>Шереметьево</span>
+            </div>
           </div>
           <div class="hotel__reviews">
             <div class="hotel__row hotel__row_left">
@@ -137,7 +164,7 @@
       <div class="main__content">
         <div class="main__subsection">
           <div class="main__menu">
-            <div class="main__menu-mobil">
+            <div class="main__menu-mobil page-content">
               <span class="main__menu-select">Выбрать номер</span>
               <img src="../img/icons/arr.png">
             </div>
@@ -167,26 +194,28 @@
   <div class="tab-content tab-content_active" id="choose-room">
     <div class="choose-room">
       <div class="dates-booking page-content">
-        <div class="dates-booking__date">
-          <div class="dates-booking__title">Дата заезда</div>
-          <div class="selected active">
-            <div class="dates-booking__row" data-type="from-weekday">Понедельник</div>
-            <div class="dates-booking__row" data-type="from-date">20 февраля 2023</div>
-            <div class="dates-booking__row" data-type="from-time">С 14:00</div>
+        <div class="dates-booking__flex">
+          <div class="dates-booking__date">
+            <div class="dates-booking__title">Дата заезда</div>
+            <div class="selected active">
+              <div class="dates-booking__row" data-type="from-weekday">Понедельник</div>
+              <div class="dates-booking__row" data-type="from-date">20 февраля 2023</div>
+              <div class="dates-booking__row" data-type="from-time">С 14:00</div>
+            </div>
+            <div class="not-selected">
+              <input class="dates-booking__input" type="text" name="date-from" readonly>
+            </div>
           </div>
-          <div class="not-selected">
-            <input type="text" name="date-from" readonly>
-          </div>
-        </div>
-        <div class="dates-booking__date">
-          <div class="dates-booking__title">Дата выезда</div>
-          <div class="selected active">
-            <div class="dates-booking__row" data-type="to-weekday">Понедельник</div>
-            <div class="dates-booking__row" data-type="to-date">20 февраля 2023</div>
-            <div class="dates-booking__row" data-type="to-time">До 12:00</div>
-          </div>
-          <div class="not-selected">
-            <input type="text" name="date-to" readonly>
+          <div class="dates-booking__date">
+            <div class="dates-booking__title">Дата выезда</div>
+            <div class="selected active">
+              <div class="dates-booking__row" data-type="to-weekday">Понедельник</div>
+              <div class="dates-booking__row" data-type="to-date">20 февраля 2023</div>
+              <div class="dates-booking__row" data-type="to-time">До 12:00</div>
+            </div>
+            <div class="not-selected">
+              <input class="dates-booking__input" type="text" name="date-to" readonly>
+            </div>
           </div>
         </div>
         <button class="link-underline dates-booking__change-dates">Изменить</button>
@@ -292,13 +321,13 @@
   <div class="tab-content" id="geo">
     <div class="geo page-content">
       <div class="geo__map">
-        <iframe class="map-iframe"
-          src="https://yandex.ru/map-widget/v1/?ll=37.769198%2C55.689173&mode=search&ol=geo&ouri=ymapsbm1%3A%2F%2Fgeo%3Fdata%3DCgg1MzAwMDA5NBIa0KDQvtGB0YHQuNGPLCDQnNC-0YHQutCy0LAiCg2GeBZCFQEGX0I%2C&z=9.83"
-          allowfullscreen="true" style="position:relative;"></iframe>
         <div class="geo__address">
           <div class="geo__address-title">Адрес:</div>
           <div class="geo__address-value">Москва, Бульварное кольцо, улица Петровка, дом 11/20</div>
         </div>
+        <iframe class="map-iframe"
+          src="https://yandex.ru/map-widget/v1/?ll=37.769198%2C55.689173&mode=search&ol=geo&ouri=ymapsbm1%3A%2F%2Fgeo%3Fdata%3DCgg1MzAwMDA5NBIa0KDQvtGB0YHQuNGPLCDQnNC-0YHQutCy0LAiCg2GeBZCFQEGX0I%2C&z=9.83"
+          allowfullscreen="true" style="position:relative;"></iframe>
       </div>
     
       <div class="geo__title">Что есть рядом:</div>

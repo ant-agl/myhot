@@ -29,3 +29,10 @@
   font-weight: 500;
   line-height: 22px;
 }
+
+@media (max-width: 767px) {
+  .btn_big {
+    font-size: 13px;
+    padding: 15px 40px;
+  }
+}
