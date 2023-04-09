@@ -109,7 +109,7 @@ $(".change-data").on("click", function () {
   console.log(data);
   $.ajax({
     type: "POST",
-    url: "http://wehotel.ru/handler/change_info.php",
+    url: "https://wehotel.ru/handler/change_info.php",
     data,
     success: (data) => {
       console.log(data);
