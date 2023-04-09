@@ -59,18 +59,19 @@ $(".change-data").on("click", function () {
   let fio = [];
 
   let data = {};
+  var formData = new FormData();
   $(".input").each((i, item) => {
     let name = $(item).attr("name");
     let val = $(item).val().trim();
     let lastVal = $(item).data("last-value");
     if (name == "change_password" && val) {
       data[name] = val;
+      formData.append(name, val);
     } else if (name == "image" && val) {
-      var formData = new FormData();
       formData.append(name, $(item)[0].files[0]);
-      data[name] = formData;
     } else if (val && val != lastVal) {
       data[name] = val;
+      formData.append(name, val);
       $(item).data("last-value", val);
     }
     switch (name) {
@@ -110,7 +111,8 @@ $(".change-data").on("click", function () {
   $.ajax({
     type: "POST",
     url: "https://wehotel.ru/handler/change_info.php",
-    data,
+    data: formData,
+    contentType: false,
     processData: false,
     success: (data) => {
       console.log(data);
