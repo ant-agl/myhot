@@ -2,6 +2,7 @@ import insertColumn from "./insertColumn";
 import CropText from "./CropText";
 import ShowAll from "./ShowAll";
 import BackgroundImage from "./BackgroundImage";
+import getColor from "./getColor";
 
 export function insertServices(services) {
   services.free.forEach((item) => {
@@ -196,7 +197,8 @@ export function insertReviewsList(reviews) {
 export function insertRooms(rooms) {
   rooms.forEach((room, i) => {
     let htmlList = "";
-    room.list.forEach((item) => {
+    room.list.forEach((item, j) => {
+      if (j >= 4) return;
       htmlList += `<li class="card-room__item">${item}</li>`;
     });
     let html = `
@@ -214,7 +216,7 @@ export function insertRooms(rooms) {
             <ul class="card-room__list" id="rooms-list-${i}">
               ${htmlList}
             </ul>
-            <button class="link-underline card-room__show-all" id="btn-show-all-${i}" data-target="rooms-list-${i}">Посмотреть
+            <button data-target="modal-room" class="link-underline card-room__show-all" id="btn-show-all-${i}" data-target="rooms-list-${i}">Посмотреть
               полностью</button>
             <div class="card-room__price-block">
               <div class="card-room__price">
@@ -228,11 +230,11 @@ export function insertRooms(rooms) {
       </div>
     `;
     $(".card-rooms").append(html);
-    new ShowAll("btn-show-all-" + i, {
-      minShowElements: 4,
-      textShow: "Скрыть",
-      textHide: "Посмотреть полностью",
-    });
+    // new ShowAll("btn-show-all-" + i, {
+    //   minShowElements: 4,
+    //   textShow: "Скрыть",
+    //   textHide: "Посмотреть полностью",
+    // });
   });
   new BackgroundImage(".card-room__main-img", {
     paddingBottom: "40%",
@@ -244,13 +246,6 @@ export function insertRooms(rooms) {
   });
 }
 
-function getColor(number) {
-  let color = "green";
-  if (number <= 7) color = "lightgreen";
-  if (number <= 5) color = "yellow";
-  if (number <= 3) color = "red";
-  return color;
-}
 function getText(number) {
   let text = "Отлично";
   if (number <= 7) text = "Хорошо";

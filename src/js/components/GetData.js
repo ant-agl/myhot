@@ -2,6 +2,7 @@ import Filter from "./Filter";
 import ShowAll from "./ShowAll";
 import { startLoad, endLoad } from "./load";
 import moment from "moment";
+import getColor from "./getColor";
 moment.locale("ru");
 moment.updateLocale("ru", {
   relativeTime: {
@@ -13,8 +14,6 @@ moment.updateLocale("ru", {
     hh: "день",
   },
 });
-
-import BackgroundImage from "./BackgroundImage";
 
 import RemoveRow from "./RemoveRow";
 import insertColumn from "./insertColumn";
@@ -300,6 +299,7 @@ export default class GetData {
           geo: "Москва, Россия",
           dates: "01.01.2023 - 10.01.2023",
           dateReview: "12.01.2023",
+          estimation: 10,
           stars: 8,
           avatar: "../img/reviews/1.png",
           author: "Наталья",
@@ -312,6 +312,7 @@ export default class GetData {
           geo: "Москва, Россия",
           dates: "01.01.2023 - 10.01.2023",
           dateReview: "12.01.2023",
+          estimation: 6,
           stars: 9,
           avatar: "../img/reviews/1.png",
           author: "Наталья",
@@ -324,6 +325,7 @@ export default class GetData {
           geo: "Москва, Россия",
           dates: "01.01.2023 - 10.01.2023",
           dateReview: "12.01.2023",
+          estimation: 5,
           stars: 10,
           avatar: "../img/reviews/1.png",
           author: "Наталья",
@@ -336,6 +338,7 @@ export default class GetData {
           geo: "Москва, Россия",
           dates: "01.01.2023 - 10.01.2023",
           dateReview: "12.01.2023",
+          estimation: 2,
           stars: 6,
           avatar: "../img/reviews/1.png",
           author: "Наталья",
@@ -351,22 +354,27 @@ export default class GetData {
               <div class="reviews-card__dates">
                 <div class="reviews-card__date-review">
                   <span class="reviews-card__date-title">Дата отзыва</span>
-                  <span class="reviews-card__date-value">${review.dateReview}</span>
+                  <span class="reviews-card__date-value">${
+                    review.dateReview
+                  }</span>
                 </div>
                 <div class="reviews-card__date-trip">
                   <span class="reviews-card__date-title">Дата поездки</span>
                   <span class="reviews-card__date-value">${review.dates}</span>
                 </div>
               </div>
-              <div class="reviews-card__stars">
-                <img src="../img/icons/stars/${review.stars}.png">
-              </div>
+              <div class="reviews-card__estimation ${getColor(
+                review.estimation
+              )}">${review.estimation}</div>
             </div>
             <div class="reviews-card__hotel-info">
               <div class="reviews-card__img">
                 <img src="${review.img}" alt="${review.name}">
               </div>
               <div>
+                <div class="reviews-card__stars">
+                  <img src="../img/icons/stars/${review.stars}.png">
+                </div>
                 <div class="reviews-card__name">${review.name}</div>
                 <div class="reviews-card__geo">${review.geo}</div>
               </div>
@@ -602,9 +610,6 @@ export default class GetData {
                 <div class="hotel-card__img-filter">
                   <img src="${hotel.img}" alt="${hotel.name}">
                 </div>
-                <img src="../img/icons/stars/${
-                  hotel.stars
-                }.png" class="hotel-card__img-stars">
                 <svg class="hotel-card__img-heart ${
                   hotel.isHeart ? "active" : ""
                 }" width="16" height="14" viewBox="0 0 16 14" fill="none"
@@ -615,6 +620,9 @@ export default class GetData {
                 </svg>
               </div>
               <div class="hotel-card__main">
+                <img src="../img/icons/stars/${
+                  hotel.stars
+                }.png" class="hotel-card__img-stars">
                 <div class="hotel-card__title">${hotel.name}</div>
                 <div class="hotel-card__row-info">
                   <img src="../img/icons/geo.svg">

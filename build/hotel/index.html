@@ -65,11 +65,11 @@
           <div class="hotel__name">Отель Marriott Royal Aurora</div>
           <div class="hotel__place hotel__row hotel__row_left">
             <img src="../img/icons/geo.svg" class="invert">
-            <span>Москва, ул. Николоямская, д. 83/33</span>
+            <span>Москва, ул. Николоямская, д. 83/33 5 км</span>
           </div>
           <div class="hotel__place hotel__row hotel__row_left">
             <img src="../img/icons/metro.svg" class="invert">
-            <span>Марксистская</span>
+            <span>Марксистская 3 км</span>
           </div>
           <div class="hotel__place hotel__row hotel__row_left">
             <img src="../img/icons/train.svg" class="invert">
@@ -77,7 +77,7 @@
           </div>
           <div class="hotel__place hotel__row hotel__row_left">
             <img src="../img/icons/plane.svg" class="invert">
-            <span>Шереметьево</span>
+            <span>Шереметьево 11 км</span>
           </div>
         </div>
         <div class="hotel__img">
@@ -105,11 +105,11 @@
             <div class="hotel__name">Отель Marriott Royal Aurora</div>
             <div class="hotel__place hotel__row hotel__row_left">
               <img src="../img/icons/geo.svg" class="invert">
-              <span>Москва, ул. Николоямская, д. 83/33</span>
+              <span>Москва, ул. Николоямская, д. 83/33 5 км</span>
             </div>
             <div class="hotel__place hotel__row hotel__row_left">
               <img src="../img/icons/metro.svg" class="invert">
-              <span>Марксистская</span>
+              <span>Марксистская 3 км</span>
             </div>
             <div class="hotel__place hotel__row hotel__row_left">
               <img src="../img/icons/train.svg" class="invert">
@@ -117,7 +117,7 @@
             </div>
             <div class="hotel__place hotel__row hotel__row_left">
               <img src="../img/icons/plane.svg" class="invert">
-              <span>Шереметьево</span>
+              <span>Шереметьево 11 км</span>
             </div>
           </div>
           <div class="hotel__reviews">
@@ -344,6 +344,158 @@
   </div>
 </div>
 
+<div class="modal" id="modal-room">
+  <div class="modal__content">
+    <div class="modal-room__main">
+      <div class="modal-room__images">
+        <div class="modal-room__main-img" data-url="../img/rooms/1.png"></div>
+        <div class="modal-room__second-images">
+          <div class="modal-room__second-img" data-url="../img/rooms/2.png"></div>
+          <div class="modal-room__second-img" data-url="../img/rooms/3.png"></div>
+        </div>
+      </div>
+      <div class="modal-room_info">
+        <div class="modal-room__name">Двухместный номер Deluxe</div>
+        <div class="modal-room__row">
+          <img src="../img/icons/bed.svg" alt="">
+          Двуспальная кровать
+        </div>
+        <div class="modal-room__row">
+          <img src="../img/icons/forkKnife.svg" alt="">
+          Питание не включено
+        </div>
+        <div class="modal-room__row">
+          <img src="../img/icons/windows.svg" alt="">
+          Окно
+        </div>
+        <div class="modal-room__price-block">
+          <div class="modal-room__price">
+            <span class="modal-room__price-value">9 000</span>
+            руб.
+          </div>
+          <a href="#" class="btn">Забронировать</a>
+        </div>
+      </div>
+    </div>
+    <div class="modal-room__title">Доступные бесплантые услуги для данного номера</div>
+    <div class="modal-room__free-list">
+      <div class="modal-room__free-column">
+        <div class="modal-room__subtitle">Общее</div>
+        <div class="modal-room__item">Банкомат</div>
+        <div class="modal-room__item">Индивидуальная регистрация заезда и отъезда</div>
+        <div class="modal-room__item">Кондиционер</div>
+        <div class="modal-room__item">Круглосуточная стойка регистрации</div>
+        <div class="modal-room__item">Лифт</div>
+        <div class="modal-room__item">Отель для некурящих</div>
+        <div class="modal-room__subtitle">Интернет</div>
+        <div class="modal-room__item">Бесплатный Wi-Fi</div>
+        <div class="modal-room__subtitle">Туризм</div>
+        <div class="modal-room__item">Экскурсионное бюро</div>
+      </div>
+      <div class="modal-room__free-column">
+        <div class="modal-room__subtitle">В номерах</div>
+        <div class="modal-room__item">Люкс для новобрачных</div>
+        <div class="modal-room__item">Сейф (в номере)</div>
+        <div class="modal-room__subtitle">Услуги и удобства</div>
+        <div class="modal-room__item">Услуги консьержа</div>
+        <div class="modal-room__item">Фен (по запросу)</div>
+        <div class="modal-room__subtitle">Питание</div>
+        <div class="modal-room__item">Диетическое меню (по запросу)</div>
+        <div class="modal-room__subtitle">Персонал говорит</div>
+        <div class="modal-room__item">на английском</div>
+        <div class="modal-room__item">на русском</div>
+      </div>
+    </div>
+    <div class="modal-room__title" id="paid-service" data-target="paid-service__list">Выберете платные услуги +</div>
+    <div class="modal-room__paid-block" id="paid-service__list">
+      <div class="modal-room__paid-list">
+        <div class="modal-room__paid-column">
+          <div class="modal-room__subtitle">Услуги и удобства</div>
+          <div class="modal-room__item">
+            <label>
+              <input type="checkbox">
+              Гладильные услуги
+            </label>
+            <div class="modal-room__item-price">500 руб.</div>
+          </div>
+          <div class="modal-room__item">
+            <label>
+              <input type="checkbox">
+              Прачечная
+            </label>
+            <div class="modal-room__item-price">500 руб.</div>
+          </div>
+          <div class="modal-room__item">
+            <label>
+              <input type="checkbox">
+              Химчистка
+            </label>
+            <div class="modal-room__item-price">500 руб.</div>
+          </div>
+          <div class="modal-room__item">
+            <label>
+              <input type="checkbox">
+              Чистка обуви
+            </label>
+            <div class="modal-room__item-price">600 руб.</div>
+          </div>
+          <div class="modal-room__subtitle">Красота и здоровье</div>
+          <div class="modal-room__item">
+            <label>
+              <input type="checkbox">
+              Массаж
+            </label>
+            <div class="modal-room__item-price">1 200 руб.</div>
+          </div>
+          <div class="modal-room__item">
+            <label>
+              <input type="checkbox">
+              Салон красоты
+            </label>
+            <div class="modal-room__item-price">1 600 руб.</div>
+          </div>
+          <div class="modal-room__item">
+            <label>
+              <input type="checkbox">
+              Спа-центр
+            </label>
+            <div class="modal-room__item-price">2 000 руб.</div>
+          </div>
+        </div>
+        <div class="modal-room__paid-column">
+          <div class="modal-room__subtitle">Парковка</div>
+          <div class="modal-room__item">
+            <label>
+              <input type="checkbox">
+              Парковка
+            </label>
+            <div class="modal-room__item-price">8 200 руб.</div>
+          </div>
+          <div class="modal-room__subtitle">Трансфер</div>
+          <div class="modal-room__item">
+            <label>
+              <input type="checkbox">
+              Трансфер
+            </label>
+            <div class="modal-room__item-price">7 800 руб.</div>
+          </div>
+          <div class="modal-room__subtitle">Животные</div>
+          <div class="modal-room__item">
+            <label>
+              <input type="checkbox">
+              Размещение с домашними животными
+            </label>
+            <div class="modal-room__item-price">1 000 руб.</div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-room__paid-total">
+        <span>Всего за платные услуги</span>
+        <div class="modal-room__paid-total-value">0 руб.</div>
+      </div>
+    </div>
+  </div>
+</div>
 </div>
 </div>
 </div>

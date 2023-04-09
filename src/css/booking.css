@@ -1,5 +1,7 @@
 /*= default.css */
 /*= components/dates-booking */
+/*= components/modal */
+
 .main {
   background: url("../img/hotel/bg.png") top center repeat-y #fff;
   background-size: 100%;
@@ -88,10 +90,14 @@
   font-size: 24px;
   font-weight: 600;
   line-height: 29px;
+  cursor: pointer;
 }
 .booking-services__list {
   display: flex;
   gap: 40px;
+}
+#paid-service__list {
+  overflow: hidden;
 }
 .booking-services__column {
   flex: 1 1 50%;
@@ -315,7 +321,6 @@ input[type="checkbox"] {
   .booking-services__title {
     font-size: 16px;
     line-height: 20px;
-    margin-bottom: 20px;
   }
   .booking-services__category {
     font-size: 16px;

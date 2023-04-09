@@ -44,3 +44,23 @@ getData.hotel();
 
 import ChangeDateBlock from "./components/ChangeDateBlock";
 new ChangeDateBlock(".dates-booking");
+
+import Modal from "./components/Modal";
+new Modal("#modal-room");
+
+import ShowAll from "./components/ShowAll";
+new ShowAll("paid-service", {
+  minShowElements: 0,
+  gap: 0,
+  textShow: "Выберете платные услуги —",
+  textHide: "Выберете платные услуги +",
+});
+
+new BackgroundImage(".modal-room__main-img", {
+  paddingBottom: "40%",
+  size: "cover",
+});
+new BackgroundImage(".modal-room__second-img", {
+  paddingBottom: "20%",
+  size: "cover",
+});
