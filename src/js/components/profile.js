@@ -111,6 +111,7 @@ $(".change-data").on("click", function () {
     type: "POST",
     url: "https://wehotel.ru/handler/change_info.php",
     data,
+    processData: false,
     success: (data) => {
       console.log(data);
     },
