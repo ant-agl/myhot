@@ -1,1 +1,431 @@
-<a href="lk">Link lk</a>
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/uikit.css">
+  <link rel="stylesheet" href="css/main_2.css">
+  <link rel="stylesheet" href="css/modals_main.css">
+  <link rel="stylesheet" media="screen and (min-width: 310px) and (max-width: 699px)" href="css/mobile.css">
+
+  <link rel="stylesheet" media="screen and (min-width: 700px) and (max-width: 1279px)" href="css/monitor.css">
+  <!--min 1320-->
+  <link rel="stylesheet" media="screen and (min-width: 1280px) " href="css/Monitor_2k.css">
+  <link rel="stylesheet" media="screen and (min-width: 2048px)" href="css/Modals_4k.css">
+  <!--Модальные окна адаптация под большие экраны-->
+  <!--link rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 1000px)" href="css/tablet.css"!-->
+  <!--<link rel="stylesheet" media="screen and (min-width: 1925px)" href="css/desktop.css">!-->
+  <link rel="icon" href="img/favicon.svg">
+  <title>Бронирование отелей</title>
+
+</head>
+
+<body>
+  <header>
+    <div class="desktop_nav">
+      <div class="img_nav">
+        <img src="img/logo.svg" class="logo_picture">
+        <h1 class="nav_logo">WEHOTEL</h1>
+      </div>
+      <div class="nav_nav">
+        <!--<a class="req_object_button uk-button uk-button-default" href="#modal-group-1" uk-toggle>зарегистрировать объект</a>!-->
+        <a class="req_object_button" href="#modal-group-1" uk-toggle>зарегистрировать объект</a>
+        <button class="req_human_button uk-button" type="button" uk-toggle="target: #modal-group-1">
+          зарегистрироваться
+        </button>
+        <button class="log_in_button uk-button" type="button" uk-toggle="target: #modal-group-01">войти</button>
+      </div>
+    </div>
+    <div class="mobile_nav">
+      <div class="img_nav">
+        <img src="img/logo.svg" class="logo_picture">
+      </div>
+      <nav class="uk-navbar uk-navbar-container uk-margin" uk-navbar>
+        <div class="uk-navbar-left">
+          <a class="uk-navbar-toggle uk-navbar-toggle-animate " uk-navbar-toggle-icon href="#"></a>
+          <div class="uk-navbar-dropdown">
+            <ul class="uk-nav uk-navbar-dropdown-nav">
+              <li class="uk-active"><a href="#">Навигация</a></li>
+              <li><a href="#modal-group-1" uk-toggle>Зарегистрировать объект</a></li>
+              <li><a href="#modal-group-1" uk-toggle>Зарегистрироваться</a></li>
+              <li><a href="#modal-group-01" uk-toggle>Войти</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+  <section class="block_1">
+    <h1 class="header_b_1">найдите отель для лучшего отдыха</h1>
+    <form class="search_section">
+      <div class="input_search">
+        <div class="text-field">
+          <div class="text-field__icon text-field__icon_text">
+            <input class="text-field__input" type="text" placeholder="Город, регион или отель" value="">
+          </div>
+        </div>
+        <div class="text-field_2">
+          <div class="text-field__icon text-field__icon_text">
+            <input class="text-field__input_2" type="date" placeholder="Дата заезда - Дата выезда" value="">
+          </div>
+        </div>
+        <div class="people_modal">
+          <div class="text-field_3">
+            <div class="text-field__icon text-field__icon_text">
+              <button class="button_block_open" id="count-person-button" type="button">Количество гостей</button>
+            </div>
+          </div>
+          <div class="number_of_people person-close" id="modal-count-person">
+            <label>Количество взрослых
+              <div class="num_space">
+                <button class="number-minus" type="button"
+                  onclick="this.nextElementSibling.stepDown(); this.nextElementSibling.onchange();">-
+                </button>
+                <input class="number" type="number" min="0" value="0" readonly>
+                <button class="number-plus" type="button"
+                  onclick="this.previousElementSibling.stepUp(); this.previousElementSibling.onchange();">
+                  +
+                </button>
+              </div>
+            </label>
+            <div class="count-child" id="count-child">
+              <label>Количество детей
+                <div class="count-children">
+                  <button class="add-one-children" id="add-one-children" type="button">Добавить ребёнка</button>
+                </div>
+                <div id="new-child">
+
+                </div>
+              </label>
+              <button class="button_ready" id="close-modal-window" type="button">Готово</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="button_b_1">
+        <a href="" class="find_button">найти</a>
+      </div>
+    </form>
+  </section>
+  <section class="block_2">
+    <h2 class="heading_b_2">Не определились с выбором места отдыха? Мы вам можем подсказать!</h2>
+    <div class="container_offer_space">
+      <div class="container_offer_white">
+        <img src="img/avif/sea.avif" class="hotel_card_photo">
+        <p class="hotel_card_p1">Море</p>
+        <p class="hotel_card_p2">Ялта, Сочи, Анапа, Адлер, Судак и т.д.</p>
+        <a href="" class="hotel_card_more">Подробнее</a>
+      </div>
+      <div class="container_offer_white">
+        <img src="img/avif/mountion.avif" class="hotel_card_photo slow">
+        <p class="hotel_card_p1">Горы</p>
+        <p class="hotel_card_p2">Роза Хутор, Красная Поляна, Усть-Корал и т.д.</p>
+        <a href="" class="hotel_card_more">Подробнее</a>
+      </div>
+      <div class="container_offer_white">
+        <img src="img/avif/history.avif" class="hotel_card_photo">
+        <p class="hotel_card_p1">Исторические центры</p>
+        <p class="hotel_card_p2">Светлогорск, Пятигорск, курорты Кавказа и т.д.</p>
+        <a href="" class="hotel_card_more">Подробнее</a>
+      </div>
+    </div>
+  </section>
+  <section class="block_3">
+    <div class="text-header_3">
+      <h2 class="heading_b_3">Остались вопросы? Задай их</h2>
+      <h2 class="heading_b_3">их нам прямо сейчас!</h2>
+    </div>
+    <div class="b_3">
+      <div class="left_b_3">
+        <p class="question_small_text">Вопрос можно задать в онлайн-чате</p>
+        <img src="img/chat_animation.gif" class="img_phone">
+        <a href="" class="go_button_b_3">перейти</a>
+      </div>
+      <p class="middle_d_3">ИЛИ</p>
+      <form class="form_send">
+        <p class="text_form_d_3">Задайте вопрос и мы дадим обратную связь по почте</p>
+        <textarea type="text" class="question" placeholder="Ваш вопрос"></textarea>
+        <input type="e-mail" class="mail" placeholder="Ваша почта">
+        <input type="submit" value="отправить" class="send_button" id="">
+        <div class="container">
+          <input type="checkbox" id="cb1"> <label for="cb1">Я принимаю условия <a href="">персональных
+              данных</a></label>
+        </div>
+      </form>
+    </div>
+    <footer>
+      <div class="dowload">
+        <a><img src="img/appstore.svg" class="img_3"></a>
+        <a><img src="img/google_play.svg" class="img_3"></a>
+      </div>
+      <div class="sponsers">
+        <a><img src="img/ros_tel_kom.svg" class="img_spons_1"></a>
+        <a><img src="img/web-gen_logo_new.svg" class="img_spons_2"></a>
+      </div>
+    </footer>
+  </section>
+  <!--РЕГИСТРАЦИЯ-->
+  <form>
+    <div class="window_mod" id="modal-group-1" uk-modal>
+      <div class="uk-modal-dialog block_register_1">
+        <h1 class="heading_form_h1 uk-modal-title">Информация о себе</h1>
+        <input type="text" class="info_area" placeholder="Фамилия" required>
+        <input type="text" class="info_area" placeholder="Имя" required>
+        <input type="text" class="info_area" placeholder="Отчество (при наличии)">
+        <input type="text" class="info_area" id="date" placeholder="Дата рождения" required>
+        <input type="text" class="info_area" id="mail" placeholder="e-mail" required>
+        <div class="botton_section_form">
+          <p class="part_botton">1 из 4 этапов</p>
+          <a href="#modal-group-2" class="next_button" uk-toggle>Далее<img class="" src="img\arrow_next.svg"><img
+              class="disable_arrow" src="img\arrow_next_blue.svg"></a>
+        </div>
+      </div>
+    </div>
+    <div class="window_mod" id="modal-group-2" uk-modal>
+      <div class="uk-modal-dialog block_register_2">
+        <h1 class="heading_form_h1">Введите номер</h1>
+        <h2 class="heading_form_h2">Ваш номер телефона будет использоваться для входа в аккаунт</h2>
+        <input type="text" class="info_area mask-phone" placeholder="Номер телефона" required>
+        <p class="aware">*некорректный номер телефона</p>
+        <div class="botton_section_form">
+          <a href="#modal-group-1" class="uk-button uk-button-primary next_button next_able" uk-toggle><img
+              src="img\arrow_back.svg">Вернуться</a>
+          <p class="part_botton">2 из 4 этапов</p>
+          <button class="uk-buttonм uk-button-primary next_button" type="submit"
+            uk-toggle="target: #modal-group-3">Далее<img class="" src="img\arrow_next.svg"><img class="disable_arrow"
+              src="img\arrow_next_blue.svg"></button>
+        </div>
+      </div>
+    </div>
+  </form>
+  <form>
+    <div class="window_mod" id="modal-group-3" uk-modal>
+      <div class="uk-modal-dialog block_register_2">
+        <h1 class="heading_form_h1">Подтверждение номера</h1>
+        <h2 class="heading_form_h2">Мы отправили SMS-код на ваш номер телефона</h2>
+        <div class="code" id="code">
+          <input type="number" min="0" max="9" class="info_area phone_code" placeholder="" required>
+          <input type="number" min="0" max="9" class="info_area phone_code" placeholder="" required>
+          <input type="number" min="0" max="9" class="info_area phone_code" placeholder="" required>
+          <input type="number" min="0" max="9" class="info_area phone_code" placeholder="" required>
+          <input type="hidden" name="pincode">
+        </div>
+        <p class="aware sms">*неверный SMS-код</p>
+        <div class="botton_section_form">
+          <a href="#modal-group-2" class="uk-button uk-button-primary next_button next_able" uk-toggle><img
+              src="img\arrow_back.svg">Вернуться</a>
+          <p class="part_botton">3 из 4 этапов</p>
+          <button class="uk-buttonм uk-button-primary next_button" type="submit"
+            uk-toggle="target: #modal-group-4">Далее<img class="" src="img\arrow_next.svg"><img class="disable_arrow"
+              src="img\arrow_next_blue.svg"></button>
+        </div>
+      </div>
+    </div>
+  </form>
+  <form>
+    <div class="window_mod" id="modal-group-4" uk-modal>
+      <div class="uk-modal-dialog block_register_2">
+        <h1 class="heading_form_h1">Придумайте пароль</h1>
+        <input type="password" class="info_area" placeholder="Пароль" id="p1" onchange="register()" required>
+        <p class="tips">*не менее 8 знаков</p>
+        <p class="tips">*должен состоять из латиницы, кириллицы и цифр</p>
+        <input type="password" class="info_area" placeholder="Продублируйте пароль" id="p2" onchange="register()"
+          required>
+        <p class="tips aware" id="wrong">*не верный пароль</p>
+        <div class="botton_section_form">
+          <a href="#modal-group-3" class="uk-button uk-button-primary next_button next_able" uk-toggle><img
+              src="img\arrow_back.svg">Вернуться</a>
+          <p class="part_botton">4 из 4 этапов</p>
+          <button class="uk-buttonм uk-button-primary next_button" type="submit" uk-toggle="target: #">
+            Зарегестрироваться
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+  <!--ВХОД-->
+  <form>
+    <div class="window_mod" id="modal-group-01" uk-modal>
+      <div class="uk-modal-dialog block_register_01">
+        <h1 class="heading_form_h1 uk-modal-title">Вход в аккаунт</h1>
+        <input type="text" class="info_area" placeholder="Телефон или почта" required>
+        <p class="aware">*не верный номер телефона или почта</p>
+        <input type="text" class="info_area" placeholder="Пароль" required>
+        <p class="aware">*не верный пароль</p>
+        <a href="#modal-group-001" class="forget_button" uk-toggle>Забыли пароль?</a>
+        <div class="botton_section_form">
+          <button class="uk-buttonм uk-button-primary next_button" type="submit"
+            uk-toggle="target: #modal-group-02">Войти
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+  <form>
+    <div class="" id="modal-group-02" uk-modal>
+      <div class="uk-modal-dialog block_register_01">
+        <h1 class="heading_form_h1">Подтверждение входа в аккаунт</h1>
+        <h2 class="heading_form_h2">Мы отправили SMS-код на ваш номер телефона</h2>
+        <div class="code" id="code">
+          <input type="number" min="0" max="9" class="info_area phone_code" placeholder="" required>
+          <input type="number" min="0" max="9" class="info_area phone_code" placeholder="" required>
+          <input type="number" min="0" max="9" class="info_area phone_code" placeholder="" required>
+          <input type="number" min="0" max="9" class="info_area phone_code" placeholder="" required>
+          <input type="hidden" name="pincode">
+        </div>
+        <p class="aware sms">*неверный SMS-код</p>
+        <div class="botton_section_form">
+          <a href="#modal-group-01" class="uk-button uk-button-primary next_button next_able" uk-toggle><img
+              src="img\arrow_back.svg">Вернуться</a>
+          <button class="uk-buttonм uk-button-primary next_button" type="submit" uk-toggle="target: ">Войти
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+  <!--ВОССТАНОВЛЕНИЕ ПАРОЛЯ-->
+  <form>
+    <div class="window_mod" id="modal-group-001" uk-modal>
+      <div class="uk-modal-dialog block_register_02">
+        <h1 class="heading_form_h1 uk-modal-title">Восстановление пароля</h1>
+        <input type="text" class="info_area mask-phone" placeholder="Телефон или почта" required>
+        <p class="aware">*не верный номер телефона или почта</p>
+        <div class="botton_section_form">
+          <p class="part_botton">1 из 3 этапов</p>
+          <button class="uk-buttonм uk-button-primary next_button" type="submit"
+            uk-toggle="target: #modal-group-002">Далее<img class="" src="img\arrow_next.svg"><img class="disable_arrow"
+              src="img\arrow_next_blue.svg"></button>
+        </div>
+      </div>
+    </div>
+  </form>
+  <form>
+    <div class="window_mod" id="modal-group-002" uk-modal>
+      <div class="uk-modal-dialog block_register_02">
+        <h1 class="heading_form_h1">Подтверждение смены пароля</h1>
+        <h2 class="heading_form_h2">Мы отправили SMS-код на ваш номер телефона</h2>
+        <div class="code" id="code">
+          <input type="number" min="0" max="9" class="info_area phone_code" placeholder="" required>
+          <input type="number" min="0" max="9" class="info_area phone_code" placeholder="" required>
+          <input type="number" min="0" max="9" class="info_area phone_code" placeholder="" required>
+          <input type="number" min="0" max="9" class="info_area phone_code" placeholder="" required>
+          <input type="hidden" name="pincode">
+        </div>
+        <p class="aware sms">*неверный SMS-код</p>
+        <div class="botton_section_form">
+          <a href="#modal-group-001" class="uk-button uk-button-primary next_button next_able" uk-toggle><img
+              src="img\arrow_back.svg">Вернуться</a>
+          <p class="part_botton">2 из 3 этапов</p>
+          <!--?????-->
+          <button class="uk-buttonм uk-button-primary next_button" type="submit"
+            uk-toggle="target: #modal-group-003">Далее<img class="" src="img\arrow_next.svg"><img class="disable_arrow"
+              src="img\arrow_next_blue.svg"></button>
+        </div>
+      </div>
+    </div>
+  </form>
+  <form>
+    <div class="window_mod" id="modal-group-003" uk-modal>
+      <div class="uk-modal-dialog block_register_02">
+        <h1 class="heading_form_h1">Придумайте новый пароль</h1>
+        <input type="password" class="info_area" placeholder="Пароль" onchange="register()" required>
+        <p class="tips">*не менее 8 знаков</p>
+        <p class="tips">*должен состоять из латиницы, кириллицы и цифр</p>
+        <input type="password" class="info_area" placeholder="Продублируйте пароль" onchange="register()" required>
+        <p class="tips aware">*не верный пароль</p>
+        <div class="botton_section_form">
+          <a href="#modal-group-002" class="uk-button uk-button-primary next_button next_able" uk-toggle><img
+              src="img\arrow_back.svg">Вернуться</a>
+          <p class="part_botton">3 из 3 этапов</p>
+          <button class="uk-buttonм uk-button-primary next_button" type="submit" uk-toggle="target: ">Войти
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+  <script src="js/uikit.min.js" async></script>
+  <script src="js/uikit-icons.min.js" async></script>
+  <script src="js/jquery.js"></script>
+  <script src="https://snipp.ru/cdn/maskedinput/jquery.maskedinput.min.js"></script>
+  <script src="uikit-3.15.23/index.js"></script>
+  <script>
+    $.mask.definitions['h'] = "[0|1|3|4|5|6|7|9]"
+    $(".mask-phone").mask("+7 (h99) 999-99-99");
+  </script>
+  <script>
+    $("#date").mask("99.99.9999", {
+      placeholder: "дд.мм.гггг"
+    });
+  </script>
+
+  <!--</section>!-->
+  <!--
+<script>
+    $("#mail").mask("*{1,20}[.*{1,20}]@*{1,20}.*{2,4}", {placeholder: "example@example.ru" });
+</script>
+<script>
+ $('#mail').inputmask({
+    mask: "*{1,20}[.*{1,20}]@*{1,20}.*{2,4}",
+    greedy: false,
+    clearIncomplete: true,
+    onBeforePaste: function (pastedValue, opts) {
+      pastedValue = pastedValue.toLowerCase();
+      return pastedValue.replace("mailto:", "");
+    },
+    definitions: {
+      '*': {
+        validator: "[0-9A-Za-z-а-я-_]",
+        casing: "lower"
+      }
+    }
+})
+</script>
+    <script src="windows.js"></script>!-->
+  <!-- UIkit JS -->
+  <script src="js/jquery.js"></script>
+  <script>
+    $('input[type="number"]').keydown(function (e) {
+      $(this).val('');
+    });
+
+    $('input[type="number"]').keyup(function (e) {
+      var $wrap = $(this).closest('#code');
+      var $inputs = $wrap.find('input[type="number"]');
+      var val = $(this).val();
+
+      // Ввод только цифр
+      if (val == val.replace(/[0-9]/, '')) {
+        $(this).val('');
+        return false;
+      }
+
+      // Передача фокуса следующему innput
+      $inputs.eq($inputs.index(this) + 1).focus();
+
+      // Заполнение input hidden
+      var fullval = '';
+      $inputs.each(function () {
+        fullval = fullval + (parseInt($(this).val()) || '0');
+      });
+      $wrap.find('input[type="hidden"]').val(fullval);
+    });
+  </script>
+
+  <script>
+    function register() {
+      var password = document.getElementById('p1').value;
+      var confirm = document.getElementById('p2').value;
+      var field = document.getElementById("wrong");
+      if (confirm != password) {
+        field.classList.add('show_aware');
+      } else {
+        field.classList.remove('show_aware');
+      }
+    };
+  </script>
+</body>
+
+</html>
