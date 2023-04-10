@@ -23,12 +23,12 @@ $(".change-data").on("click", function () {
   $(this).toggleClass("active");
   $(".input").prop("disabled", !$(this).hasClass("active"));
   if ($(this).hasClass("active")) {
-    $('[name="change_password"]').val("").attr("type", "password");
+    $('[name="change_pass"]').val("").attr("type", "password");
 
     $(".change-data-background").remove();
     $("body").append('<div class="change-data-background"></div>');
   } else {
-    $('[name="change_password"]').attr("type", "text");
+    $('[name="change_pass"]').attr("type", "text");
     let $bg = $(".change-data-background");
     $bg.addClass("remove");
     setTimeout(() => {
@@ -62,14 +62,16 @@ $(".change-data").on("click", function () {
   var formData = new FormData();
   $(".input").each((i, item) => {
     let name = $(item).attr("name");
-    let val = $(item).val().trim();
+    let val = $(item).val()?.trim();
     let lastVal = $(item).data("last-value");
-    if (name == "change_password" && val) {
+    if (name == "change_pass" && val) {
       data[name] = val;
       formData.append(name, val);
     } else if (name == "image" && val) {
       formData.append(name, $(item)[0].files[0]);
     } else if (val && val != lastVal) {
+      if (name == "number") val = val.replace(/\D/g, "");
+
       data[name] = val;
       formData.append(name, val);
       $(item).data("last-value", val);
@@ -84,13 +86,13 @@ $(".change-data").on("click", function () {
   });
   $(".profile-menu__item a").first().text(fio.join(" "));
 
-  if (data.change_password) {
-    $('[name="change_password"]')
+  if (data.change_pass) {
+    $('[name="change_pass"]')
       .val("Был изменен сегодня")
       .data("last-value", "Был изменен сегодня");
   } else {
-    let lastVal = $('[name="change_password"]').data("last-value");
-    $('[name="change_password"]').val(lastVal);
+    let lastVal = $('[name="change_pass"]').data("last-value");
+    $('[name="change_pass"]').val(lastVal);
   }
 
   $(".msg").addClass("active");
@@ -99,7 +101,7 @@ $(".change-data").on("click", function () {
   }, 1500);
 
   if (dfo != "no") {
-    if (data.dfo || data.number || data.change_password) {
+    if (data.dfo || data.number || data.change_pass) {
       modalConfirm.open();
     }
   }

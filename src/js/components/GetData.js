@@ -41,25 +41,28 @@ export default class GetData {
     this.hotelsList();
   }
   user(birthday = false) {
-    $.get(this.path + "", (data) => {
-      data = {
-        name: "Иван",
-        surname: "Иванов",
-        second_name: "Иванович",
-        email: "ivanovivan@gmail.ru",
-        date: "11.10.1992",
-        number: 79617910592,
-        change_password: "10.01.2023",
-        image: "../img/photo.jpg",
-        dfo: "mail",
-      };
+    $.get(this.path + "https://wehotel.ru/handler/get_data.php", (data) => {
+      data = JSON.parse(data);
+      console.log(data);
+      // data = {
+      //   name: "Иван",
+      //   surname: "Иванов",
+      //   second_name: "Иванович",
+      //   email: "ivanovivan@gmail.ru",
+      //   date: "11.10.1992",
+      //   number: 79617910592,
+      //   change_password: "10.01.2023",
+      //   image: "../img/photo.jpg",
+      //   "2fa": "mail",
+      // };
 
+      if (!data.image) data.image = "../img/no-photo.jpg";
       for (let name in data) {
         let val = data[name];
         if (name == "number") val = $(`[name="${name}"]`).masked(val);
 
-        if (name == "change_password") {
-          let date = moment(val, "DD.MM.YYYY").fromNow();
+        if (name == "change_pass") {
+          let date = moment(val).fromNow();
           if (date == "день назад") date = "сегодня";
           val = "Был изменен " + date;
         }
@@ -69,9 +72,9 @@ export default class GetData {
           continue;
         }
 
-        if (name == "date" && birthday) {
+        if (name == "birthday" && birthday) {
           birthday.update({
-            selectedDates: moment(val, "DD.MM.YYYY"),
+            selectedDates: moment(val),
           });
           continue;
         }
