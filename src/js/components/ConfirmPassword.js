@@ -48,7 +48,7 @@ export default class ConfirmPassword {
 
     $.ajax({
       type: "POST",
-      url: "https://wehotel.ru/php/handler/code_check.php",
+      url: "https://wehotel.ru/handler/code_check.php",
       data: {
         code,
       },
