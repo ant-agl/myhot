@@ -56,26 +56,31 @@ export default class GetData {
       //   "2fa": "mail",
       // };
 
-      if (!data.image) data.image = "../img/no-photo.jpg";
+      if (!data.img_id) data.img_id = "../img/no-photo.jpg";
       for (let name in data) {
         let val = data[name];
-        if (name == "number") val = $(`[name="${name}"]`).masked(val);
+        if (name == "phone") val = $(`[name="${name}"]`).masked(val);
 
         if (name == "change_pass") {
-          let date = moment(val).fromNow();
+          let date = moment(val * 1000).fromNow();
           if (date == "день назад") date = "сегодня";
           val = "Был изменен " + date;
         }
 
-        if (name == "image") {
+        if (name == "img_id") {
           $(".main__photo-img").attr("src", val);
           continue;
         }
 
         if (name == "birthday" && birthday) {
+          val *= 1000;
           birthday.update({
-            selectedDates: moment(val),
+            selectedDates: val,
           });
+          $(`[name="${name}"]`).data(
+            "last-value",
+            moment(val).format("DD.MM.YYYY")
+          );
           continue;
         }
 

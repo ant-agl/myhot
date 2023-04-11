@@ -70,7 +70,7 @@ $(".change-data").on("click", function () {
     } else if (name == "image" && val) {
       formData.append(name, $(item)[0].files[0]);
     } else if (val && val != lastVal) {
-      if (name == "number") val = val.replace(/\D/g, "");
+      if (name == "phone") val = val.replace(/\D/g, "");
 
       data[name] = val;
       formData.append(name, val);
@@ -101,7 +101,7 @@ $(".change-data").on("click", function () {
   }, 1500);
 
   if (dfo != "no") {
-    if (data.dfo || data.number || data.change_pass) {
+    if (data.dfo || data.phone || data.change_pass) {
       modalConfirm.open();
     }
   }
