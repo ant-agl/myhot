@@ -330,8 +330,8 @@
 }
 .reviews-card__date-name,
 .reviews-card__date-val {
-  font-size: 10px;
-  line-height: 12px;
+  font-size: 13px;
+  line-height: 13px;
 }
 .reviews-card__row {
   display: flex;
@@ -460,7 +460,6 @@
 }
 .card-room__show-all {
   --color: #007895;
-  border-bottom: 1px dashed #007895;
   font-size: 18px;
   line-height: 22px;
   margin-top: 8px;

@@ -90,7 +90,6 @@ export default class GetData {
   }
   statuses() {
     $.get(this.path + "https://wehotel.ru/php/data_status.php", (data) => {
-      // data = JSON.parse(data);
       console.log(data);
 
       data.forEach((filter) => {
@@ -115,7 +114,7 @@ export default class GetData {
         dates += `${moment(hotel.output_date * 1000).format("DD.MM.YYYY")}`;
 
         let filter = filters.find((f) => f.id == hotel.status);
-        let status = filter.nick ?? filter.name ?? "";
+        let status = filter.nick ?? filter.name;
         let statusColor = filter.color ?? "#000";
 
         let peoples = [];
@@ -151,7 +150,9 @@ export default class GetData {
               <div class="hotel-card__main-info">
                 <div class="hotel-card__status">
                   <span>Статус</span>
-                  <span class="value" style="color:${statusColor}">${status}</span>
+                  <span class="value" style="color:${statusColor}" title="${
+          filter.name
+        }">${status}</span>
                 </div>
                 <div class="hotel-card__name">
                   ${hotel.joined_hotel_search[0].name}

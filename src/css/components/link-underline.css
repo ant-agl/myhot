@@ -2,6 +2,7 @@
   --color: #0e5e6f;
 }
 .link-underline {
+  font-family: "Montserrat", sans-serif;
   font-size: 18px;
   line-height: 22px;
   color: var(--color);

@@ -41,7 +41,11 @@ export default class ShowAll {
     this.maxHeight = h;
     this.fullHeight = fullH;
 
-    this.setDefaultState();
+    if (this.$block.hasClass(this.activeCLass)) {
+      this.show();
+    } else {
+      this.hide();
+    }
   }
   setDefaultState() {
     if (this.$block.find("> *").length <= this.minShowElements) {
