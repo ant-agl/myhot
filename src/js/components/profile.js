@@ -21,6 +21,7 @@ confirmPass.afterSendSuccess = () => {
 $(".input").prop("disabled", true);
 $(".change-data").on("click", function () {
   $(this).toggleClass("active");
+  $(".btn-delete-account").toggleClass("active");
   $(".input").prop("disabled", !$(this).hasClass("active"));
   if ($(this).hasClass("active")) {
     $('[name="change_pass"]').val("").attr("type", "password");
@@ -83,7 +84,7 @@ $(".change-data").on("click", function () {
         break;
     }
   });
-  $(".profile-menu__item a").first().text(fio.join(" "));
+  $(".profile-menu__link").first().text(fio.join(" "));
 
   if (data.change_pass) {
     $('[name="change_pass"]')
@@ -131,4 +132,9 @@ $(".input-avatar").on("change", function () {
   reader.onloadend = function () {
     $(".main__photo-img").attr("src", reader.result);
   };
+});
+
+$(".btn-delete-account").on("click", function () {
+  modalConfirm.open();
+  console.log("delete account");
 });

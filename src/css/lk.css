@@ -1,7 +1,6 @@
 /*= default */
 /*= components/mainMenu */
 /*= components/mainButton */
-/*= components/modal */
 /*= components/colors */
 
 .main__section::before {
@@ -14,17 +13,17 @@
   left: 0px;
   z-index: 1;
   background: linear-gradient(
-    rgb(8, 96, 134) 0%,
-    rgba(8, 96, 134, 0.9) 10%,
-    rgba(8, 96, 134, 0.8) 20%,
-    rgba(8, 96, 134, 0.7) 30%,
-    rgba(8, 96, 134, 0.6) 40%,
-    rgba(8, 96, 134, 0.5) 50%,
-    rgba(8, 96, 134, 0.4) 60%,
-    rgba(8, 96, 134, 0.3) 70%,
-    rgba(8, 96, 134, 0.2) 80%,
-    rgba(8, 96, 134, 0.1) 90%,
-    rgba(8, 96, 134, 0) 100%
+    rgb(1, 88, 131) 0%,
+    rgba(1, 88, 131, 0.9) 10%,
+    rgba(1, 88, 131, 0.8) 20%,
+    rgba(1, 88, 131, 0.7) 30%,
+    rgba(1, 88, 131, 0.6) 40%,
+    rgba(1, 88, 131, 0.5) 50%,
+    rgba(1, 88, 131, 0.4) 60%,
+    rgba(1, 88, 131, 0.3) 70%,
+    rgba(1, 88, 131, 0.2) 80%,
+    rgba(1, 88, 131, 0.1) 90%,
+    rgba(1, 88, 131, 0) 100%
   );
 }
 
@@ -385,6 +384,13 @@ select {
   border-radius: 20px;
   width: 150px;
 }
+.bonus-table .table__image-block img {
+  border-radius: 10px;
+  width: 100px;
+}
+.bonus-table__date-desc {
+  font-size: 12px;
+}
 .nowrap {
   white-space: nowrap;
 }
@@ -633,6 +639,16 @@ span.reviews-card__date-value {
   transition: 0.3s;
   opacity: 0;
   transform-origin: top;
+}
+.btn-delete-account {
+  margin-right: auto;
+  visibility: hidden;
+  transition: 0.2s;
+  opacity: 0;
+}
+.btn-delete-account.active {
+  visibility: visible;
+  opacity: 1;
 }
 
 @media (max-width: 1140px) {

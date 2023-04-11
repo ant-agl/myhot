@@ -10,10 +10,14 @@ export default class Modal {
       this[key] = settings[key];
     }
 
-    $("body").on("click", `[data-target="${this.id}"]`, this.open.bind(this));
     $("body").on(
       "click",
-      `[data-target-close="${this.id}"]`,
+      `[data-modal-target="${this.id}"]`,
+      this.open.bind(this)
+    );
+    $("body").on(
+      "click",
+      `[data-modal-target-close="${this.id}"]`,
       this.close.bind(this)
     );
     this.$modal.on("click", (e) => {

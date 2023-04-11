@@ -9,7 +9,7 @@
   -moz-appearance: none;
   appearance: none;
   text-transform: uppercase;
-  font-weight: 500;;
+  font-weight: 500;
   font-size: 14px;
   color: #005382;
   background-color: #fff;
@@ -40,7 +40,7 @@
 .logo__text {
   cursor: default;
   display: inline-block;
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
   font-size: 25px;
   text-transform: uppercase;
 }
@@ -59,13 +59,13 @@
   right: 0;
   border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 0 7px 0 rgba(0,0,0,0.5);
+  box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.5);
   transition: 0.3s;
   transform: scale(0);
   transform-origin: top right;
   z-index: 5;
 }
-.profile-menu__item a {
+.profile-menu__link {
   white-space: nowrap;
   padding: 10px 20px;
   display: inline-block;
@@ -75,8 +75,8 @@
   transition: 0.2s;
   cursor: pointer;
 }
-.profile-menu__item a:hover {
-  background-color: #F1FEFF;
+.profile-menu__link:hover {
+  background-color: #f1feff;
 }
 
 @media (max-width: 767px) {

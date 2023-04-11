@@ -216,7 +216,7 @@ export function insertRooms(rooms) {
             <ul class="card-room__list" id="rooms-list-${i}">
               ${htmlList}
             </ul>
-            <button data-target="modal-room" class="link-underline card-room__show-all" id="btn-show-all-${i}" data-target="rooms-list-${i}">Посмотреть
+            <button data-modal-target="modal-room" class="link-underline card-room__show-all">Посмотреть
               полностью</button>
             <div class="card-room__price-block">
               <div class="card-room__price">

@@ -57,6 +57,9 @@
   text-align: right;
   margin-top: auto;
 }
+.modal__footer button {
+  margin-left: 15px;
+}
 .modal__stage-and-button {
   display: flex;
   margin-top: 114px;

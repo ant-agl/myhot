@@ -40,17 +40,32 @@
                                 stroke="#005382" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
                         <ul class="profile-menu__list">
-                            <li class="profile-menu__item"><a href="../lk/">Иванов Иван Иванович</a></li>
-                            <li class="profile-menu__item"><a href="../hotels-list/">Отели</a></li>
-                            <li class="profile-menu__item"><a href="../hotel/">Отель</a></li>
-                            <li class="profile-menu__item"><a href="../booking/">Бронирование</a></li>
-                            <li class="profile-menu__item"><a href="#">Выход</a></li>
+                            <li class="profile-menu__item"><a class="profile-menu__link" href="../lk/">Иванов Иван
+                                    Иванович</a></li>
+                            <li class="profile-menu__item"><a class="profile-menu__link" href="../hotels-list/">Отели</a>
+                            </li>
+                            <li class="profile-menu__item"><a class="profile-menu__link" href="../hotel/">Отель</a></li>
+                            <li class="profile-menu__item"><a class="profile-menu__link" href="../booking/">Бронирование</a>
+                            </li>
+                            <li class="profile-menu__item">
+                                <span class="profile-menu__link" data-modal-target="modal-logout">Выход</span>
+                            </li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
     </header>
+    
+    <div class="modal" id="modal-logout">
+      <div class="modal__content">
+        <div class="modal__title">Вы уверены, что хотите выйти?</div>
+        <div class="modal__footer">
+          <button type="button" class="link-underline" data-modal-target-close="modal-logout">Остаться</button>
+          <button type="button" class="btn btn_danger btn-logout">Да</button>
+        </div>
+      </div>
+    </div>
 
     <main class="main">
         <div class="container">
@@ -78,8 +93,8 @@
                         <li class="main__menu-item" data-target="bonus" data-title="Бонусная программа">
                           <p class="main__menu-link">Бонусная программа</p>
                         </li>
-                        <li class="main__menu-item">
-                          <a href="# " class="main__menu-link">Выйти</a>
+                        <li class="main__menu-item" data-modal-target="modal-logout">
+                          <p class="main__menu-link">Выйти</p>
                         </li>
                       </ul>
                     </div>
@@ -92,7 +107,7 @@
       <div class="main__photo">
         <label class="label-input-avatar">
           <input type="file" name="image" class="input input-avatar" accept="image/*">
-          <img src="" alt="photo" class="main__photo-img">
+          <img src="../img/no-photo.jpg" alt="photo" class="main__photo-img">
           <div class="block-input-avatar">
             Изменить
           </div>
@@ -135,6 +150,7 @@
       </div>
     </div>
     <div class="main__buttons">
+      <button class="btn btn_danger btn-delete-account">Удалить аккаунт</button>
       <div class="msg">Сохранено!</div>
       <button class="main__button change-data">
         <span class="change__text">Изменить личные данные</span>
@@ -198,7 +214,8 @@
             <th>Наименование отеля</th>
             <th>Город</th>
             <th>Стоимость</th>
-            <th>Количество бонусов</th>
+            <th>Бонусы</th>
+            <th>Даты</th>
           </tr>
         </thead>
         <tbody>

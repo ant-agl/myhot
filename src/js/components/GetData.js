@@ -85,7 +85,6 @@ export default class GetData {
         }
 
         $(`[name="${name}"]`).data("last-value", val).val(val);
-        console.log($(`[name="${name}"]`).data("last-value"));
       }
     });
   }
@@ -420,6 +419,8 @@ export default class GetData {
             geo: "Москва, Россия",
             price: "20 300 руб.",
             bonus: 100,
+            fromDate: "11.10.2022",
+            toDate: "18.10.2022",
           },
           {
             img: "../img/hotels/2.png",
@@ -427,6 +428,8 @@ export default class GetData {
             geo: "Москва, Россия",
             price: "10 500 руб.",
             bonus: 200,
+            fromDate: "11.10.2022",
+            toDate: "18.10.2022",
           },
           {
             img: "../img/hotels/3.png",
@@ -434,6 +437,8 @@ export default class GetData {
             geo: "Манавгат, Турция",
             price: "5 400 руб.",
             bonus: -250,
+            fromDate: "11.10.2022",
+            toDate: "18.10.2022",
           },
         ],
       };
@@ -457,6 +462,14 @@ export default class GetData {
               }">
                 ${hotel.bonus >= 0 ? "+" : ""}${hotel.bonus}
               </span>
+            </td>
+            <td>
+              <span class="nowrap"><span class="bonus-table__date-desc">От</span> ${
+                hotel.fromDate
+              }</span>
+              <span class="nowrap"><span class="bonus-table__date-desc">До</span> ${
+                hotel.toDate
+              }</span>
             </td>
           </tr>
         `;
@@ -491,6 +504,12 @@ export default class GetData {
                     ${hotel.bonus >= 0 ? "+" : ""}${hotel.bonus}
                   </span>
                 </span>
+              </div>
+              <div class="hotel-card__info-row">
+                <span class="hotel-card__info-title">Даты</span>
+                <span class="hotel-card__info-value">${hotel.fromDate} - ${
+          hotel.toDate
+        }</span>
               </div>
             </div>
           </div>
@@ -668,6 +687,7 @@ export default class GetData {
             </div>
           `;
         });
+        html += '<div class="hotel-card hotel-card_hidden"></div>';
         html += '<div class="hotel-card hotel-card_hidden"></div>';
         html += '<div class="hotel-card hotel-card_hidden"></div>';
         $(".hotels-list").html(html);
