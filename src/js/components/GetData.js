@@ -85,6 +85,7 @@ export default class GetData {
         }
 
         $(`[name="${name}"]`).data("last-value", val).val(val);
+        console.log($(`[name="${name}"]`).data("last-value"));
       }
     });
   }

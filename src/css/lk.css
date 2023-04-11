@@ -340,13 +340,13 @@ select {
 .table tr:not(:last-child) {
   margin-bottom: 16px;
 }
-.table tr {
+.table tbody tr {
   transition: 0.2s;
 }
-.table tr:hover {
+.table tbody tr:hover {
   background-color: #f1feff;
 }
-.table tr:hover .remove-favourites {
+.table tbody tr:hover .remove-favourites {
   opacity: 0.5;
 }
 .table th {
@@ -433,8 +433,8 @@ select {
   margin-bottom: 2px;
 }
 span.reviews-card__date-title {
-  font-size: 12px;
-  line-height: 12px;
+  font-size: 13px;
+  line-height: 13px;
   color: #828282;
   display: inline-block;
   min-width: 81px;
@@ -451,8 +451,8 @@ span.reviews-card__date-title {
   border-radius: 100px;
 }
 span.reviews-card__date-value {
-  font-size: 12px;
-  line-height: 12px;
+  font-size: 13px;
+  line-height: 13px;
   color: #002a31;
 }
 .reviews-card__stars {

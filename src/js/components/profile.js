@@ -40,7 +40,6 @@ $(".change-data").on("click", function () {
 $(".change-data").on("click", function () {
   if ($(this).hasClass("active")) return;
   let dfa = $('[name="2fa"]').data("last-value");
-  console.log(dfa);
 
   let placeMessage = "";
   switch (dfa) {
@@ -101,7 +100,7 @@ $(".change-data").on("click", function () {
   }, 1500);
 
   if (dfa != "no") {
-    if (data.dfa || data.phone || data.change_pass) {
+    if (data["2fa"] || data.phone || data.change_pass) {
       modalConfirm.open();
     }
   }
