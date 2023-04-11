@@ -39,11 +39,11 @@ $(".change-data").on("click", function () {
 
 $(".change-data").on("click", function () {
   if ($(this).hasClass("active")) return;
-  let dfo = $('[name="dfo"]').data("last-value");
-  console.log(dfo);
+  let dfa = $('[name="2fa"]').data("last-value");
+  console.log(dfa);
 
   let placeMessage = "";
-  switch (dfo) {
+  switch (dfa) {
     case "mail":
       placeMessage = "на вашу почту";
       break;
@@ -100,8 +100,8 @@ $(".change-data").on("click", function () {
     $(".msg").removeClass("active");
   }, 1500);
 
-  if (dfo != "no") {
-    if (data.dfo || data.phone || data.change_pass) {
+  if (dfa != "no") {
+    if (data.dfa || data.phone || data.change_pass) {
       modalConfirm.open();
     }
   }
