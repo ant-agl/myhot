@@ -826,4 +826,8 @@ span.reviews-card__date-value {
   .reviews-card__msg-text:not(:last-child) {
     margin-bottom: 10px;
   }
+  .filters {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+  }
 }

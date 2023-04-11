@@ -42,6 +42,10 @@ label {
   display: flex;
   flex-direction: column;
 }
+#filter-null-text {
+  color: #fff;
+  margin-top: 20px;
+}
 
 @media (max-width: 1440px) {
   .container {

@@ -31,7 +31,7 @@ export default class GetData {
 
   getLk(obj = {}) {
     this.user(obj.user);
-    this.booking();
+    this.statuses();
     this.favourites();
     this.reviews();
     this.bonus();
@@ -88,97 +88,83 @@ export default class GetData {
       }
     });
   }
-  booking() {
-    $.get(this.path + "", (data) => {
-      data = [
-        {
-          img: "../img/hotels/1.png",
-          name: "Отель Marriott Royal Aurora",
-          status: "active",
-          geo: "Москва, Россия",
-          dates: "01.01.2023 - 10.01.2023",
-          peoplesAdult: 2,
-          peoplesChild: 1,
-          price: "10 000 руб.",
-          fullPrice: "50 000 руб.",
-        },
-        {
-          img: "../img/hotels/2.png",
-          name: "Отель Novotel",
-          status: "completed",
-          geo: "Москва, Россия",
-          dates: "01.01.2023 - 10.01.2023",
-          peoplesAdult: 2,
-          peoplesChild: 0,
-          price: "10 000 руб.",
-          fullPrice: "50 000 руб.",
-        },
-        {
-          img: "../img/hotels/3.png",
-          name: "Linda Resort Hotel",
-          status: "fail",
-          geo: "Манавгат, Турция",
-          dates: "01.01.2023 - 10.01.2023",
-          peoplesAdult: 1,
-          peoplesChild: 2,
-          price: "10 000 руб.",
-          fullPrice: "50 000 руб.",
-        },
-      ];
+  statuses() {
+    $.get(this.path + "https://wehotel.ru/php/data_status.php", (data) => {
+      // data = JSON.parse(data);
+      console.log(data);
+
+      data.forEach((filter) => {
+        let html = "";
+        html += `<button class="main__button filter-btn" data-filter="${filter.id}">${filter.name}</button>`;
+        $(".booking-filters").append(html);
+      });
+
+      this.booking(data);
+    });
+  }
+  booking(filters = []) {
+    $.get(this.path + "https://wehotel.ru/handler/get_reserve.php", (data) => {
+      data = JSON.parse(data);
+      console.log(data);
 
       let html = "";
       data.forEach((hotel) => {
-        let status = "";
-        let statusClass = "";
-        switch (hotel.status) {
-          case "active":
-            status = "Активен";
-            statusClass = "value_active";
-            break;
-          case "completed":
-            status = "Выполнен";
-            statusClass = "value_completed";
-            break;
-          case "fail":
-            status = "Отказ";
-            statusClass = "value_fail";
-            break;
-        }
+        let dates = `${moment(hotel.input_date * 1000).format(
+          "DD.MM.YYYY"
+        )} - `;
+        dates += `${moment(hotel.output_date * 1000).format("DD.MM.YYYY")}`;
+
+        let filter = filters.find((f) => f.id == hotel.status);
+        let status = filter.nick ?? filter.name ?? "";
+        let statusColor = filter.color ?? "#000";
 
         let peoples = [];
-        if (hotel.peoplesAdult == 1)
-          peoples.push(hotel.peoplesAdult + " взрослый");
-        else if (hotel.peoplesAdult > 1)
-          peoples.push(hotel.peoplesAdult + " взрослых");
+        if (hotel.number_of_adults == 1)
+          peoples.push(hotel.number_of_adults + " взрослый");
+        else if (hotel.number_of_adults > 1)
+          peoples.push(hotel.number_of_adults + " взрослых");
 
-        if (hotel.peoplesChild == 1)
-          peoples.push(hotel.peoplesChild + " ребенок");
-        else if (hotel.peoplesChild > 1)
-          peoples.push(hotel.peoplesChild + " ребенка");
+        if (hotel.count_of_kids == 1)
+          peoples.push(hotel.count_of_kids + " ребенок");
+        else if (hotel.count_of_kids > 1)
+          peoples.push(hotel.count_of_kids + " ребенка");
+
+        let geo =
+          hotel.joined_hotel_search[0].city +
+          ", " +
+          hotel.joined_hotel_search[0].country;
+
+        let image = hotel.joined_hotel_search[0].image ?? "../img/empty.png";
+        let price = hotel.cost_per_night
+          ? hotel.cost_per_night?.toLocaleString() + " руб."
+          : "&mdash;";
+        let fullPrice = hotel.cost_full
+          ? hotel.cost_full?.toLocaleString() + " руб."
+          : "&mdash;";
 
         html += `
           <div class="hotel-card" data-filter-item="${hotel.status}">
             <div class="hotel-card__head">
               <div class="hotel-card__img">
-                <img src="${hotel.img}" alt="${hotel.name}">
+                <img src="${image}" alt="${hotel.joined_hotel_search[0].name}">
               </div>
               <div class="hotel-card__main-info">
                 <div class="hotel-card__status">
                   <span>Статус</span>
-                  <span class="value ${statusClass}">${status}</span>
+                  <span class="value" style="color:${statusColor}">${status}</span>
                 </div>
                 <div class="hotel-card__name">
-                  ${hotel.name}
+                  ${hotel.joined_hotel_search[0].name}
                 </div>
                 <div class="hotel-card__geo">
-                  ${hotel.geo}
+                  ${geo}
                 </div>
               </div>
             </div>
             <div class="hotel-card__info">
               <div class="hotel-card__info-row">
                 <span class="hotel-card__info-title">Дата бронирования</span>
-                <span class="hotel-card__info-value">${hotel.dates}</span>
+                <span class="hotel-card__info-value">${dates}</span>
               </div>
               <div class="hotel-card__info-row">
                 <span class="hotel-card__info-title">Количество человек</span>
@@ -188,11 +174,11 @@ export default class GetData {
               </div>
               <div class="hotel-card__info-row">
                 <span class="hotel-card__info-title">Стоимость за номер</span>
-                <span class="hotel-card__info-value">${hotel.price}</span>
+                <span class="hotel-card__info-value">${price}</span>
               </div>
               <div class="hotel-card__info-row">
                 <span class="hotel-card__info-title">Общая стоимость</span>
-                <span class="hotel-card__info-value">${hotel.fullPrice}</span>
+                <span class="hotel-card__info-value">${fullPrice}</span>
               </div>
             </div>
           </div>
@@ -202,7 +188,7 @@ export default class GetData {
         html += '<div class="hotel-card hotel-card_hidden"></div>';
 
       $(".hotels").html(html);
-      let filter = new Filter($(".filters"), $(".hotel-card"));
+      let filter = new Filter($(".filters"), $(".booking-hotels .hotel-card"));
       filter.addExceptions("hotel-card_hidden");
     });
   }
