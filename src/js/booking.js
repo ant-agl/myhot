@@ -18,3 +18,15 @@ new ShowAll("paid-service", {
   textShow: "Выберете платные услуги —",
   textHide: "Выберете платные услуги +",
 });
+
+import CheckboxSumTotal from "./components/CheckboxSumTotal";
+let cSum = new CheckboxSumTotal(
+  ".booking-services__list",
+  ".booking-services__total-price, .booking-total__paid-price",
+  {
+    defaultPrice: 22660,
+    selectorTotal: ".booking-total__total-price",
+  }
+);
+
+cSum.updateAnswer();

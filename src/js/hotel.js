@@ -56,6 +56,13 @@ new ShowAll("paid-service", {
   textHide: "Выберете платные услуги +",
 });
 
+import CheckboxSum from "./components/CheckboxSum";
+let cSum = new CheckboxSum(
+  ".modal-room__paid-list",
+  ".modal-room__paid-total-value"
+);
+cSum.updateAnswer();
+
 new BackgroundImage(".modal-room__main-img", {
   paddingBottom: "40%",
   size: "cover",
