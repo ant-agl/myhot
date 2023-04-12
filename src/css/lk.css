@@ -13,17 +13,17 @@
   left: 0px;
   z-index: 1;
   background: linear-gradient(
-    rgb(1, 88, 131) 0%,
-    rgba(1, 88, 131, 0.9) 10%,
-    rgba(1, 88, 131, 0.8) 20%,
-    rgba(1, 88, 131, 0.7) 30%,
-    rgba(1, 88, 131, 0.6) 40%,
-    rgba(1, 88, 131, 0.5) 50%,
-    rgba(1, 88, 131, 0.4) 60%,
-    rgba(1, 88, 131, 0.3) 70%,
-    rgba(1, 88, 131, 0.2) 80%,
-    rgba(1, 88, 131, 0.1) 90%,
-    rgba(1, 88, 131, 0) 100%
+    rgb(6, 91, 132) 0%,
+    rgba(6, 91, 132, 0.9) 10%,
+    rgba(6, 91, 132, 0.8) 20%,
+    rgba(6, 91, 132, 0.7) 30%,
+    rgba(6, 91, 132, 0.6) 40%,
+    rgba(6, 91, 132, 0.5) 50%,
+    rgba(6, 91, 132, 0.4) 60%,
+    rgba(6, 91, 132, 0.3) 70%,
+    rgba(6, 91, 132, 0.2) 80%,
+    rgba(6, 91, 132, 0.1) 90%,
+    rgba(6, 91, 132, 0) 100%
   );
 }
 
@@ -507,6 +507,8 @@ span.reviews-card__date-value {
   border-radius: 100px;
   overflow: hidden;
   height: 40px;
+  display: flex;
+  align-items: center;
 }
 .reviews-card__author-name {
   font-size: 18px;

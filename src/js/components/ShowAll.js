@@ -62,6 +62,7 @@ export default class ShowAll {
     }
   }
   hide(isAnimate = true) {
+    console.log("hide", this.maxHeight, this.fullHeight);
     if (isAnimate) {
       this.$block
         .removeClass(this.activeCLass)
@@ -74,6 +75,7 @@ export default class ShowAll {
     this.$btn.text(this.textHide);
   }
   show(isAnimate = true) {
+    console.log("show", this.maxHeight, this.fullHeight);
     if (isAnimate) {
       this.$block
         .addClass(this.activeCLass)

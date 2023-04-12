@@ -14,3 +14,11 @@
   background-color: #fff;
   color: #005382;
 }
+.main__button_danger {
+  color: red;
+  border-color: red;
+}
+.main__button_danger:hover {
+  background-color: red;
+  color: #fff;
+}

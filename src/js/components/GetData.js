@@ -27,13 +27,13 @@ import {
 } from "./insertDataHotel";
 
 export default class GetData {
-  path = ""; //https://wehotel.ru/php/
+  path = "https://wehotel.ru/handler/";
+  path_php = "https://wehotel.ru/php/";
 
   getLk(obj = {}) {
     this.user(obj.user);
     this.statuses();
     this.favourites();
-    this.reviews();
     this.bonus();
   }
   getHotelsListPage() {
@@ -41,20 +41,9 @@ export default class GetData {
     this.hotelsList();
   }
   user(birthday = false) {
-    $.get(this.path + "https://wehotel.ru/handler/get_data.php", (data) => {
+    $.get(this.path + "get_data.php", (data) => {
       data = JSON.parse(data);
       console.log(data);
-      // data = {
-      //   name: "Иван",
-      //   surname: "Иванов",
-      //   second_name: "Иванович",
-      //   email: "ivanovivan@gmail.ru",
-      //   date: "11.10.1992",
-      //   number: 79617910592,
-      //   change_password: "10.01.2023",
-      //   image: "../img/photo.jpg",
-      //   "2fa": "mail",
-      // };
 
       if (!data.img_id) data.img_id = "../img/no-photo.jpg";
       for (let name in data) {
@@ -86,10 +75,11 @@ export default class GetData {
 
         $(`[name="${name}"]`).data("last-value", val).val(val);
       }
+      this.reviews(data);
     });
   }
   statuses() {
-    $.get(this.path + "https://wehotel.ru/php/data_status.php", (data) => {
+    $.get(this.path_php + "data_status.php", (data) => {
       console.log(data);
 
       data.forEach((filter) => {
@@ -102,7 +92,7 @@ export default class GetData {
     });
   }
   booking(filters = []) {
-    $.get(this.path + "https://wehotel.ru/handler/get_reserve.php", (data) => {
+    $.get(this.path + "get_reserve.php", (data) => {
       data = JSON.parse(data);
       console.log(data);
 
@@ -194,51 +184,38 @@ export default class GetData {
     });
   }
   favourites() {
-    $.get(this.path + "", (data) => {
-      data = [
-        {
-          img: "../img/hotels/1.png",
-          name: "Отель Marriott Royal Aurora",
-          geo: "Москва, Россия",
-          price: "10 300 руб.",
-          stars: 10,
-        },
-        {
-          img: "../img/hotels/2.png",
-          name: "Отель Novotel",
-          geo: "Москва, Россия",
-          price: "4 250 руб.",
-          stars: 10,
-        },
-        {
-          img: "../img/hotels/3.png",
-          name: "Linda Resort Hotel",
-          geo: "Манавгат, Турция",
-          price: "2 715 руб.",
-          stars: 9,
-        },
-      ];
+    $.get(this.path + "get_favourites.php", (data) => {
+      data = JSON.parse(data);
+      console.log(data);
 
       let html = "";
       let htmlMobile = "";
       data.forEach((hotel) => {
+        let geo = hotel.joined_hotel_search[0].city + ", ";
+        geo += hotel.joined_hotel_search[0].country;
         html += `
           <tr>
             <td>
               <div class="table__image-block">
-                <img src="${hotel.img}" alt="${hotel.name}">
-                <span>${hotel.name}</span>
+                <img src="${hotel.joined_hotel_search[0].image}" alt="${
+          hotel.joined_hotel_search[0].name
+        }">
+                <span>${hotel.joined_hotel_search[0].name}</span>
               </div>
             </td>
-            <td>${hotel.geo}</td>
+            <td>${geo}</td>
             <td>
               <div class="stars favourites-stars">
-                <img src="../img/icons/stars/${hotel.stars}.png">
+                <img src="../img/icons/stars/${
+                  hotel.joined_hotel_search[0].rating.stars
+                }.png">
               </div>
             </td>
             <td>
-              <span class="nowrap">от ${hotel.price}</span>
-              <img src="../img/icons/cross.png" class="remove-favourites">
+              <span class="nowrap">от ${hotel.joined_hotel_search[0].price.toLocaleString()} руб.</span>
+              <img src="../img/icons/cross.png" class="remove-favourites" data-id="${
+                hotel.hotel_id
+              }">
             </td>
           </tr>
         `;
@@ -282,109 +259,76 @@ export default class GetData {
       $("#favourites .table tbody").html(html);
       $("#favourites .hotel-card_mobile").html(htmlMobile);
 
-      new RemoveRow("tr, .hotel-card", ".remove-favourites");
+      new RemoveRow("tr, .hotel-card", ".remove-favourites", {
+        id: "hotel_id",
+        path: this.path + "delete_favourites.php",
+      });
     });
   }
-  reviews() {
-    $.get(this.path + "", (data) => {
-      data = [
-        {
-          img: "../img/hotels/1.png",
-          name: "Отель Marriott Royal Aurora",
-          geo: "Москва, Россия",
-          dates: "01.01.2023 - 10.01.2023",
-          dateReview: "12.01.2023",
-          estimation: 10,
-          stars: 8,
-          avatar: "../img/reviews/1.png",
-          author: "Наталья",
-          good: "Расположение. Отзывчивый персонал.",
-          bad: "В номере были не убраны гигиенические средства, в частности ватные палочки предыдущих постояльцев. Поэтому остались некоторые вопросы по отношению к уборке и чистоте.",
-        },
-        {
-          img: "../img/hotels/2.png",
-          name: "Отель Novotel",
-          geo: "Москва, Россия",
-          dates: "01.01.2023 - 10.01.2023",
-          dateReview: "12.01.2023",
-          estimation: 6,
-          stars: 9,
-          avatar: "../img/reviews/1.png",
-          author: "Наталья",
-          good: "Удобный матрас и подушки. Уютный лоби-бар. Приятный персонал.Хороший завтрак.Расположение супер. Жаль не удалось посетить спа-зону",
-          bad: "Не очень хорошая косметика и не было одноразового набора зубных щёток. Уставшая мебель. На завтраке не было шампанского",
-        },
-        {
-          img: "../img/hotels/3.png",
-          name: "Linda Resort Hotel",
-          geo: "Москва, Россия",
-          dates: "01.01.2023 - 10.01.2023",
-          dateReview: "12.01.2023",
-          estimation: 5,
-          stars: 10,
-          avatar: "../img/reviews/1.png",
-          author: "Наталья",
-          good: "Удобный матрас и подушки. Уютный лоби-бар. Приятный персонал.Хороший завтрак.Расположение супер. Жаль не удалось посетить спа-зону",
-          bad: "Не очень хорошая косметика и не было одноразового набора зубных щёток. Уставшая мебель. На завтраке не было шампанского",
-        },
-        {
-          img: "../img/hotels/1.png",
-          name: "Отель Marriott Royal Aurora",
-          geo: "Москва, Россия",
-          dates: "01.01.2023 - 10.01.2023",
-          dateReview: "12.01.2023",
-          estimation: 2,
-          stars: 6,
-          avatar: "../img/reviews/1.png",
-          author: "Наталья",
-          good: "Расположение. Отзывчивый персонал.",
-          bad: "В номере были не убраны гигиенические средства, в частности ватные палочки предыдущих постояльцев. Поэтому остались некоторые вопросы по отношению к уборке и чистоте.",
-        },
-      ];
+  reviews(userData = {}) {
+    $.get(this.path + "get_reviews.php", (data) => {
+      data = JSON.parse(data);
+      console.log(data);
 
       data.forEach((review) => {
+        let dates =
+          moment(review.joined_reserve[0].input_date * 1000).format(
+            "DD.MM.YYYY"
+          ) + " - ";
+        dates += moment(review.joined_reserve[0].output_date * 1000).format(
+          "DD.MM.YYYY"
+        );
+
+        let geo = review.joined_hotel_search[0].city + ", ";
+        geo += review.joined_hotel_search[0].country;
         let html = `
           <div class="reviews-card">
             <div class="reviews-card__header">
               <div class="reviews-card__dates">
                 <div class="reviews-card__date-review">
                   <span class="reviews-card__date-title">Дата отзыва</span>
-                  <span class="reviews-card__date-value">${
-                    review.dateReview
-                  }</span>
+                  <span class="reviews-card__date-value">${moment(
+                    review.date * 1000
+                  ).format("DD.MM.YYYY")}</span>
                 </div>
                 <div class="reviews-card__date-trip">
                   <span class="reviews-card__date-title">Дата поездки</span>
-                  <span class="reviews-card__date-value">${review.dates}</span>
+                  <span class="reviews-card__date-value">${dates}</span>
                 </div>
               </div>
               <div class="reviews-card__estimation ${getColor(
-                review.estimation
-              )}">${review.estimation}</div>
+                review.rating
+              )}">${review.rating}</div>
             </div>
             <div class="reviews-card__hotel-info">
               <div class="reviews-card__img">
-                <img src="${review.img}" alt="${review.name}">
+                <img src="${review.joined_hotel_search[0].image}" alt="${
+          review.joined_hotel_search[0].name
+        }">
               </div>
               <div>
                 <div class="reviews-card__stars">
-                  <img src="../img/icons/stars/${review.stars}.png">
+                  <img src="../img/icons/stars/${
+                    review.joined_hotel_search[0].rating.stars
+                  }.png">
                 </div>
-                <div class="reviews-card__name">${review.name}</div>
-                <div class="reviews-card__geo">${review.geo}</div>
+                <div class="reviews-card__name">${
+                  review.joined_hotel_search[0].name
+                }</div>
+                <div class="reviews-card__geo">${geo}</div>
               </div>
             </div>
             <div class="reviews-card__content">
               <div class="reviews-card__author">
                 <div class="reviews-card__avatar">
-                  <img src="${review.avatar}" alt="${review.author}">
+                  <img src="${userData.img_id}" alt="${userData.name}">
                 </div>
-                <div class="reviews-card__author-name">${review.author}</div>
+                <div class="reviews-card__author-name">${userData.name}</div>
               </div>
               <div class="reviews-card__msg-title reviews-card__msg-title_good">Что было хорошо</div>
-              <div class="reviews-card__msg-text">${review.good}</div>
+              <div class="reviews-card__msg-text">${review.opinion.well}</div>
               <div class="reviews-card__msg-title reviews-card__msg-title_bad">Что было плохо</div>
-              <div class="reviews-card__msg-text">${review.bad}</div>
+              <div class="reviews-card__msg-text">${review.opinion.badly}</div>
             </div>
           </div>
         `;
@@ -396,7 +340,7 @@ export default class GetData {
     });
   }
   bonus() {
-    $.get(this.path + "", (data) => {
+    $.get("", (data) => {
       data = {
         balance: 345,
         hotels: [
@@ -509,9 +453,7 @@ export default class GetData {
     });
   }
   filters() {
-    //data_filter.php
-    // $.get(this.path + "", (data) => {
-    $.get("https://wehotel.ru/php/data_filter.php", (data) => {
+    $.get(this.path_php + "data_filter.php", (data) => {
       data.forEach((filter) => {
         let nameArr = filter.name.split("_");
         let name = "";
@@ -568,7 +510,7 @@ export default class GetData {
   hotelsList(query = "") {
     startLoad($(".hotels-list"));
     setTimeout(() => {
-      $.get(this.path + "" + query, (data) => {
+      $.get("" + query, (data) => {
         data = [
           {
             img: "../img/hotels/1.png",
@@ -687,7 +629,7 @@ export default class GetData {
     }, 2000);
   }
   hotel(id = "") {
-    $.get(this.path + "" + id, (data) => {
+    $.get("" + id, (data) => {
       data = {
         services: {
           free: [

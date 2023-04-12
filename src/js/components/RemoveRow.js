@@ -1,14 +1,19 @@
 export default class RemoveRow {
-  classRemove = 'remove-row';
+  classRemove = "remove-row";
   animation = 300;
-  path = '';
+  path = "";
+  id = "id";
 
-  constructor(selectorRow, selectorBtn) {
+  constructor(selectorRow, selectorBtn, options = {}) {
     this.selectorRow = selectorRow;
     this.selectorBtn = selectorBtn;
     this.$btns = $(selectorBtn);
 
-    this.$btns.on('click', this.remove.bind(this));
+    for (let key in options) {
+      this[key] = options[key];
+    }
+
+    this.$btns.on("click", this.remove.bind(this));
   }
   remove(e) {
     let $el = $(e.target);
@@ -19,14 +24,10 @@ export default class RemoveRow {
       $row.remove();
     }, this.animation);
 
-    this.request();
+    this.request($el.data("id"));
   }
-  request() {
-    return;
-    $.ajax({
-      path: this.path,
-      method: 'POST',
-      data: {}
-    });
+  request(id) {
+    console.log("delete " + id);
+    $.get(this.path + `?${this.id}=${id}`);
   }
 }
