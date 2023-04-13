@@ -38,12 +38,14 @@ var path = {
       "src/booking/*.html",
     ],
     js: [
+      "./src/js/index.js",
       "./src/js/lk.js",
       "./src/js/hotels_list.js",
       "./src/js/hotel.js",
       "./src/js/booking.js",
     ],
     css: [
+      "src/css/index.css",
       "src/css/lk.css",
       "src/css/hotels-list.css",
       "src/css/hotel.css",
@@ -81,10 +83,11 @@ function jsBuild(done) {
     .pipe(
       webpackStream({
         entry: {
-          lk: path.src.js[0],
-          hotels_list: path.src.js[1],
-          hotel: path.src.js[2],
-          booking: path.src.js[3],
+          index: path.src.js[0],
+          lk: path.src.js[1],
+          hotels_list: path.src.js[2],
+          hotel: path.src.js[3],
+          booking: path.src.js[4],
         },
         mode: "development", // production
         module: {
@@ -121,8 +124,8 @@ function cssBuild(done) {
   done();
 }
 
-function imgBuild(done) {
-  gulp
+function imgBuild() {
+  return gulp
     .src(path.src.img)
     .pipe(
       imagemin({
@@ -134,7 +137,6 @@ function imgBuild(done) {
     )
     .pipe(gulp.dest(path.build.img))
     .pipe(reload({ stream: true }));
-  done();
 }
 
 function fontsBuild(done) {

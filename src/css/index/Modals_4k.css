@@ -1,0 +1,127 @@
+@media (min-width: 2048px) {
+  .heading_form_h1 {
+    font-weight: 400;
+    font-size: 66px;
+    margin-bottom: 0;
+  }
+  .heading_form_h2 {
+    font-weight: 400;
+    font-size: 44px;
+  }
+  #modal-group-1 .heading_form_h1 {
+    margin-bottom: 2%;
+  }
+  #modal-group-2 .heading_form_h2 {
+    width: 75%;
+    align-self: center;
+  }
+
+  .block_register_1 {
+    width: 40vw;
+    min-height: 65vh;
+    border-radius: 35px;
+    margin: 5% auto;
+  }
+  .block_register_2 {
+    width: 40vw;
+    min-height: 60vh;
+    border-radius: 35px;
+    margin: 7% auto;
+    margin-top: 25%;
+  }
+  .block_register_01 {
+    width: 40vw;
+    border-radius: 35px;
+    margin: 5% auto;
+    margin-top: 25%;
+  }
+  .block_register_02 {
+    width: 40vw;
+    border-radius: 35px;
+    margin: 5% auto;
+  }
+
+  #modal-group-1 .botton_section_form {
+    margin: 2% 0 0 0;
+  }
+  #modal-group-2 .botton_section_form {
+    margin-top: 18%;
+  }
+  #modal-group-3 .botton_section_form {
+    margin-top: 20%;
+  }
+  #modal-group-4 .botton_section_form {
+    margin-top: 10%;
+  }
+  #modal-group-01 .botton_section_form {
+    justify-content: flex-end;
+    margin-top: 1%;
+  }
+  #modal-group-02 .botton_section_form {
+    margin-top: 8%;
+  }
+  #modal-group-001 .botton_section_form {
+    margin-top: 16%;
+  }
+  #modal-group-002 .botton_section_form {
+    margin-top: 10%;
+  }
+  #modal-group-003 .botton_section_form {
+    margin-top: 3%;
+  }
+
+  .info_area {
+    height: 25%;
+    margin: 1.225% 0;
+    width: 96%;
+    padding: 1.5em 0 1.5em 1em;
+    font-weight: 400;
+    font-size: 44px;
+    border-radius: 35px;
+  }
+
+  .phone_code {
+    aspect-ratio: 5 / 6;
+    /*min-height: 80px;
+    max-height: 200px;
+    min-width: 96px;
+    max-width: 240px;*/
+    max-width: none;
+    max-height: none;
+    height: 2.5em;
+    width: 1.25em;
+    margin: 0 1%;
+    font-size: 66px;
+    font-weight: 900;
+    padding: 2% 3%;
+    text-align: center;
+  }
+
+  .part_botton {
+    font-size: 40px;
+    max-width: 30%;
+  }
+  .tips {
+    font-size: 35px;
+    margin: 1% 0;
+  }
+
+  .aware {
+    font-size: 35px;
+    margin-top: 3%;
+  }
+  .forget_button {
+    font-size: 44px;
+  }
+  .next_button,
+  .next_button:hover {
+    font-size: 44px;
+    min-width: 20%;
+  }
+
+  .next_button > img {
+    margin: auto 3px;
+    width: 90px;
+    height: auto;
+  }
+}

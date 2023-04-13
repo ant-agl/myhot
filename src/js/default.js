@@ -28,7 +28,7 @@ let menuMobile = new DropMenu(".main__menu-mobil");
 menuMobile.setBtnToggle(".main__menu-mobil img");
 
 import Modal from "./components/Modal";
-let modalLogout = new Modal("#modal-logout");
+new Modal("#modal-logout");
 
 $(".btn-logout").on("click", function (e) {
   console.log("LOGOUT");

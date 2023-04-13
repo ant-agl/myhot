@@ -1,0 +1,315 @@
+/*FONTS*/
+
+
+
+.heading_form_h1{
+    padding: 0;
+    margin-bottom: 2%;
+    text-align: center;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 25px;
+    color: #002A31;
+}
+
+.heading_form_h2{
+    padding: 0;
+    margin: 0;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    text-align: center;
+    color: #002A31;
+}
+
+.block_register_1{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 532px;
+    height: 76%;
+    padding: 3% 5% 3% 5%;
+    box-shadow: 0px 5px 34px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.block_register_2{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 487px;
+    max-height: 500px;
+    padding: 3% 5% 3% 5%;
+    box-shadow: 0px 5px 34px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.block_register_01{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 300px;
+    height: 43%;
+    padding: 4% 5% 2% 5%;
+    background: #FFFFFF;
+    box-shadow: 0px 5px 34px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+}
+
+.block_register_02{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 330px;
+    height: 47%;
+    padding: 4% 5% 2% 5%;
+    background: #FFFFFF;
+    box-shadow: 0px 5px 34px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+}
+
+@media (min-width: 1120px) {
+    .block_register_1{
+       padding: 2.5% 3.5% 2.5% 3.5%;
+    }
+    .block_register_2{
+       padding: 2.5% 3.5% 2.5% 3.5%;
+    }
+    .block_register_01{
+       padding: 2.5% 3.5% 2.5% 3.5%;
+    }
+    .block_register_02{
+       padding: 2.5% 3.5% 2.5% 3.5%;
+    }
+   }
+   
+
+.block_register_2>.heading_form_h1{
+    padding-top: 20%;
+}
+
+#modal-group-4 .heading_form_h1{
+    padding-top: 18%;
+}
+
+#modal-group-001 .heading_form_h1{
+    margin: 5% 0 3% 0;
+}
+#modal-group-002 .heading_form_h1{
+    margin-top: 5%;
+}
+
+#modal-group-2 .info_area{
+    margin: 3% 0 0% 0;
+}
+
+#modal-group-01 .info_area{
+    margin:0;
+}
+
+
+.info_area{
+    background: #EAEAEA;
+    border-radius: 10px;
+    border: none;
+    min-width: 50px;
+    min-height: 60px;
+    height: 25%;
+    margin: 1.225% 0;
+    width: 100%;
+    padding: 0.1em 0 0.1em 1em;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    color: #828282;
+}
+
+/*обводка блоков input*/
+.green_yes{
+    border: 1px solid #31BB00;
+}
+
+.red_no{
+    border: 1px solid #FF5F5F;
+}
+
+/*ПОДВТЕРЖДЕНИЕ НОМЕРА ТЕЛЕФОНА*/
+.phone_code{
+    /*aspect-ratio: 5 / 6;*/
+    min-height: 60px;
+    max-height: 75px;
+    min-width: 50px;
+    max-width: 60px;
+    height:12%;
+    margin: 1%;
+    padding: 0;
+    font-size: 25px;
+    font-weight: 600;
+    padding: 2% 1%;
+}
+.code{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 3%;
+}
+.code input[type="number"] {
+	-moz-appearance: textfield;
+	-webkit-appearance: textfield;
+	appearance: textfield;
+}
+.code input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+	display: none;
+}
+
+/*ПОДСКАЗКИ И СООБЩЕНИЯ О КОРЕКТНОСТИ*/
+.tips{
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 12px;
+    color: #828282;
+    min-height:12px;
+    max-height: 20px;
+    margin: 0.1% 0;
+    margin-left: 5%;
+}
+.tips_yes{
+    color: #31BB00;
+}
+.tips_no{
+    color: #FF5F5F;
+}
+.aware{
+    justify-self: flex-start;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 12px;
+    color: #FF5F5F;
+    margin: 0.5% 3%;
+    visibility: hidden;
+}
+.sms{
+    margin: 0.5% 0 0 25%; 
+}
+
+.show_aware{
+	visibility: visible;
+}
+
+.forget_button{
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 10px;
+    text-decoration-line: underline;
+    color: #25AAB9;
+    background-color: #fff;
+    padding: 0 0  0 3%;
+}
+
+/*НИЖНЯЯ ЧАСТЬ С НАВИГАЦИЕЙ*/
+.botton_section_form{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 8%;
+    margin: 5% 0 0 0;
+}
+#modal-group-1 .botton_section_form{
+    margin: 3% 0 0 0;
+}
+
+#modal-group-2 .botton_section_form {
+    margin-top: 27%;
+}
+#modal-group-3 .botton_section_form {
+    margin-top: 27%;
+}
+#modal-group-4 .botton_section_form {
+    margin-top: 19%;
+}
+#modal-group-01 .botton_section_form{
+    justify-content: flex-end;
+    margin-top: 1%;
+}
+#modal-group-02 .botton_section_form{
+    margin-top: 8%;
+}
+#modal-group-001 .botton_section_form{
+    margin-top: 16%;
+}
+#modal-group-002 .botton_section_form{
+    margin-top: 10%;
+}
+#modal-group-003 .botton_section_form{
+    margin-top: 3%;
+}
+.part_botton{
+    align-self: center;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 12px;
+    color: #AAAAAA;
+    min-width: 66px;
+    max-width: 20%;
+    min-width: 10%;
+}
+#modal-group-1 .part_botton{
+    margin: 0 auto 0 50%; 
+}
+#modal-group-01 .part_botton{
+    margin: 0 auto 0 50%; 
+}
+#modal-group-03 .part_botton{
+    margin: 0 auto 0 50%; 
+}
+
+#modal-group-001 .part_botton{
+    margin: 0 auto 0 50%; 
+}
+.next_button, .next_button:hover{
+    display: inline-flex;
+    background-color: #fff;
+    color: #A3A3A3;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    text-transform: none;
+    padding: 0;
+
+}
+.next_button>img{
+    margin: auto 2px;
+}
+.next_able, .next_able:hover{
+    color: #0E5E6F;
+}
+.disable_arrow{
+    display: none;
+}
+.able_arrow{ 
+    display: inline;
+}
+
+
+@media (max-width: 550px){
+	.sms{
+		margin-left: 20%;
+	}
+}

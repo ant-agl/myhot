@@ -1,0 +1,32 @@
+.input-count {
+  width: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.input-count__input {
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  color: #002a31;
+  width: 25px;
+}
+.input-count__sign_minus {
+  transform: translateY(-1px);
+  width: 13px;
+}
+.input-count__sign {
+  color: #005382;
+  cursor: pointer;
+  font-size: 23px;
+  line-height: 22px;
+}
+.input-count__sign:hover {
+  color: #002a31;
+}
