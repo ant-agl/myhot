@@ -96,44 +96,93 @@
       <div class="container_offer_white">
         <img src="./img/index/avif/sea.avif" class="hotel_card_photo">
         <p class="hotel_card_p1">Море</p>
-        <p class="hotel_card_p2">Ялта, Сочи, Анапа, Адлер, Судак и т.д.</p>
-        <a href="" class="hotel_card_more">Подробнее</a>
+        <p class="hotel_card_p2">Ялта, Сочи, Анапа,<br> Адлер, Судак и т.д.</p>
+        <a href="" class="link-underline hotel_card_more">Подробнее</a>
       </div>
       <div class="container_offer_white">
         <img src="./img/index/avif/mountion.avif" class="hotel_card_photo slow">
         <p class="hotel_card_p1">Горы</p>
-        <p class="hotel_card_p2">Роза Хутор, Красная Поляна, Усть-Корал и т.д.</p>
-        <a href="" class="hotel_card_more">Подробнее</a>
+        <p class="hotel_card_p2">Роза Хутор, Красная Поляна,<br> Усть-Корал и т.д.</p>
+        <a href="" class="link-underline hotel_card_more">Подробнее</a>
       </div>
       <div class="container_offer_white">
         <img src="./img/index/avif/history.avif" class="hotel_card_photo">
         <p class="hotel_card_p1">Исторические центры</p>
-        <p class="hotel_card_p2">Светлогорск, Пятигорск, курорты Кавказа и т.д.</p>
-        <a href="" class="hotel_card_more">Подробнее</a>
+        <p class="hotel_card_p2">Светлогорск, Пятигорск,<br> курорты Кавказа и т.д.</p>
+        <a href="" class="link-underline hotel_card_more">Подробнее</a>
       </div>
     </div>
   </section>
   <section class="block_3">
     <div class="text-header_3">
-      <h2 class="heading_b_3">Остались вопросы? Задай их</h2>
+      <h2 class="heading_b_3">Остались вопросы? Задай</h2>
       <h2 class="heading_b_3">их нам прямо сейчас!</h2>
     </div>
     <div class="b_3">
       <div class="left_b_3">
         <p class="question_small_text">Вопрос можно задать в онлайн-чате</p>
-        <img src="./img/index/chat_animation.gif" class="img_phone">
-        <a href="" class="go_button_b_3">перейти</a>
+        <div class="chat-preview">
+          <div class="chat-preview__message chat-preview__message_right">
+            <div class="chat-preview__text">
+              Добрый день. У вас есть вопросы?
+            </div>
+            <div class="chat-preview__avatart">
+              <img src="../img/chat/2.png" class="chat-preview__img">
+              <div class="chat-preview__name">Тех. поддержка</div>
+            </div>
+          </div>
+          <div class="chat-preview__message">
+            <div class="chat-preview__text">
+              Да, как забронировать номер на сайте?
+            </div>
+            <div class="chat-preview__avatart">
+              <img src="../img/chat/1.png" class="chat-preview__img">
+              <div class="chat-preview__name">Антон</div>
+            </div>
+          </div>
+          <div class="chat-preview__message chat-preview__message_right">
+            <div class="chat-preview__text">
+              Вам необходимо выбрать отель, количество гостей, даты прибывания и выбрать необходимый тариф. После этого
+              вам будет доступно бронирование номера
+            </div>
+            <div class="chat-preview__avatart">
+              <img src="../img/chat/2.png" class="chat-preview__img">
+              <div class="chat-preview__name">Тех. поддержка</div>
+            </div>
+          </div>
+          <div class="chat-preview__message">
+            <div class="chat-preview__text">
+              Спасибо большое
+            </div>
+            <div class="chat-preview__avatart">
+              <img src="../img/chat/1.png" class="chat-preview__img">
+              <div class="chat-preview__name">Антон</div>
+            </div>
+          </div>
+          <div class="chat-preview__message chat-preview__message_right">
+            <div class="chat-preview__text">
+              Всегда рады помочь!
+            </div>
+            <div class="chat-preview__avatart">
+              <img src="../img/chat/2.png" class="chat-preview__img">
+              <div class="chat-preview__name">Тех. поддержка</div>
+            </div>
+          </div>
+        </div>
+        <a href="#" class="btn btn_big go_button_b_3">перейти</a>
       </div>
       <p class="middle_d_3">ИЛИ</p>
       <form class="form_send">
         <p class="text_form_d_3">Задайте вопрос и мы дадим обратную связь по почте</p>
-        <textarea type="text" class="question" placeholder="Ваш вопрос"></textarea>
-        <input type="e-mail" class="mail" placeholder="Ваша почта">
-        <input type="submit" value="отправить" class="send_button" id="">
-        <div class="container">
-          <input type="checkbox" id="cb1"> <label for="cb1">Я принимаю условия <a href="">персональных
-              данных</a></label>
-        </div>
+        <textarea class="question" placeholder="Ваш вопрос"></textarea>
+        <input type="mail" class="mail" placeholder="Ваша почта">
+        <button type="button" class="btn btn_big send_button">отправить</button>
+        <label class="form_send__row">
+          <input type="checkbox">
+          <span>
+            Я принимаю условия обработки <a href="#">персональных данных</a>
+          </span>
+        </label>
       </form>
     </div>
     <footer>

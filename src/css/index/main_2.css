@@ -37,6 +37,7 @@ a:hover {
 input {
   border: none;
 }
+textarea:focus,
 input:focus {
   transition: border 0.1s;
   outline: none;
@@ -78,15 +79,26 @@ body {
   color: #005382;
 }
 
+.nav_nav {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
 .req_object_button {
   /*text*/
-  font-family: "Montserrat";
+  font-family: Montserrat;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: 0.05em;
   font-style: normal;
   font-weight: 500;
   text-align: center;
   text-transform: uppercase;
   background: #ffffff;
   color: #005382;
+
+  border: 1px solid #005382;
+  white-space: nowrap;
 }
 
 .req_human_button {
@@ -332,12 +344,24 @@ body {
   justify-content: center;
 }
 
+.hotel_card_photo {
+  width: 100%;
+  border-radius: 20px;
+}
+
 .container_offer_white {
   display: flex;
   flex-direction: column;
   align-items: center;
   background: #ffffff;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  gap: 15px;
+
+  min-width: 100px;
+  width: 30%;
+  border-radius: 30px;
+  margin: 20px;
+  padding: 20px;
 }
 
 .hotel_card_p1 {
@@ -347,6 +371,11 @@ body {
 
   text-align: center;
   color: #002a31;
+  margin: 0;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 22px;
+  margin: 0;
 }
 
 .hotel_card_p2 {
@@ -354,14 +383,22 @@ body {
   font-style: normal;
   text-align: center;
   color: #002a31;
+
+  margin: 0;
+  font-size: 18px;
+  line-height: 22px;
+  margin: 0;
 }
 
 .hotel_card_more {
-  font-family: "Montserrat";
-  font-style: normal;
-  /* identical to box height */
-  text-align: center;
-  color: #007895;
+  margin-top: auto;
+}
+
+@media (max-width: 1100px) {
+  .container_offer_white {
+    margin: 10px;
+    padding: 10px;
+  }
 }
 
 /*BLOCK 3*/
@@ -371,10 +408,8 @@ body {
       rgba(255, 255, 255, 0) 56.29%,
       #005382 100%
     ),
-    url(../img/index/planes_buses.svg);
-  background-size: no-repeat;
-  background-position: center;
-  background-size: cover;
+    url(../img/hotel/bg.png) repeat-y top center;
+  background-size: 100%;
 }
 
 .text-header_3 {
@@ -411,196 +446,246 @@ body {
   flex-wrap: wrap;
 }
 
-.question_small_text {
-  font-family: "Montserrat";
-  font-style: normal;
-  color: #002a31;
+.text-header_3 {
+  padding-top: 3%;
 }
 
-.img_phone {
-  align-self: center;
-  justify-self: center;
+.heading_b_3 {
+  height: 100%;
+  font-weight: 700;
+  font-size: 3vw;
+  letter-spacing: 0.05em;
+  margin: 0;
+}
+
+.b_3 {
+  padding: 5%;
+}
+
+.left_b_3 {
+  width: 30%;
+}
+
+.question_small_text {
+  font-family: Montserrat;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 27px;
+  text-align: center;
+  color: #002a31;
+  margin: 0;
+}
+
+.chat-preview {
+  border-radius: 30px;
+  box-shadow: 0 14px 28px rgb(0 0 0 / 25%), 0 10px 10px rgb(0 0 0 / 22%);
+  width: 100%;
+  background-color: #fff;
+  margin: 10px 0 25px;
+  padding: 20px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 20px;
+}
+.chat-preview__message {
+  display: flex;
+  align-items: top;
+  gap: 10px;
+  /* transform: translateY(100%); */
+  opacity: 0;
+}
+.chat-preview__message-animation:nth-child(1) {
+  animation: sendMessage 0.3s 1s ease forwards;
+}
+.chat-preview__message-animation:nth-child(2) {
+  animation: sendMessage 0.3s 2s ease forwards;
+}
+.chat-preview__message-animation:nth-child(3) {
+  animation: sendMessage 0.3s 3s ease forwards;
+}
+.chat-preview__message-animation:nth-child(4) {
+  animation: sendMessage 0.3s 5s ease forwards;
+}
+.chat-preview__message-animation:nth-child(5) {
+  animation: sendMessage 0.3s 6s ease forwards;
+}
+.chat-preview__message-clear-animation {
+  animation: clearMessage 0.2s ease forwards;
+}
+.chat-preview__message_right {
+  justify-content: flex-end;
+}
+.chat-preview__message_right .chat-preview__text {
+  order: 0;
+  background-color: rgb(43, 152, 214);
+  color: #fff;
+}
+.chat-preview__text {
+  border-radius: 20px;
+  padding: 10px 15px;
+  background-color: #eaeaea;
+  color: #000;
+  font-size: 14px;
+  line-height: 18px;
+  order: 1;
+  max-width: 65%;
+}
+.chat-preview__avatart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+.chat-preview__img {
+  width: 30px;
+}
+.chat-preview__name {
+  text-align: center;
+  white-space: nowrap;
+  font-size: 10px;
+  line-height: 10px;
+  opacity: 0.6;
+}
+
+@keyframes sendMessage {
+  0% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes clearMessage {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 
 .go_button_b_3 {
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  background: #005382;
-  font-family: "Montserrat";
-  font-style: normal;
-  text-align: center;
   text-transform: uppercase;
-  color: #ffffff;
-}
-
-.middle_d_3 {
-  /* text */
-  align-items: center;
-  justify-content: flex-end;
-  font-family: "Comfortaa";
-  font-style: normal;
-  text-align: center;
-  text-transform: uppercase;
-  color: #005382;
-  display: flex;
-  flex-direction: row;
+  background-color: #005382;
 }
 
 .form_send {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  position: relative;
-  background: #ffffff;
-  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+  min-width: 100px;
+  width: 35%;
+  height: 100%;
+  padding: 30px;
+  box-shadow: 0px 4px 15px rgb(0 0 0 / 10%);
+  border-radius: 30px;
+  background-color: #fff;
 }
 
 .text_form_d_3 {
-  position: relative;
-  font-family: "Montserrat";
-  font-style: normal;
+  font-family: Montserrat;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 27px;
+  letter-spacing: 0em;
   text-align: center;
-  color: #002a31;
-}
-
-textarea {
-  border: none;
-  resize: none;
-}
-textarea:focus {
-  transition: border 0.1s;
-  outline: none;
-  box-shadow: 0 0 0 3px #469bdf;
-}
-
-.form_send > input::placeholder {
-  text-align: left;
+  padding: 0 30px;
+  margin: 0;
 }
 
 .question {
-  background: #eaeaea;
-  font-family: "Montserrat";
-  font-style: normal;
-  color: #828282;
+  min-width: 100%;
+  max-width: 100%;
+  min-height: 100px;
+  margin-top: 16px;
 }
-
-.question::placeholder {
-  font-family: "Montserrat";
-  font-style: normal;
-  font-weight: 400;
-  color: #828282;
-}
-
-.question::placeholder:hover:active {
-  opacity: 0;
-}
-
-.question::-webkit-input-placeholder {
-  font-weight: 400;
-  font-family: "Montserrat";
-  font-style: normal;
-  color: #828282;
-}
-
-.question::-moz-placeholder {
-  font-weight: 400;
-  font-family: "Montserrat";
-  font-style: normal;
-  color: #828282;
-}
-
-.question:-ms-input-placeholder {
-  font-weight: 400;
-  font-family: "Montserrat";
-  font-style: normal;
-  color: #828282;
-}
-
-.question:-moz-placeholder {
-  font-weight: 400;
-  font-family: "Montserrat";
-  font-style: normal;
-  color: #828282;
-}
-
 .mail {
-  text-align: left;
-  vertical-align: top;
-  background: #eaeaea;
+  margin: 20px 0;
 }
 
-.mail::placeholder {
-  font-family: "Montserrat";
-  font-style: normal;
+.question,
+.mail {
+  font-family: Montserrat;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 27px;
+  letter-spacing: 0em;
+  border-radius: 20px;
+  background-color: #eaeaea;
+  padding: 16px;
+  width: 100%;
+  border: none;
+}
+
+.question::placeholder,
+.question::-webkit-input-placeholder,
+.question::-moz-placeholder,
+.question:-ms-input-placeholder,
+.question:-moz-placeholder,
+.mail::placeholder,
+.mail::-webkit-input-placeholder,
+.mail::-moz-placeholder,
+.mail:-ms-input-placeholder,
+.mail:-moz-placeholder {
+  font-size: 14px;
+  line-height: 27px;
 }
 
 .send_button {
-  background: #005382;
-  font-family: "Montserrat";
-  font-style: normal;
-  text-align: center;
+  width: 100%;
+  background-color: #005382;
   text-transform: uppercase;
-  color: #ffffff;
 }
-
-.container {
-  font-family: "Montserrat";
-  font-style: normal;
-  text-align: center;
-  color: #0f0021;
+.form_send__row {
+  display: flex;
+  align-items: center;
+  margin-top: 18px;
+  gap: 10px;
+  font-family: Montserrat;
+  font-size: 14px;
+  font-weight: 200;
+  line-height: 22px;
 }
-
-input[type="checkbox"]:checked,
-input[type="checkbox"]:not(:checked) {
-  position: absolute;
-}
-
-input[type="checkbox"]:checked + label,
-input[type="checkbox"]:not(:checked) + label {
-  display: inline-block;
-  position: relative;
-  cursor: pointer;
-}
-
-input[type="checkbox"]:checked + label:before,
-input[type="checkbox"]:not(:checked) + label:before {
-  content: "";
-  position: absolute;
-  background-color: #ffffff;
-}
-
-input[type="checkbox"]:checked + label:after,
-input[type="checkbox"]:not(:checked) + label:after {
-  content: "";
-  position: absolute;
-  -webkit-transition: all 0.2s ease;
-  -moz-transition: all 0.2s ease;
-  -o-transition: all 0.2s ease;
-  transition: all 0.2s ease;
-  border-left: 4px solid #979797;
-  border-bottom: 4px solid #979797;
-}
-
-input[type="checkbox"]:not(:checked) + label:after {
-  opacity: 0;
-}
-
-input[type="checkbox"]:checked + label:after {
-  opacity: 1;
-}
-
-.container a {
+.form_send__row a {
   color: #469bdf;
   text-decoration: underline;
 }
 
-.hystmodal_opened {
-  position: fixed;
-  overflow: hidden;
+.middle_d_3 {
+  font-family: Circe Rounded;
+  font-size: 55px;
+  font-weight: 700;
+  line-height: 70px;
+  letter-spacing: 0.05em;
+  color: #005382;
+  text-align: center;
+}
+
+@media (max-width: 1400px) {
+  .b_3 {
+    justify-content: space-between;
+  }
+  .left_b_3,
+  .form_send {
+    width: 40%;
+  }
+}
+@media (max-width: 950px) {
+  .b_3 {
+    flex-direction: column;
+  }
+  .text_form_d_3 {
+    padding: 0;
+  }
+  .left_b_3,
+  .form_send {
+    width: 100%;
+    max-width: 450px;
+  }
+  .middle_d_3 {
+    margin: 35px 0;
+  }
 }
 
 /*FOOTER*/

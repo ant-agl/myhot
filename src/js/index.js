@@ -60,6 +60,20 @@ $(".count-child").on("input change", function () {
   $(".count-guest__value .child").text(val);
 });
 
+function reloadChatAnimation(close = true) {
+  if (close) {
+    $(".chat-preview__message").addClass(
+      "chat-preview__message-clear-animation"
+    );
+  }
+  $(".chat-preview__message").removeClass("chat-preview__message-animation");
+  setTimeout(() => {
+    $(".chat-preview__message").addClass("chat-preview__message-animation");
+  }, 200);
+}
+reloadChatAnimation(false);
+setInterval(reloadChatAnimation, 1000 * 8);
+
 function register() {
   var password = document.getElementById("p1").value;
   var confirm = document.getElementById("p2").value;

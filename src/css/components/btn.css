@@ -15,6 +15,7 @@
 }
 .btn:hover {
   background-color: #004a5d;
+  color: #fff;
 }
 .btn_white {
   background-color: #fff;
@@ -22,6 +23,7 @@
 }
 .btn_white:hover {
   background-color: #daf9ff;
+  color: #002a31;
 }
 .btn_big {
   padding: 22px 53px;

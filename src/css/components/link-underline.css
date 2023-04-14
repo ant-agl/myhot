@@ -24,6 +24,9 @@
   left: 0;
   background-color: var(--color);
 }
+.link-underline:hover {
+  color: var(--color);
+}
 .link-underline:hover::after {
   width: 100%;
 }
