@@ -78,6 +78,10 @@ body {
   font-weight: 400;
   color: #005382;
 }
+.info_area.phone_code {
+  text-align: center;
+  color: #000;
+}
 
 .nav_nav {
   display: flex;

@@ -45,6 +45,9 @@ export default class GetData {
       data = JSON.parse(data);
       console.log(data);
 
+      if (data.email_confirm) {
+        $(".email-hint").removeClass("input-hint__not-active");
+      }
       if (!data.img_id) data.img_id = "../img/no-photo.jpg";
       for (let name in data) {
         let val = data[name];

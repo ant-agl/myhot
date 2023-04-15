@@ -1,0 +1,26 @@
+.find-hint {
+  position: absolute;
+  background-color: #fff;
+  border-radius: 20px;
+  box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: 0.3s;
+  max-height: 200px;
+  overflow-y: auto;
+}
+.find-hint.active {
+  transform: scale(1);
+}
+.find-hint__item {
+  cursor: pointer;
+  padding: 10px 25px;
+  transition: 0.2s;
+}
+.find-hint__item:not(:last-child) {
+  border-bottom: 1px solid #eaeaea;
+}
+.find-hint__item:hover {
+  background: #e2f8ff;
+}

@@ -1,6 +1,8 @@
 export default class ConfirmPassword {
+  url = "";
   constructor(selectorInputs, selectorBtn, settings = {}) {
     this.$inputs = $(selectorInputs);
+    console.log(this.$inputs);
     this.$btn = $(selectorBtn);
 
     for (let key in settings) {
@@ -46,9 +48,10 @@ export default class ConfirmPassword {
       code += $(el).val().trim();
     });
 
+    if (!this.url) return;
     $.ajax({
       type: "POST",
-      url: "https://wehotel.ru/handler/code_check.php",
+      url: this.url,
       data: {
         code,
       },

@@ -6,31 +6,28 @@ $(".mask-phone").mask("+7 (000) 000-00-00", {
   placeholder: "+7 (___) ___-__-__",
 });
 
-$('input[type="number"]').keydown(function (e) {
-  $(this).val("");
-});
-
-$('input[type="number"]').keyup(function (e) {
-  var $wrap = $(this).closest("#code");
-  var $inputs = $wrap.find('input[type="number"]');
-  var val = $(this).val();
-
-  // Ввод только цифр
-  if (val == val.replace(/[0-9]/, "")) {
-    $(this).val("");
-    return false;
+import ConfirmPassword from "./components/ConfirmPassword";
+let confirmPass1 = new ConfirmPassword(
+  ".block_register_01 .phone_code",
+  ".block_register_01 .next_button",
+  {
+    url: "",
   }
-
-  // Передача фокуса следующему innput
-  $inputs.eq($inputs.index(this) + 1).focus();
-
-  // Заполнение input hidden
-  var fullval = "";
-  $inputs.each(function () {
-    fullval = fullval + (parseInt($(this).val()) || "0");
-  });
-  $wrap.find('input[type="hidden"]').val(fullval);
-});
+);
+let confirmPass02 = new ConfirmPassword(
+  ".block_register_02 .phone_code",
+  ".block_register_02 .next_button",
+  {
+    url: "",
+  }
+);
+let confirmPass2 = new ConfirmPassword(
+  ".block_register_2 .phone_code",
+  ".block_register_2 .next_button",
+  {
+    url: "",
+  }
+);
 
 import "air-datepicker/air-datepicker.css";
 import AirDatepicker from "air-datepicker";
@@ -73,6 +70,9 @@ function reloadChatAnimation(close = true) {
 }
 reloadChatAnimation(false);
 setInterval(reloadChatAnimation, 1000 * 8);
+
+import FindHint from "./components/FindHint";
+new FindHint('[name="search"]');
 
 function register() {
   var password = document.getElementById("p1").value;
