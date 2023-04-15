@@ -4,7 +4,7 @@ export default class FindHint {
   classActive = "active";
   selectorHint = "+ .find-hint";
   classHintItem = "find-hint__item";
-  foundElements = [];
+  foundElements = {};
   search = "";
   url = "https://wehotel.ru/php/conditional_search.php";
 
@@ -37,16 +37,23 @@ export default class FindHint {
     this.$hint.removeClass(this.classActive);
 
     let html = "";
-    let firstName = this.foundElements[0]?.name;
-    if (firstName?.toLowerCase()?.includes(this.search)) {
-      html += `<div class="${this.classHintItem}">${firstName}</div>`;
-    }
-    let firstCity = this.foundElements[0]?.city;
-    if (firstCity?.toLowerCase()?.includes(this.search)) {
-      html += `<div class="${this.classHintItem}">${firstCity}</div>`;
-    }
+    // let firstName = this.foundElements[0]?.name;
+    // if (firstName?.toLowerCase()?.includes(this.search)) {
+    //   html += `<div class="${this.classHintItem}">${firstName}</div>`;
+    // }
+    // let firstCity = this.foundElements[0]?.city;
+    // if (firstCity?.toLowerCase()?.includes(this.search)) {
+    //   html += `<div class="${this.classHintItem}">${firstCity}</div>`;
+    // }
 
-    this.foundElements.forEach((el) => {
+    // this.foundElements.forEach((el) => {
+    //   html += `<div class="${this.classHintItem}">${el.name}. ${el.city}, ${el.country}</div>`;
+    // });
+
+    this.foundElements.city.forEach((el) => {
+      html += `<div class="${this.classHintItem}">${el.name}</div>`;
+    });
+    this.foundElements.hotel.forEach((el) => {
       html += `<div class="${this.classHintItem}">${el.name}. ${el.city}, ${el.country}</div>`;
     });
 
