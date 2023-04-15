@@ -1,4 +1,6 @@
 /*= default */
+/*= components/colors */
+
 body {
   background-color: #21527d;
 }
@@ -173,11 +175,13 @@ body {
   gap: 7px;
   color: #002a31;
 }
+.hotel-card__row-info img {
+  width: 14px;
+}
 .hotel-card__estimation {
   font-size: 18px;
   font-weight: 600;
   line-height: 22px;
-  color: #31bb00;
 }
 .hotel-card__footer {
   width: 100%;

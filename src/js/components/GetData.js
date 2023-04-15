@@ -1,3 +1,5 @@
+import data2get from "./data2get";
+import BackgroundImage from "./BackgroundImage";
 import Filter from "./Filter";
 import ShowAll from "./ShowAll";
 import { startLoad, endLoad } from "./load";
@@ -36,9 +38,9 @@ export default class GetData {
     this.favourites();
     this.bonus();
   }
-  getHotelsListPage() {
+  getHotelsListPage(getData) {
     this.filters();
-    this.hotelsList();
+    this.hotelsList(getData);
   }
   user(birthday = false) {
     $.get(this.path + "get_data.php", (data) => {
@@ -510,66 +512,31 @@ export default class GetData {
       });
     });
   }
-  hotelsList(query = "") {
+  hotelsList(getData = {}) {
+    let search = data2get(getData);
+    if (!search) return;
     startLoad($(".hotels-list"));
     setTimeout(() => {
-      $.get("" + query, (data) => {
-        data = [
-          {
-            img: "../img/hotels/1.png",
-            stars: 10,
-            name: "Отель Marriott Royal Aurora",
-            isHeart: true,
-            geo: "Москва, ул. Николоямская, д. 83/33",
-            metro: "Марксистская",
-            train: "Белорусский 2км",
-            plane: "Шереметьево",
-            estimation: 9.8,
-            price: "6 385",
-            link: "#",
-          },
-          {
-            img: "../img/hotels/1.png",
-            stars: 8,
-            name: "Отель Marriott Royal Aurora",
-            isHeart: false,
-            geo: "Москва, ул. Николоямская, д. 83/33",
-            metro: "Марксистская",
-            train: "Белорусский 2км",
-            plane: "Шереметьево",
-            estimation: 9.0,
-            price: "120 500",
-            link: "#",
-          },
-          {
-            img: "../img/hotels/1.png",
-            stars: 10,
-            name: "Отель Marriott Royal Aurora",
-            isHeart: false,
-            geo: "Москва, ул. Николоямская, д. 83/33",
-            metro: "Марксистская",
-            train: "Белорусский 2км",
-            plane: "Шереметьево",
-            estimation: 9.8,
-            price: "1 229 385",
-            link: "#",
-          },
-        ];
+      $.get(this.path_php + "search/search.php" + search, (data) => {
+        console.log(data);
 
         let html = "";
         data.forEach((hotel) => {
           let fzPrice = false;
+          hotel.price = hotel.price?.toLocaleString() ?? "0";
           if (hotel.price.length > 7) fzPrice = 15;
           else if (hotel.price.length == 7) fzPrice = 17;
           let stylePrice = "";
           if (fzPrice) stylePrice = `font-size:${fzPrice}px`;
 
+          if (!hotel.image) hotel.image = "../img/empty.png";
+
           html += `
-            <div class="hotel-card">
+            <div class="hotel-card" data-id="${hotel.id}">
               <div class="hotel-card__img">
-                <div class="hotel-card__img-filter">
-                  <img src="${hotel.img}" alt="${hotel.name}">
-                </div>
+                <div class="hotel-card__img-filter" data-url="${
+                  hotel.image
+                }"></div>
                 <svg class="hotel-card__img-heart ${
                   hotel.isHeart ? "active" : ""
                 }" width="16" height="14" viewBox="0 0 16 14" fill="none"
@@ -581,29 +548,33 @@ export default class GetData {
               </div>
               <div class="hotel-card__main">
                 <img src="../img/icons/stars/${
-                  hotel.stars
+                  hotel.rating.stars
                 }.png" class="hotel-card__img-stars">
                 <div class="hotel-card__title">${hotel.name}</div>
                 <div class="hotel-card__row-info">
                   <img src="../img/icons/geo.svg">
-                  <span>${hotel.geo}</span>
+                  <span>От центра ${hotel.position.center} км</span>
                 </div>
                 <div class="hotel-card__row-info">
                   <img src="../img/icons/metro.svg">
-                  <span>${hotel.metro}</span>
+                  <span>От метро ${hotel.position.metro} км</span>
+                </div>
+                <div class="hotel-card__row-info">
+                  <img src="../img/icons/sea.svg">
+                  <span>От моря ${hotel.position.sea} км</span>
                 </div>
                 <div class="hotel-card__row-info">
                   <img src="../img/icons/train.svg">
-                  <span>${hotel.train}</span>
+                  <span>От вокзала ${hotel.train ?? "??"} км</span>
                 </div>
                 <div class="hotel-card__row-info">
                   <img src="../img/icons/plane.svg">
-                  <span>${hotel.plane}</span>
+                  <span>От аэропорта ${hotel.plane ?? "??"} км</span>
                 </div>
                 <div class="hotel-card__row-info">
-                  <span class="hotel-card__estimation">${
-                    hotel.estimation
-                  }</span>
+                  <span class="hotel-card__estimation color_${getColor(
+                    hotel.rating.reviews
+                  )}">${hotel.rating.reviews}</span>
                   <span>по оценкам гостей</span>
                 </div>
               </div>
@@ -614,19 +585,20 @@ export default class GetData {
           }</span>
                   <span class="hotel-card__price-ruble">&#8381;</span>
                 </span>
-                <a href="${hotel.link}" class="btn">Подробнее</a>
+                <a href="/hotel?id=${hotel.id}" class="btn">Подробнее</a>
               </div>
             </div>
           `;
         });
+        if (html == "") html = "Ничего не найдено";
         html += '<div class="hotel-card hotel-card_hidden"></div>';
         html += '<div class="hotel-card hotel-card_hidden"></div>';
         html += '<div class="hotel-card hotel-card_hidden"></div>';
         $(".hotels-list").html(html);
-        // new BackgroundImage(".hotel-card__img-filter", {
-        //   paddingBottom: "73%",
-        //   size: "cover",
-        // });
+        new BackgroundImage(".hotel-card__img-filter", {
+          paddingBottom: "73%",
+          size: "cover",
+        });
       });
       endLoad($(".hotels-list"));
     }, 2000);

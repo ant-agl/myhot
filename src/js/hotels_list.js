@@ -34,9 +34,10 @@ new Range({
   minSpan: 5,
 });
 
+import { get2data } from "./components/data2get";
 import GetData from "./components/GetData";
 let getData = new GetData();
-getData.getHotelsListPage();
+getData.getHotelsListPage(get2data());
 
 $("body").on("click", ".hotel-card__img-heart", function () {
   $(this).toggleClass("active");

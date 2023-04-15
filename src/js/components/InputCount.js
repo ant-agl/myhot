@@ -2,9 +2,9 @@ export default class InputCount {
   min = 0;
   max = 99;
   constructor() {
-    $(".input-count__input").on("input change", this.input.bind(this));
-    $(".input-count__sign_minus").on("click", this.minus.bind(this));
-    $(".input-count__sign_plus").on("click", this.plus.bind(this));
+    $("body").on("input change", ".input-count__input", this.input.bind(this));
+    $("body").on("click", ".input-count__sign_minus", this.minus.bind(this));
+    $("body").on("click", ".input-count__sign_plus", this.plus.bind(this));
   }
   input(e) {
     let $input = $(e.target)

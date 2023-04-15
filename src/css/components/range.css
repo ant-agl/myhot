@@ -54,6 +54,9 @@ input[type="range"]::-moz-range-thumb {
   --mini-thick: 4px;
   --mini-ratio: calc(4 / 15);
 }
+.filter .drbar-container .drbar-slider {
+  z-index: 1;
+}
 .filter .drbar-container .drbar-slider:not(:active),
 .filter .drbar-container .drbar-slider:active {
   outline: 4px solid #eaeaea;

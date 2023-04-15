@@ -37,19 +37,6 @@ export default class FindHint {
     this.$hint.removeClass(this.classActive);
 
     let html = "";
-    // let firstName = this.foundElements[0]?.name;
-    // if (firstName?.toLowerCase()?.includes(this.search)) {
-    //   html += `<div class="${this.classHintItem}">${firstName}</div>`;
-    // }
-    // let firstCity = this.foundElements[0]?.city;
-    // if (firstCity?.toLowerCase()?.includes(this.search)) {
-    //   html += `<div class="${this.classHintItem}">${firstCity}</div>`;
-    // }
-
-    // this.foundElements.forEach((el) => {
-    //   html += `<div class="${this.classHintItem}">${el.name}. ${el.city}, ${el.country}</div>`;
-    // });
-
     this.foundElements.city.forEach((el) => {
       html += `<div class="${this.classHintItem}">${el.name}</div>`;
     });
@@ -64,7 +51,6 @@ export default class FindHint {
     let get = data2get({ search: this.search });
     $.get(this.url + get, (data) => {
       data = JSON.parse(data);
-      console.log(data);
       this.foundElements = data;
       this.updateHint();
     });

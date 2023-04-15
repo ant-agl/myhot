@@ -3,6 +3,7 @@ export default class RemoveRow {
   animation = 300;
   path = "";
   id = "id";
+  isRequest = true;
 
   constructor(selectorRow, selectorBtn, options = {}) {
     this.selectorRow = selectorRow;
@@ -24,7 +25,7 @@ export default class RemoveRow {
       $row.remove();
     }, this.animation);
 
-    this.request($el.data("id"));
+    if (isRequest) this.request($el.data("id"));
   }
   request(id) {
     console.log("delete " + id);

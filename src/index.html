@@ -61,7 +61,7 @@
       <div class="text-field">
         <div class="text-field__icon text-field__icon_text">
           <input class="input-find text-field__input_2" type="text" placeholder="Дата заезда - Дата выезда" value=""
-            readonly>
+            readonly name="dates">
         </div>
       </div>
       <div class="text-field">
@@ -74,23 +74,16 @@
                 <span>Количество взрослых</span>
                 <div class="input-count">
                   <span class="input-count__sign input-count__sign_minus">&ndash;</span>
-                  <input type="text" value="1" min="1" class="input-count__input count-adult">
+                  <input type="text" value="1" min="1" class="input-count__input count-adult" name="adult">
                   <span class="input-count__sign input-count__sign_plus">+</span>
                 </div>
               </div>
-              <div class="count-guest__row">
-                <span>Количество детей</span>
-                <div class="input-count">
-                  <span class="input-count__sign input-count__sign_minus">&ndash;</span>
-                  <input type="text" value="0" class="input-count__input count-child">
-                  <span class="input-count__sign input-count__sign_plus">+</span>
-                </div>
-              </div>
+              <span class="add-child">Добавить ребенка +</span>
             </div>
           </div>
         </div>
       </div>
-      <a href="" class="find_button">найти</a>
+      <button type="button" class="find_button">найти</button>
     </form>
   </section>
   <section class="block_2">

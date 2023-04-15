@@ -41,17 +41,17 @@ export default class ShowAll {
     this.maxHeight = h;
     this.fullHeight = fullH;
 
-    if (this.$block.hasClass(this.activeCLass)) {
-      this.show();
-    } else {
-      this.hide();
-    }
+    this.setDefaultState();
   }
   setDefaultState() {
     if (this.$block.find("> *").length <= this.minShowElements) {
       this.$btn.hide();
     } else {
-      this.hide(false);
+      if (this.$block.hasClass(this.activeCLass)) {
+        this.show();
+      } else {
+        this.hide();
+      }
     }
   }
   toggle() {

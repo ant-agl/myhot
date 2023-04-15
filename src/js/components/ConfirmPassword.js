@@ -2,7 +2,6 @@ export default class ConfirmPassword {
   url = "";
   constructor(selectorInputs, selectorBtn, settings = {}) {
     this.$inputs = $(selectorInputs);
-    console.log(this.$inputs);
     this.$btn = $(selectorBtn);
 
     for (let key in settings) {
