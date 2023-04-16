@@ -728,6 +728,25 @@ span.reviews-card__date-value {
     font-size: 10px;
     line-height: 12px;
   }
+  .main__buttons {
+    flex-direction: column;
+    gap: 10px;
+    position: relative;
+  }
+  .main__buttons .main__button {
+    width: 100%;
+  }
+  .btn-delete-account {
+    order: 2;
+  }
+  .change-data {
+    order: 1;
+  }
+  .msg {
+    position: absolute;
+    top: 50%;
+    margin: 0;
+  }
   .input {
     font-size: 14px;
     line-height: 17.07px;
@@ -832,5 +851,9 @@ span.reviews-card__date-value {
   .filters {
     overflow-x: auto;
     flex-wrap: nowrap;
+  }
+  .filters::-webkit-scrollbar,
+  .filters::-webkit-scrollbar {
+    width: 0;
   }
 }

@@ -1,4 +1,4 @@
-import data2get from "./data2get";
+import { data2get } from "./data2get";
 
 export default class FindHint {
   classActive = "active";

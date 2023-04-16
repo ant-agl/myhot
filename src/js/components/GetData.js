@@ -1,4 +1,4 @@
-import data2get from "./data2get";
+import { data2get } from "./data2get";
 import BackgroundImage from "./BackgroundImage";
 import Filter from "./Filter";
 import ShowAll from "./ShowAll";
@@ -515,92 +515,90 @@ export default class GetData {
     let search = data2get(getData);
     if (!search) return;
     startLoad($(".hotels-list"));
-    setTimeout(() => {
-      $.get(this.path_php + "search/search.php" + search, (data) => {
-        console.log(data);
+    $.get(this.path_php + "search/search.php" + search, (data) => {
+      console.log(data);
 
-        let html = "";
-        data.forEach((hotel) => {
-          let fzPrice = false;
-          hotel.price = hotel.price?.toLocaleString() ?? "0";
-          if (hotel.price.length > 7) fzPrice = 15;
-          else if (hotel.price.length == 7) fzPrice = 17;
-          let stylePrice = "";
-          if (fzPrice) stylePrice = `font-size:${fzPrice}px`;
+      let html = "";
+      data.forEach((hotel) => {
+        let fzPrice = false;
+        hotel.price = hotel.price?.toLocaleString() ?? "0";
+        if (hotel.price.length > 7) fzPrice = 15;
+        else if (hotel.price.length == 7) fzPrice = 17;
+        let stylePrice = "";
+        if (fzPrice) stylePrice = `font-size:${fzPrice}px`;
 
-          if (!hotel.image) hotel.image = "../img/empty.png";
+        if (!hotel.image) hotel.image = "../img/empty.png";
 
-          html += `
-            <div class="hotel-card" data-id="${hotel.id}">
-              <div class="hotel-card__img">
-                <div class="hotel-card__img-filter" data-url="${
-                  hotel.image
-                }"></div>
-                <svg class="hotel-card__img-heart ${
-                  hotel.isHeart ? "active" : ""
-                }" width="16" height="14" viewBox="0 0 16 14" fill="none"
-                  xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M8.34984 10.8654L13.0377 6.21726C14.1894 5.06956 14.3572 3.19308 13.2692 1.99373C12.9963 1.69149 12.6642 1.44759 12.293 1.27693C11.9219 1.10627 11.5195 1.01243 11.1106 1.00115C10.7016 0.989875 10.2946 1.06139 9.9145 1.21133C9.53436 1.36127 9.18904 1.58649 8.89965 1.87323L8.01995 2.75121L7.2618 1.99373C6.1043 0.851775 4.2118 0.685359 3.00222 1.76419C2.6974 2.03476 2.45141 2.3641 2.27929 2.7321C2.10718 3.10011 2.01254 3.49905 2.00116 3.90454C1.98979 4.31003 2.06192 4.71357 2.21314 5.09049C2.36436 5.46741 2.5915 5.80981 2.88068 6.09675L7.69007 10.8654C7.77785 10.9516 7.8964 11 8.01995 11C8.1435 11 8.26206 10.9516 8.34984 10.8654Z"
-                    stroke="white"/>
-                </svg>
+        html += `
+          <div class="hotel-card" data-id="${hotel.id}">
+            <div class="hotel-card__img">
+              <div class="hotel-card__img-filter" data-url="${
+                hotel.image
+              }"></div>
+              <svg class="hotel-card__img-heart ${
+                hotel.isHeart ? "active" : ""
+              }" width="16" height="14" viewBox="0 0 16 14" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M8.34984 10.8654L13.0377 6.21726C14.1894 5.06956 14.3572 3.19308 13.2692 1.99373C12.9963 1.69149 12.6642 1.44759 12.293 1.27693C11.9219 1.10627 11.5195 1.01243 11.1106 1.00115C10.7016 0.989875 10.2946 1.06139 9.9145 1.21133C9.53436 1.36127 9.18904 1.58649 8.89965 1.87323L8.01995 2.75121L7.2618 1.99373C6.1043 0.851775 4.2118 0.685359 3.00222 1.76419C2.6974 2.03476 2.45141 2.3641 2.27929 2.7321C2.10718 3.10011 2.01254 3.49905 2.00116 3.90454C1.98979 4.31003 2.06192 4.71357 2.21314 5.09049C2.36436 5.46741 2.5915 5.80981 2.88068 6.09675L7.69007 10.8654C7.77785 10.9516 7.8964 11 8.01995 11C8.1435 11 8.26206 10.9516 8.34984 10.8654Z"
+                  stroke="white"/>
+              </svg>
+            </div>
+            <div class="hotel-card__main">
+              <img src="../img/icons/stars/${
+                hotel.rating.stars
+              }.png" class="hotel-card__img-stars">
+              <div class="hotel-card__title">${hotel.name}</div>
+              <div class="hotel-card__row-info">
+                <img src="../img/icons/geo.svg">
+                <span>От центра ${hotel.position.center} км</span>
               </div>
-              <div class="hotel-card__main">
-                <img src="../img/icons/stars/${
-                  hotel.rating.stars
-                }.png" class="hotel-card__img-stars">
-                <div class="hotel-card__title">${hotel.name}</div>
-                <div class="hotel-card__row-info">
-                  <img src="../img/icons/geo.svg">
-                  <span>От центра ${hotel.position.center} км</span>
-                </div>
-                <div class="hotel-card__row-info">
-                  <img src="../img/icons/metro.svg">
-                  <span>От метро ${hotel.position.metro} км</span>
-                </div>
-                <div class="hotel-card__row-info">
-                  <img src="../img/icons/sea.svg">
-                  <span>От моря ${hotel.position.sea} км</span>
-                </div>
-                <div class="hotel-card__row-info">
-                  <img src="../img/icons/train.svg">
-                  <span>От вокзала ${hotel.train ?? "??"} км</span>
-                </div>
-                <div class="hotel-card__row-info">
-                  <img src="../img/icons/plane.svg">
-                  <span>От аэропорта ${hotel.plane ?? "??"} км</span>
-                </div>
-                <div class="hotel-card__row-info">
-                  <span class="hotel-card__estimation color_${getColor(
-                    hotel.rating.reviews
-                  )}">${hotel.rating.reviews}</span>
-                  <span>по оценкам гостей</span>
-                </div>
+              <div class="hotel-card__row-info">
+                <img src="../img/icons/metro.svg">
+                <span>От метро ${hotel.position.metro} км</span>
               </div>
-              <div class="hotel-card__footer">
-                <span class="hotel-card__price">
-                  от <span class="hotel-card__price-value" style="${stylePrice}">${
-            hotel.price
-          }</span>
-                  <span class="hotel-card__price-ruble">&#8381;</span>
-                </span>
-                <a href="/hotel?id=${hotel.id}" class="btn">Подробнее</a>
+              <div class="hotel-card__row-info">
+                <img src="../img/icons/sea.svg">
+                <span>От моря ${hotel.position.sea} км</span>
+              </div>
+              <div class="hotel-card__row-info">
+                <img src="../img/icons/train.svg">
+                <span>От вокзала ${hotel.train ?? "??"} км</span>
+              </div>
+              <div class="hotel-card__row-info">
+                <img src="../img/icons/plane.svg">
+                <span>От аэропорта ${hotel.plane ?? "??"} км</span>
+              </div>
+              <div class="hotel-card__row-info">
+                <span class="hotel-card__estimation color_${getColor(
+                  hotel.rating.reviews
+                )}">${hotel.rating.reviews}</span>
+                <span>по оценкам гостей</span>
               </div>
             </div>
-          `;
-        });
-        if (html == "") html = "Ничего не найдено";
-        html += '<div class="hotel-card hotel-card_hidden"></div>';
-        html += '<div class="hotel-card hotel-card_hidden"></div>';
-        html += '<div class="hotel-card hotel-card_hidden"></div>';
-        $(".hotels-list").html(html);
-        new BackgroundImage(".hotel-card__img-filter", {
-          paddingBottom: "73%",
-          size: "cover",
-        });
+            <div class="hotel-card__footer">
+              <span class="hotel-card__price">
+                от <span class="hotel-card__price-value" style="${stylePrice}">${
+          hotel.price
+        }</span>
+                <span class="hotel-card__price-ruble">&#8381;</span>
+              </span>
+              <a href="/hotel?id=${hotel.id}" class="btn">Подробнее</a>
+            </div>
+          </div>
+        `;
       });
-      endLoad($(".hotels-list"));
-    }, 2000);
+      if (html == "") html = "Ничего не найдено";
+      html += '<div class="hotel-card hotel-card_hidden"></div>';
+      html += '<div class="hotel-card hotel-card_hidden"></div>';
+      html += '<div class="hotel-card hotel-card_hidden"></div>';
+      $(".hotels-list").html(html);
+      new BackgroundImage(".hotel-card__img-filter", {
+        paddingBottom: "73%",
+        size: "cover",
+      });
+    });
+    endLoad($(".hotels-list"));
   }
   hotel(id = "") {
     $.get("" + id, (data) => {

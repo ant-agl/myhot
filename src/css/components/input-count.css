@@ -16,6 +16,7 @@
   text-align: center;
   color: #002a31;
   width: 25px;
+  border: none;
 }
 .input-count__sign_minus {
   transform: translateY(-1px);

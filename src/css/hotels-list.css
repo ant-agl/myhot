@@ -1,5 +1,6 @@
 /*= default */
 /*= components/colors */
+/*= components/search */
 
 body {
   background-color: #21527d;
@@ -257,6 +258,21 @@ body {
   padding: 10px;
   position: relative;
   cursor: pointer;
+}
+
+.search {
+  margin-top: 5px;
+  padding: 7px 12px;
+}
+.search__input {
+  padding: 10px 20px 10px 45px;
+  background-position: 17px center;
+  background-size: 17px;
+}
+.search__button {
+  font-size: 14px;
+  line-height: 17px;
+  padding: 10px 30px;
 }
 
 @media (max-width: 1500px) {

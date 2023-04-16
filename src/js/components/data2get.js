@@ -1,4 +1,4 @@
-export default function data2get(data) {
+export function data2get(data) {
   let query = "?";
   for (let key in data) {
     if (key) query += `${key}=${data[key]}&`;

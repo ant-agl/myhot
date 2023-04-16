@@ -5,7 +5,8 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Raleway&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="./css/index.css">
   <link rel="icon" href="./img/favicon.svg">
   <title>Бронирование отелей</title>
@@ -49,42 +50,9 @@
   </header>
   <section class="block_1">
     <h1 class="header_b_1">найдите отель для лучшего отдыха</h1>
-    <form class="search_section">
-      <div class="text-field">
-        <div class="text-field__icon text-field__icon_text">
-          <input class="input-find text-field__input" type="text" placeholder="Город, регион или отель" value=""
-            name="search" autocomplete="off">
-          <div class="find-hint">
-          </div>
-        </div>
-      </div>
-      <div class="text-field">
-        <div class="text-field__icon text-field__icon_text">
-          <input class="input-find text-field__input_2" type="text" placeholder="Дата заезда - Дата выезда" value=""
-            readonly name="dates">
-        </div>
-      </div>
-      <div class="text-field">
-        <div class="text-field__icon text-field__icon_text">
-          <div class="input-find button_block_open count-guest">
-            <div class="count-guest__value"><span class="adult">1</span> взрослых, <span class="child">0</span> детей
-            </div>
-            <div class="count-guest__modal">
-              <div class="count-guest__row">
-                <span>Количество взрослых</span>
-                <div class="input-count">
-                  <span class="input-count__sign input-count__sign_minus">&ndash;</span>
-                  <input type="text" value="1" min="1" class="input-count__input count-adult" name="adult">
-                  <span class="input-count__sign input-count__sign_plus">+</span>
-                </div>
-              </div>
-              <span class="add-child">Добавить ребенка +</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <button type="button" class="find_button">найти</button>
-    </form>
+    <div class="container">
+      //= general/search
+    </div>
   </section>
   <section class="block_2">
     <h2 class="heading_b_2">Не определились с выбором места отдыха? Мы вам можем подсказать!</h2>

@@ -45,36 +45,6 @@
     line-height: 127%;
   }
 
-  .search_section {
-    position: relative;
-    width: 90%;
-    gap: 15px 15px;
-    padding: 25px 20px;
-    border-radius: 30px;
-    flex-wrap: wrap;
-  }
-  .text-field,
-  .find_button {
-    width: 40%;
-    flex-grow: 1;
-  }
-
-  .text-field__icon {
-    position: relative;
-  }
-
-  .text-field__icon::before {
-    content: "";
-    position: absolute;
-    display: flex;
-    align-items: center;
-    top: 0;
-    bottom: 0;
-    left: 0.625rem;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-
   input::-webkit-calendar-picker-indicator {
     display: none;
   }

@@ -86,28 +86,6 @@
     margin-top: 25vmin;
   }
 
-  .search_section {
-    width: 94%;
-    flex-direction: column;
-    gap: 10px;
-    padding: 10px;
-    border-radius: 30px;
-    flex-wrap: wrap;
-  }
-  .text-field,
-  .find_button {
-    width: 100%;
-    flex-grow: 1;
-  }
-  .input-find {
-    padding: 19px;
-    padding-left: 43px;
-    background-size: 14px;
-  }
-  .find_button {
-    padding: 16px;
-  }
-
   .modal-count-person-show {
     position: absolute;
     z-index: 1;
@@ -201,15 +179,6 @@
     border-radius: 5vmin;
     top: 9vmin;
   }
-
-  /* .find_button {
-    width: 88vmin;
-    height: 10vh;
-    border-radius: 8vmin;
-    font-weight: 500;
-    font-size: 3.9vmin;
-    letter-spacing: 0.05em;
-  } */
 
   /*BLOCK 2*/
   .block_2 {
