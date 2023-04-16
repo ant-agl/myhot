@@ -375,6 +375,9 @@ select {
 .table td:not(:last-child) {
   border-right: 1px solid #eaeaea;
 }
+.table-dates {
+  max-width: 142px;
+}
 .table__image-block {
   display: flex;
   align-items: center;

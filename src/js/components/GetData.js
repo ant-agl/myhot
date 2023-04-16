@@ -345,53 +345,68 @@ export default class GetData {
     });
   }
   bonus() {
-    $.get("", (data) => {
-      data = {
-        balance: 345,
-        hotels: [
-          {
-            img: "../img/hotels/1.png",
-            name: "Отель Marriott Royal Aurora",
-            geo: "Москва, Россия",
-            price: "20 300 руб.",
-            bonus: 100,
-            fromDate: "11.10.2022",
-            toDate: "18.10.2022",
-          },
-          {
-            img: "../img/hotels/2.png",
-            name: "Отель Novotel",
-            geo: "Москва, Россия",
-            price: "10 500 руб.",
-            bonus: 200,
-            fromDate: "11.10.2022",
-            toDate: "18.10.2022",
-          },
-          {
-            img: "../img/hotels/3.png",
-            name: "Linda Resort Hotel",
-            geo: "Манавгат, Турция",
-            price: "5 400 руб.",
-            bonus: -250,
-            fromDate: "11.10.2022",
-            toDate: "18.10.2022",
-          },
-        ],
-      };
+    $.get(this.path + "bonus_program.php", (data) => {
+      data = JSON.parse(data);
+      console.log("bonus", data);
+      // data = {
+      //   balance: 345,
+      //   hotels: [
+      //     {
+      //       img: "../img/hotels/1.png",
+      //       name: "Отель Marriott Royal Aurora",
+      //       geo: "Москва, Россия",
+      //       price: "20 300 руб.",
+      //       bonus: 100,
+      //       fromDate: "11.10.2022",
+      //       toDate: "18.10.2022",
+      //     },
+      //     {
+      //       img: "../img/hotels/2.png",
+      //       name: "Отель Novotel",
+      //       geo: "Москва, Россия",
+      //       price: "10 500 руб.",
+      //       bonus: 200,
+      //       fromDate: "11.10.2022",
+      //       toDate: "18.10.2022",
+      //     },
+      //     {
+      //       img: "../img/hotels/3.png",
+      //       name: "Linda Resort Hotel",
+      //       geo: "Манавгат, Турция",
+      //       price: "5 400 руб.",
+      //       bonus: -250,
+      //       fromDate: "11.10.2022",
+      //       toDate: "18.10.2022",
+      //     },
+      //   ],
+      // };
 
       let html = "";
       let htmlMobile = "";
-      data.hotels.forEach((hotel) => {
+      data.history.forEach((hotel) => {
+        if (!hotel.joined_hotel_search[0].image)
+          hotel.joined_hotel_search[0].image = "../img/empty.png";
+
+        let geo = hotel.joined_hotel_search[0].city + ", ";
+        geo += hotel.joined_hotel_search[0].country;
+
+        let price = "&mdash;";
+        if (hotel.cost_full) {
+          price = hotel.cost_full.toLocaleString() + " руб.";
+        }
+
         html += `
           <tr>
             <td>
               <div class="table__image-block">
-                <img src="${hotel.img}" alt="${hotel.name}">
-                <span>${hotel.name}</span>
+                <img src="${hotel.joined_hotel_search[0].image}" alt="${
+          hotel.joined_hotel_search[0].name
+        }">
+                <span>${hotel.joined_hotel_search[0].name}</span>
               </div>
             </td>
-            <td>${hotel.geo}</td>
-            <td class="nowrap">${hotel.price}</td>
+            <td>${geo}</td>
+            <td class="nowrap">${price}</td>
             <td>
               <span class="${
                 hotel.bonus >= 0 ? "bonus_positive" : "bonus_negative"
@@ -399,13 +414,13 @@ export default class GetData {
                 ${hotel.bonus >= 0 ? "+" : ""}${hotel.bonus}
               </span>
             </td>
-            <td>
-              <span class="nowrap"><span class="bonus-table__date-desc">От</span> ${
-                hotel.fromDate
-              }</span>
-              <span class="nowrap"><span class="bonus-table__date-desc">До</span> ${
-                hotel.toDate
-              }</span>
+            <td class="table-dates">
+              <span class="nowrap"><span class="bonus-table__date-desc">От</span> ${moment(
+                hotel.input_date * 1000
+              ).format("DD.MM.YYYY")}</span>
+              <span class="nowrap"><span class="bonus-table__date-desc">До</span> ${moment(
+                hotel.output_date * 1000
+              ).format("DD.MM.YYYY")}</span>
             </td>
           </tr>
         `;
