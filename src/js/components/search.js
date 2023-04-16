@@ -99,5 +99,8 @@ $(".search__button").on("click", function () {
 
   let data = { input_date, output_date, search, person, adult, childAge };
 
-  window.location.href = "../hotels-list" + data2get(data);
+  let link = "";
+  if (window.location.pathname.includes("hotels-list")) link = "./";
+  else link = "./hotels-list";
+  window.location.href = link + data2get(data);
 });

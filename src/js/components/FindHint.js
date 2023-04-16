@@ -28,6 +28,7 @@ export default class FindHint {
     let $el = $(e.target).closest(`.${this.classHintItem}`);
     let val = $el.text().trim();
     this.$input.val(val);
+    this.$hint.removeClass(this.classActive);
   }
   changeSearch() {
     this.search = this.$input.val()?.trim()?.toLowerCase();
