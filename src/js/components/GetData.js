@@ -598,7 +598,7 @@ export default class GetData {
         }</span>
                 <span class="hotel-card__price-ruble">&#8381;</span>
               </span>
-              <a href="/hotel?id=${hotel.id}" class="btn">Подробнее</a>
+              <a href="./hotel?id=${hotel.id}" class="btn">Подробнее</a>
             </div>
           </div>
         `;
