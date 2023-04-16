@@ -37,6 +37,8 @@ label {
   border: none;
   width: 100%;
   height: 400px;
+  overflow: hidden;
+  background-color: #fffef7;
 }
 #modal-logout .modal__content {
   height: 200px;

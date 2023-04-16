@@ -9,6 +9,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Raleway&display=swap"
       rel="stylesheet">
     <link rel="stylesheet" href="../css/hotels-list.css">
+    <script
+        src="https://api-maps.yandex.ru/2.1/?apikey=a0c76f9a-3a83-47c5-8684-cd13b06be955&load=package.standard&lang=ru_RU">
+    </script>
     <title>Список отелей | MyHot</title>
 </head>
 
@@ -197,9 +200,7 @@
                 <div class="main__section">
 
 <div class="map-big" id="map-big">
-  <iframe class="map-iframe"
-    src="https://yandex.ru/map-widget/v1/?ll=37.769198%2C55.689173&mode=search&ol=geo&ouri=ymapsbm1%3A%2F%2Fgeo%3Fdata%3DCgg1MzAwMDA5NBIa0KDQvtGB0YHQuNGPLCDQnNC-0YHQutCy0LAiCg2GeBZCFQEGX0I%2C&z=9.83"
-    allowfullscreen="true" style="position:relative;"></iframe>
+  <div id="map" class="map-iframe"></div>
   <div class="map-big__space"></div>
 </div>
 

@@ -19,16 +19,10 @@ export default class Map {
   }
   open() {
     this.$map.addClass(this.activeClass);
-    // this.$map.css("display", "block");
-    // setTimeout(() => {
-    // });
     this.changeTextBtn(this.textOpen);
   }
   close() {
     this.$map.removeClass(this.activeClass);
-    // setTimeout(() => {
-    //   this.$map.css("display", "none");
-    // }, this.animation);
     this.changeTextBtn(this.textClose);
   }
   changeTextBtn(text) {

@@ -3,6 +3,7 @@ import BackgroundImage from "./BackgroundImage";
 import Filter from "./Filter";
 import ShowAll from "./ShowAll";
 import { startLoad, endLoad } from "./load";
+import MapApi from "./MapApi";
 import moment from "moment";
 import getColor from "./getColor";
 moment.locale("ru");
@@ -513,6 +514,7 @@ export default class GetData {
   }
   hotelsList(getData = {}) {
     let search = data2get(getData);
+    let coords = [];
     if (!search) return;
     startLoad($(".hotels-list"));
     $.get(this.path_php + "search/search.php" + search, (data) => {
@@ -520,6 +522,19 @@ export default class GetData {
 
       let html = "";
       data.forEach((hotel) => {
+        if (hotel.position?.coordinate) {
+          let image = "";
+          if (hotel.image) {
+            image = `<img src="${hotel.image}" style="width:100px;">`;
+          }
+          coords.push({
+            coords: hotel.position?.coordinate,
+            name: hotel.name,
+            image,
+            id: hotel.id,
+          });
+        }
+
         let fzPrice = false;
         hotel.price = hotel.price?.toLocaleString() ?? "0";
         if (hotel.price.length > 7) fzPrice = 15;
@@ -596,6 +611,18 @@ export default class GetData {
       new BackgroundImage(".hotel-card__img-filter", {
         paddingBottom: "73%",
         size: "cover",
+      });
+
+      let myMap = new MapApi({
+        coords,
+      });
+      $(".btn-open-map").on("click", function () {
+        let time = 0;
+        let t = setInterval(() => {
+          myMap.resizeMap();
+          time += 10;
+          if (time > 500) clearInterval(t);
+        }, 10);
       });
     });
     endLoad($(".hotels-list"));
