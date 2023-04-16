@@ -51,7 +51,7 @@ let selectedDates = [];
 if (data.input_date) selectedDates.push(data.input_date * 1000);
 if (data.output_date) selectedDates.push(data.output_date * 1000);
 $('[name="adult"]')
-  .val(data.adult || 0)
+  .val(data.adult || 1)
   .trigger("change");
 if (data.childAge) {
   try {
