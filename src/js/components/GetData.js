@@ -123,6 +123,9 @@ export default class GetData {
         else if (hotel.count_of_kids > 1)
           peoples.push(hotel.count_of_kids + " ребенка");
 
+        let peoplesText =
+          peoples.length > 0 ? peoples.join(",<br>") : "&mdash;";
+
         let geo =
           hotel.joined_hotel_search[0].city +
           ", " +
@@ -145,9 +148,7 @@ export default class GetData {
               <div class="hotel-card__main-info">
                 <div class="hotel-card__status">
                   <span>Статус</span>
-                  <span class="value" style="color:${statusColor}" title="${
-          filter.name
-        }">${status}</span>
+                  <span class="value" style="color:${statusColor}" title="${filter.name}">${status}</span>
                 </div>
                 <div class="hotel-card__name">
                   ${hotel.joined_hotel_search[0].name}
@@ -164,9 +165,7 @@ export default class GetData {
               </div>
               <div class="hotel-card__info-row">
                 <span class="hotel-card__info-title">Количество человек</span>
-                <span class="hotel-card__info-value">${peoples.join(
-                  ",<br>"
-                )}</span>
+                <span class="hotel-card__info-value">${peoplesText}</span>
               </div>
               <div class="hotel-card__info-row">
                 <span class="hotel-card__info-title">Стоимость за номер</span>
