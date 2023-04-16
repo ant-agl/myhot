@@ -3,6 +3,7 @@ export default class MapApi {
   center = [55.76, 37.64];
   zoom = 7;
   controls = ["zoomControl", "fullscreenControl"];
+  isReady = false;
 
   constructor(options) {
     for (let key in options) {
@@ -10,6 +11,7 @@ export default class MapApi {
     }
 
     ymaps.ready(() => {
+      this.isReady = true;
       this.initMap();
       if (this.coords) this.addPoints(this.coords);
     });
@@ -19,6 +21,17 @@ export default class MapApi {
       center: this.center,
       zoom: this.zoom,
       controls: this.controls,
+    });
+  }
+  addPointsReady(coords) {
+    if (this.isReady) {
+      this.addPoints(coords);
+      return;
+    }
+
+    ymaps.ready(() => {
+      this.isReady = true;
+      this.addPoints(coords);
     });
   }
   addPoints(coords = []) {

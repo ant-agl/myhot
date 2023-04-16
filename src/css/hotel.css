@@ -74,6 +74,9 @@
 .hotel__place {
   margin-bottom: 7px;
 }
+.hotel__place img {
+  width: 14px;
+}
 .hotel__reviews {
   margin-top: 16px;
   background-color: #f1feff;
@@ -86,11 +89,11 @@
   font-size: 18px;
   font-weight: 600;
   line-height: 22px;
-  color: #31bb00;
 }
 .hotel__reviews-content {
   margin-top: 8px;
   gap: 10px;
+  align-items: normal;
 }
 .hotel__review {
   background-color: #fff;
@@ -330,8 +333,8 @@
 }
 .reviews-card__date-name,
 .reviews-card__date-val {
-  font-size: 13px;
-  line-height: 13px;
+  font-size: 15px;
+  line-height: 15px;
 }
 .reviews-card__row {
   display: flex;

@@ -21,6 +21,7 @@ moment.updateLocale("ru", {
 import RemoveRow from "./RemoveRow";
 import insertColumn from "./insertColumn";
 import {
+  insertHotel,
   insertServices,
   insertRules,
   insertNearby,
@@ -291,13 +292,13 @@ export default class GetData {
             <div class="reviews-card__header">
               <div class="reviews-card__dates">
                 <div class="reviews-card__date-review">
-                  <span class="reviews-card__date-title">Дата отзыва</span>
+                  <span class="reviews-card__date-title">Дата отзыва:</span>
                   <span class="reviews-card__date-value">${moment(
                     review.date * 1000
                   ).format("DD.MM.YYYY")}</span>
                 </div>
                 <div class="reviews-card__date-trip">
-                  <span class="reviews-card__date-title">Дата поездки</span>
+                  <span class="reviews-card__date-title">Дата поездки:</span>
                   <span class="reviews-card__date-value">${dates}</span>
                 </div>
               </div>
@@ -530,7 +531,13 @@ export default class GetData {
   hotelsList(getData = {}) {
     let search = data2get(getData);
     let coords = [];
-    if (!search) return;
+
+    let myMap = new MapApi();
+
+    if (!search) {
+      this._notFoundHotels();
+      return;
+    }
     startLoad($(".hotels-list"));
     $.get(this.path_php + "search/search.php" + search, (data) => {
       console.log(data);
@@ -613,12 +620,15 @@ export default class GetData {
         }</span>
                 <span class="hotel-card__price-ruble">&#8381;</span>
               </span>
-              <a href="./hotel?id=${hotel.id}" class="btn">Подробнее</a>
+              <a href="../hotel?id=${hotel.id}" class="btn">Подробнее</a>
             </div>
           </div>
         `;
       });
-      if (html == "") html = "Ничего не найдено";
+      if (html == "") {
+        this._notFoundHotels();
+        return;
+      }
       html += '<div class="hotel-card hotel-card_hidden"></div>';
       html += '<div class="hotel-card hotel-card_hidden"></div>';
       html += '<div class="hotel-card hotel-card_hidden"></div>';
@@ -628,9 +638,7 @@ export default class GetData {
         size: "cover",
       });
 
-      let myMap = new MapApi({
-        coords,
-      });
+      myMap.addPointsReady(coords);
       $(".btn-open-map").on("click", function () {
         let time = 0;
         let t = setInterval(() => {
@@ -642,8 +650,17 @@ export default class GetData {
     });
     endLoad($(".hotels-list"));
   }
+  _notFoundHotels() {
+    $(".hotels-list").html(
+      '<span style="color: #fff;background:#21527d;">Ничего не найдено</span>'
+    );
+  }
   hotel(id = "") {
-    $.get("" + id, (data) => {
+    $.get(this.path_php + "data_hotel.php?id_hotel=" + id, (data) => {
+      data = JSON.parse(data);
+      console.log(data);
+      insertHotel(data);
+
       data = {
         services: {
           free: [
@@ -913,12 +930,32 @@ export default class GetData {
         ],
       };
 
-      insertServices(data.services);
-      insertRules(data.rules);
-      insertNearby(data.nearby);
-      insertReviewsTotal(data.reviews.total);
-      insertReviewsList(data.reviews.list);
       insertRooms(data.rooms);
+    });
+    $.get(this.path_php + "get_services.php?id_hotel=" + id, (data) => {
+      data = JSON.parse(data);
+      console.log(data);
+      // insertServices(data);
+    });
+    $.get(this.path_php + "avg_reviews.php?id_hotel=" + id, (data) => {
+      data = JSON.parse(data);
+      console.log(data);
+      insertReviewsTotal(data);
+    });
+    $.get(this.path_php + "data_reviews.php?id_hotel=" + id, (data) => {
+      data = JSON.parse(data);
+      console.log(data);
+      insertReviewsList(data);
+    });
+    $.get(this.path_php + "get_attractions.php?id_hotel=" + id, (data) => {
+      data = JSON.parse(data);
+      console.log(data);
+      insertNearby(data);
+    });
+    $.get(this.path_php + "get_hotel_rules.php?id_hotel=" + id, (data) => {
+      data = JSON.parse(data);
+      console.log(data);
+      insertRules(data);
     });
   }
 }

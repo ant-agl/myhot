@@ -3,7 +3,32 @@ import CropText from "./CropText";
 import ShowAll from "./ShowAll";
 import BackgroundImage from "./BackgroundImage";
 import getColor from "./getColor";
+import moment from "moment";
 
+export function insertHotel(hotel) {
+  $(".hotel__name").text(hotel.name || "??");
+  $(".hotel__price-value").text(hotel.price?.toLocaleString() || "??");
+  $(".hotel__geo").text(hotel.city || "??");
+  $(".hotel__estimation")
+    .addClass("color_" + getColor(hotel.rating))
+    .text(hotel.rating);
+
+  if (hotel.reviews.length == 0) $(".hotel__reviews-content").css("margin", 0);
+  hotel.reviews.forEach((review, i) => {
+    if (i > 1) return;
+    if (!review.img_src) review.img_src = "../img/no-photo.jpg";
+    let name = review.name + review.surname;
+    $(".hotel__reviews-content").append(`
+      <div class="hotel__review">
+        <div class="hotel__row hotel__row_left">
+          <img src="${review.img_src}" alt="${name}" class="hotel__review-img">
+          <div class="hotel__review-name">${name}</div>
+        </div>
+        <div class="hotel__review-text">${review.review}</div>
+      </div>
+    `);
+  });
+}
 export function insertServices(services) {
   services.free.forEach((item) => {
     let html = `<div class="services__subtitle">${item.name}</div>`;
@@ -36,19 +61,21 @@ export function insertRules(rules) {
   $(".rules__list").html(html);
 }
 export function insertNearby(nearby) {
-  nearby.forEach((item) => {
-    let html = `<div class="geo__subtitle">${item.name}</div>`;
-    item.list.forEach((geo) => {
+  for (let name in nearby) {
+    let html = `<div class="geo__subtitle">${name}</div>`;
+    nearby[name]?.forEach((geo) => {
       html += `
         <div class="geo__item">
           <span>${geo.name}</span>
-          <span class="geo__distance">${geo.distance}</span>
+          <span class="geo__distance">${
+            Math.round(geo.distance * 100) / 100
+          } км</span>
         </div>`;
     });
     let $col1 = $(".geo__column").eq(0);
     let $col2 = $(".geo__column").eq(1);
     insertColumn($col1, $col2, html);
-  });
+  }
 }
 export function insertReviewsTotal(total) {
   for (let key in total) {
@@ -61,54 +88,53 @@ export function insertReviewsTotal(total) {
       .addClass(getColor(val));
   }
   $(".reviews__total-estimation .reviews__estimation")
-    .text(total.estimation)
-    .addClass(getColor(total.estimation));
+    .text(total.rating)
+    .addClass(getColor(total.rating));
   $(".reviews__total-estimation .reviews__estimation-text").text(
-    getText(total.estimation)
+    getText(total.rating)
   );
 }
 export function insertReviewsList(reviews) {
   reviews.forEach((review) => {
+    let dateTrip =
+      moment(review.input_date * 1000).format("DD.MM.YYYY") + " - ";
+    dateTrip += moment(review.output_date * 1000).format("DD.MM.YYYY");
+    if (!review.img_room) review.img_room = "../img/empty.png";
+    if (!review.img_src) review.img_src = "../img/no-photo.jpg";
+
     let html = `
       <div class="reviews-card page-content">
         <div class="reviews-card__header">
           <div class="reviews-card__dates">
             <div class="reviews-card__date">
-              <div class="reviews-card__date-name">Дата отзыва</div>
-              <div class="reviews-card__date-val">${review.dateReview}</div>
+              <div class="reviews-card__date-name">Дата отзыва:</div>
+              <div class="reviews-card__date-val">${moment(
+                review.date * 1000
+              ).format("DD.MM.YYYY")}</div>
             </div>
             <div class="reviews-card__date">
-              <div class="reviews-card__date-name">Дата поездки</div>
-              <div class="reviews-card__date-val">${review.dateTrip}</div>
+              <div class="reviews-card__date-name">Дата поездки:</div>
+              <div class="reviews-card__date-val">${dateTrip}</div>
             </div>
           </div>
           <div class="reviews__estimation reviews__estimation_min ${getColor(
-            review.estimation
-          )}">${review.estimation}</div>
+            review.rating
+          )}">${review.rating}</div>
         </div>
         <div class="reviews-card__row">
           <div class="reviews-card__img">
-            <img src="${review.img}" alt="${review.nameRoom}">
+            <img src="${review.img_room}" alt="${review.name_room}">
           </div>
-          <div class="reviews-card__room">${review.nameRoom}</div>
+          <div class="reviews-card__room">${review.name_room}</div>
         </div>
         <div class="reviews-card__params">
-          <div class="reviews__param" data-param="clear">
+          <div class="reviews__param" data-param="cleanliness">
             <div class="reviews__param-name">Чистота</div>
             <div class="reviews__param-progressbar">
-              <div class="reviews__param-value">${review.clear}</div>
+              <div class="reviews__param-value">${review.cleanliness}</div>
               <div class="reviews__param-progress ${getColor(
-                review.clear
-              )}" style="width:${review.clear * 10}%"></div>
-            </div>
-          </div>
-          <div class="reviews__param" data-param="hygiene">
-            <div class="reviews__param-name">Гигиена</div>
-            <div class="reviews__param-progressbar">
-              <div class="reviews__param-value">${review.hygiene}</div>
-              <div class="reviews__param-progress ${getColor(
-                review.hygiene
-              )}" style="width:${review.hygiene * 10}%"></div>
+                review.cleanliness
+              )}" style="width:${review.cleanliness * 10}%"></div>
             </div>
           </div>
           <div class="reviews__param" data-param="location">
@@ -120,66 +146,57 @@ export function insertReviewsList(reviews) {
               )}" style="width:${review.location * 10}%"></div>
             </div>
           </div>
-          <div class="reviews__param" data-param="food">
-            <div class="reviews__param-name">Питание</div>
-            <div class="reviews__param-progressbar">
-              <div class="reviews__param-value">${review.food}</div>
-              <div class="reviews__param-progress ${getColor(
-                review.food
-              )}" style="width:${review.food * 10}%"></div>
-            </div>
-          </div>
-          <div class="reviews__param" data-param="price">
+          <div class="reviews__param" data-param="ratio">
             <div class="reviews__param-name">Цена/Качество</div>
             <div class="reviews__param-progressbar">
-              <div class="reviews__param-value">${review.price}</div>
+              <div class="reviews__param-value">${review.ratio}</div>
               <div class="reviews__param-progress ${getColor(
-                review.price
-              )}" style="width:${review.price * 10}%"></div>
+                review.ratio
+              )}" style="width:${review.ratio * 10}%"></div>
             </div>
           </div>
-          <div class="reviews__param" data-param="number">
+          <div class="reviews__param" data-param="conveniences">
             <div class="reviews__param-name">Номер</div>
             <div class="reviews__param-progressbar">
-              <div class="reviews__param-value">${review.number}</div>
+              <div class="reviews__param-value">${review.conveniences}</div>
               <div class="reviews__param-progress ${getColor(
-                review.number
-              )}" style="width:${review.number * 10}%"></div>
+                review.conveniences
+              )}" style="width:${review.conveniences * 10}%"></div>
             </div>
           </div>
-          <div class="reviews__param" data-param="service">
+          <div class="reviews__param" data-param="comfort">
+            <div class="reviews__param-name">Комфорт</div>
+            <div class="reviews__param-progressbar">
+              <div class="reviews__param-value">${review.comfort}</div>
+              <div class="reviews__param-progress ${getColor(
+                review.comfort
+              )}" style="width:${review.comfort * 10}%"></div>
+            </div>
+          </div>
+          <div class="reviews__param" data-param="staff">
             <div class="reviews__param-name">Обслуживание</div>
             <div class="reviews__param-progressbar">
-              <div class="reviews__param-value">${review.service}</div>
+              <div class="reviews__param-value">${review.staff}</div>
               <div class="reviews__param-progress ${getColor(
-                review.service
-              )}" style="width:${review.service * 10}%"></div>
-            </div>
-          </div>
-          <div class="reviews__param" data-param="wifi">
-            <div class="reviews__param-name">Качество Wi-Fi</div>
-            <div class="reviews__param-progressbar">
-              <div class="reviews__param-value">${review.wifi}</div>
-              <div class="reviews__param-progress ${getColor(
-                review.wifi
-              )}" style="width:${review.wifi * 10}%"></div>
+                review.staff
+              )}" style="width:${review.staff * 10}%"></div>
             </div>
           </div>
         </div>
         <div class="reviews-card__main">
           <div class="reviews-card__human">
             <div class="reviews-card__avatar">
-              <img src="${review.avatar}" alt="${review.name}">
+              <img src="${review.img_src}" alt="${review.name}">
             </div>
             <div class="reviews-card__name">${review.name}</div>
           </div>
           <div class="reviews-card__text-title reviews-card__text-title_green">Что было хорошо</div>
           <div class="reviews-card__text">
-            ${review.textGood}
+            ${review.review_well || "Ничего"}
           </div>
           <div class="reviews-card__text-title reviews-card__text-title_red">Что было плохо</div>
           <div class="reviews-card__text">
-            ${review.textBad}
+            ${review.review_badly || "Ничего"}
           </div>
         </div>
       </div>

@@ -38,9 +38,11 @@ new BackgroundImage(".hotel__slider-nav__item", {
   size: "cover",
 });
 
+import { get2data } from "./components/data2get";
 import GetData from "./components/GetData";
+let hotelId = get2data().id;
 let getData = new GetData();
-getData.hotel();
+getData.hotel(hotelId);
 
 import ChangeDateBlock from "./components/ChangeDateBlock";
 new ChangeDateBlock(".dates-booking");

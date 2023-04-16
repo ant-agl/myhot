@@ -41,9 +41,6 @@
                       <ul class="profile-menu__list">
                           <li class="profile-menu__item"><a class="profile-menu__link" href="../lk/">Иванов Иван
                                   Иванович</a></li>
-                          <li class="profile-menu__item"><a class="profile-menu__link" href="../hotels-list/">Отели</a>
-                          </li>
-                          <li class="profile-menu__item"><a class="profile-menu__link" href="../hotel/">Отель</a></li>
                           <li class="profile-menu__item"><a class="profile-menu__link" href="../booking/">Бронирование</a>
                           </li>
                           <li class="profile-menu__item">
@@ -76,10 +73,10 @@
             </div>
             <a href="../hotels-list" class="main__button">Посмотреть другие варианы</a>
           </div>
-          <div class="hotel__name">Отель Marriott Royal Aurora</div>
+          <div class="hotel__name"></div>
           <div class="hotel__place hotel__row hotel__row_left">
             <img src="../img/icons/geo.svg" class="invert">
-            <span>Москва, ул. Николоямская, д. 83/33 5 км</span>
+            <span class="hotel__geo"></span>
           </div>
           <div class="hotel__place hotel__row hotel__row_left">
             <img src="../img/icons/metro.svg" class="invert">
@@ -116,10 +113,10 @@
               </div>
               <a href="../hotels-list" class="main__button">Посмотреть другие варианы</a>
             </div>
-            <div class="hotel__name">Отель Marriott Royal Aurora</div>
+            <div class="hotel__name"></div>
             <div class="hotel__place hotel__row hotel__row_left">
               <img src="../img/icons/geo.svg" class="invert">
-              <span>Москва, ул. Николоямская, д. 83/33 5 км</span>
+              <span class="hotel__geo"></span>
             </div>
             <div class="hotel__place hotel__row hotel__row_left">
               <img src="../img/icons/metro.svg" class="invert">
@@ -136,33 +133,15 @@
           </div>
           <div class="hotel__reviews">
             <div class="hotel__row hotel__row_left">
-              <div class="hotel__estimation">9.8</div>
+              <div class="hotel__estimation"></div>
               <span>по оценкам гостей</span>
             </div>
             <div class="hotel__row hotel__reviews-content">
-              <div class="hotel__review">
-                <div class="hotel__row hotel__row_left">
-                  <img src="../img/photo.jpg" alt="Иванов Иван" class="hotel__review-img">
-                  <div class="hotel__review-name">Иванов Иван</div>
-                </div>
-                <div class="hotel__review-text">Какой-то отзыв. Какой-то отзыв. Какой-то отзыв. Какой-то отзыв. Какой-то
-                  отзыв. Какой-то отзыв. </div>
-              </div>
-              <div class="hotel__review">
-                <div class="hotel__row hotel__row_left">
-                  <div class="hotel__review-img">
-                    <img src="../img/photo.jpg" alt="Иванов Иван">
-                  </div>
-                  <div class="hotel__review-name">Иванов Иван</div>
-                </div>
-                <div class="hotel__review-text">Какой-то отзыв. Какой-то отзыв. Какой-то отзыв. Какой-то отзыв. Какой-то
-                  отзыв. Какой-то отзыв. </div>
-              </div>
             </div>
           </div>
           <div class="hotel__price">
             от
-            <span class="hotel__price-value">6 385</span>
+            <span class="hotel__price-value"></span>
             руб. за 1 ночь
           </div>
           <div class="hotel__btn">
@@ -262,19 +241,12 @@
     <div class="reviews">
       <div class="reviews__total page-content">
         <div class="reviews__total-estimation">
-          <div class="reviews__estimation">8,9</div>
-          <div class="reviews__estimation-text">Отлично</div>
+          <div class="reviews__estimation"></div>
+          <div class="reviews__estimation-text"></div>
         </div>
         <div class="reviews__params">
-          <div class="reviews__param" data-param="clear">
+          <div class="reviews__param" data-param="cleanliness">
             <div class="reviews__param-name">Чистота</div>
-            <div class="reviews__param-progressbar">
-              <div class="reviews__param-value"></div>
-              <div class="reviews__param-progress"></div>
-            </div>
-          </div>
-          <div class="reviews__param" data-param="hygiene">
-            <div class="reviews__param-name">Гигиена</div>
             <div class="reviews__param-progressbar">
               <div class="reviews__param-value"></div>
               <div class="reviews__param-progress"></div>
@@ -287,36 +259,29 @@
               <div class="reviews__param-progress"></div>
             </div>
           </div>
-          <div class="reviews__param" data-param="food">
-            <div class="reviews__param-name">Питание</div>
-            <div class="reviews__param-progressbar">
-              <div class="reviews__param-value"></div>
-              <div class="reviews__param-progress"></div>
-            </div>
-          </div>
-          <div class="reviews__param" data-param="price">
+          <div class="reviews__param" data-param="ratio">
             <div class="reviews__param-name">Цена/Качество</div>
             <div class="reviews__param-progressbar">
               <div class="reviews__param-value"></div>
               <div class="reviews__param-progress"></div>
             </div>
           </div>
-          <div class="reviews__param" data-param="number">
+          <div class="reviews__param" data-param="conveniences">
             <div class="reviews__param-name">Номер</div>
             <div class="reviews__param-progressbar">
               <div class="reviews__param-value"></div>
               <div class="reviews__param-progress"></div>
             </div>
           </div>
-          <div class="reviews__param" data-param="service">
-            <div class="reviews__param-name">Обслуживание</div>
+          <div class="reviews__param" data-param="comfort">
+            <div class="reviews__param-name">Комфорт</div>
             <div class="reviews__param-progressbar">
               <div class="reviews__param-value"></div>
               <div class="reviews__param-progress"></div>
             </div>
           </div>
-          <div class="reviews__param" data-param="wifi">
-            <div class="reviews__param-name">Качество Wi-Fi</div>
+          <div class="reviews__param" data-param="staff">
+            <div class="reviews__param-name">Обслуживание</div>
             <div class="reviews__param-progressbar">
               <div class="reviews__param-value"></div>
               <div class="reviews__param-progress"></div>

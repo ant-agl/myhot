@@ -27,3 +27,5 @@ getData.getLk({
 });
 
 import "./components/profile";
+
+$(".input-hint_dfa").on("click", () => $('[name="2fa"]').focus());
