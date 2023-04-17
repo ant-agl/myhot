@@ -71,6 +71,7 @@ select {
 }
 .main__footer-forms .main__footer-data {
   left: 0;
+  z-index: 1;
 }
 .main__header-form,
 .main__footer-form {
