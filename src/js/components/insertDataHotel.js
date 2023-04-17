@@ -128,6 +128,15 @@ export function insertReviewsList(reviews) {
           <div class="reviews-card__room">${review.name_room}</div>
         </div>
         <div class="reviews-card__params">
+          <div class="reviews__param" data-param="staff">
+            <div class="reviews__param-name">Персонал</div>
+            <div class="reviews__param-progressbar">
+              <div class="reviews__param-value">${review.staff}</div>
+              <div class="reviews__param-progress ${getColor(
+                review.staff
+              )}" style="width:${review.staff * 10}%"></div>
+            </div>
+          </div>
           <div class="reviews__param" data-param="cleanliness">
             <div class="reviews__param-name">Чистота</div>
             <div class="reviews__param-progressbar">
@@ -138,7 +147,7 @@ export function insertReviewsList(reviews) {
             </div>
           </div>
           <div class="reviews__param" data-param="location">
-            <div class="reviews__param-name">Расположение</div>
+            <div class="reviews__param-name">Местоположение</div>
             <div class="reviews__param-progressbar">
               <div class="reviews__param-value">${review.location}</div>
               <div class="reviews__param-progress ${getColor(
@@ -146,17 +155,8 @@ export function insertReviewsList(reviews) {
               )}" style="width:${review.location * 10}%"></div>
             </div>
           </div>
-          <div class="reviews__param" data-param="ratio">
-            <div class="reviews__param-name">Цена/Качество</div>
-            <div class="reviews__param-progressbar">
-              <div class="reviews__param-value">${review.ratio}</div>
-              <div class="reviews__param-progress ${getColor(
-                review.ratio
-              )}" style="width:${review.ratio * 10}%"></div>
-            </div>
-          </div>
           <div class="reviews__param" data-param="conveniences">
-            <div class="reviews__param-name">Номер</div>
+            <div class="reviews__param-name">Удобства</div>
             <div class="reviews__param-progressbar">
               <div class="reviews__param-value">${review.conveniences}</div>
               <div class="reviews__param-progress ${getColor(
@@ -173,13 +173,13 @@ export function insertReviewsList(reviews) {
               )}" style="width:${review.comfort * 10}%"></div>
             </div>
           </div>
-          <div class="reviews__param" data-param="staff">
-            <div class="reviews__param-name">Обслуживание</div>
+          <div class="reviews__param" data-param="ratio">
+            <div class="reviews__param-name">Соотношение цена/качество</div>
             <div class="reviews__param-progressbar">
-              <div class="reviews__param-value">${review.staff}</div>
+              <div class="reviews__param-value">${review.ratio}</div>
               <div class="reviews__param-progress ${getColor(
-                review.staff
-              )}" style="width:${review.staff * 10}%"></div>
+                review.ratio
+              )}" style="width:${review.ratio * 10}%"></div>
             </div>
           </div>
         </div>
