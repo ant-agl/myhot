@@ -9,6 +9,7 @@
   transition: 0.3s;
   max-height: 200px;
   overflow-y: auto;
+  z-index: 1;
 }
 .find-hint.active {
   transform: scale(1);
