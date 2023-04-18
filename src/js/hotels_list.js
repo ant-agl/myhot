@@ -47,7 +47,7 @@ $("body").on("click", ".hotel-card__img-heart", function () {
 
 let timerInterval = false;
 $(".filters").on("change", function () {
-  let query = ""; // getQueryFilter()
+  let query = get2data(); // getQueryFilter()
 
   if (timerInterval) clearTimeout(timerInterval);
   timerInterval = setTimeout(() => {
