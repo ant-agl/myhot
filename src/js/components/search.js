@@ -1,3 +1,8 @@
+import Validation from "./Validation";
+let searchValid = new Validation(".search", {
+  isOutputErrors: false,
+});
+
 import FindHint from "./FindHint";
 new FindHint('[name="search"]');
 import InputCount from "./InputCount";
@@ -75,12 +80,17 @@ new AirDatepicker(".search__input_dates", {
   minDate: new Date(),
   isMobile: window.outerWidth < 700,
   selectedDates,
+  onSelect() {
+    $(".search__input_dates").trigger("change");
+  },
 });
 
 import moment from "moment";
 import { data2get, get2data } from "./data2get";
 
 $(".search__button").on("click", function () {
+  if (!searchValid.validate()) return;
+
   let search = $('[name="search"]').val().trim();
   let dates = $('[name="dates"]').val().trim();
   let adult = $('[name="adult"]').val();

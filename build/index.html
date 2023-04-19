@@ -23,10 +23,8 @@
       <div class="nav_nav">
         <!--<a class="req_object_button uk-button uk-button-default" href="#modal-group-1" uk-toggle>зарегистрировать объект</a>!-->
         <a class="req_object_button btn btn_white" href="#">зарегистрировать объект</a>
-        <button class="req_human_button uk-button btn" type="button" uk-toggle="target: #modal-group-1">
-          зарегистрироваться
-        </button>
-        <button class="log_in_button uk-button btn" type="button" uk-toggle="target: #modal-group-01">войти</button>
+        <button class="log_in_button uk-button btn" type="button" data-modal-target="modal-login">войти</button>
+        <!-- uk-toggle="target: #modal-group-01" -->
       </div>
     </div>
     <div class="mobile_nav">
@@ -54,16 +52,16 @@
       <form class="search">
         <div class="search__field">
           <div class="search__icon">
-            <input class="search__input search__input_search" type="text" placeholder="Город, регион или отель" value=""
-              name="search" autocomplete="off">
+            <input data-validate="required" class="search__input search__input_search" type="text"
+              placeholder="Город, регион или отель" value="" name="search" autocomplete="off">
             <div class="find-hint">
             </div>
           </div>
         </div>
         <div class="search__field">
           <div class="search__icon">
-            <input class="search__input search__input_dates" type="text" placeholder="Дата заезда - Дата выезда" value=""
-              readonly name="dates">
+            <input data-validate="required dates" class="search__input search__input_dates" type="text"
+              placeholder="Дата заезда - Дата выезда" value="" readonly name="dates">
           </div>
         </div>
         <div class="search__field">
@@ -196,216 +194,204 @@
         </div>
       </div>
       <div class="sponsers_2">
-        <a><img src="./img/index/Xiaomi-Logo.wine.svg" class="img_spons_3"></a>
-        <a><img src="./img/index/Huawei-Logo.wine.svg" class="img_spons_4"></a>
-        <a><img src="./img/index/samsung-1-logo-svgrepo-com.svg" class="img_spons_5"></a>
-        <a><img src="./img/index/getapp-seeklogo.com.svg" class="img_spons_6"></a>
+        <a><img src="./img/index/getapps.png" class=""></a>
+        <a><img src="./img/index/app-gallery.jpg" class=""></a>
+        <a><img src="./img/index/galaxy-store.jpg" class=""></a>
+        <a><img src="./img/index/rustore.png" class=""></a>
       </div>
     </footer>
   </section>
-  <!--РЕГИСТРАЦИЯ-->
-  <form>
-    <div class="window_mod" id="modal-group-1" uk-modal>
-      <div class="uk-modal-dialog block_register_1">
-        <h1 class="heading_form_h1 uk-modal-title">Информация о себе</h1>
-        <input type="text" class="info_area" placeholder="Фамилия" required>
-        <input type="text" class="info_area" placeholder="Имя" required>
-        <input type="text" class="info_area" placeholder="Отчество (при наличии)">
-        <input type="text" class="info_area" id="date" placeholder="Дата рождения" required>
-        <input type="text" class="info_area" id="mail" placeholder="e-mail" required>
-        <div class="botton_section_form">
-          <p class="part_botton">1 из 4 этапов</p>
-          <a href="#modal-group-2" class="next_button" uk-toggle>Далее<img class=""
-              src="./img/index/arrow_next.svg"><img class="disable_arrow" src="./img/index/arrow_next_blue.svg"></a>
-        </div>
-      </div>
-    </div>
-    <div class="window_mod" id="modal-group-2" uk-modal>
-      <div class="uk-modal-dialog block_register_2">
-        <h1 class="heading_form_h1">Введите номер</h1>
-        <h2 class="heading_form_h2">Ваш номер телефона будет использоваться для входа в аккаунт</h2>
-        <input type="text" class="info_area mask-phone" placeholder="Номер телефона" required>
-        <p class="aware">*некорректный номер телефона</p>
-        <div class="botton_section_form">
-          <a href="#modal-group-1" class="uk-button uk-button-primary next_button next_able" uk-toggle><img
-              src="./img/index/arrow_back.svg">Вернуться</a>
-          <p class="part_botton">2 из 4 этапов</p>
-          <button class="uk-buttonм uk-button-primary next_button" type="submit"
-            uk-toggle="target: #modal-group-3">Далее<img class="" src="./img/index/arrow_next.svg"><img
-              class="disable_arrow" src="./img/index/arrow_next_blue.svg"></button>
-        </div>
-      </div>
-    </div>
-  </form>
-  <form>
-    <div class="window_mod" id="modal-group-3" uk-modal>
-      <div class="uk-modal-dialog block_register_2">
-        <h1 class="heading_form_h1">Подтверждение номера</h1>
-        <h2 class="heading_form_h2">Мы отправили SMS-код на ваш номер телефона</h2>
-        <div class="code" id="code">
-          <input type="number" min="0" max="9" class="info_area phone_code" placeholder="" required>
-          <input type="number" min="0" max="9" class="info_area phone_code" placeholder="" required>
-          <input type="number" min="0" max="9" class="info_area phone_code" placeholder="" required>
-          <input type="number" min="0" max="9" class="info_area phone_code" placeholder="" required>
-          <input type="hidden" name="pincode">
-        </div>
-        <p class="aware sms">*неверный SMS-код</p>
-        <div class="botton_section_form">
-          <a href="#modal-group-2" class="uk-button uk-button-primary next_button next_able" uk-toggle><img
-              src="./img/index/arrow_back.svg">Вернуться</a>
-          <p class="part_botton">3 из 4 этапов</p>
-          <button class="uk-buttonм uk-button-primary next_button" type="submit"
-            uk-toggle="target: #modal-group-4">Далее<img class="" src="./img/index/arrow_next.svg"><img
-              class="disable_arrow" src="./img/index/arrow_next_blue.svg"></button>
-        </div>
-      </div>
-    </div>
-  </form>
-  <form>
-    <div class="window_mod" id="modal-group-4" uk-modal>
-      <div class="uk-modal-dialog block_register_2">
-        <h1 class="heading_form_h1">Придумайте пароль</h1>
-        <input type="password" class="info_area" placeholder="Пароль" id="p1" onchange="register()" required>
-        <p class="tips">*не менее 8 знаков</p>
-        <p class="tips">*должен состоять из латиницы, кириллицы и цифр</p>
-        <input type="password" class="info_area" placeholder="Продублируйте пароль" id="p2" onchange="register()"
-          required>
-        <p class="tips aware" id="wrong">*не верный пароль</p>
-        <div class="botton_section_form">
-          <a href="#modal-group-3" class="uk-button uk-button-primary next_button next_able" uk-toggle><img
-              src="./img/index/arrow_back.svg">Вернуться</a>
-          <p class="part_botton">4 из 4 этапов</p>
-          <button class="uk-buttonм uk-button-primary next_button" type="submit" uk-toggle="target: #">
-            Зарегестрироваться
-          </button>
-        </div>
-      </div>
-    </div>
-  </form>
-  <!--ВХОД-->
-  <form>
-    <div class="window_mod" id="modal-group-01" uk-modal>
-      <div class="uk-modal-dialog block_register_01">
-        <h1 class="heading_form_h1 uk-modal-title">Вход в аккаунт</h1>
-        <input type="text" class="info_area" placeholder="Телефон или почта" required>
-        <p class="aware">*не верный номер телефона или почта</p>
-        <input type="text" class="info_area" placeholder="Пароль" required>
-        <p class="aware">*не верный пароль</p>
-        <a href="#modal-group-001" class="forget_button" uk-toggle>Забыли пароль?</a>
-        <div class="botton_section_form">
-          <button class="uk-buttonм uk-button-primary next_button" type="submit"
-            uk-toggle="target: #modal-group-02">Войти
-          </button>
-        </div>
-      </div>
-    </div>
-  </form>
-  <form>
-    <div class="" id="modal-group-02" uk-modal>
-      <div class="uk-modal-dialog block_register_01">
-        <h1 class="heading_form_h1">Подтверждение входа в аккаунт</h1>
-        <h2 class="heading_form_h2">Мы отправили SMS-код на ваш номер телефона</h2>
-        <div class="code" id="code">
-          <input type="number" min="0" max="9" class="info_area phone_code" placeholder="" required>
-          <input type="number" min="0" max="9" class="info_area phone_code" placeholder="" required>
-          <input type="number" min="0" max="9" class="info_area phone_code" placeholder="" required>
-          <input type="number" min="0" max="9" class="info_area phone_code" placeholder="" required>
-          <input type="hidden" name="pincode">
-        </div>
-        <p class="aware sms">*неверный SMS-код</p>
-        <div class="botton_section_form">
-          <a href="#modal-group-01" class="uk-button uk-button-primary next_button next_able" uk-toggle><img
-              src="./img/index/arrow_back.svg">Вернуться</a>
-          <button class="uk-buttonм uk-button-primary next_button" type="submit" uk-toggle="target: ">Войти
-          </button>
-        </div>
-      </div>
-    </div>
-  </form>
-  <!--ВОССТАНОВЛЕНИЕ ПАРОЛЯ-->
-  <form>
-    <div class="window_mod" id="modal-group-001" uk-modal>
-      <div class="uk-modal-dialog block_register_02">
-        <h1 class="heading_form_h1 uk-modal-title">Восстановление пароля</h1>
-        <input type="text" class="info_area mask-phone" placeholder="Телефон или почта" required>
-        <p class="aware">*не верный номер телефона или почта</p>
-        <div class="botton_section_form">
-          <p class="part_botton">1 из 3 этапов</p>
-          <button class="uk-buttonм uk-button-primary next_button" type="submit"
-            uk-toggle="target: #modal-group-002">Далее<img class="" src="./img/index/arrow_next.svg"><img
-              class="disable_arrow" src="./img/index/arrow_next_blue.svg"></button>
-        </div>
-      </div>
-    </div>
-  </form>
-  <form>
-    <div class="window_mod" id="modal-group-002" uk-modal>
-      <div class="uk-modal-dialog block_register_02">
-        <h1 class="heading_form_h1">Подтверждение смены пароля</h1>
-        <h2 class="heading_form_h2">Мы отправили SMS-код на ваш номер телефона</h2>
-        <div class="code" id="code">
-          <input type="number" min="0" max="9" class="info_area phone_code" placeholder="" required>
-          <input type="number" min="0" max="9" class="info_area phone_code" placeholder="" required>
-          <input type="number" min="0" max="9" class="info_area phone_code" placeholder="" required>
-          <input type="number" min="0" max="9" class="info_area phone_code" placeholder="" required>
-          <input type="hidden" name="pincode">
-        </div>
-        <p class="aware sms">*неверный SMS-код</p>
-        <div class="botton_section_form">
-          <a href="#modal-group-001" class="uk-button uk-button-primary next_button next_able" uk-toggle><img
-              src="./img/index/arrow_back.svg">Вернуться</a>
-          <p class="part_botton">2 из 3 этапов</p>
-          <!--?????-->
-          <button class="uk-buttonм uk-button-primary next_button" type="submit"
-            uk-toggle="target: #modal-group-003">Далее<img class="" src="./img/index/arrow_next.svg"><img
-              class="disable_arrow" src="./img/index/arrow_next_blue.svg"></button>
-        </div>
-      </div>
-    </div>
-  </form>
-  <form>
-    <div class="window_mod" id="modal-group-003" uk-modal>
-      <div class="uk-modal-dialog block_register_02">
-        <h1 class="heading_form_h1">Придумайте новый пароль</h1>
-        <input type="password" class="info_area" placeholder="Пароль" onchange="register()" required>
-        <p class="tips">*не менее 8 знаков</p>
-        <p class="tips">*должен состоять из латиницы, кириллицы и цифр</p>
-        <input type="password" class="info_area" placeholder="Продублируйте пароль" onchange="register()" required>
-        <p class="tips aware">*не верный пароль</p>
-        <div class="botton_section_form">
-          <a href="#modal-group-002" class="uk-button uk-button-primary next_button next_able" uk-toggle><img
-              src="./img/index/arrow_back.svg">Вернуться</a>
-          <p class="part_botton">3 из 3 этапов</p>
-          <button class="uk-buttonм uk-button-primary next_button" type="submit" uk-toggle="target: ">Войти
-          </button>
-        </div>
-      </div>
-    </div>
-  </form>
 
-  <!--</section>!-->
-  <!--
-<script>
-    $("#mail").mask("*{1,20}[.*{1,20}]@*{1,20}.*{2,4}", {placeholder: "example@example.ru" });
-</script>
-<script>
- $('#mail').inputmask({
-    mask: "*{1,20}[.*{1,20}]@*{1,20}.*{2,4}",
-    greedy: false,
-    clearIncomplete: true,
-    onBeforePaste: function (pastedValue, opts) {
-      pastedValue = pastedValue.toLowerCase();
-      return pastedValue.replace("mailto:", "");
-    },
-    definitions: {
-      '*': {
-        validator: "[0-9A-Za-z-а-я-_]",
-        casing: "lower"
-      }
-    }
-})
-</script>
-    <script src="windows.js"></script>!-->
+  <!-- Login -->
+  <div class="modal" id="modal-login">
+    <div class="modal__content modal__content_small">
+      <div class="modal__pages">
+        <div class="modal__page active" data-page="0">
+          <h1 class="heading_form_h1 uk-modal-title">Вход в аккаунт</h1>
+          <div class="input-row">
+            <input data-validate="required phoneOrMail" type="text" name="login" class="info_area"
+              placeholder="Телефон или почта" required>
+          </div>
+          <div class="input-row">
+            <input data-validate="required min(6)" type="password" name="password" class="info_area"
+              placeholder="Пароль" required>
+          </div>
+          <button type="button" class="modal__link" data-modal-target="modal-forgot"
+            data-modal-target-close="modal-login">Забыли пароль?</button>
+          <div class="botton_section_form">
+            <button class="link-underline" type="button" data-modal-target="modal-signin"
+              data-modal-target-close="modal-login">Нет акканута?</button>
+            <button class="link-underline" to-page="1" page-validate="true" type="button">Войти</button>
+          </div>
+        </div>
+        <div class="modal__page" data-page="1">
+          <div class="modal__title">Подтверждение изменений</div>
+          <div class="modal__desc">Мы отправили код <span>на вашу почту</span></div>
+
+          <div class="inputs-row">
+            <input type="tel" class="input-code-confirm">
+            <input type="tel" class="input-code-confirm">
+            <input type="tel" class="input-code-confirm">
+            <input type="tel" class="input-code-confirm">
+          </div>
+
+          <div class="modal__message"></div>
+
+          <button type="button" class="modal__link">Отправить повторно</button>
+          <div class="modal__footer modal__footer_space">
+            <button type="button" class="link-underline" to-page="0">Назад</button>
+            <button type="button" class="link-underline modal__btn btn-confirm-password">Подтвердить</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sign in -->
+  <div class="modal" id="modal-signin">
+    <div class="modal__content modal__content_small">
+      <div class="modal__pages">
+        <div class="modal__page active" data-page="0">
+          <h1 class="heading_form_h1 uk-modal-title">Информация о себе</h1>
+          <div class="input-row">
+            <input data-validate="required" type="text" name="surname" class="info_area" placeholder="Фамилия" required>
+          </div>
+          <div class="input-row">
+            <input data-validate="required" type="text" name="name" class="info_area" placeholder="Имя" required>
+          </div>
+          <div class="input-row">
+            <input type="text" name="patronymic" class="info_area" placeholder="Отчество (при наличии)">
+          </div>
+          <div class="input-row">
+            <input data-validate="required date" type="text" name="birthday" class="info_area"
+              placeholder="Дата рождения" required readonly>
+          </div>
+          <div class="input-row">
+            <input data-validate="required mail" type="text" name="mail" class="info_area" placeholder="e-mail"
+              required>
+          </div>
+
+          <div class="botton_section_form">
+            <button class="link-underline" type="button" data-modal-target="modal-login"
+              data-modal-target-close="modal-signin">Есть акканута?</button>
+            <p class="part_botton">1 из 4 этапов</p>
+            <button class="link-underline" to-page="1" page-validate="true" type="button">Далее</button>
+          </div>
+        </div>
+        <div class="modal__page" data-page="1">
+          <h1 class="heading_form_h1 uk-modal-title">Введите номер</h1>
+          <h2 class="heading_form_h2">Ваш номер телефона будет использоваться для входа в аккаунт</h2>
+          <div class="input-row">
+            <input data-validate="required phone" type="text" name="phone" class="info_area mask-phone"
+              placeholder="Номер телефона" required>
+          </div>
+          <div class="botton_section_form">
+            <button class="link-underline" type="button" to-page="0">Назад</button>
+            <p class="part_botton">2 из 4 этапов</p>
+            <button class="link-underline" to-page="2" page-validate="true" type="button">Далее</button>
+          </div>
+        </div>
+        <div class="modal__page" data-page="2">
+          <div class="modal__title">Подтверждение изменений</div>
+          <div class="modal__desc">Мы отправили код <span>на вашу почту</span></div>
+
+          <div class="inputs-row">
+            <input type="tel" class="input-code-confirm">
+            <input type="tel" class="input-code-confirm">
+            <input type="tel" class="input-code-confirm">
+            <input type="tel" class="input-code-confirm">
+          </div>
+
+          <div class="modal__message"></div>
+
+          <button type="button" class="modal__link">Отправить повторно</button>
+          <div class="modal__footer modal__footer_space">
+            <button type="button" class="link-underline" to-page="1">Назад</button>
+            <p class="part_botton">3 из 4 этапов</p>
+            <button type="button" class="link-underline modal__btn btn-confirm-password"
+              to-page="3">Подтвердить</button>
+          </div>
+        </div>
+        <div class="modal__page" data-page="3">
+          <div class="modal__title">Придумайте пароль</div>
+
+          <div class="input-row">
+            <input data-validate="required min(6)" type="password" name="password" class="info_area"
+              placeholder="Пароль" required>
+          </div>
+          <div class="input-row">
+            <input data-validate="required min(6) repeat(password)" type="password" name="password_repeat"
+              class="info_area" placeholder="Повторите пароль" required>
+          </div>
+          <div class="modal__footer modal__footer_space">
+            <button type="button" class="link-underline" to-page="1">Назад</button>
+            <p class="part_botton">4 из 4 этапов</p>
+            <button type="button" class="link-underline btn-signin">Зарегистрироваться</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Forgot password -->
+  <div class="modal" id="modal-forgot">
+    <div class="modal__content modal__content_small">
+      <div class="modal__pages">
+        <div class="modal__page active" data-page="0">
+          <h1 class="heading_form_h1 uk-modal-title">Восстановление пароля</h1>
+          <div class="input-row">
+            <input data-validate="required phoneOrMail" type="text" name="login" class="info_area"
+              placeholder="Телефон или почта" required>
+          </div>
+          <div class="botton_section_form">
+            <button class="link-underline" type="button" data-modal-target="modal-login"
+              data-modal-target-close="modal-forgot">Назад</button>
+            <p class="part_botton">1 из 3 этапов</p>
+            <button class="link-underline" to-page="1" page-validate="true" type="button">Далее</button>
+          </div>
+        </div>
+        <div class="modal__page" data-page="1">
+          <div class="modal__title">Подтверждение смены пароля</div>
+          <div class="modal__desc">Мы отправили код <span>на вашу почту</span></div>
+
+          <div class="inputs-row">
+            <input type="tel" class="input-code-confirm">
+            <input type="tel" class="input-code-confirm">
+            <input type="tel" class="input-code-confirm">
+            <input type="tel" class="input-code-confirm">
+          </div>
+
+          <div class="modal__message"></div>
+
+          <button type="button" class="modal__link">Отправить повторно</button>
+          <div class="modal__footer modal__footer_space">
+            <button type="button" class="link-underline" to-page="0">Назад</button>
+            <p class="part_botton">2 из 3 этапов</p>
+            <button type="button" class="link-underline modal__btn btn-confirm-password"
+              to-page="2">Подтвердить</button>
+          </div>
+        </div>
+        <div class="modal__page" data-page="2">
+          <div class="modal__title">Придумайте новый пароль</div>
+
+          <div class="input-row">
+            <input data-validate="required min(6)" type="password" name="password" class="info_area"
+              placeholder="Пароль" required>
+          </div>
+          <div class="input-row">
+            <input data-validate="required min(6) repeat(password)" type="password" name="password_repeat"
+              class="info_area" placeholder="Повторите пароль" required>
+          </div>
+          <div class="modal__footer modal__footer_space">
+            <button type="button" class="link-underline" to-page="0">Назад</button>
+            <p class="part_botton">3 из 3 этапов</p>
+            <button type="button" class="link-underline btn-forgot">Войти</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
   <script src="./js/index.js"></script>
 </body>

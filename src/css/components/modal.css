@@ -31,6 +31,9 @@
   max-height: 90vh;
   overflow-y: auto;
 }
+.modal__content_small {
+  max-width: 600px;
+}
 .modal__title {
   font-size: 25px;
   color: #002a31;
@@ -42,6 +45,7 @@
   line-height: 22px;
   margin-top: 8px;
   margin-bottom: 20px;
+  text-align: center;
 }
 .modal__message {
   margin-top: 20px;
@@ -54,11 +58,14 @@
   color: #009000;
 }
 .modal__footer {
-  text-align: right;
   margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 15px;
 }
-.modal__footer button {
-  margin-left: 15px;
+.modal__footer_space {
+  justify-content: space-between;
 }
 .modal__stage-and-button {
   display: flex;
@@ -82,12 +89,56 @@
   padding-left: 20px;
   box-sizing: border-box;
 }
-.modal__descr-text {
+.modal__desc-text {
   font-size: 12px;
   margin: 8px 0 8px 20px;
 }
 .modal__input-password-new {
   margin-top: 0;
+}
+.inputs-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  max-width: 230px;
+  margin: 0 auto;
+}
+.input-code-confirm {
+  width: 50px;
+  height: 60px;
+  background-color: #eaeaea;
+  border-radius: 10px;
+  border: none;
+  font-size: 2em;
+  text-align: center;
+}
+.modal__pages {
+  position: relative;
+}
+.modal__page {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  z-index: 0;
+}
+.modal__page.active {
+  position: relative;
+  opacity: 1;
+  transition: 0.2s;
+  z-index: 1;
+}
+.modal__link {
+  color: #25aab9;
+  border: none;
+  text-decoration: underline;
+  background: none;
+  transition: 0.2s;
+  cursor: pointer;
+  font-size: 12px;
+  line-height: 12px;
+  margin-bottom: 25px;
 }
 
 @media (max-width: 980px) {

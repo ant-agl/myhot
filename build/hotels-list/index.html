@@ -71,16 +71,16 @@
             <form class="search">
               <div class="search__field">
                 <div class="search__icon">
-                  <input class="search__input search__input_search" type="text" placeholder="Город, регион или отель" value=""
-                    name="search" autocomplete="off">
+                  <input data-validate="required" class="search__input search__input_search" type="text"
+                    placeholder="Город, регион или отель" value="" name="search" autocomplete="off">
                   <div class="find-hint">
                   </div>
                 </div>
               </div>
               <div class="search__field">
                 <div class="search__icon">
-                  <input class="search__input search__input_dates" type="text" placeholder="Дата заезда - Дата выезда" value=""
-                    readonly name="dates">
+                  <input data-validate="required dates" class="search__input search__input_dates" type="text"
+                    placeholder="Дата заезда - Дата выезда" value="" readonly name="dates">
                 </div>
               </div>
               <div class="search__field">

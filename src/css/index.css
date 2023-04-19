@@ -7,3 +7,17 @@
 /*= index/Monitor_2k */
 /*= index/Modals_4k */
 /*= components/search */
+
+.info_area.error {
+  border-color: #ff5f5f;
+}
+.info_area.success {
+  border-color: #31bb00;
+}
+.error-text {
+  margin: 0;
+  margin-left: 20px;
+  font-size: 12px;
+  line-height: 12px;
+  color: #ff5f5f;
+}

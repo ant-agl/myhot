@@ -199,6 +199,10 @@ export default class GetData {
       data.forEach((hotel) => {
         let geo = hotel.joined_hotel_search[0].city + ", ";
         geo += hotel.joined_hotel_search[0].country;
+
+        if (!hotel.joined_hotel_search[0].image)
+          hotel.joined_hotel_search[0].image = "../img/empty.png";
+
         html += `
           <tr>
             <td>
@@ -218,7 +222,9 @@ export default class GetData {
               </div>
             </td>
             <td>
-              <span class="nowrap">от ${hotel.joined_hotel_search[0].price.toLocaleString()} руб.</span>
+              <span class="nowrap">от ${
+                hotel.joined_hotel_search[0].price?.toLocaleString() ?? "??"
+              } руб.</span>
               <img src="../img/icons/cross.png" class="remove-favourites" data-id="${
                 hotel.hotel_id
               }">
@@ -528,6 +534,15 @@ export default class GetData {
       });
     });
   }
+  getAllFavourites() {
+    return new Promise((resolve) => {
+      $.get(this.path + "get_all_favourites.php", (data) => {
+        data = JSON.parse(data);
+        console.log(data);
+        resolve(data);
+      });
+    });
+  }
   hotelsList(getData = {}) {
     let search = data2get(getData);
     let coords = [];
@@ -572,9 +587,7 @@ export default class GetData {
               <div class="hotel-card__img-filter" data-url="${
                 hotel.image
               }"></div>
-              <svg class="hotel-card__img-heart ${
-                hotel.isHeart ? "active" : ""
-              }" width="16" height="14" viewBox="0 0 16 14" fill="none"
+              <svg class="hotel-card__img-heart" width="16" height="14" viewBox="0 0 16 14" fill="none"
                 xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M8.34984 10.8654L13.0377 6.21726C14.1894 5.06956 14.3572 3.19308 13.2692 1.99373C12.9963 1.69149 12.6642 1.44759 12.293 1.27693C11.9219 1.10627 11.5195 1.01243 11.1106 1.00115C10.7016 0.989875 10.2946 1.06139 9.9145 1.21133C9.53436 1.36127 9.18904 1.58649 8.89965 1.87323L8.01995 2.75121L7.2618 1.99373C6.1043 0.851775 4.2118 0.685359 3.00222 1.76419C2.6974 2.03476 2.45141 2.3641 2.27929 2.7321C2.10718 3.10011 2.01254 3.49905 2.00116 3.90454C1.98979 4.31003 2.06192 4.71357 2.21314 5.09049C2.36436 5.46741 2.5915 5.80981 2.88068 6.09675L7.69007 10.8654C7.77785 10.9516 7.8964 11 8.01995 11C8.1435 11 8.26206 10.9516 8.34984 10.8654Z"
@@ -647,8 +660,16 @@ export default class GetData {
           if (time > 500) clearInterval(t);
         }, 10);
       });
+
+      this.getAllFavourites().then((data) => {
+        data.forEach((id) => {
+          $(`.hotel-card[data-id="${id}"] .hotel-card__img-heart`).addClass(
+            "active"
+          );
+        });
+      });
+      endLoad($(".hotels-list"));
     });
-    endLoad($(".hotels-list"));
   }
   _notFoundHotels() {
     $(".hotels-list").html(

@@ -1,5 +1,6 @@
 import Modal from "./Modal";
 import ConfirmPassword from "./ConfirmPassword.js";
+import Validation from "./Validation";
 
 let confirmPass = new ConfirmPassword(
   ".input-code-confirm",
@@ -19,17 +20,17 @@ confirmPass.afterSendSuccess = () => {
   }, 750);
 };
 
+let valid = new Validation("#user-data");
 $(".input").prop("disabled", true);
 $(".change-data").on("click", function () {
-  $(this).toggleClass("active");
-  $(".btn-delete-account").toggleClass("active");
-  $(".input").prop("disabled", !$(this).hasClass("active"));
-  if ($(this).hasClass("active")) {
+  if (!$(this).hasClass("active")) {
     $('[name="change_pass"]').val("").attr("type", "password");
 
     $(".change-data-background").remove();
     $("body").append('<div class="change-data-background"></div>');
   } else {
+    console.log(valid.validate());
+    if (!valid.validate()) return;
     $('[name="change_pass"]').attr("type", "text");
     let $bg = $(".change-data-background");
     $bg.addClass("remove");
@@ -37,10 +38,15 @@ $(".change-data").on("click", function () {
       $bg.remove();
     }, 200);
   }
+  $(this).toggleClass("active");
+  $(".btn-delete-account").toggleClass("active");
+  $(".input").prop("disabled", !$(this).hasClass("active"));
 });
 
 $(".change-data").on("click", function () {
   if ($(this).hasClass("active")) return;
+  if (!valid.validate()) return;
+
   let dfa = $('[name="2fa"]').data("last-value");
 
   let placeMessage = "";

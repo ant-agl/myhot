@@ -218,15 +218,6 @@ select {
   max-width: 230px;
   margin: 0 auto;
 }
-.input-code-confirm {
-  width: 50px;
-  height: 60px;
-  background-color: #eaeaea;
-  border-radius: 10px;
-  border: none;
-  font-size: 2em;
-  text-align: center;
-}
 
 .filters {
   display: flex;
@@ -662,6 +653,22 @@ span.reviews-card__date-value {
   opacity: 1;
 }
 
+.error-text {
+  color: red;
+  position: absolute;
+  bottom: 3px;
+  z-index: 2;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 12px;
+}
+.modal__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 @media (max-width: 1140px) {
   .hotel-card {
     flex-basis: 100%;
@@ -714,6 +721,9 @@ span.reviews-card__date-value {
   }
 }
 @media (max-width: 767px) {
+  .error-text {
+    font-size: 10px;
+  }
   .main__section::before {
     display: none;
   }

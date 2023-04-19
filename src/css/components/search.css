@@ -17,8 +17,8 @@
 .search__field {
   width: 100%;
 }
-.search__input {
-  border: none;
+.search__input.error {
+  background-color: #ffd6d6;
 }
 .search__input_search {
   background: url(../img/index/town_icon.svg);
@@ -64,6 +64,8 @@
   background-repeat: no-repeat;
   background-size: 20px;
   background-color: #eaeaea;
+  border: none;
+  transition: 0.2s;
 }
 .search__input_guests.open .count-guest__modal {
   transform: scale(1);
