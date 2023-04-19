@@ -1,7 +1,9 @@
 function changeHeightOnResize() {
-  let headerH = $(".header").outerHeight(true) + $(".search").outerHeight(true);
+  let headerH =
+    $(".header").outerHeight(true) + ($(".search")?.outerHeight(true) ?? 0);
   $(".main").css("min-height", $(window).outerHeight(true) - headerH);
 
+  console.log(headerH);
   if ($(".main__subsection").css("overflow-y") != "auto") return;
   let hMainSection = $(window).outerHeight(true) - headerH;
   $(".main__subsection").css("max-height", hMainSection);
