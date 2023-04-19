@@ -44,7 +44,9 @@ export default class Filter {
 
     $items.css("display", this.display);
     if ($items.length - this.countExceptions($items) == 0) {
-      this.$blockFilters.after('<div id="filter-null-text">Пусто</div>');
+      this.$blockFilters.after(
+        '<div id="filter-null-text">Ничего не найдено</div>'
+      );
     }
   }
   countExceptions($items) {
