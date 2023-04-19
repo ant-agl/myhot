@@ -101,7 +101,7 @@
 .count-guest__row_gap {
   gap: 15px;
 }
-.count-guest__row:not(:last-child) {
+.count-guest__modal > .count-guest__row:not(:last-child) {
   margin-bottom: 10px;
 }
 .add-child {
