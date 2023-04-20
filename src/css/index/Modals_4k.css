@@ -1,19 +1,7 @@
 @media (min-width: 2048px) {
-  .heading_form_h1 {
-    font-weight: 400;
-    font-size: 66px;
-    margin-bottom: 0;
-  }
   .heading_form_h2 {
     font-weight: 400;
     font-size: 44px;
-  }
-  #modal-group-1 .heading_form_h1 {
-    margin-bottom: 2%;
-  }
-  #modal-group-2 .heading_form_h2 {
-    width: 75%;
-    align-self: center;
   }
 
   .block_register_1 {
@@ -68,16 +56,6 @@
   }
   #modal-group-003 .botton_section_form {
     margin-top: 3%;
-  }
-
-  .info_area {
-    height: 25%;
-    margin: 1.225% 0;
-    width: 96%;
-    padding: 1.5em 0 1.5em 1em;
-    font-weight: 400;
-    font-size: 44px;
-    border-radius: 35px;
   }
 
   .phone_code {

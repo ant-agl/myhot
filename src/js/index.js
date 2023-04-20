@@ -56,7 +56,13 @@ new AirDatepicker('#modal-signin [name="birthday"]', {
 });
 
 import Modal from "./components/Modal";
-new Modal("#modal-login");
+new Modal("#modal-login", {
+  beforeOpen: function () {
+    $(".uk-navbar-dropdown.uk-open").removeClass("uk-open");
+    $('.uk-navbar-toggle[aria-expanded="true"]').attr("aria-expanded", "false");
+    return true;
+  },
+});
 new Modal("#modal-signin");
 new Modal("#modal-forgot");
 
