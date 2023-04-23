@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Raleway&display=swap"
+      rel="stylesheet">
+    <link rel="stylesheet" href="../css/hotels-list.css">
+    <script
+        src="https://api-maps.yandex.ru/2.1/?apikey=a0c76f9a-3a83-47c5-8684-cd13b06be955&load=package.standard&lang=ru_RU">
+    </script>
+    <title>Список отелей | MyHot</title>
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header__content">
+                <a href="../" class="logo">
+                    <div class="logo__icon">
+                        <svg width="80" height="48" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 264.7923 158.62282">
+                            <path fill="#005382"
+                                d="M325.9468,332.21468l-16.35,37.5a9.13384,9.13384,0,0,0,.18,7.7l.83,1.68a9.15021,9.15021,0,0,0,16.58-.36l23.73-53.87a9.13683,9.13683,0,0,1,8.37-5.46h16.51a9.15314,9.15314,0,0,1,8.32,12.98l-17.68,38.38a9.15314,9.15314,0,0,0,8.32,12.98h1.15a9.14509,9.14509,0,0,0,8.4-5.51l23.13-53.32a9.14509,9.14509,0,0,1,8.4-5.51h19.17a9.15221,9.15221,0,0,1,8.31,12.99l-64.85,140.32a9.15239,9.15239,0,0,1-16.55.14l-8.2-16.99a9.15562,9.15562,0,0,1-.11-7.71l12.68-28.38a9.15293,9.15293,0,0,0-8.36-12.88h-1.81a9.14318,9.14318,0,0,0-8.31,5.33l-27.57,60.03a9.14934,9.14934,0,0,1-16.62.02l-12.83-27.73a9.15,9.15,0,0,0-16.6-.02l-12.95,27.84a9.15236,9.15236,0,0,1-16.61-.03l-64.4-139.96a9.14657,9.14657,0,0,1,8.31-12.97h14.31a9.15253,9.15253,0,0,1,8.27,5.24l33.33,70.51a9.15263,9.15263,0,0,0,16.61-.13l1.66-3.67a9.169,9.169,0,0,0-.07-7.7l-24.16-50.85a9.15632,9.15632,0,0,1,8.47-13.08l19.33.42a9.14586,9.14586,0,0,1,8.11,5.32l1.46,3.16a9.14866,9.14866,0,0,0,16.7-.2l1.52-3.51a9.16107,9.16107,0,0,1,8.4-5.51h15.08A9.14793,9.14793,0,0,1,325.9468,332.21468Z"
+                                transform="translate(-179.37813 -319.40468)" />
+                        </svg>
+                    </div>
+                    <div class="logo__text">
+                        WeHotel
+                    </div>
+                </a>
+                <div class="header__icon">
+                    <div class="profile-menu">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M16 20C20.4183 20 24 16.4183 24 12C24 7.58172 20.4183 4 16 4C11.5817 4 8 7.58172 8 12C8 16.4183 11.5817 20 16 20Z"
+                                stroke="#005382" stroke-width="2" stroke-miterlimit="10" />
+                            <path
+                                d="M4 27C5.216 24.8718 6.96515 23.1044 9.07161 21.8757C11.1781 20.6469 13.5676 20 16 20C18.4324 20 20.8219 20.6469 22.9284 21.8757C25.0348 23.1044 26.784 24.8718 28 27"
+                                stroke="#005382" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        <ul class="profile-menu__list">
+                            <li class="profile-menu__item"><a class="profile-menu__link" href="../lk/">Иванов Иван
+                                    Иванович</a></li>
+                            <li class="profile-menu__item"><a class="profile-menu__link" href="../booking/">Бронирование</a>
+                            </li>
+                            <li class="profile-menu__item">
+                                <span class="profile-menu__link" data-modal-target="modal-logout">Выход</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <div class="modal" id="modal-logout">
+      <div class="modal__content">
+        <div class="modal__title">Вы уверены, что хотите выйти?</div>
+        <div class="modal__footer">
+          <button type="button" class="link-underline" data-modal-target-close="modal-logout">Остаться</button>
+          <button type="button" class="btn btn_danger btn-logout">Да</button>
+        </div>
+      </div>
+    </div>
+
+    <main class="main">
+        <div class="container container_big">
+            <form class="search">
+              <div class="search__field">
+                <div class="search__icon">
+                  <input data-validate="required" class="search__input search__input_search" type="text"
+                    placeholder="Город, регион или отель" value="" name="search" autocomplete="off">
+                  <div class="find-hint">
+                  </div>
+                </div>
+              </div>
+              <div class="search__field">
+                <div class="search__icon">
+                  <input data-validate="required dates" class="search__input search__input_dates" type="text"
+                    placeholder="Дата заезда - Дата выезда" value="" readonly name="dates">
+                </div>
+              </div>
+              <div class="search__field">
+                <div class="search__icon">
+                  <div class="search__input search__input_guests count-guest">
+                    <div class="count-guest__value"><span class="adult">1</span> взрослых, <span class="child">0</span> детей
+                    </div>
+                    <div class="count-guest__modal">
+                      <div class="count-guest__row">
+                        <span>Количество взрослых</span>
+                        <div class="input-count">
+                          <span class="input-count__sign input-count__sign_minus">&ndash;</span>
+                          <input type="text" value="1" min="1" class="input-count__input count-adult" name="adult">
+                          <span class="input-count__sign input-count__sign_plus">+</span>
+                        </div>
+                      </div>
+                      <span class="add-child">Добавить ребенка +</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <button type="button" class="search__button">найти</button>
+            </form>
+            <div class="main__content">
+                <div class="main__subsection">
+                    <div class="map-block">
+                      <button type="button" class="btn btn_white btn-open-map" data-target="map-big">Смотреть карту</button>
+                    </div>
+                    <div class="filters-block">
+                      <div class="filters-mobile">
+                        <span class="filters-mobile__select">Фильтры</span>
+                        <img src="../img/icons/arr.png">
+                      </div>
+                    
+                      <div class="filters">
+                        <div class="filter">
+                          <div class="filter__title">Цена за ночь</div>
+                          <div class="filter__body">
+                            <div class="filter__row">
+                              От
+                              <input type="text" class="filter__input" name="price-min" value="0" />
+                              до
+                              <input type="text" class="filter__input" name="price-max" value="20000" />
+                              руб.
+                            </div>
+                            <div id="dual-range-price"></div>
+                          </div>
+                        </div>
+                        <div class="filter">
+                          <div class="filter__title">Звёзды отеля</div>
+                          <div class="filter__body">
+                            <label class="filter__row">
+                              <input type="checkbox" name="stars-5" class="filter__checkbox">
+                              <img src="../img/icons/stars/5.png" class="filter__stars">
+                            </label>
+                            <label class="filter__row">
+                              <input type="checkbox" name="stars-4" class="filter__checkbox">
+                              <img src="../img/icons/stars/4.png" class="filter__stars">
+                            </label>
+                            <label class="filter__row">
+                              <input type="checkbox" name="stars-3" class="filter__checkbox">
+                              <img src="../img/icons/stars/3.png" class="filter__stars">
+                            </label>
+                            <label class="filter__row">
+                              <input type="checkbox" name="stars-2" class="filter__checkbox">
+                              <img src="../img/icons/stars/2.png" class="filter__stars">
+                            </label>
+                            <label class="filter__row">
+                              <input type="checkbox" name="stars-1" class="filter__checkbox">
+                              <img src="../img/icons/stars/1.png" class="filter__stars">
+                            </label>
+                            <label class="filter__row">
+                              <input type="checkbox" name="stars-0" class="filter__checkbox">
+                              <img src="../img/icons/stars/0.png" class="filter__stars">
+                            </label>
+                          </div>
+                        </div>
+                        <div class="filter">
+                          <div class="filter__title">Оценка гостей</div>
+                          <div class="filter__body">
+                            <span>от <input type="text" class="filter__input" name="guest-rating" value="9"> и более</span>
+                            <div id="dual-range-guest-rating" class="single"></div>
+                          </div>
+                        </div>
+                        <div class="filter">
+                          <div class="filter__title">Расположение</div>
+                          <div class="filter__body">
+                            <div class="filter__row">
+                              От
+                              <input type="text" class="filter__input" name="location-min" value="0" />
+                              до
+                              <input type="text" class="filter__input" name="location-max" value="50" />
+                              км
+                            </div>
+                            <div id="dual-range-location"></div>
+                    
+                            <label class="filter__row">
+                              <input type="radio" name="from_location" value="from_center" checked>
+                              <span>от центра, км</span>
+                            </label>
+                            <label class="filter__row">
+                              <input type="radio" name="from_location" value="from_metro">
+                              <span>от метро, км</span>
+                            </label>
+                            <label class="filter__row">
+                              <input type="radio" name="from_location" value="from_sea">
+                              <span>от моря, км</span>
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+                <div class="main__section">
+
+<div class="map-big" id="map-big">
+  <div id="map" class="map-iframe"></div>
+  <div class="map-big__space"></div>
+</div>
+
+<div class="hotels-list">
+
+</div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script src="../js/hotels_list.js"></script>
+  </body>
+</html>

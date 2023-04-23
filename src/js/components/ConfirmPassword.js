@@ -54,7 +54,7 @@ export default class ConfirmPassword {
     let code = this.getCode();
 
     if (!this.url) return;
-    this.data[code] = code;
+    this.data.code = code;
     $.ajax({
       type: "POST",
       url: this.url,
