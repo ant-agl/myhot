@@ -150,7 +150,12 @@ export default class GetData {
               <div class="hotel-card__main-info">
                 <div class="hotel-card__status">
                   <span>Статус</span>
-                  <span class="value" style="color:${statusColor}" title="${filter.name}">${status}</span>
+                  <span class="value hint">
+                    <span style="color:${statusColor}">${status}</span>
+                    <div class="hint__text hint__text_right">${
+                      filter.name
+                    }</div>
+                  </span>
                 </div>
                 <div class="hotel-card__name">
                   ${hotel.joined_hotel_search[0].name}
@@ -168,6 +173,11 @@ export default class GetData {
               <div class="hotel-card__info-row">
                 <span class="hotel-card__info-title">Количество человек</span>
                 <span class="hotel-card__info-value">${peoplesText}</span>
+              </div>
+              <div class="hotel-card__info-row">
+                <span class="hotel-card__info-value">${
+                  hotel.joined_rooms_search?.[0]?.name ?? ""
+                }</span>
               </div>
               <div class="hotel-card__info-row">
                 <span class="hotel-card__info-title">Стоимость за номер</span>
@@ -953,10 +963,13 @@ export default class GetData {
 
       insertRooms(data.rooms);
     });
-    $.get(this.path_php + "get_services.php?id_hotel=" + id, (data) => {
-      data = JSON.parse(data);
-      console.log(data);
-      // insertServices(data);
+    $.get(this.path + "get_all_services.php?id_hotel=" + id, (allService) => {
+      allService = JSON.parse(allService);
+      $.get(this.path_php + "get_services.php?id_hotel=" + id, (data) => {
+        data = JSON.parse(data);
+        console.log(data);
+        insertServices(data, allService);
+      });
     });
     $.get(this.path_php + "avg_reviews.php?id_hotel=" + id, (data) => {
       data = JSON.parse(data);

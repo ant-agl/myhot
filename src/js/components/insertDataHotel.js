@@ -29,25 +29,39 @@ export function insertHotel(hotel) {
     `);
   });
 }
-export function insertServices(services) {
-  services.free.forEach((item) => {
-    let html = `<div class="services__subtitle">${item.name}</div>`;
-    item.list.forEach((service) => {
-      html += `<div class="services__item">${service}</div>`;
-    });
-    let $col1 = $(".services__block_free .services__column").eq(0);
-    let $col2 = $(".services__block_free .services__column").eq(1);
-    insertColumn($col1, $col2, html);
+export function insertServices(services, allService) {
+  services.free.forEach((id) => {
+    let html = "";
+    let $category = $(`[data-category="${allService[id].category}]`);
+    let category = allService[id].category ?? "";
+    if ($category.length == 0 && category) {
+      html += `<div class="services__subtitle" data-category="${category}">${category}</div>`;
+      html += `<div class="services__item">${allService[id].name}</div>`;
+
+      let $col1 = $(".services__block_free .services__column").eq(0);
+      let $col2 = $(".services__block_free .services__column").eq(1);
+      insertColumn($col1, $col2, html);
+    } else if ($category.length > 0 && category) {
+      html += `<div class="services__item">${allService[id].name}</div>`;
+      $category.after(html);
+    } else {
+      html += `<div class="services__item">${allService[id].name}</div>`;
+
+      let $col1 = $(".services__block_free .services__column").eq(0);
+      let $col2 = $(".services__block_free .services__column").eq(1);
+      insertColumn($col1, $col2, html);
+    }
   });
-  services.paid.forEach((item) => {
-    let html = `<div class="services__subtitle">${item.name}</div>`;
-    item.list.forEach((service) => {
-      html += `
-        <div class="services__item">
-          <span>${service.name}</span>
-          <span class="services__price">${service.price}</span>
-        </div>`;
-    });
+  services.paid.forEach((id, i) => {
+    // let html = `<div class="services__subtitle">${item.name}</div>`;
+    let html = `
+    <div class="services__item">
+      <span>${allService[id].name}</span>
+      <span class="services__price">${services.price[
+        i
+      ].toLocaleString()} руб.</span>
+    </div>`;
+
     let $col1 = $(".services__block_paid .services__column").eq(0);
     let $col2 = $(".services__block_paid .services__column").eq(1);
     insertColumn($col1, $col2, html);

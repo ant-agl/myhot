@@ -1,5 +1,7 @@
 export default class ConfirmPassword {
   url = "";
+  data = {};
+
   constructor(selectorInputs, selectorBtn, settings = {}) {
     this.$inputs = $(selectorInputs);
     this.$btn = $(selectorBtn);
@@ -41,29 +43,38 @@ export default class ConfirmPassword {
     });
     if (isFull) this.$btn.trigger("click");
   }
-  sendCode() {
+  getCode() {
     let code = "";
     this.$inputs.each((i, el) => {
       code += $(el).val().trim();
     });
+    return code;
+  }
+  sendCode() {
+    let code = this.getCode();
 
     if (!this.url) return;
+    this.data[code] = code;
     $.ajax({
       type: "POST",
       url: this.url,
-      data: {
-        code,
-      },
+      data: this.data,
       success: (data) => {
-        console.log(data);
-        this.changeMessage("Успешно!");
-        this.afterSendSuccess();
+        try {
+          data = JSON.parse(data);
+          console.log(data);
+          this.changeMessage("Успешно!");
+          this.afterSendSuccess(data);
+        } catch (e) {
+          console.error(e.message);
+        }
       },
       error: (xhr) => {
         console.log(xhr);
         this.clearValue();
         this.focusFirst();
         this.changeMessage("Ошибка!", false);
+        this.afterSendError(xhr);
       },
     });
   }
@@ -86,4 +97,5 @@ export default class ConfirmPassword {
     });
   }
   afterSendSuccess() {}
+  afterSendError() {}
 }

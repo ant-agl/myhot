@@ -50,6 +50,7 @@
 .modal__message {
   margin-top: 20px;
   height: 20px;
+  text-align: center;
 }
 .modal__message_error {
   color: #900000;

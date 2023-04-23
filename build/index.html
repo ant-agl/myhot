@@ -218,7 +218,7 @@
           <div class="botton_section_form">
             <button class="link-underline" type="button" data-modal-target="modal-signin"
               data-modal-target-close="modal-login">Нет аккаунта?</button>
-            <button class="link-underline" to-page="1" page-validate="true" type="button">Войти</button>
+            <button class="link-underline btn-login-hash" to-page="1" page-validate="true" type="button">Войти</button>
           </div>
         </div>
         <div class="modal__page" data-page="1">
@@ -260,11 +260,11 @@
             <input type="text" name="patronymic" class="info_area" placeholder="Отчество (при наличии)">
           </div>
           <div class="input-row">
-            <input data-validate="required date" type="text" name="birthday" class="info_area"
-              placeholder="Дата рождения" required readonly>
+            <input data-validate="required date" type="text" name="date" class="info_area" placeholder="Дата рождения"
+              required readonly>
           </div>
           <div class="input-row">
-            <input data-validate="required mail" type="text" name="mail" class="info_area" placeholder="e-mail"
+            <input data-validate="required mail" type="text" name="email" class="info_area" placeholder="e-mail"
               required>
           </div>
 
@@ -285,7 +285,7 @@
           <div class="botton_section_form">
             <button class="link-underline" type="button" to-page="0">Назад</button>
             <p class="part_botton">2 из 4 этапов</p>
-            <button class="link-underline" to-page="2" page-validate="true" type="button">Далее</button>
+            <button class="link-underline btn-reg-hash" to-page="2" page-validate="true" type="button">Далее</button>
           </div>
         </div>
         <div class="modal__page" data-page="2">

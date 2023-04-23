@@ -14,7 +14,13 @@
   transition: 0.2s;
   transform: scale(0);
   transform-origin: bottom left;
+  font-weight: 400;
 }
 .hint:hover .hint__text {
   transform: scale(1);
+}
+.hint__text_right {
+  right: 0;
+  left: auto;
+  transform-origin: bottom right;
 }

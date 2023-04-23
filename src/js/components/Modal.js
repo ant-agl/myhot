@@ -62,6 +62,9 @@ export default class Modal {
     }
     if (!valid) return;
 
+    this.toPage(page);
+  }
+  toPage(page) {
     this.$modal.find("[data-page]").removeClass("active");
     this.$modal.find(`[data-page="${page}"]`).addClass("active");
   }
