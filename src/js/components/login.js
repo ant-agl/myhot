@@ -27,6 +27,7 @@ export function reg_gen(data) {
       url: "https://wehotel.ru/handler/reg_gen.php",
       data,
       success: (data) => {
+        console.log(data);
         try {
           data = JSON.parse(data);
           resolve(data);

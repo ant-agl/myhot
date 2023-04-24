@@ -64,6 +64,14 @@ $(".btn-forgot").on("click", function () {
   console.log(forgot.validate());
 });
 
+let confirmRegister = new ConfirmPassword(
+  "#modal-signin .input-code-confirm",
+  "#modal-signin .btn-confirm-password",
+  {
+    url: "https://wehotel.ru/handler/reg.php",
+  }
+);
+
 let validateRegHash = new Validation('#modal-signin [data-page="1"]');
 import { login, login_hash, reg_gen, reg_hash } from "./components/login";
 import moment from "moment";
@@ -91,22 +99,17 @@ $("#modal-signin .btn-reg-hash").on("click", function () {
         hash_verify,
       };
 
-      let confirmRegister = new ConfirmPassword(
-        "#modal-signin .input-code-confirm",
-        "#modal-signin .btn-confirm-password",
-        {
-          url: "https://wehotel.ru/handler/reg.php",
-          data: sendData,
-          afterSendSuccess: (data) => {
-            console.log(data);
-            hash_verify2 = data.hash_verify2;
-            register_login = data.login;
-          },
-          afterSendError: (xhr) => {
-            modalSignin.toPage(2);
-          },
-        }
-      );
+      confirmRegister.data = sendData;
+      confirmRegister.afterSendSuccess = (data) => {
+        console.log(data);
+        hash_verify2 = data.hash_verify2;
+        register_login = data.login;
+        debugger;
+      };
+      confirmRegister.afterSendError = (xhr) => {
+        modalSignin.toPage(2);
+        debugger;
+      };
     })
     .catch((xhr) => {
       console.error(xhr);
@@ -127,14 +130,27 @@ $("#modal-signin .btn-signin").on("click", function () {
   let data = {
     hash_verify,
     hash_verify2,
-    login,
+    login: register_login,
     password,
   };
 
-  reg_gen(data).then((data) => {
-    console.log(data);
-  });
+  reg_gen(data)
+    .then((data) => {
+      console.log(data);
+      window.location.href = "lk";
+    })
+    .catch((xhr) => {
+      console.log(xhr);
+    });
 });
+
+let confirmLogin = new ConfirmPassword(
+  "#modal-login .input-code-confirm",
+  "#modal-login .btn-confirm-password",
+  {
+    url: "https://wehotel.ru/handler/token_generation.php",
+  }
+);
 
 let validateLoginHash = new Validation('#modal-login [data-page="0"]');
 let loginData = {
@@ -164,24 +180,19 @@ $("#modal-login .btn-login-hash").on("click", function () {
       login(loginData).then((data) => {
         console.log(data);
         if (data.status == "ok") {
-          let confirmLogin = new ConfirmPassword(
-            "#modal-login .input-code-confirm",
-            "#modal-login .btn-confirm-password",
-            {
-              url: "https://wehotel.ru/handler/token_generation.php",
-              data: loginData,
-              afterSendSuccess: (data) => {
-                console.log(data);
-              },
-              afterSendError: (xhr) => {
-                modalLogin.toPage(1);
-              },
-            }
-          );
+          confirmLogin.data = loginData;
+          confirmLogin.afterSendSuccess = (data) => {
+            console.log(data);
+            window.location.href = "lk";
+          };
+          confirmLogin.afterSendError = (xhr) => {
+            modalLogin.toPage(1);
+          };
         }
       });
     })
     .catch((xhr) => {
       console.error(xhr);
+      modalLogin.toPage(0);
     });
 });

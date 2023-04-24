@@ -177,9 +177,9 @@ var config = {
   server: {
     baseDir: "./build",
   },
-  tunnel: true,
+  tunnel: false,
   host: "localhost",
-  port: 9000,
+  port: 9001,
   logPrefix: "front",
 };
 
