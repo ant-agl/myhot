@@ -58,6 +58,23 @@ input[type="checkbox"]:focus {
   box-shadow: none;
 }
 
+* {
+  scrollbar-width: 2px;
+  scrollbar-color: #ccc transparent;
+}
+*::-webkit-scrollbar {
+  height: 3px;
+  width: 3px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+*::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 5px;
+  border: none;
+}
+
 @media (max-width: 1440px) {
   .container_big {
     max-width: 1200px;
