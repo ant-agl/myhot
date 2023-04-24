@@ -80,7 +80,9 @@ export default class ConfirmPassword {
     });
   }
   changeMessage(text = "", success = true) {
-    $(".modal__message")
+    this.$inputs
+      .closest(".modal")
+      .find(".modal__message")
       .text(text)
       .removeClass("modal__message_success modal__message_error")
       .addClass(success ? "modal__message_success" : "modal__message_error");
