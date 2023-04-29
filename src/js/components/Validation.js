@@ -162,4 +162,15 @@ export default class Validation {
     };
     return res;
   }
+  password(val) {
+    let regex = /^.*(?=.*[a-zA-Z])(?=.*\d)(?=.*[!#@$%&?"]).*$/;
+    let success = regex.test(val);
+    let res = {
+      success,
+      text:
+        this.textMail ??
+        "Пароль должен включать цифры, оба регистра, спец. знак",
+    };
+    return res;
+  }
 }

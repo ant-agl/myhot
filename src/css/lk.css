@@ -652,17 +652,6 @@ span.reviews-card__date-value {
   visibility: visible;
   opacity: 1;
 }
-
-.error-text {
-  color: red;
-  position: absolute;
-  bottom: 3px;
-  z-index: 2;
-  left: 0;
-  right: 0;
-  text-align: center;
-  font-size: 12px;
-}
 .modal__footer {
   display: flex;
   align-items: center;
@@ -721,9 +710,6 @@ span.reviews-card__date-value {
   }
 }
 @media (max-width: 767px) {
-  .error-text {
-    font-size: 10px;
-  }
   .main__section::before {
     display: none;
   }

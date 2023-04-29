@@ -1,7 +1,5 @@
-/*= index/uikit.min.css */
 /*= default */
 /*= index/main_2 */
-/*= index/modals_main */
 /*= index/mobile */
 /*= index/monitor */
 /*= index/Monitor_2k */
@@ -13,11 +11,4 @@
 }
 .info_area.success {
   border-color: #31bb00;
-}
-.error-text {
-  margin: 0;
-  margin-left: 20px;
-  font-size: 12px;
-  line-height: 12px;
-  color: #ff5f5f;
 }

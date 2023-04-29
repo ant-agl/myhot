@@ -1,3 +1,4 @@
+$("body").hide();
 import "./default";
 
 import Menu from "./components/Menu";

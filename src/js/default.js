@@ -1,3 +1,5 @@
+import "./components/header";
+
 function changeHeightOnResize() {
   let headerH =
     $(".header").outerHeight(true) + ($(".search")?.outerHeight(true) ?? 0);
@@ -19,16 +21,4 @@ $(window).resize(changeHeightOnResize);
 import "jquery-mask-plugin";
 $(".mask-phone").mask("+7 (000) 000-00-00", {
   placeholder: "+7 (___) ___-__-__",
-});
-
-import DropMenu from "./components/DropMenu";
-new DropMenu(".profile-menu");
-let menuMobile = new DropMenu(".main__menu-mobil");
-menuMobile.setBtnToggle(".main__menu-mobil img");
-
-import Modal from "./components/Modal";
-new Modal("#modal-logout");
-
-$(".btn-logout").on("click", function (e) {
-  console.log("LOGOUT");
 });

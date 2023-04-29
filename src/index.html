@@ -14,37 +14,12 @@
 </head>
 
 <body>
-  <header>
-    <div class="desktop_nav">
-      <div class="img_nav">
-        <img src="./img/index/logo.svg" class="logo_picture">
-        <h1 class="nav_logo">WEHOTEL</h1>
-      </div>
-      <div class="nav_nav">
-        <a class="req_object_button btn btn_white" href="#">зарегистрировать объект</a>
-        <button class="log_in_button uk-button btn" type="button" data-modal-target="modal-login">войти</button>
-      </div>
-    </div>
-    <div class="mobile_nav">
-      <div class="img_nav">
-        <img src="./img/index/logo.svg" class="logo_picture">
-      </div>
-      <nav class="uk-navbar uk-navbar-container uk-margin" uk-navbar>
-        <div class="uk-navbar-left">
-          <a class="uk-navbar-toggle uk-navbar-toggle-animate " uk-navbar-toggle-icon href="#"></a>
-          <div class="uk-navbar-dropdown">
-            <ul class="uk-nav uk-navbar-dropdown-nav">
-              <li class="uk-active"><a href="#">Навигация</a></li>
-              <li><a href="#">Зарегистрировать объект</a></li>
-              <li><a href="#" data-modal-target="modal-login">Войти</a></li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-    </div>
-  </header>
+  //= general/header.html
   <section class="block_1">
-    <h1 class="header_b_1">найдите отель для лучшего отдыха</h1>
+    <video class="block_1_video" autoplay muted loop preload poster="./img/index/avif/bg.png">
+      <source src="./img/index/avif/sea.webm" type="video/webm">
+    </video>
+    <h1 class="header_b_1">Поиск лучшего</h1>
     <div class="container">
       //= general/search
     </div>
@@ -74,8 +49,7 @@
   </section>
   <section class="block_3">
     <div class="text-header_3">
-      <h2 class="heading_b_3">Остались вопросы? Задай</h2>
-      <h2 class="heading_b_3">их нам прямо сейчас!</h2>
+      <h2 class="heading_b_3">Вопросы? Пиши!</h2>
     </div>
     <div class="b_3">
       <div class="left_b_3">
@@ -163,197 +137,6 @@
       </div>
     </footer>
   </section>
-
-  <!-- Login -->
-  <div class="modal" id="modal-login">
-    <div class="modal__content modal__content_small">
-      <div class="modal__pages">
-        <div class="modal__page active" data-page="0">
-          <h1 class="heading_form_h1 uk-modal-title">Вход в аккаунт</h1>
-          <div class="input-row">
-            <input data-validate="required phoneOrMail" type="text" name="login" class="info_area"
-              placeholder="Телефон или почта" required>
-          </div>
-          <div class="input-row">
-            <input data-validate="required min(6)" type="password" name="password" class="info_area"
-              placeholder="Пароль" required>
-          </div>
-          <button type="button" class="modal__link" data-modal-target="modal-forgot"
-            data-modal-target-close="modal-login">Забыли пароль?</button>
-          <div class="botton_section_form">
-            <button class="link-underline" type="button" data-modal-target="modal-signin"
-              data-modal-target-close="modal-login">Нет аккаунта?</button>
-            <button class="link-underline btn-login-hash" to-page="1" page-validate="true" type="button">Войти</button>
-          </div>
-        </div>
-        <div class="modal__page" data-page="1">
-          <div class="modal__title">Подтверждение изменений</div>
-          <div class="modal__desc">Мы отправили код <span>на вашу почту</span></div>
-
-          <div class="inputs-row">
-            <input type="tel" class="input-code-confirm">
-            <input type="tel" class="input-code-confirm">
-            <input type="tel" class="input-code-confirm">
-            <input type="tel" class="input-code-confirm">
-          </div>
-
-          <div class="modal__message"></div>
-
-          <button type="button" class="modal__link btn-login-hash">Отправить повторно</button>
-          <div class="modal__footer modal__footer_space">
-            <button type="button" class="link-underline" to-page="0">Назад</button>
-            <button type="button" class="link-underline modal__btn btn-confirm-password">Подтвердить</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Sign in -->
-  <div class="modal" id="modal-signin">
-    <div class="modal__content modal__content_small">
-      <div class="modal__pages">
-        <div class="modal__page active" data-page="0">
-          <h1 class="heading_form_h1 uk-modal-title">Информация о себе</h1>
-          <div class="input-row">
-            <input data-validate="required" type="text" name="surname" class="info_area" placeholder="Фамилия" required>
-          </div>
-          <div class="input-row">
-            <input data-validate="required" type="text" name="name" class="info_area" placeholder="Имя" required>
-          </div>
-          <div class="input-row">
-            <input type="text" name="patronymic" class="info_area" placeholder="Отчество (при наличии)">
-          </div>
-          <div class="input-row">
-            <input data-validate="required date" type="text" name="date" class="info_area" placeholder="Дата рождения"
-              required readonly>
-          </div>
-          <div class="input-row">
-            <input data-validate="required mail" type="text" name="email" class="info_area" placeholder="e-mail"
-              required>
-          </div>
-
-          <div class="botton_section_form">
-            <button class="link-underline" type="button" data-modal-target="modal-login"
-              data-modal-target-close="modal-signin">Есть аккаунт?</button>
-            <p class="part_botton">1 из 4 этапов</p>
-            <button class="link-underline" to-page="1" page-validate="true" type="button">Далее</button>
-          </div>
-        </div>
-        <div class="modal__page" data-page="1">
-          <h1 class="heading_form_h1 uk-modal-title">Введите номер</h1>
-          <h2 class="heading_form_h2">Ваш номер телефона будет использоваться для входа в аккаунт</h2>
-          <div class="input-row">
-            <input data-validate="required phone" type="text" name="phone" class="info_area mask-phone"
-              placeholder="Номер телефона" required>
-          </div>
-          <div class="botton_section_form">
-            <button class="link-underline" type="button" to-page="0">Назад</button>
-            <p class="part_botton">2 из 4 этапов</p>
-            <button class="link-underline btn-reg-hash" to-page="2" page-validate="true" type="button">Далее</button>
-          </div>
-        </div>
-        <div class="modal__page" data-page="2">
-          <div class="modal__title">Подтверждение изменений</div>
-          <div class="modal__desc">Мы отправили код <span>на вашу почту</span></div>
-
-          <div class="inputs-row">
-            <input type="tel" class="input-code-confirm">
-            <input type="tel" class="input-code-confirm">
-            <input type="tel" class="input-code-confirm">
-            <input type="tel" class="input-code-confirm">
-          </div>
-
-          <div class="modal__message"></div>
-
-          <button type="button" class="modal__link btn-reg-hash">Отправить повторно</button>
-          <div class="modal__footer modal__footer_space">
-            <button type="button" class="link-underline" to-page="1">Назад</button>
-            <p class="part_botton">3 из 4 этапов</p>
-            <button type="button" class="link-underline modal__btn btn-confirm-password"
-              to-page="3">Подтвердить</button>
-          </div>
-        </div>
-        <div class="modal__page" data-page="3">
-          <div class="modal__title">Придумайте пароль</div>
-
-          <div class="input-row">
-            <input data-validate="required min(6)" type="password" name="password" class="info_area"
-              placeholder="Пароль" required>
-          </div>
-          <div class="input-row">
-            <input data-validate="required min(6) repeat(password)" type="password" name="password_repeat"
-              class="info_area" placeholder="Повторите пароль" required>
-          </div>
-          <div class="modal__footer modal__footer_space">
-            <button type="button" class="link-underline" to-page="1">Назад</button>
-            <p class="part_botton">4 из 4 этапов</p>
-            <button type="button" class="link-underline btn-signin">Зарегистрироваться</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Forgot password -->
-  <div class="modal" id="modal-forgot">
-    <div class="modal__content modal__content_small">
-      <div class="modal__pages">
-        <div class="modal__page active" data-page="0">
-          <h1 class="heading_form_h1 uk-modal-title">Восстановление пароля</h1>
-          <div class="input-row">
-            <input data-validate="required phoneOrMail" type="text" name="login" class="info_area"
-              placeholder="Телефон или почта" required>
-          </div>
-          <div class="botton_section_form">
-            <button class="link-underline" type="button" data-modal-target="modal-login"
-              data-modal-target-close="modal-forgot">Назад</button>
-            <p class="part_botton">1 из 3 этапов</p>
-            <button class="link-underline" to-page="1" page-validate="true" type="button btn-forgot">Далее</button>
-          </div>
-        </div>
-        <div class="modal__page" data-page="1">
-          <div class="modal__title">Подтверждение смены пароля</div>
-          <div class="modal__desc">Мы отправили код <span>на вашу почту</span></div>
-
-          <div class="inputs-row">
-            <input type="tel" class="input-code-confirm">
-            <input type="tel" class="input-code-confirm">
-            <input type="tel" class="input-code-confirm">
-            <input type="tel" class="input-code-confirm">
-          </div>
-
-          <div class="modal__message"></div>
-
-          <button type="button" class="modal__link btn-forgot">Отправить повторно</button>
-          <div class="modal__footer modal__footer_space">
-            <button type="button" class="link-underline" to-page="0">Назад</button>
-            <p class="part_botton">2 из 3 этапов</p>
-            <button type="button" class="link-underline modal__btn btn-confirm-password"
-              to-page="2">Подтвердить</button>
-          </div>
-        </div>
-        <div class="modal__page" data-page="2">
-          <div class="modal__title">Придумайте новый пароль</div>
-
-          <div class="input-row">
-            <input data-validate="required min(6)" type="password" name="password" class="info_area"
-              placeholder="Пароль" required>
-          </div>
-          <div class="input-row">
-            <input data-validate="required min(6) repeat(password)" type="password" name="password_repeat"
-              class="info_area" placeholder="Повторите пароль" required>
-          </div>
-          <div class="modal__footer modal__footer_space">
-            <button type="button" class="link-underline" to-page="0">Назад</button>
-            <p class="part_botton">3 из 3 этапов</p>
-            <button type="button" class="link-underline btn-forgot">Войти</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
 
   <script src="./js/index.js"></script>
 </body>

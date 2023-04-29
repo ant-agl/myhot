@@ -1,3 +1,4 @@
+import isAuth from "./isAuth";
 import { data2get } from "./data2get";
 import BackgroundImage from "./BackgroundImage";
 import Filter from "./Filter";
@@ -34,7 +35,15 @@ export default class GetData {
   path = "https://wehotel.ru/handler/";
   path_php = "https://wehotel.ru/php/";
 
-  getLk(obj = {}) {
+  async getLk(obj = {}) {
+    let auth = await isAuth();
+    console.log(auth);
+    if (!auth.ok) {
+      window.location.href = "../";
+      return;
+    }
+    $("body").show();
+
     this.user(obj.user);
     this.statuses();
     this.favourites();
@@ -557,7 +566,9 @@ export default class GetData {
     let search = data2get(getData);
     let coords = [];
 
-    let myMap = new MapApi();
+    let myMap = new MapApi({
+      btnOpenMap: ".btn-open-map",
+    });
 
     if (!search) {
       this._notFoundHotels();
@@ -662,14 +673,6 @@ export default class GetData {
       });
 
       myMap.addPointsReady(coords);
-      $(".btn-open-map").on("click", function () {
-        let time = 0;
-        let t = setInterval(() => {
-          myMap.resizeMap();
-          time += 10;
-          if (time > 500) clearInterval(t);
-        }, 10);
-      });
 
       this.getAllFavourites().then((data) => {
         data.forEach((id) => {

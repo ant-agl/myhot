@@ -143,6 +143,10 @@
   line-height: 12px;
   margin-bottom: 25px;
 }
+.btn-repeat[disabled] {
+  cursor: default;
+  color: #828282;
+}
 
 @media (max-width: 980px) {
   .modal__content {

@@ -14,6 +14,8 @@ export default class MapApi {
       this.isReady = true;
       this.initMap();
       if (this.coords) this.addPoints(this.coords);
+      if (this.btnOpenMap)
+        $(this.btnOpenMap).on("click", this.openMap.bind(this));
     });
   }
   initMap() {
@@ -68,5 +70,13 @@ export default class MapApi {
   resizeMap() {
     this.myMap.container.fitToViewport();
     this.autoCenter();
+  }
+  openMap() {
+    let time = 0;
+    let t = setInterval(() => {
+      this.resizeMap();
+      time += 10;
+      if (time > 500) clearInterval(t);
+    }, 10);
   }
 }

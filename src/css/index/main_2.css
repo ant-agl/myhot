@@ -1,4 +1,5 @@
 /*FONTS*/
+@import url("https://fonts.googleapis.com/css2?family=Ysabeau:wght@800&display=swap");
 @font-face {
   font-family: "Comfortaa";
   src: url("../fonts/Comfortaa/Comfortaa-VariableFont_wght.ttf")
@@ -51,20 +52,6 @@ body {
 }
 
 /* HEADER */
-.mobile_nav {
-  display: none;
-}
-
-.desktop_nav {
-  display: flex;
-  position: relative;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: space-between;
-  align-items: center;
-  background: #ffffff;
-}
-
 .logo_text {
   font-family: "Montserrat";
   font-style: normal;
@@ -74,28 +61,6 @@ body {
 .info_area.phone_code {
   text-align: center;
   color: #000;
-}
-
-.nav_nav {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-}
-.req_object_button {
-  /*text*/
-  font-family: Montserrat;
-  font-size: 14px;
-  line-height: 17px;
-  letter-spacing: 0.05em;
-  font-style: normal;
-  font-weight: 500;
-  text-align: center;
-  text-transform: uppercase;
-  background: #ffffff;
-  color: #005382;
-
-  border: 1px solid #005382;
-  white-space: nowrap;
 }
 
 .req_human_button {
@@ -110,27 +75,14 @@ body {
   background: #005382;
 }
 
-.log_in_button {
-  background: #005382;
-  border-color: #ffffff;
-  box-shadow: none;
-  /*text*/
-  font-family: "Montserrat";
-  font-style: normal;
-  font-weight: 500;
-  text-align: center;
-  text-transform: uppercase;
-  color: #ffffff;
-}
-
 /* BLOCK 1*/
 .block_1 {
   background-image: linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0) 56.29%,
-      #005382 100%
-    ),
-    url("../img/index/avif/sae_b_1.avif");
+    180deg,
+    rgba(255, 255, 255, 0) 56.29%,
+    #005382 100%
+  );
+  /* url("../img/index/avif/sae_b_1.avif"); */
   background-size: no-repeat;
   background-position: center;
   background-size: cover;
@@ -140,15 +92,29 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+.block_1_video {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -1;
 }
 
 .header_b_1 {
-  font-family: "Comfortaa";
+  /* font-family: "Comfortaa"; */
+  font-family: "Ysabeau", sans-serif;
   font-style: normal;
-  font-weight: 700;
+  font-weight: 900;
   text-align: center;
   text-transform: uppercase;
-  color: #005382;
+  /* color: #005382; */
+  color: #fff;
 }
 
 .space_place::placeholder {
@@ -600,6 +566,7 @@ footer {
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  margin-top: 30px;
 }
 
 footer > a {
@@ -610,14 +577,19 @@ footer > a {
   display: flex;
   flex-direction: row;
   align-items: center;
+  gap: 15px;
 }
 
-.img_spons_2 {
-  position: relative;
+.sponsers .img_spons_1 {
+  height: 35px;
+}
+.sponsers .img_spons_2 {
+  height: 50px;
 }
 
 .img_3 {
   position: relative;
+  height: 50px;
 }
 
 .dowload {

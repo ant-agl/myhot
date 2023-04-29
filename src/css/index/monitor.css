@@ -4,12 +4,6 @@
     background-color: #ffffff;
   }
 
-  .desktop_nav {
-    height: 17vmin;
-    width: 87%;
-    margin: 0 10%;
-  }
-
   .img_nav {
     display: flex;
     flex-direction: column;
@@ -203,24 +197,6 @@
     display: flex;
     justify-content: space-between;
     width: 80vw;
-  }
-
-  .img_spons_1 {
-    width: 34vmin;
-    height: 6vmin !important;
-  }
-
-  .img_spons_2 {
-    width: 30vmin;
-  }
-
-  .img_3 {
-    width: 23vmin;
-    height: 10vmin;
-  }
-
-  .sponsers img {
-    height: 10vmin;
   }
 
   .sponsers_2 {
