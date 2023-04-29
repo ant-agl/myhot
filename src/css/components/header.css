@@ -85,6 +85,8 @@
 }
 .profile-menu__link:hover {
   background-color: #f1feff;
+  text-decoration: none;
+  color: #000;
 }
 
 .nav_nav {
