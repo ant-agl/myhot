@@ -1,0 +1,48 @@
+<?php
+http_response_code(401);
+if(isset($_POST['login']) and isset($_POST['password'])){
+	$login = htmlspecialchars(strip_tags(trim($_POST['login'])), ENT_QUOTES | ENT_SUBSTITUTE | ENT_HTML5);
+	$login = mysqli_real_escape_string($login))
+	//$salt_key = генерация соли на 512.
+	#strtolower в нижний регистр . логин. пока не уверен.
+	$hash_ver = hash('sha3-512', $login.$password.$salt_key);
+	$loss =[
+		"login" => $login,
+		"hash_verify" => $hash_ver
+	];
+	require_once "db.php"; 
+	$sql = "SELECT `password` FROM `user` WHERE login= ? LIMIT 1";
+	$stmt = mysqli_prepare($link, $sql);
+	mysqli_stmt_bind_param($stmt, 's', $login);
+	//$query = mysqli_query($link,);
+	//использование плейсходера.
+	mysqli_stmt_execute($stmt);
+	$result = mysqli_stmt_get_result($stmt);
+	$trial = false;
+	if($result){
+		$data = mysqli_fetch_assoc(result);
+		//$login = trim($_POST['login']);
+		$password = trim($_POST['password']);
+		#проверки, на длину пароля, и подобное и наличие спецсимволов. иначе ошибка, некорректный логин или пароль все те же проверки,что и на js.
+		$trial = password_verify($password,$data['password']);
+		session_start();  
+		$_SESSION['password'] = $trial;
+		$_SESSION[$hash_ver] = $salt_key;
+		// ip сохранить в сессию и сравнивать
+		// время жизни сессии в связи с этим ограничить до 120 секунд. ограничить количество неудачных попыток. показывать время.
+		// в идеале, можно в редис или apcu грузить. я бы грузил в apcu на 5 секунд. ключ тот же. 
+		// это сохранить в кук файл. а остальные данные хранить в apcu . это позволит ускорить работу.session_create_id(string $prefix = "")
+		// apcu это оперативка, сессии это диск. выбор очевиден.
+		//!!! БЕЗ СЕССИЙ РАБОТАЕМ, РЕДИС + APCU? решаем под задачу.
+		echo json_encode($loss);
+		http_response_code(200);
+		exit;
+	}
+	else{
+		session_start();  
+		$_SESSION['password'] = $trial;
+		$_SESSION[$hash_ver] = $salt_key;
+		echo json_encode($loss);
+	}
+}
+ ?>

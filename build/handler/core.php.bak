@@ -1,0 +1,39 @@
+<?php
+	use Firebase\JWT\JWT;
+	use Firebase\JWT\Key;
+	$domain="web-gen.ru"; //домен с которого выписали этот JWT
+	$key="webgen"; //ключ шифрования
+	$iss ="https://{$domain}";
+	$sub="guest";//hotel, hotel_manager, hotel_admin, admin, techsupport, director статус и права пользователя
+	$jti="218128";//уникальный идентификатор  сессии
+	$aud="{$id}"; //id пользователя
+	$data = ['name' => "Имя",
+		'surname' => "Фамилия",
+		'patronymic' => "Отчество",
+		'birthday' => "Дата рождения"
+	
+	];//DATA,SUB ВЗЯТЬ ИЗ APCU ПРИ ПОМОЩИ КЛЮЧА ХЭША
+	$usd = json_encode($data);
+	//время действия токена NumericDate
+
+
+	$iat = date('U'); // дата выдачи токена	
+	$nbf = $iat + 1; //
+	$exp = $nbf + 60*60*24*120;//срок действия 120 дней
+	//$nbf = date('U',strtotime("+1 hour")); //не должен приниматься до этого момента времени
+	//$exp=1360000000 надо использовать,
+	function decode_jwt($jwt,$key){
+		try {
+		 $decoded =  JWT::decode($jwt, new Key($key, 'HS512'));
+		 return $decoded;
+		} catch (LogicException  $e) {
+			return false;
+			//echo"Не верная конфигурация";
+		 // errors having to do with environmental setup or malformed JWT Keys
+		} catch (UnexpectedValueException $e) {
+			return false;
+			//echo"Токен не действителен";
+		 // errors having to do with JWT signature and claims
+		}
+	}
+?>

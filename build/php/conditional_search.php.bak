@@ -1,0 +1,27 @@
+<?php 
+//SELECT * FROM users
+//WHERE name LIKE '%text%';
+require_once "db.php"; 
+//проверка поста разными методами. на скрипт или инъекцию
+// или так. или хранить таблицу стран, в которой города отдельно от отелей, но тогда поиск будет в виде нескольких запросов. 3 таблицы или 1наверное 3
+// более 20к отелей
+$search= "%{$_POST['search']}%";
+$sql = "SELECT * FROM `intelligence` WHERE hotel LIKE ?";
+$stmt = mysqli_prepare($link, $sql);
+mysqli_stmt_bind_param($stmt, 's', $search);
+mysqli_stmt_execute($stmt);
+$result = mysqli_stmt_get_result($stmt);
+$sql = "SELECT * FROM `location` WHERE city LIKE ? OR country LIKE ?";
+//ХУЕТА, ВСЕ ТАКИЕ ЗАПРОСЫ В РЕДИС. Нахера насиловать бд.
+	/*
+	выбор места по позиции, страна, область, город.
+	
+	SELECT *
+	CASE
+		WHEN condition1 THEN result1
+		WHEN condition2 THEN result2
+		WHEN conditionN THEN resultN
+		ELSE result
+	END FROM `intelligence`;
+	*/
+?>
