@@ -1,5 +1,5 @@
 <?php 
-$sql = "SELECT * FROM `filter_search`";
+$sql = "SELECT * FROM `category_filter`";
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, 'http://127.0.0.1:9088/api/v1/db/search/query?q='.rawurlencode($sql));
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);

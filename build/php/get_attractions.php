@@ -50,19 +50,14 @@ function calculateTheDistance($φA, $λA, $φB, $λB) {
 	$dist = $ad * 6372795;
 	return $dist / 1000;
 }
-function haversineGreatCircleDistance(
-  $latitudeFrom, $longitudeFrom, $latitudeTo, $longitudeTo, $earthRadius = 6372.795)
-{
-  // convert from degrees to radians
+function haversineGreatCircleDistance($latitudeFrom, $longitudeFrom, $latitudeTo, $longitudeTo, $earthRadius = 6372.795) {
   $latFrom = deg2rad($latitudeFrom);
   $lonFrom = deg2rad($longitudeFrom);
   $latTo = deg2rad($latitudeTo);
   $lonTo = deg2rad($longitudeTo);
   $latDelta = $latTo - $latFrom;
   $lonDelta = $lonTo - $lonFrom;
-
-  $angle = 2 * asin(sqrt((sin($latDelta / 2)** 2) +
-    cos($latFrom) * cos($latTo) * (sin($lonDelta / 2)** 2)));
+  $angle = 2 * asin(sqrt((sin($latDelta / 2) ** 2) + cos($latFrom) * cos($latTo) * (sin($lonDelta / 2)** 2)));
   return $angle * $earthRadius ;
 }
 function prod($sql) {
@@ -73,7 +68,7 @@ function prod($sql) {
 	$headers[] = 'Accept: application/json';
 	curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 	return $ch;
-}
+}//переписать на curl_multi/ запросы не зависимые, значит можно сделать параллельно 
 
 function cycle($coords1, $result) {
 	for ($i = 0; $i < count($result); $i++) { 

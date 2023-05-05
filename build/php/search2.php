@@ -128,18 +128,18 @@ if(isset($_GET['search']) and isset($_GET['input_date_1']) and isset($_GET['inpu
 	}
 	if (isset($_GET['pay'])){
 		if ($_GET['pay']){
-			$sql .= "and pay = true ";
+			$sql .= "and pay = 1 ";
 		}
 		else{
-			$sql .= "and pay = false ";
+			$sql .= "and pay = 0 ";
 		}
 	}
 	if (isset($_GET['undo'])){
 		if ($_GET['undo']){
-			$sql .= "and undo = true ";
+			$sql .= "and undo = 1 ";
 		}
 		else{
-			$sql .= "and undo = false ";
+			$sql .= "and undo = 0 ";
 		}
 	}
 
