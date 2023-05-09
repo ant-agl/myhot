@@ -163,7 +163,7 @@ export default class Validation {
     return res;
   }
   password(val) {
-    let regex = /^.*(?=.*[a-zA-Z])(?=.*\d)(?=.*[!#@$%&?"]).*$/;
+    let regex = /^.*(?=.*[a-zA-Z])(?=.*\d)(?=.*[!#@$%&?\-"]).*$/;
     let success = regex.test(val);
     let res = {
       success,

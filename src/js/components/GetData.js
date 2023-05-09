@@ -102,140 +102,167 @@ export default class GetData {
     });
   }
   statuses() {
-    $.get(this.path_php + "data_status.php", (data) => {
-      console.log(data);
+    $.ajax({
+      type: "GET",
+      url: this.path + "data_status.php",
+      success: (data) => {
+        console.log(data);
 
-      data.forEach((filter) => {
-        let html = "";
-        html += `<button class="main__button filter-btn" data-filter="${filter.id}">${filter.name}</button>`;
-        $(".booking-filters").append(html);
-      });
+        data.forEach((filter) => {
+          let html = "";
+          html += `<button class="main__button filter-btn" data-filter="${filter.id}">${filter.name}</button>`;
+          $(".booking-filters").append(html);
+        });
 
-      this.booking(data);
+        this.booking(data);
+      },
     });
   }
   booking(filters = []) {
-    $.get(this.path + "get_reserve.php", (data) => {
-      data = JSON.parse(data);
-      console.log(data);
+    $.ajax({
+      type: "GET",
+      url: this.path + "get_reserve.php",
+      headers: {
+        "X-Auth": localStorage.token ?? "",
+      },
+      success: (data) => {
+        data = JSON.parse(data);
+        console.log(data);
 
-      let html = "";
-      data.forEach((hotel) => {
-        let dates = `${moment(hotel.input_date * 1000).format(
-          "DD.MM.YYYY"
-        )} - `;
-        dates += `${moment(hotel.output_date * 1000).format("DD.MM.YYYY")}`;
+        let html = "";
+        if (data.length == 0) {
+          $(".filters").after(
+            '<div id="filter-null-text">Ничего не найдено</div>'
+          );
+        }
+        data.forEach((hotel) => {
+          let dates = `${moment(hotel.input_date * 1000).format(
+            "DD.MM.YYYY"
+          )} - `;
+          dates += `${moment(hotel.output_date * 1000).format("DD.MM.YYYY")}`;
 
-        let filter = filters.find((f) => f.id == hotel.status);
-        let status = filter.nick ?? filter.name;
-        let statusColor = filter.color ?? "#000";
+          let filter = filters.find((f) => f.id == hotel.status);
+          let status = filter.nick ?? filter.name;
+          let statusColor = filter.color ?? "#000";
 
-        let peoples = [];
-        if (hotel.number_of_adults == 1)
-          peoples.push(hotel.number_of_adults + " взрослый");
-        else if (hotel.number_of_adults > 1)
-          peoples.push(hotel.number_of_adults + " взрослых");
+          let peoples = [];
+          if (hotel.number_of_adults == 1)
+            peoples.push(hotel.number_of_adults + " взрослый");
+          else if (hotel.number_of_adults > 1)
+            peoples.push(hotel.number_of_adults + " взрослых");
 
-        if (hotel.count_of_kids == 1)
-          peoples.push(hotel.count_of_kids + " ребенок");
-        else if (hotel.count_of_kids > 1)
-          peoples.push(hotel.count_of_kids + " ребенка");
+          if (hotel.count_of_kids == 1)
+            peoples.push(hotel.count_of_kids + " ребенок");
+          else if (hotel.count_of_kids > 1)
+            peoples.push(hotel.count_of_kids + " ребенка");
 
-        let peoplesText =
-          peoples.length > 0 ? peoples.join(",<br>") : "&mdash;";
+          let peoplesText =
+            peoples.length > 0 ? peoples.join(",<br>") : "&mdash;";
 
-        let geo =
-          hotel.joined_hotel_search[0].city +
-          ", " +
-          hotel.joined_hotel_search[0].country;
+          let geo =
+            hotel.joined_hotel_search[0].city +
+            ", " +
+            hotel.joined_hotel_search[0].country;
 
-        let image = hotel.joined_hotel_search[0].image ?? "../img/empty.png";
-        let price = hotel.cost_per_night
-          ? hotel.cost_per_night?.toLocaleString() + " руб."
-          : "&mdash;";
-        let fullPrice = hotel.cost_full
-          ? hotel.cost_full?.toLocaleString() + " руб."
-          : "&mdash;";
+          let image = hotel.joined_hotel_search[0].image ?? "../img/empty.png";
+          let price = hotel.cost_per_night
+            ? hotel.cost_per_night?.toLocaleString() + " руб."
+            : "&mdash;";
+          let fullPrice = hotel.cost_full
+            ? hotel.cost_full?.toLocaleString() + " руб."
+            : "&mdash;";
 
-        html += `
-          <div class="hotel-card" data-filter-item="${hotel.status}">
-            <div class="hotel-card__head">
-              <div class="hotel-card__img">
-                <img src="${image}" alt="${hotel.joined_hotel_search[0].name}">
+          html += `
+            <div class="hotel-card" data-filter-item="${hotel.status}">
+              <div class="hotel-card__head">
+                <div class="hotel-card__img">
+                  <img src="${image}" alt="${
+            hotel.joined_hotel_search[0].name
+          }">
+                </div>
+                <div class="hotel-card__main-info">
+                  <div class="hotel-card__status">
+                    <span>Статус</span>
+                    <span class="value hint">
+                      <span style="color:${statusColor}">${status}</span>
+                      <div class="hint__text hint__text_right">${
+                        filter.name
+                      }</div>
+                    </span>
+                  </div>
+                  <div class="hotel-card__name">
+                    ${hotel.joined_hotel_search[0].name}
+                  </div>
+                  <div class="hotel-card__geo">
+                    ${geo}
+                  </div>
+                </div>
               </div>
-              <div class="hotel-card__main-info">
-                <div class="hotel-card__status">
-                  <span>Статус</span>
-                  <span class="value hint">
-                    <span style="color:${statusColor}">${status}</span>
-                    <div class="hint__text hint__text_right">${
-                      filter.name
-                    }</div>
-                  </span>
+              <div class="hotel-card__info">
+                <div class="hotel-card__info-row">
+                  <span class="hotel-card__info-title">Дата бронирования</span>
+                  <span class="hotel-card__info-value">${dates}</span>
                 </div>
-                <div class="hotel-card__name">
-                  ${hotel.joined_hotel_search[0].name}
+                <div class="hotel-card__info-row">
+                  <span class="hotel-card__info-title">Количество человек</span>
+                  <span class="hotel-card__info-value">${peoplesText}</span>
                 </div>
-                <div class="hotel-card__geo">
-                  ${geo}
+                <div class="hotel-card__info-row">
+                  <span class="hotel-card__info-value">${
+                    hotel.joined_rooms_search?.[0]?.name ?? ""
+                  }</span>
+                </div>
+                <div class="hotel-card__info-row">
+                  <span class="hotel-card__info-title">Стоимость за номер</span>
+                  <span class="hotel-card__info-value">${price}</span>
+                </div>
+                <div class="hotel-card__info-row">
+                  <span class="hotel-card__info-title">Общая стоимость</span>
+                  <span class="hotel-card__info-value">${fullPrice}</span>
                 </div>
               </div>
             </div>
-            <div class="hotel-card__info">
-              <div class="hotel-card__info-row">
-                <span class="hotel-card__info-title">Дата бронирования</span>
-                <span class="hotel-card__info-value">${dates}</span>
-              </div>
-              <div class="hotel-card__info-row">
-                <span class="hotel-card__info-title">Количество человек</span>
-                <span class="hotel-card__info-value">${peoplesText}</span>
-              </div>
-              <div class="hotel-card__info-row">
-                <span class="hotel-card__info-value">${
-                  hotel.joined_rooms_search?.[0]?.name ?? ""
-                }</span>
-              </div>
-              <div class="hotel-card__info-row">
-                <span class="hotel-card__info-title">Стоимость за номер</span>
-                <span class="hotel-card__info-value">${price}</span>
-              </div>
-              <div class="hotel-card__info-row">
-                <span class="hotel-card__info-title">Общая стоимость</span>
-                <span class="hotel-card__info-value">${fullPrice}</span>
-              </div>
-            </div>
-          </div>
-        `;
-      });
-      if (data.length % 2 != 0)
-        html += '<div class="hotel-card hotel-card_hidden"></div>';
+          `;
+        });
+        if (data.length % 2 != 0)
+          html += '<div class="hotel-card hotel-card_hidden"></div>';
 
-      $(".hotels").html(html);
-      let filter = new Filter($(".filters"), $(".booking-hotels .hotel-card"));
-      filter.addExceptions("hotel-card_hidden");
+        $(".hotels").html(html);
+        let filter = new Filter(
+          $(".filters"),
+          $(".booking-hotels .hotel-card")
+        );
+        filter.addExceptions("hotel-card_hidden");
+      },
     });
   }
   favourites() {
-    $.get(this.path + "get_favourites.php", (data) => {
-      data = JSON.parse(data);
-      console.log(data);
+    $.ajax({
+      type: "GET",
+      url: this.path + "get_favourites.php",
+      headers: {
+        "X-Auth": localStorage.token ?? "",
+      },
+      success: (data) => {
+        data = JSON.parse(data);
+        console.log(data);
 
-      let html = "";
-      let htmlMobile = "";
-      data.forEach((hotel) => {
-        let geo = hotel.joined_hotel_search[0].city + ", ";
-        geo += hotel.joined_hotel_search[0].country;
+        let html = "";
+        let htmlMobile = "";
+        data.forEach((hotel) => {
+          let geo = hotel.joined_hotel_search[0].city + ", ";
+          geo += hotel.joined_hotel_search[0].country;
 
-        if (!hotel.joined_hotel_search[0].image)
-          hotel.joined_hotel_search[0].image = "../img/empty.png";
+          if (!hotel.joined_hotel_search[0].image)
+            hotel.joined_hotel_search[0].image = "../img/empty.png";
 
-        html += `
+          html += `
           <tr>
             <td>
               <div class="table__image-block">
                 <img src="${hotel.joined_hotel_search[0].image}" alt="${
-          hotel.joined_hotel_search[0].name
-        }">
+            hotel.joined_hotel_search[0].name
+          }">
                 <span>${hotel.joined_hotel_search[0].name}</span>
               </div>
             </td>
@@ -258,7 +285,7 @@ export default class GetData {
           </tr>
         `;
 
-        htmlMobile += `
+          htmlMobile += `
           <div class="hotel-card">
             <div class="hotel-card__head">
               <div class="hotel-card__img">
@@ -292,34 +319,41 @@ export default class GetData {
             </div>
           </div>
         `;
-      });
+        });
 
-      $("#favourites .table tbody").html(html);
-      $("#favourites .hotel-card_mobile").html(htmlMobile);
+        $("#favourites .table tbody").html(html);
+        $("#favourites .hotel-card_mobile").html(htmlMobile);
 
-      new RemoveRow("tr, .hotel-card", ".remove-favourites", {
-        id: "hotel_id",
-        path: this.path + "delete_favourites.php",
-      });
+        new RemoveRow("tr, .hotel-card", ".remove-favourites", {
+          id: "hotel_id",
+          path: this.path + "delete_favourites.php",
+        });
+      },
     });
   }
   reviews(userData = {}) {
-    $.get(this.path + "get_reviews.php", (data) => {
-      data = JSON.parse(data);
-      console.log(data);
+    $.ajax({
+      type: "GET",
+      url: this.path + "get_reviews.php",
+      headers: {
+        "X-Auth": localStorage.token ?? "",
+      },
+      success: (data) => {
+        data = JSON.parse(data);
+        console.log(data);
 
-      data.forEach((review) => {
-        let dates =
-          moment(review.joined_reserve[0].input_date * 1000).format(
+        data.forEach((review) => {
+          let dates =
+            moment(review.joined_reserve[0].input_date * 1000).format(
+              "DD.MM.YYYY"
+            ) + " - ";
+          dates += moment(review.joined_reserve[0].output_date * 1000).format(
             "DD.MM.YYYY"
-          ) + " - ";
-        dates += moment(review.joined_reserve[0].output_date * 1000).format(
-          "DD.MM.YYYY"
-        );
+          );
 
-        let geo = review.joined_hotel_search[0].city + ", ";
-        geo += review.joined_hotel_search[0].country;
-        let html = `
+          let geo = review.joined_hotel_search[0].city + ", ";
+          geo += review.joined_hotel_search[0].country;
+          let html = `
           <div class="reviews-card">
             <div class="reviews-card__header">
               <div class="reviews-card__dates">
@@ -341,8 +375,8 @@ export default class GetData {
             <div class="reviews-card__hotel-info">
               <div class="reviews-card__img">
                 <img src="${review.joined_hotel_search[0].image}" alt="${
-          review.joined_hotel_search[0].name
-        }">
+            review.joined_hotel_search[0].name
+          }">
               </div>
               <div>
                 <div class="reviews-card__stars">
@@ -371,70 +405,45 @@ export default class GetData {
           </div>
         `;
 
-        let $col1 = $(".reviews__column").eq(0);
-        let $col2 = $(".reviews__column").eq(1);
-        insertColumn($col1, $col2, html);
-      });
+          let $col1 = $(".reviews__column").eq(0);
+          let $col2 = $(".reviews__column").eq(1);
+          insertColumn($col1, $col2, html);
+        });
+      },
     });
   }
   bonus() {
-    $.get(this.path + "bonus_program.php", (data) => {
-      data = JSON.parse(data);
-      console.log("bonus", data);
-      // data = {
-      //   balance: 345,
-      //   hotels: [
-      //     {
-      //       img: "../img/hotels/1.png",
-      //       name: "Отель Marriott Royal Aurora",
-      //       geo: "Москва, Россия",
-      //       price: "20 300 руб.",
-      //       bonus: 100,
-      //       fromDate: "11.10.2022",
-      //       toDate: "18.10.2022",
-      //     },
-      //     {
-      //       img: "../img/hotels/2.png",
-      //       name: "Отель Novotel",
-      //       geo: "Москва, Россия",
-      //       price: "10 500 руб.",
-      //       bonus: 200,
-      //       fromDate: "11.10.2022",
-      //       toDate: "18.10.2022",
-      //     },
-      //     {
-      //       img: "../img/hotels/3.png",
-      //       name: "Linda Resort Hotel",
-      //       geo: "Манавгат, Турция",
-      //       price: "5 400 руб.",
-      //       bonus: -250,
-      //       fromDate: "11.10.2022",
-      //       toDate: "18.10.2022",
-      //     },
-      //   ],
-      // };
+    $.ajax({
+      type: "GET",
+      url: this.path + "bonus_program.php",
+      headers: {
+        "X-Auth": localStorage.token ?? "",
+      },
+      success: (data) => {
+        data = JSON.parse(data);
+        console.log("bonus", data);
 
-      let html = "";
-      let htmlMobile = "";
-      data.history.forEach((hotel) => {
-        if (!hotel.joined_hotel_search[0].image)
-          hotel.joined_hotel_search[0].image = "../img/empty.png";
+        let html = "";
+        let htmlMobile = "";
+        data.history.forEach((hotel) => {
+          if (!hotel.joined_hotel_search[0].image)
+            hotel.joined_hotel_search[0].image = "../img/empty.png";
 
-        let geo = hotel.joined_hotel_search[0].city + ", ";
-        geo += hotel.joined_hotel_search[0].country;
+          let geo = hotel.joined_hotel_search[0].city + ", ";
+          geo += hotel.joined_hotel_search[0].country;
 
-        let price = "&mdash;";
-        if (hotel.cost_full) {
-          price = hotel.cost_full.toLocaleString() + " руб.";
-        }
+          let price = "&mdash;";
+          if (hotel.cost_full) {
+            price = hotel.cost_full.toLocaleString() + " руб.";
+          }
 
-        html += `
+          html += `
           <tr>
             <td>
               <div class="table__image-block">
                 <img src="${hotel.joined_hotel_search[0].image}" alt="${
-          hotel.joined_hotel_search[0].name
-        }">
+            hotel.joined_hotel_search[0].name
+          }">
                 <span>${hotel.joined_hotel_search[0].name}</span>
               </div>
             </td>
@@ -458,7 +467,7 @@ export default class GetData {
           </tr>
         `;
 
-        htmlMobile += `
+          htmlMobile += `
           <div class="hotel-card">
             <div class="hotel-card__head">
               <div class="hotel-card__img">
@@ -492,42 +501,48 @@ export default class GetData {
               <div class="hotel-card__info-row">
                 <span class="hotel-card__info-title">Даты</span>
                 <span class="hotel-card__info-value">${hotel.fromDate} - ${
-          hotel.toDate
-        }</span>
+            hotel.toDate
+          }</span>
               </div>
             </div>
           </div>
         `;
-      });
+        });
 
-      $("#bonus .table tbody").html(html);
-      $("#bonus .hotel-card_mobile").html(htmlMobile);
-      $(".balance-bonus__value").text(data.balance);
+        $("#bonus .table tbody").html(html);
+        $("#bonus .hotel-card_mobile").html(htmlMobile);
+        $(".balance-bonus__value").text(data.balance);
+      },
     });
   }
   filters() {
-    $.get(this.path_php + "data_filter.php", (data) => {
-      data.forEach((filter) => {
-        let nameArr = filter.name.split("_");
-        let name = "";
-        if (nameArr.length > 1) {
-          name = nameArr[1];
-        } else {
-          name = nameArr[0];
-        }
+    $.ajax({
+      type: "GET",
+      // url: this.path + "data_filter.php",
+      url: this.path_php + "data_category.php",
+      success: (data) => {
+        console.log(data);
+        data.forEach((filter) => {
+          let nameArr = filter.name.split("_");
+          let name = "";
+          if (nameArr.length > 1) {
+            name = nameArr[1];
+          } else {
+            name = nameArr[0];
+          }
 
-        let htmlData = "";
-        let type = filter.type == "radio" ? "radio" : "checkbox";
-        filter.data.forEach((item) => {
-          htmlData += `
+          let htmlData = "";
+          let type = filter.type == "radio" ? "radio" : "checkbox";
+          filter.data.forEach((item) => {
+            htmlData += `
             <label class="filter__row">
               <input type="${type}" name="${name}" value="${item}">
               <span>${item}</span>
             </label>
           `;
-        });
+          });
 
-        let html = `
+          let html = `
           <div class="filter__title">${name}</div>
           <div class="filter__body filter__body_overflow" id="filter-content-${filter.id}">
             ${htmlData}
@@ -535,37 +550,45 @@ export default class GetData {
           <div class="filter__show-all link-underline" id="filter-btn-${filter.id}" data-target="filter-content-${filter.id}">Показать все</div>
         `;
 
-        if (nameArr.length > 1) {
-          if ($(`[data-name="${nameArr[0]}"]`).length == 0) {
-            $(".filters").append(`
+          if (nameArr.length > 1) {
+            if ($(`[data-name="${nameArr[0]}"]`).length == 0) {
+              $(".filters").append(`
               <div class="filter filter_box" data-name="${nameArr[0]}">
                 <div class="filter__title">${nameArr[0]}</div>
                 <div class="filter__body"></div>
               </div>
             `);
-          }
-          $(`[data-name="${nameArr[0]}"] > .filter__body`).append(`
+            }
+            $(`[data-name="${nameArr[0]}"] > .filter__body`).append(`
             <hr class="filter__hr">
             ${html}
           `);
-        } else {
-          $(".filters").append(`
+          } else {
+            $(".filters").append(`
             <div class="filter filter_box">
               ${html}
             </div>
           `);
-        }
+          }
 
-        new ShowAll(`filter-btn-${filter.id}`);
-      });
+          new ShowAll(`filter-btn-${filter.id}`);
+        });
+      },
     });
   }
   getAllFavourites() {
     return new Promise((resolve) => {
-      $.get(this.path + "get_all_favourites.php", (data) => {
-        data = JSON.parse(data);
-        console.log(data);
-        resolve(data);
+      $.ajax({
+        type: "GET",
+        url: this.path + "get_all_favourites.php",
+        headers: {
+          "X-Auth": localStorage.token ?? "",
+        },
+        success: (data) => {
+          data = JSON.parse(data);
+          console.log(data);
+          resolve(data);
+        },
       });
     });
   }
@@ -592,11 +615,12 @@ export default class GetData {
           if (hotel.image) {
             image = `<img src="${hotel.image}" style="width:100px;">`;
           }
+          console.log(hotel);
           coords.push({
             coords: hotel.position?.coordinate,
             name: hotel.name,
             image,
-            id: hotel.id,
+            id: String(hotel.id),
           });
         }
 
@@ -661,7 +685,9 @@ export default class GetData {
         }</span>
                 <span class="hotel-card__price-ruble">&#8381;</span>
               </span>
-              <a href="../hotel?id=${hotel.id}" class="btn">Подробнее</a>
+              <a href="../hotel?id=${
+                hotel.id
+              }&input_date=${input_date}&output_date=${output_date}" class="btn">Подробнее</a>
             </div>
           </div>
         `;
@@ -696,310 +722,338 @@ export default class GetData {
       '<span style="color: #fff;background:#21527d;">Ничего не найдено</span>'
     );
   }
-  hotel(id = "") {
-    $.get(this.path_php + "data_hotel.php?id_hotel=" + id, (data) => {
-      data = JSON.parse(data);
-      console.log(data);
-      insertHotel(data);
-
-      data = {
-        services: {
-          free: [
-            {
-              name: "Общее",
-              list: [
-                "Банкомат",
-                "Круглосуточная стойка регистрации",
-                "Лифт",
-                "Магазины",
-                "Обмен валюты",
-                "Отель для некурящих",
-                "Охрана",
-                "Поздняя регистрация выезда",
-                "Пресса",
-                "Ранняя регистрация заезда",
-                "Сувенирный магазин",
-                "Терраса",
-                "Ускоренная регистрация заезда и выезда",
-              ],
-            },
-            {
-              name: "В номерах",
-              list: [
-                "Кабельное телевидение",
-                "Люкс для новобрачных",
-                "Мини-бар",
-                "Номера для некурящих",
-                "Номера со звукоизоляцией",
-                "Обслуживание номеров",
-                "Сейф (в номере)",
-                "Семейные номера",
-                "Телевизор",
-                "Халат",
-              ],
-            },
-            {
-              name: "Дети",
-              list: ["Размещение подходит для семей/детей"],
-            },
-          ],
-          paid: [
-            {
-              name: "Услуги и удобства",
-              list: [
-                {
-                  name: "Гладильные услуги",
-                  price: "500 руб.",
-                },
-                {
-                  name: "Прачечная",
-                  price: "500 руб.",
-                },
-                {
-                  name: "Химчистка",
-                  price: "500 руб.",
-                },
-                {
-                  name: "Чистка обуви",
-                  price: "500 руб.",
-                },
-              ],
-            },
-            {
-              name: "Красота и здоровье",
-              list: [
-                {
-                  name: "Массаж",
-                  price: "1 200 руб.",
-                },
-                {
-                  name: "Салон красоты",
-                  price: "1 600 руб.",
-                },
-                {
-                  name: "Спа-центр",
-                  price: "2 000 руб.",
-                },
-              ],
-            },
-          ],
-        },
-        rules: [
-          "Какое-то правило, которое нельзя делать в отеле.",
-          "Какое-то правило, которое нельзя делать в отеле.",
-          "Какое-то правило, которое нельзя делать в отеле.",
-          "Какое-то правило, которое нельзя делать в отеле.",
-          "Какое-то правило, которое нельзя делать в отеле.",
-        ],
-        nearby: [
-          {
-            name: "Достопримечательности",
-            list: [
-              {
-                name: "Собор Василия Блаженова",
-                distance: "2.3 км",
-              },
-              {
-                name: "Московский Кремль",
-                distance: "2.3 км",
-              },
-              {
-                name: "Государственная Третьяковская галерея",
-                distance: "2.3 км",
-              },
-              {
-                name: "Парк Горького",
-                distance: "2.3 км",
-              },
-              {
-                name: "Москва-Сити",
-                distance: "2.3 км",
-              },
-              {
-                name: "ВДНХ",
-                distance: "2.3 км",
-              },
-            ],
-          },
-          {
-            name: "Аэропорт",
-            list: [
-              {
-                name: "Шереметьево",
-                distance: "2.3 км",
-              },
-              {
-                name: "Внуково",
-                distance: "2.3 км",
-              },
-              {
-                name: "Жуковский",
-                distance: "2.3 км",
-              },
-              {
-                name: "Домодедово",
-                distance: "2.3 км",
-              },
-            ],
-          },
-          {
-            name: "Метро",
-            list: [
-              {
-                name: "Маяковская",
-                distance: "260 м",
-              },
-              {
-                name: "Пушкинская",
-                distance: "460 м",
-              },
-              {
-                name: "Тверская",
-                distance: "570 м",
-              },
-            ],
-          },
-        ],
-        reviews: {
-          total: {
-            estimation: 8.9,
-            clear: 8.5,
-            hygiene: 7.3,
-            location: 9.9,
-            food: 7.5,
-            price: 8.3,
-            number: 7.8,
-            service: 8.5,
-            wifi: 9.7,
-          },
-          list: [
-            {
-              dateReview: "12.01.2023",
-              dateTrip: "01.01.2023 - 10.01.2023",
-              img: "../img/hotels/1.png",
-              nameRoom: "Двухместный номер Executive",
-              estimation: 8.4,
-              clear: 8,
-              hygiene: 7,
-              location: 10,
-              food: 7,
-              price: 8,
-              number: 7,
-              service: 8,
-              wifi: 9,
-              avatar: "../img/reviews/1.png",
-              name: "Наталья",
-              textGood:
-                "Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.",
-              textBad: "Нет",
-            },
-            {
-              dateReview: "12.01.2023",
-              dateTrip: "01.01.2023 - 10.01.2023",
-              img: "../img/hotels/1.png",
-              nameRoom: "Двухместный номер Executive",
-              estimation: 6.4,
-              clear: 8,
-              hygiene: 7,
-              location: 10,
-              food: 5,
-              price: 8,
-              number: 7,
-              service: 1,
-              wifi: 9,
-              avatar: "../img/reviews/1.png",
-              name: "Наталья",
-              textGood: "Понравилось все. Не первый раз тут останавливаюсь.",
-              textBad: "Нет",
-            },
-            {
-              dateReview: "12.01.2023",
-              dateTrip: "01.01.2023 - 10.01.2023",
-              img: "../img/hotels/1.png",
-              nameRoom: "Двухместный номер Executive",
-              estimation: 4.3,
-              clear: 8,
-              hygiene: 7,
-              location: 10,
-              food: 7,
-              price: 4,
-              number: 5,
-              service: 7,
-              wifi: 9,
-              avatar: "../img/reviews/1.png",
-              name: "Наталья",
-              textGood: "Понравилось все. Не первый раз тут останавливаюсь.",
-              textBad: "Нет",
-            },
-          ],
-        },
-        rooms: [
-          {
-            name: "Двухместный номер Deluxe",
-            images: [
-              "../img/rooms/1.png",
-              "../img/rooms/2.png",
-              "../img/rooms/3.png",
-            ],
-            list: [
-              "Двуспальная кровать",
-              "Питание не включено",
-              "Кровать размера «king size»",
-              "Окно",
-              "Двуспальная кровать",
-              "Питание не включено",
-              "Кровать размера «king size»",
-              "Окно",
-            ],
-            price: "9 000",
-          },
-          {
-            name: "Двухместный номер Deluxe",
-            images: [
-              "../img/rooms/1.png",
-              "../img/rooms/2.png",
-              "../img/rooms/3.png",
-            ],
-            list: [
-              "Двуспальная кровать",
-              "Питание не включено",
-              "Кровать размера «king size»",
-              "Окно",
-            ],
-            price: "9 000",
-          },
-        ],
-      };
-
-      insertRooms(data.rooms);
-    });
-    $.get(this.path + "get_all_services.php?id_hotel=" + id, (allService) => {
-      allService = JSON.parse(allService);
-      $.get(this.path_php + "get_services.php?id_hotel=" + id, (data) => {
+  hotel({ hotelId, input_date, output_date }) {
+    $.get(
+      this.path_php +
+        `data_hotel.php?id_hotel=${hotelId}&input_date=${input_date}&output_date=${output_date}`,
+      (data) => {
         data = JSON.parse(data);
         console.log(data);
-        insertServices(data, allService);
-      });
-    });
-    $.get(this.path_php + "avg_reviews.php?id_hotel=" + id, (data) => {
-      data = JSON.parse(data);
-      console.log(data);
-      insertReviewsTotal(data);
-    });
-    $.get(this.path_php + "data_reviews.php?id_hotel=" + id, (data) => {
-      data = JSON.parse(data);
-      console.log(data);
-      insertReviewsList(data);
-    });
-    $.get(this.path_php + "get_attractions.php?id_hotel=" + id, (data) => {
-      data = JSON.parse(data);
-      console.log(data);
-      insertNearby(data);
-    });
-    $.get(this.path_php + "get_hotel_rules.php?id_hotel=" + id, (data) => {
-      data = JSON.parse(data);
-      console.log(data);
-      insertRules(data);
-    });
+        insertHotel(data);
+
+        data = {
+          services: {
+            free: [
+              {
+                name: "Общее",
+                list: [
+                  "Банкомат",
+                  "Круглосуточная стойка регистрации",
+                  "Лифт",
+                  "Магазины",
+                  "Обмен валюты",
+                  "Отель для некурящих",
+                  "Охрана",
+                  "Поздняя регистрация выезда",
+                  "Пресса",
+                  "Ранняя регистрация заезда",
+                  "Сувенирный магазин",
+                  "Терраса",
+                  "Ускоренная регистрация заезда и выезда",
+                ],
+              },
+              {
+                name: "В номерах",
+                list: [
+                  "Кабельное телевидение",
+                  "Люкс для новобрачных",
+                  "Мини-бар",
+                  "Номера для некурящих",
+                  "Номера со звукоизоляцией",
+                  "Обслуживание номеров",
+                  "Сейф (в номере)",
+                  "Семейные номера",
+                  "Телевизор",
+                  "Халат",
+                ],
+              },
+              {
+                name: "Дети",
+                list: ["Размещение подходит для семей/детей"],
+              },
+            ],
+            paid: [
+              {
+                name: "Услуги и удобства",
+                list: [
+                  {
+                    name: "Гладильные услуги",
+                    price: "500 руб.",
+                  },
+                  {
+                    name: "Прачечная",
+                    price: "500 руб.",
+                  },
+                  {
+                    name: "Химчистка",
+                    price: "500 руб.",
+                  },
+                  {
+                    name: "Чистка обуви",
+                    price: "500 руб.",
+                  },
+                ],
+              },
+              {
+                name: "Красота и здоровье",
+                list: [
+                  {
+                    name: "Массаж",
+                    price: "1 200 руб.",
+                  },
+                  {
+                    name: "Салон красоты",
+                    price: "1 600 руб.",
+                  },
+                  {
+                    name: "Спа-центр",
+                    price: "2 000 руб.",
+                  },
+                ],
+              },
+            ],
+          },
+          rules: [
+            "Какое-то правило, которое нельзя делать в отеле.",
+            "Какое-то правило, которое нельзя делать в отеле.",
+            "Какое-то правило, которое нельзя делать в отеле.",
+            "Какое-то правило, которое нельзя делать в отеле.",
+            "Какое-то правило, которое нельзя делать в отеле.",
+          ],
+          nearby: [
+            {
+              name: "Достопримечательности",
+              list: [
+                {
+                  name: "Собор Василия Блаженова",
+                  distance: "2.3 км",
+                },
+                {
+                  name: "Московский Кремль",
+                  distance: "2.3 км",
+                },
+                {
+                  name: "Государственная Третьяковская галерея",
+                  distance: "2.3 км",
+                },
+                {
+                  name: "Парк Горького",
+                  distance: "2.3 км",
+                },
+                {
+                  name: "Москва-Сити",
+                  distance: "2.3 км",
+                },
+                {
+                  name: "ВДНХ",
+                  distance: "2.3 км",
+                },
+              ],
+            },
+            {
+              name: "Аэропорт",
+              list: [
+                {
+                  name: "Шереметьево",
+                  distance: "2.3 км",
+                },
+                {
+                  name: "Внуково",
+                  distance: "2.3 км",
+                },
+                {
+                  name: "Жуковский",
+                  distance: "2.3 км",
+                },
+                {
+                  name: "Домодедово",
+                  distance: "2.3 км",
+                },
+              ],
+            },
+            {
+              name: "Метро",
+              list: [
+                {
+                  name: "Маяковская",
+                  distance: "260 м",
+                },
+                {
+                  name: "Пушкинская",
+                  distance: "460 м",
+                },
+                {
+                  name: "Тверская",
+                  distance: "570 м",
+                },
+              ],
+            },
+          ],
+          reviews: {
+            total: {
+              estimation: 8.9,
+              clear: 8.5,
+              hygiene: 7.3,
+              location: 9.9,
+              food: 7.5,
+              price: 8.3,
+              number: 7.8,
+              service: 8.5,
+              wifi: 9.7,
+            },
+            list: [
+              {
+                dateReview: "12.01.2023",
+                dateTrip: "01.01.2023 - 10.01.2023",
+                img: "../img/hotels/1.png",
+                nameRoom: "Двухместный номер Executive",
+                estimation: 8.4,
+                clear: 8,
+                hygiene: 7,
+                location: 10,
+                food: 7,
+                price: 8,
+                number: 7,
+                service: 8,
+                wifi: 9,
+                avatar: "../img/reviews/1.png",
+                name: "Наталья",
+                textGood:
+                  "Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.",
+                textBad: "Нет",
+              },
+              {
+                dateReview: "12.01.2023",
+                dateTrip: "01.01.2023 - 10.01.2023",
+                img: "../img/hotels/1.png",
+                nameRoom: "Двухместный номер Executive",
+                estimation: 6.4,
+                clear: 8,
+                hygiene: 7,
+                location: 10,
+                food: 5,
+                price: 8,
+                number: 7,
+                service: 1,
+                wifi: 9,
+                avatar: "../img/reviews/1.png",
+                name: "Наталья",
+                textGood: "Понравилось все. Не первый раз тут останавливаюсь.",
+                textBad: "Нет",
+              },
+              {
+                dateReview: "12.01.2023",
+                dateTrip: "01.01.2023 - 10.01.2023",
+                img: "../img/hotels/1.png",
+                nameRoom: "Двухместный номер Executive",
+                estimation: 4.3,
+                clear: 8,
+                hygiene: 7,
+                location: 10,
+                food: 7,
+                price: 4,
+                number: 5,
+                service: 7,
+                wifi: 9,
+                avatar: "../img/reviews/1.png",
+                name: "Наталья",
+                textGood: "Понравилось все. Не первый раз тут останавливаюсь.",
+                textBad: "Нет",
+              },
+            ],
+          },
+          rooms: [
+            {
+              name: "Двухместный номер Deluxe",
+              images: [
+                "../img/rooms/1.png",
+                "../img/rooms/2.png",
+                "../img/rooms/3.png",
+              ],
+              list: [
+                "Двуспальная кровать",
+                "Питание не включено",
+                "Кровать размера «king size»",
+                "Окно",
+                "Двуспальная кровать",
+                "Питание не включено",
+                "Кровать размера «king size»",
+                "Окно",
+              ],
+              price: "9 000",
+            },
+            {
+              name: "Двухместный номер Deluxe",
+              images: [
+                "../img/rooms/1.png",
+                "../img/rooms/2.png",
+                "../img/rooms/3.png",
+              ],
+              list: [
+                "Двуспальная кровать",
+                "Питание не включено",
+                "Кровать размера «king size»",
+                "Окно",
+              ],
+              price: "9 000",
+            },
+          ],
+        };
+
+        insertRooms(data.rooms);
+      }
+    );
+    $.get(
+      this.path +
+        `get_all_services.php?id_hotel=${hotelId}&input_date=${input_date}&output_date=${output_date}`,
+      (allService) => {
+        allService = JSON.parse(allService);
+        $.get(
+          this.path_php +
+            `get_services.php?id_hotel=${hotelId}&input_date=${input_date}&output_date=${output_date}`,
+          (data) => {
+            data = JSON.parse(data);
+            console.log(data);
+            insertServices(data, allService);
+          }
+        );
+      }
+    );
+    $.get(
+      this.path_php +
+        `avg_reviews.php?id_hotel=${hotelId}&input_date=${input_date}&output_date=${output_date}`,
+      (data) => {
+        data = JSON.parse(data);
+        console.log(data);
+        insertReviewsTotal(data);
+      }
+    );
+    $.get(
+      this.path_php +
+        `data_reviews.php?id_hotel=${hotelId}&input_date=${input_date}&output_date=${output_date}`,
+      (data) => {
+        data = JSON.parse(data);
+        console.log(data);
+        insertReviewsList(data);
+      }
+    );
+    $.get(
+      this.path_php +
+        `get_attractions.php?id_hotel=${hotelId}&input_date=${input_date}&output_date=${output_date}`,
+      (data) => {
+        data = JSON.parse(data);
+        console.log(data);
+        insertNearby(data);
+      }
+    );
+    $.get(
+      this.path_php +
+        `get_hotel_rules.php?id_hotel=${hotelId}&input_date=${input_date}&output_date=${output_date}`,
+      (data) => {
+        data = JSON.parse(data);
+        console.log(data);
+        insertRules(data);
+      }
+    );
   }
 }

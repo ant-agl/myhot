@@ -1,9 +1,4 @@
 @media (min-width: 2048px) {
-  .heading_form_h2 {
-    font-weight: 400;
-    font-size: 44px;
-  }
-
   .block_register_1 {
     width: 40vw;
     min-height: 65vh;
@@ -73,11 +68,6 @@
     font-weight: 900;
     padding: 2% 3%;
     text-align: center;
-  }
-
-  .part_botton {
-    font-size: 40px;
-    max-width: 30%;
   }
   .tips {
     font-size: 35px;

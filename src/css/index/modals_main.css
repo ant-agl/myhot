@@ -266,6 +266,7 @@ input[type="number"]::-webkit-inner-spin-button {
   min-width: 66px;
   max-width: 20%;
   min-width: 10%;
+  text-align: center;
 }
 #modal-group-1 .part_botton {
   margin: 0 auto 0 50%;

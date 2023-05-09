@@ -47,13 +47,21 @@ $("body").on("click", ".hotel-card__img-heart", function () {
   let get = data2get({
     hotel_id: id,
   });
+  let file = "";
   if ($(this).hasClass("active")) {
     console.log("add " + id);
-    $.get("https://wehotel.ru/handler/add_favourites.php" + get);
+    file = "add_favourites.php";
   } else {
     console.log("remove " + id);
-    $.get("https://wehotel.ru/handler/delete_favourites.php" + get);
+    file = "delete_favourites.php";
   }
+  $.ajax({
+    type: "GET",
+    url: "https://wehotel.ru/handler/" + file + get,
+    headers: {
+      "X-Auth": localStorage.token ?? "",
+    },
+  });
 });
 
 let timerInterval = false;

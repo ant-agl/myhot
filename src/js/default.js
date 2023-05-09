@@ -22,3 +22,10 @@ import "jquery-mask-plugin";
 $(".mask-phone").mask("+7 (000) 000-00-00", {
   placeholder: "+7 (___) ___-__-__",
 });
+
+$("body").on("click", ".toggle-show-password", function () {
+  $(this).find("img").toggleClass("active");
+  let $input = $(this).parent().find("input");
+  if ($input.attr("type") == "password") $input.attr("type", "text");
+  else $input.attr("type", "password");
+});

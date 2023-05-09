@@ -84,3 +84,45 @@ export function login(data) {
     });
   });
 }
+export function forgot_hash(data) {
+  console.log(data);
+  return new Promise((resolve, reject) => {
+    $.ajax({
+      type: "POST",
+      url: "https://wehotel.ru/handler/recovery_hash.php",
+      data,
+      success: (data) => {
+        try {
+          data = JSON.parse(data);
+          resolve(data);
+        } catch (e) {
+          reject(e.message);
+        }
+      },
+      error: (xhr) => {
+        reject(xhr);
+      },
+    });
+  });
+}
+export function recovery_password(data) {
+  console.log(data);
+  return new Promise((resolve, reject) => {
+    $.ajax({
+      type: "POST",
+      url: "https://wehotel.ru/handler/recovery_password.php",
+      data,
+      success: (data) => {
+        try {
+          data = JSON.parse(data);
+          resolve(data);
+        } catch (e) {
+          reject(e.message);
+        }
+      },
+      error: (xhr) => {
+        reject(xhr);
+      },
+    });
+  });
+}

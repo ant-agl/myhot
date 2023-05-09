@@ -1,6 +1,13 @@
 export default async function isAuth() {
   return new Promise(async (resolve) => {
-    let token = localStorage.token;
+    let token = document.cookie
+      .split(";")
+      .map((item) => {
+        let t = item.split("=").map((t) => t.trim());
+        return { key: t[0], value: t[1] };
+      })
+      .find((item) => item.key == "token")?.value;
+    localStorage.token = token;
     if (!token)
       resolve({
         ok: false,

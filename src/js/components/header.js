@@ -10,9 +10,11 @@ import Modal from "./Modal";
 new Modal("#modal-logout");
 
 import BtnRepeat from "./BtnRepeat";
-new BtnRepeat("#modal-login .btn-repeat", "#modal-login .btn-login-hash");
+new BtnRepeat("#modal-login .btn-login-hash");
+new BtnRepeat("#modal-signin .btn-reg-hash");
 
 $(".btn-logout").on("click", function (e) {
+  document.cookie = `token=; max-age=-1`;
   localStorage.clear("token");
   window.location.reload();
 });
@@ -33,23 +35,17 @@ import isAuth from "./isAuth";
 })();
 
 import ConfirmPassword from "./ConfirmPassword";
-let confirmForgot = new ConfirmPassword(
-  "#modal-forgot .input-code-confirm",
-  "#modal-forgot .btn-confirm-password",
-  {
-    url: "",
-  }
-);
 
 let modalLogin = new Modal("#modal-login", {
+  closeToBackground: false,
   beforeOpen: function () {
     $(".uk-navbar-dropdown.uk-open").removeClass("uk-open");
     $('.uk-navbar-toggle[aria-expanded="true"]').attr("aria-expanded", "false");
     return true;
   },
 });
-let modalSignin = new Modal("#modal-signin");
-new Modal("#modal-forgot");
+let modalSignin = new Modal("#modal-signin", { closeToBackground: false });
+new Modal("#modal-forgot", { closeToBackground: false });
 
 import Validation from "./Validation";
 let signIn = new Validation('#modal-signin [data-page="3"]', {
@@ -57,9 +53,6 @@ let signIn = new Validation('#modal-signin [data-page="3"]', {
 });
 let forgot = new Validation('#modal-forgot [data-page="2"]', {
   textRepeat: "Пароли не совпадают",
-});
-$(".btn-forgot").on("click", function () {
-  console.log(forgot.validate());
 });
 
 let confirmRegister = new ConfirmPassword(
@@ -71,7 +64,7 @@ let confirmRegister = new ConfirmPassword(
 );
 
 let validateRegHash = new Validation('#modal-signin [data-page="1"]');
-import { login, login_hash, reg_gen, reg_hash } from "./login";
+import { login, login_hash, reg_gen, reg_hash, forgot_hash } from "./login";
 let hash_verify, hash_verify2, register_login;
 $("#modal-signin .btn-reg-hash").on("click", function () {
   if (!validateRegHash.validate()) return;
@@ -101,11 +94,9 @@ $("#modal-signin .btn-reg-hash").on("click", function () {
         console.log(data);
         hash_verify2 = data.hash_verify2;
         register_login = data.login;
-        debugger;
       };
       confirmRegister.afterSendError = (xhr) => {
         modalSignin.toPage(2);
-        debugger;
       };
     })
     .catch((xhr) => {
@@ -134,6 +125,9 @@ $("#modal-signin .btn-signin").on("click", function () {
   reg_gen(data)
     .then((data) => {
       console.log(data);
+      document.cookie = `token=${data.token}; path=/; max-age=${
+        60 * 60 * 24 * 3
+      };`;
       window.location.href = "lk";
     })
     .catch((xhr) => {
@@ -161,7 +155,7 @@ $("#modal-login .btn-login-hash").on("click", function () {
   $("#modal-login input").each((i, el) => {
     let name = $(el).attr("name");
     let val = $(el).val().trim();
-    if (name == "login" && !val.includes("@")) {
+    if (name == "login") {
       val = val.replace(/\D/g, "");
       val = 7 + val.slice(1);
     }
@@ -181,7 +175,9 @@ $("#modal-login .btn-login-hash").on("click", function () {
             confirmLogin.data = loginData;
             confirmLogin.afterSendSuccess = (data) => {
               console.log(data);
-              localStorage.token = data.token;
+              document.cookie = `token=${data.token}; path=/; max-age=${
+                60 * 60 * 24 * 3
+              };`;
               window.location.href = "lk";
             };
             confirmLogin.afterSendError = (xhr) => {
@@ -204,3 +200,77 @@ $("#modal-login .btn-login-hash").on("click", function () {
       modalLogin.$modal.find("input").removeClass("success").addClass("error");
     });
 });
+
+let validateHashForgot = new Validation('#modal-forgot [data-page="0"]');
+let confirmForgot = new ConfirmPassword(
+  "#modal-forgot .input-code-confirm",
+  "#modal-forgot .btn-confirm-password",
+  {
+    url: "https://wehotel.ru/handler/recovery_code.php",
+  }
+);
+let forgotObj = {};
+$("#modal-forgot .btn-hash-forgot").on("click", function () {
+  if (!validateHashForgot.validate()) return;
+  let login = $('#modal-forgot [name="login"]').val().trim();
+  login = login.replace(/\D/g, "");
+  login = 7 + login.slice(1);
+
+  forgot_hash({ login })
+    .then((getData) => {
+      console.log(getData);
+      forgotObj.hash = getData.hash;
+      forgotObj.login = login;
+
+      let sendData = {
+        login,
+        hash: forgotObj.hash,
+      };
+
+      confirmForgot.data = sendData;
+      confirmForgot.afterSendSuccess = (data) => {
+        console.log(data);
+        forgotObj.hash_verify = data.hash_verify;
+        forgotObj.code = data.code;
+      };
+      confirmForgot.afterSendError = (xhr) => {
+        modalSignin.toPage(1);
+      };
+    })
+    .catch((xhr) => {
+      console.error(xhr);
+    });
+});
+$("#modal-forgot .btn-forgot").on("click", function () {
+  let password = $('#modal-forgot [name="password"]').val().trim();
+  if (
+    !forgot.validate() ||
+    !forgotObj.hash_verify ||
+    !forgotObj.login ||
+    !forgotObj.code ||
+    !password
+  ) {
+    return;
+  }
+  let data = {
+    hash_verify: forgotObj.hash_verify,
+    login: forgotObj.login,
+    code: forgotObj.code,
+    password,
+  };
+
+  recovery_password(data)
+    .then((data) => {
+      console.log(data);
+      $("#modal-forgot").removeClass("modal_open");
+      $("#modal-login").addClass("modal_open");
+    })
+    .catch((xhr) => {
+      console.log(xhr);
+    });
+});
+
+import scrollOverflow from "./scrollOverflow";
+scrollOverflow($("#modal-login .modal__content"));
+scrollOverflow($("#modal-signin .modal__content"));
+scrollOverflow($("#modal-forgot .modal__content"));

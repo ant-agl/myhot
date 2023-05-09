@@ -1,16 +1,23 @@
   <!-- Login -->
   <div class="modal" id="modal-login">
     <div class="modal__content modal__content_small">
+      <div class="modal__cross" data-modal-target-close="modal-login">
+        <img src="/img/icons/cross.png" alt="">
+      </div>
       <div class="modal__pages">
         <div class="modal__page active" data-page="0">
           <h1 class="heading_form_h1 uk-modal-title">Вход в аккаунт</h1>
           <div class="input-row">
-            <input data-validate="required phoneOrMail" type="text" name="login" class="info_area"
-              placeholder="Телефон или почта" required>
+            <input data-validate="required phone" type="text" name="login" class="info_area mask-phone"
+              placeholder="Телефон" required>
           </div>
           <div class="input-row">
             <input data-validate="required" type="password" name="password" class="info_area" placeholder="Пароль"
               required>
+            <div class="toggle-show-password">
+              <img class="toggle-show-password__img active" src="/img/icons/hide.png" alt="hide">
+              <img class="toggle-show-password__img" src="/img/icons/show.png" alt="show">
+            </div>
           </div>
           <button type="button" class="modal__link" data-modal-target="modal-forgot"
             data-modal-target-close="modal-login">Забыли пароль?</button>
@@ -46,6 +53,9 @@
   <!-- Sign in -->
   <div class="modal" id="modal-signin">
     <div class="modal__content modal__content_small">
+      <div class="modal__cross" data-modal-target-close="modal-signin">
+        <img src="/img/icons/cross.png" alt="">
+      </div>
       <div class="modal__pages">
         <div class="modal__page active" data-page="0">
           <h1 class="heading_form_h1 uk-modal-title">Информация о себе</h1>
@@ -88,7 +98,7 @@
           </div>
         </div>
         <div class="modal__page" data-page="2">
-          <div class="modal__title">Подтверждение изменений</div>
+          <div class="modal__title">Подтверждение почты</div>
           <div class="modal__desc">Мы отправили код <span>на вашу почту</span></div>
 
           <div class="inputs-row">
@@ -114,12 +124,20 @@
           <div class="input-row">
             <input data-validate="required min(8) password" type="password" name="password" class="info_area"
               placeholder="Пароль" required>
-            <div class="input-row__desc">*не менее 8 знаков</div>
-            <div class="input-row__desc">*должен включать цифры, оба регистра, спец. знак</div>
+            <div class="toggle-show-password">
+              <img class="toggle-show-password__img active" src="/img/icons/hide.png" alt="hide">
+              <img class="toggle-show-password__img" src="/img/icons/show.png" alt="show">
+            </div>
           </div>
+          <div class="input-row__desc">*не менее 8 знаков</div>
+          <div class="input-row__desc">*должен включать цифры, оба регистра, спец. знак</div>
           <div class="input-row">
             <input data-validate="required min(8) repeat(password)" type="password" name="password_repeat"
               class="info_area" placeholder="Повторите пароль" required>
+            <div class="toggle-show-password">
+              <img class="toggle-show-password__img active" src="/img/icons/hide.png" alt="hide">
+              <img class="toggle-show-password__img" src="/img/icons/show.png" alt="show">
+            </div>
           </div>
           <div class="modal__footer modal__footer_space">
             <button type="button" class="link-underline" to-page="1">Назад</button>
@@ -134,18 +152,21 @@
   <!-- Forgot password -->
   <div class="modal" id="modal-forgot">
     <div class="modal__content modal__content_small">
+      <div class="modal__cross" data-modal-target-close="modal-forgot">
+        <img src="/img/icons/cross.png" alt="">
+      </div>
       <div class="modal__pages">
         <div class="modal__page active" data-page="0">
           <h1 class="heading_form_h1 uk-modal-title">Восстановление пароля</h1>
           <div class="input-row">
-            <input data-validate="required phoneOrMail" type="text" name="login" class="info_area"
-              placeholder="Телефон или почта" required>
+            <input data-validate="required phone" type="text" name="login" class="info_area mask-phone"
+              placeholder="Телефон" required>
           </div>
           <div class="botton_section_form">
             <button class="link-underline" type="button" data-modal-target="modal-login"
               data-modal-target-close="modal-forgot">Назад</button>
             <p class="part_botton">1 из 3 этапов</p>
-            <button class="link-underline" to-page="1" page-validate="true" type="button btn-forgot">Далее</button>
+            <button class="link-underline" to-page="1" page-validate="true" type="button btn-hash-forgot">Далее</button>
           </div>
         </div>
         <div class="modal__page" data-page="1">
@@ -161,7 +182,7 @@
 
           <div class="modal__message"></div>
 
-          <button type="button" class="modal__link btn-repeat btn-forgot" disabled>Отправить повторно</button>
+          <button type="button" class="modal__link btn-repeat btn-hash-forgot" disabled>Отправить повторно</button>
           <div class="modal__footer modal__footer_space">
             <button type="button" class="link-underline" to-page="0">Назад</button>
             <p class="part_botton">2 из 3 этапов</p>
@@ -175,10 +196,20 @@
           <div class="input-row">
             <input data-validate="required min(8) password" type="password" name="password" class="info_area"
               placeholder="Пароль" required>
+            <div class="toggle-show-password">
+              <img class="toggle-show-password__img active" src="/img/icons/hide.png" alt="hide">
+              <img class="toggle-show-password__img" src="/img/icons/show.png" alt="show">
+            </div>
           </div>
+          <div class="input-row__desc">*не менее 8 знаков</div>
+          <div class="input-row__desc">*должен включать цифры, оба регистра, спец. знак</div>
           <div class="input-row">
             <input data-validate="required min(8) repeat(password)" type="password" name="password_repeat"
               class="info_area" placeholder="Повторите пароль" required>
+            <div class="toggle-show-password">
+              <img class="toggle-show-password__img active" src="/img/icons/hide.png" alt="hide">
+              <img class="toggle-show-password__img" src="/img/icons/show.png" alt="show">
+            </div>
           </div>
           <div class="modal__footer modal__footer_space">
             <button type="button" class="link-underline" to-page="0">Назад</button>

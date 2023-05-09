@@ -39,8 +39,9 @@
   cursor: pointer;
 }
 .logo {
-  display: inline-block;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 .logo__text {
   cursor: default;
@@ -154,6 +155,9 @@
   }
 }
 @media (max-width: 699px) {
+  .logo {
+    gap: 0;
+  }
   .desktop_nav {
     display: none;
   }

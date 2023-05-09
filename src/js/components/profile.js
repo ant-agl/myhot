@@ -120,6 +120,9 @@ $(".change-data").on("click", function () {
   $.ajax({
     type: "POST",
     url: "https://wehotel.ru/handler/change_info.php",
+    headers: {
+      "X-Auth": localStorage.token ?? "",
+    },
     data: formData,
     contentType: false,
     processData: false,

@@ -34,6 +34,20 @@
 .modal__content_small {
   max-width: 600px;
 }
+.modal__cross {
+  width: 14px;
+  height: 14px;
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  transition: 0.2s;
+  opacity: 0.5;
+  cursor: pointer;
+  z-index: 2;
+}
+.modal__cross:hover {
+  opacity: 1;
+}
 .modal__title {
   font-size: 25px;
   color: #002a31;

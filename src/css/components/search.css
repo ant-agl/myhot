@@ -70,6 +70,11 @@
 .search__input_guests.open .count-guest__modal {
   transform: scale(1);
 }
+.search__input_guests.open {
+  transition: border 0.1s;
+  outline: 0;
+  box-shadow: 0 0 0 3px #469bdf;
+}
 .count-guest {
   position: relative;
   cursor: pointer;

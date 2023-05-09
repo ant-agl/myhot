@@ -1,4 +1,5 @@
 import "./default";
+import BackgroundImage from "./components/BackgroundImage";
 import CropText from "./components/CropText";
 new CropText({
   selector: ".hotel__review-text",
@@ -8,47 +9,24 @@ new CropText({
 import Menu from "./components/Menu";
 new Menu(".main__menu-list", ".tabs-content");
 
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import "slick-carousel";
-$(".hotel__slider-for").slick({
-  slidesToShow: 1,
-  slidesToScroll: 1,
-  arrows: false,
-  fade: true,
-  asNavFor: ".hotel__slider-nav",
-  autoplay: true,
-});
-$(".hotel__slider-nav").slick({
-  arrows: false,
-  slidesToShow: 3,
-  slidesToScroll: 1,
-  asNavFor: ".hotel__slider-for",
-  focusOnSelect: true,
-  centerMode: true,
-  centerPadding: 0,
-});
-
-import BackgroundImage from "./components/BackgroundImage";
-new BackgroundImage(".hotel__slider-for__item", {
-  paddingBottom: "75%",
-});
-new BackgroundImage(".hotel__slider-nav__item", {
-  paddingBottom: "45%",
-  size: "cover",
-});
-
 import { get2data } from "./components/data2get";
 import GetData from "./components/GetData";
 let hotelId = get2data().id;
+let input_date = get2data().input_date;
+let output_date = get2data().output_date;
+if (!hotelId && history.length > 2) history.back();
+else if (!hotelId) location.href = "/";
 let getData = new GetData();
-getData.hotel(hotelId);
+getData.hotel({ hotelId, input_date, output_date });
 
 import ChangeDateBlock from "./components/ChangeDateBlock";
 new ChangeDateBlock(".dates-booking");
 
 import Modal from "./components/Modal";
 new Modal("#modal-room");
+
+import scrollOverflow from "./components/scrollOverflow";
+scrollOverflow($("#modal-room .modal__content"));
 
 import ShowAll from "./components/ShowAll";
 new ShowAll("paid-service", {

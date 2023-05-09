@@ -53,9 +53,40 @@ label {
   color: #fff;
   margin-top: 20px;
 }
+input:focus {
+  transition: border 0.1s;
+  outline: 0;
+  box-shadow: 0 0 0 3px #469bdf;
+}
+button:focus,
 input[type="checkbox"]:focus {
   outline: none;
   box-shadow: none;
+}
+a:hover {
+  text-decoration: none;
+}
+.input-row {
+  position: relative;
+}
+.toggle-show-password {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0.5;
+  cursor: pointer;
+  transition: 0.2s;
+  width: 17px;
+}
+.toggle-show-password:hover {
+  opacity: 1;
+}
+.toggle-show-password__img {
+  display: none;
+}
+.toggle-show-password__img.active {
+  display: block;
 }
 
 * {

@@ -4,14 +4,79 @@ import ShowAll from "./ShowAll";
 import BackgroundImage from "./BackgroundImage";
 import getColor from "./getColor";
 import moment from "moment";
+import { roundNumber } from "./functions";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import "slick-carousel";
 
 export function insertHotel(hotel) {
   $(".hotel__name").text(hotel.name || "??");
   $(".hotel__price-value").text(hotel.price?.toLocaleString() || "??");
   $(".hotel__geo").text(hotel.city || "??");
+  $(".hotel__place_center").text(roundNumber(hotel.position.center / 1000));
+  $(".hotel__place_metro").text(
+    roundNumber(hotel.transport.metro.distance / 1000)
+  );
+  $(".hotel__place_train").text(
+    roundNumber(hotel.transport.train.distance / 1000)
+  );
+  $(".hotel__place_airport").text(
+    roundNumber(hotel.transport.airport.distance / 1000)
+  );
+  if (hotel.transport.metro.name == "Отсутсвует")
+    $(".hotel__place_metro-name").parent().text(hotel.transport.metro.name);
+  else $(".hotel__place_metro-name").text(hotel.transport.metro.name);
+  if (hotel.transport.train.name == "Отсутсвует")
+    $(".hotel__place_train-name").parent().text(hotel.transport.train.name);
+  else $(".hotel__place_train-name").text(hotel.transport.train.name);
+  if (hotel.transport.airport.name == "Отсутсвует")
+    $(".hotel__place_airport-name").parent().text(hotel.transport.airport.name);
+  else $(".hotel__place_airport-name").text(hotel.transport.airport.name);
+
+  $(".hotel__stars").html(
+    `<img src="../img/icons/stars/${hotel.rating.stars}.png" alt="${hotel.rating.stars} stars" />`
+  );
   $(".hotel__estimation")
-    .addClass("color_" + getColor(hotel.rating))
-    .text(hotel.rating);
+    .addClass("color_" + getColor(hotel.rating.reviews))
+    .text(hotel.rating.reviews);
+  $(".hotel__description").html(hotel.description);
+
+  let imagesFor =
+    hotel.images?.map(
+      (url) => `<div class="hotel__slider-for__item" data-url="${url}"></div>`
+    ) ?? [];
+  let imagesNav =
+    hotel.images?.map(
+      (url) => `<div class="hotel__slider-nav__item" data-url="${url}"></div>`
+    ) ?? [];
+  $(".hotel__slider-for").html(imagesFor.join());
+  $(".hotel__slider-nav").html(imagesNav.join());
+
+  $(".hotel__slider-for").slick({
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    arrows: false,
+    fade: true,
+    asNavFor: ".hotel__slider-nav",
+    autoplay: true,
+  });
+  $(".hotel__slider-nav").slick({
+    arrows: false,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    asNavFor: ".hotel__slider-for",
+    focusOnSelect: true,
+    centerMode: true,
+    centerPadding: 0,
+  });
+
+  new BackgroundImage(".hotel__slider-for__item", {
+    paddingBottom: "75%",
+  });
+  new BackgroundImage(".hotel__slider-nav__item", {
+    paddingBottom: "45%",
+    size: "cover",
+  });
 
   if (hotel.reviews.length == 0) $(".hotel__reviews-content").css("margin", 0);
   hotel.reviews.forEach((review, i) => {
@@ -247,8 +312,9 @@ export function insertRooms(rooms) {
             <ul class="card-room__list" id="rooms-list-${i}">
               ${htmlList}
             </ul>
-            <button data-modal-target="modal-room" class="link-underline card-room__show-all">Посмотреть
-              полностью</button>
+            <button data-modal-target="modal-room" class="link-underline card-room__show-all">
+              Посмотреть полностью
+            </button>
             <div class="card-room__price-block">
               <div class="card-room__price">
                 <span class="card-room__price-value">${room.price}</span>

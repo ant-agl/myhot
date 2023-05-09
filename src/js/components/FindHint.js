@@ -1,4 +1,5 @@
 import { data2get } from "./data2get";
+import scrollOverflow from "./scrollOverflow";
 
 export default class FindHint {
   classActive = "active";
@@ -16,7 +17,7 @@ export default class FindHint {
     }
 
     this.$hint = this.$input.find(this.selectorHint);
-    this.$input.on("input", this.changeSearch.bind(this));
+    this.$input.on("focus input", this.changeSearch.bind(this));
     this.$input.on("blur", () => this.$hint.removeClass(this.classActive));
     this.$hint.on(
       "mousedown",
@@ -46,7 +47,10 @@ export default class FindHint {
     });
 
     this.$hint.html(html);
-    if (html != "") this.$hint.addClass(this.classActive);
+    if (html != "") {
+      this.$hint.addClass(this.classActive);
+      scrollOverflow(this.$hint);
+    }
   }
   request() {
     let get = data2get({ search: this.search });

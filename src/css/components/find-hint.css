@@ -7,7 +7,7 @@
   transform: scaleY(0);
   transform-origin: top;
   transition: 0.3s;
-  /* max-height: 200px; */
+  max-height: 180px;
   overflow-y: auto;
   z-index: 1;
 }

@@ -30,3 +30,17 @@ getData.getLk({
 import "./components/profile";
 
 $(".input-hint_dfa").on("click", () => $('[name="2fa"]').focus());
+
+function reloadChatAnimation(close = true) {
+  if (close) {
+    $(".chat-preview__message").addClass(
+      "chat-preview__message-clear-animation"
+    );
+  }
+  $(".chat-preview__message").removeClass("chat-preview__message-animation");
+  setTimeout(() => {
+    $(".chat-preview__message").addClass("chat-preview__message-animation");
+  }, 200);
+}
+reloadChatAnimation(false);
+setInterval(reloadChatAnimation, 1000 * 8);

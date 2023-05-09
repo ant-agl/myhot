@@ -32,3 +32,24 @@ new AirDatepicker('#modal-signin [name="date"]', {
 });
 
 import "./components/header";
+
+bgVideo();
+$(window).resize(bgVideo);
+function bgVideo() {
+  if ($(window).outerWidth() < 700) {
+    $(".block_1_video").remove();
+  } else {
+    $(".block_1").prepend(`
+      <video class="block_1_video" pip="false" autoplay muted loop poster="./img/index/avif/bg.png">
+        <source src="./img/index/avif/sea.webm" type="video/webm">
+      </video>
+    `);
+  }
+}
+
+$("body").on("click", ".toggle-show-password", function () {
+  $(this).find("img").toggleClass("active");
+  let $input = $(this).parent().find("input");
+  if ($input.attr("type") == "password") $input.attr("type", "text");
+  else $input.attr("type", "password");
+});
