@@ -62,9 +62,18 @@ body {
   font-size: 18px;
   font-weight: 600;
   line-height: 22px;
-  margin-top: 16px;
   cursor: pointer;
   align-self: flex-start;
+}
+.filter__btns {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 16px;
+}
+.filter__reset {
+  font-size: 12px;
+  line-height: 14px;
 }
 .filter__row {
   display: flex;

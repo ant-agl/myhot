@@ -66,10 +66,40 @@ $("body").on("click", ".hotel-card__img-heart", function () {
 
 let timerInterval = false;
 $(".filters").on("change", function () {
-  let query = get2data(); // getQueryFilter()
+  let query = get2data();
+  let filters = getQueryFilter();
+  console.log(filters);
+  query = { ...query, ...filters };
 
   if (timerInterval) clearTimeout(timerInterval);
   timerInterval = setTimeout(() => {
     getData.hotelsList(query);
   }, 500);
+});
+
+function getQueryFilter() {
+  let filters = {};
+  $(".filters input").each((i, el) => {
+    let $el = $(el);
+    let type = $el.attr("type");
+    let name = $el.attr("name")?.trim();
+    let val = "";
+    if (!name) return;
+    if (type == "checkbox" || type == "radio") {
+      if (!$el.prop("checked")) return;
+
+      val = $el.val() ?? 1;
+    } else {
+      val = $el.val();
+    }
+    filters[name] = val;
+    let categoryGet = $el.closest("[data-get]").data("get");
+    if (categoryGet && type != "radio") filters[categoryGet] = 1;
+  });
+  return filters;
+}
+
+$("body").on("click", ".filter__reset", function () {
+  let id = $(this).data("id");
+  $(`#filter-content-${id} input`).prop("checked", false).trigger("change");
 });

@@ -12,9 +12,11 @@ export default class BtnRepeat {
       this[key] = options[key];
     }
 
-    this.triggerBtn.on("click", this.startTimer.bind(this));
+    // this.triggerBtn.on("click", this.startTimer.bind(this));
+    $("body").on("click", selectorTrigger, this.startTimer.bind(this));
   }
   startTimer() {
+    console.log("trigger click");
     if (this.timer.id) clearInterval(this.timer.id);
     this.btn.prop("disabled", true);
 

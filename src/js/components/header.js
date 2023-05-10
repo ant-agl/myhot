@@ -10,8 +10,9 @@ import Modal from "./Modal";
 new Modal("#modal-logout");
 
 import BtnRepeat from "./BtnRepeat";
-new BtnRepeat("#modal-login .btn-login-hash");
-new BtnRepeat("#modal-signin .btn-reg-hash");
+new BtnRepeat("#modal-login .btn-repeat", "#modal-login .btn-login-hash");
+new BtnRepeat("#modal-signin .btn-repeat", "#modal-signin .btn-reg-hash");
+new BtnRepeat("#modal-forgot .btn-repeat", "#modal-forgot .btn-hash-forgot");
 
 $(".btn-logout").on("click", function (e) {
   document.cookie = `token=; max-age=-1`;
@@ -66,7 +67,7 @@ let confirmRegister = new ConfirmPassword(
 let validateRegHash = new Validation('#modal-signin [data-page="1"]');
 import { login, login_hash, reg_gen, reg_hash, forgot_hash } from "./login";
 let hash_verify, hash_verify2, register_login;
-$("#modal-signin .btn-reg-hash").on("click", function () {
+$("body").on("click", "#modal-signin .btn-reg-hash", function () {
   if (!validateRegHash.validate()) return;
   let data = {};
   $("#modal-signin input").each((i, el) => {
@@ -104,7 +105,7 @@ $("#modal-signin .btn-reg-hash").on("click", function () {
     });
 });
 
-$("#modal-signin .btn-signin").on("click", function () {
+$("body").on("click", "#modal-signin .btn-signin", function () {
   let password = $('#modal-signin [name="password"]').val().trim();
   if (
     !signIn.validate() ||
@@ -148,7 +149,7 @@ let loginData = {
   hash_verify: undefined,
   login: undefined,
 };
-$("#modal-login .btn-login-hash").on("click", function () {
+$("body").on("click", "#modal-login .btn-login-hash", function () {
   if (!validateLoginHash.validate()) return;
 
   let data = {};
@@ -210,7 +211,7 @@ let confirmForgot = new ConfirmPassword(
   }
 );
 let forgotObj = {};
-$("#modal-forgot .btn-hash-forgot").on("click", function () {
+$("body").on("click", "#modal-forgot .btn-hash-forgot", function () {
   if (!validateHashForgot.validate()) return;
   let login = $('#modal-forgot [name="login"]').val().trim();
   login = login.replace(/\D/g, "");
@@ -241,7 +242,7 @@ $("#modal-forgot .btn-hash-forgot").on("click", function () {
       console.error(xhr);
     });
 });
-$("#modal-forgot .btn-forgot").on("click", function () {
+$("body").on("click", "#modal-forgot .btn-forgot", function () {
   let password = $('#modal-forgot [name="password"]').val().trim();
   if (
     !forgot.validate() ||

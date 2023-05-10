@@ -1,5 +1,5 @@
 import isAuth from "./isAuth";
-import { data2get } from "./data2get";
+import { get2data, data2get } from "./data2get";
 import BackgroundImage from "./BackgroundImage";
 import Filter from "./Filter";
 import ShowAll from "./ShowAll";
@@ -516,64 +516,92 @@ export default class GetData {
     });
   }
   filters() {
-    $.ajax({
-      type: "GET",
-      // url: this.path + "data_filter.php",
-      url: this.path_php + "data_category.php",
-      success: (data) => {
-        console.log(data);
-        data.forEach((filter) => {
-          let nameArr = filter.name.split("_");
-          let name = "";
-          if (nameArr.length > 1) {
-            name = nameArr[1];
-          } else {
-            name = nameArr[0];
-          }
+    let categories = [];
+    let filters = [];
+    let p1 = $.get(this.path_php + "data_category.php").then((data) => {
+      categories = JSON.parse(data);
+    });
+    let p2 = $.get(this.path_php + "data_filter.php", (data) => {
+      filters = JSON.parse(data);
+    });
+    Promise.all([p1, p2]).then(() => {
+      categories.forEach((category) => {
+        let thisFilters = filters.filter((f) => f.category === category.id);
+        if (!thisFilters.length) return;
 
-          let htmlData = "";
-          let type = filter.type == "radio" ? "radio" : "checkbox";
-          filter.data.forEach((item) => {
-            htmlData += `
+        let nameArr = category.name.split("_");
+        let name = "";
+        if (nameArr.length > 1) {
+          name = nameArr[1];
+        } else {
+          name = nameArr[0];
+        }
+
+        let htmlData = "";
+        let type = category.type == "radio" ? "radio" : "checkbox";
+        thisFilters.forEach((item, i) => {
+          let val = 1;
+          if (type == "radio" && i != 0) val = 0;
+          htmlData += `
             <label class="filter__row">
-              <input type="${type}" name="${name}" value="${item}">
-              <span>${item}</span>
+              <input type="${type}" name="${item.get}" value="${val}">
+              <span>${item.name}</span>
             </label>
           `;
-          });
+        });
 
-          let html = `
+        let html = `
           <div class="filter__title">${name}</div>
-          <div class="filter__body filter__body_overflow" id="filter-content-${filter.id}">
+          <div class="filter__body filter__body_overflow" id="filter-content-${category.id}" data-get="${category.get}">
             ${htmlData}
           </div>
-          <div class="filter__show-all link-underline" id="filter-btn-${filter.id}" data-target="filter-content-${filter.id}">Показать все</div>
+          <div class="filter__btns">
+            <div class="filter__show-all link-underline" id="filter-btn-${category.id}" data-target="filter-content-${category.id}">Показать все</div>
+            <div></div>
+            <button type="button" class="filter__reset link-underline" data-id="${category.id}">Сбросить</button>
+          </div>
         `;
 
-          if (nameArr.length > 1) {
-            if ($(`[data-name="${nameArr[0]}"]`).length == 0) {
-              $(".filters").append(`
-              <div class="filter filter_box" data-name="${nameArr[0]}">
-                <div class="filter__title">${nameArr[0]}</div>
-                <div class="filter__body"></div>
-              </div>
-            `);
-            }
-            $(`[data-name="${nameArr[0]}"] > .filter__body`).append(`
-            <hr class="filter__hr">
-            ${html}
-          `);
-          } else {
+        if (nameArr.length > 1) {
+          if ($(`[data-name="${nameArr[0]}"]`).length == 0) {
             $(".filters").append(`
-            <div class="filter filter_box">
-              ${html}
+            <div class="filter filter_box" data-name="${nameArr[0]}">
+              <div class="filter__title">${nameArr[0]}</div>
+              <div class="filter__body"></div>
             </div>
           `);
           }
+          $(`[data-name="${nameArr[0]}"] > .filter__body`).append(`
+          <hr class="filter__hr">
+          ${html}
+        `);
+        } else {
+          $(".filters").append(`
+          <div class="filter filter_box">
+            ${html}
+          </div>
+        `);
+        }
 
-          new ShowAll(`filter-btn-${filter.id}`);
-        });
-      },
+        new ShowAll(`filter-btn-${category.id}`);
+      });
+
+      let getParams = get2data();
+      for (let name in getParams) {
+        let val = getParams[name];
+        let $input = $(`.filters [name="${name}"]`);
+        if (!val || !$input.length) continue;
+        let type = $input.attr("type");
+        if (type == "checkbox") $input.prop("checked", val == 1);
+        else if (type == "radio") {
+          $input.each((i, t) => {
+            if ($(t).val() == val) $(t).prop("checked", true);
+          });
+        } else {
+          $input.val(val);
+          $input.trigger("input");
+        }
+      }
     });
   }
   getAllFavourites() {
@@ -604,8 +632,11 @@ export default class GetData {
       this._notFoundHotels();
       return;
     }
+    window.history.pushState({}, "", search);
+
     startLoad($(".hotels-list"));
     $.get(this.path_php + "search/search.php" + search, (data) => {
+      data = JSON.parse(data);
       console.log(data);
 
       let html = "";
@@ -685,9 +716,9 @@ export default class GetData {
         }</span>
                 <span class="hotel-card__price-ruble">&#8381;</span>
               </span>
-              <a href="../hotel?id=${
-                hotel.id
-              }&input_date=${input_date}&output_date=${output_date}" class="btn">Подробнее</a>
+              <a href="../hotel?id=${hotel.id}&input_date=${
+          getData.input_date
+        }&output_date=${getData.output_date}" class="btn">Подробнее</a>
             </div>
           </div>
         `;
