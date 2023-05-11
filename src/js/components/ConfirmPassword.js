@@ -10,8 +10,12 @@ export default class ConfirmPassword {
       this[key] = settings[key];
     }
 
-    this.$inputs.on("input keydown click", this.replaceFocus.bind(this));
-    this.$btn.on("click", this.sendCode.bind(this));
+    $("body").on(
+      "input keydown click",
+      selectorInputs,
+      this.replaceFocus.bind(this)
+    );
+    $("body").on("click", selectorBtn, this.sendCode.bind(this));
   }
   replaceFocus(e) {
     this.changeMessage("");
