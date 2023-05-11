@@ -20,7 +20,7 @@ new Range({
 });
 new Range({
   id: "dual-range-guest-rating",
-  inputMax: "guest-rating",
+  inputMax: "reviews",
   lowerBound: 0,
   upperBound: 10,
   minSpan: 0,
@@ -50,7 +50,7 @@ $("body").on("click", ".hotel-card__img-heart", function () {
   let file = "";
   if ($(this).hasClass("active")) {
     console.log("add " + id);
-    file = ">.php";
+    file = "add_favourites.php";
   } else {
     console.log("remove " + id);
     file = "delete_favourites.php";
