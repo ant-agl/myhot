@@ -50,7 +50,7 @@ $("body").on("click", ".hotel-card__img-heart", function () {
   let file = "";
   if ($(this).hasClass("active")) {
     console.log("add " + id);
-    file = "add_favourites.php";
+    file = ">.php";
   } else {
     console.log("remove " + id);
     file = "delete_favourites.php";
@@ -67,9 +67,17 @@ $("body").on("click", ".hotel-card__img-heart", function () {
 let timerInterval = false;
 $(".filters").on("change", function () {
   let query = get2data();
+  let searchQuery = {
+    input_date: query?.input_date || "",
+    output_date: query?.output_date || "",
+    search: query?.search || "",
+    person: query?.person || "",
+    adult: query?.adult || "",
+    childAge: query?.childAge || "",
+  };
   let filters = getQueryFilter();
   console.log(filters);
-  query = { ...query, ...filters };
+  query = { ...searchQuery, ...filters };
 
   if (timerInterval) clearTimeout(timerInterval);
   timerInterval = setTimeout(() => {
@@ -83,6 +91,14 @@ function getQueryFilter() {
     let $el = $(el);
     let type = $el.attr("type");
     let name = $el.attr("name")?.trim();
+    switch (name) {
+      case "price-min":
+      case "price-max":
+      case "location-min":
+      case "location-max":
+      case "from_location":
+        return;
+    }
     let val = "";
     if (!name) return;
     if (type == "checkbox" || type == "radio") {
