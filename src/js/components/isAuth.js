@@ -26,6 +26,7 @@ export default async function isAuth() {
         "X-Auth": token,
       },
       success: (data) => {
+        data = JSON.parse(data);
         data.ok = true;
         console.log(data);
         resolve(data);
