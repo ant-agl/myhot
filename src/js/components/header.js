@@ -129,7 +129,9 @@ $("body").on("click", "#modal-signin .btn-signin", function () {
       document.cookie = `token=${data.token}; path=/; max-age=${
         60 * 60 * 24 * 3
       };`;
-      window.location.href = "lk";
+      setTimeout(() => {
+        window.location.href = "lk";
+      }, 10);
     })
     .catch((xhr) => {
       console.log(xhr);
@@ -179,7 +181,9 @@ $("body").on("click", "#modal-login .btn-login-hash", function () {
               document.cookie = `token=${data.token}; path=/; max-age=${
                 60 * 60 * 24 * 3
               };`;
-              window.location.href = "lk";
+              setTimeout(() => {
+                window.location.href = "lk";
+              }, 10);
             };
             confirmLogin.afterSendError = (xhr) => {
               modalLogin.toPage(1);

@@ -106,7 +106,6 @@ $(".search__button").on("click", function () {
   let output_date = moment(dates.split(" - ")[1], "DD.MM.YYYY").valueOf();
   output_date = Math.floor(output_date / 1000);
   console.log(input_date, output_date);
-  debugger;
   let person = Number(adult) + Number(child);
 
   let data = { input_date, output_date, search, person, adult, childAge };
