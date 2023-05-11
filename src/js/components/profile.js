@@ -127,7 +127,11 @@ $(".change-data").on("click", function () {
     contentType: false,
     processData: false,
     success: (data) => {
+      data = JSON.parse(data);
       console.log(data);
+      let token = data.token;
+      document.cookie = `token=${token}; path=/; max-age=${60 * 60 * 24 * 3}`;
+      localStorage.token = token;
     },
     error: (xhr) => {
       console.log(xhr);

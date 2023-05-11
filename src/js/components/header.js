@@ -15,7 +15,7 @@ new BtnRepeat("#modal-signin .btn-repeat", "#modal-signin .btn-reg-hash");
 new BtnRepeat("#modal-forgot .btn-repeat", "#modal-forgot .btn-hash-forgot");
 
 $(".btn-logout").on("click", function (e) {
-  document.cookie = `token=; max-age=-1`;
+  document.cookie = `token=; path=/; max-age=-1`;
   localStorage.clear("token");
   window.location.reload();
 });
@@ -27,7 +27,7 @@ import isAuth from "./isAuth";
     $(".header-auth").show();
     $(".header-noauth").hide();
 
-    let fio = `${auth.surname} ${auth.name} ${auth.patronymic}`;
+    let fio = `${auth.surname} ${auth.name}`;
     $(".profile-menu__link").first().text(fio);
   } else {
     $(".header-auth").hide();
