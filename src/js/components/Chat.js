@@ -65,6 +65,7 @@ export default class Chat {
     this.chat.find(".chats__item").removeClass("active");
   }
   getAll() {
+    if (!localStorage.token) return;
     $.ajax({
       type: "GET",
       url: "https://wehotel.ru/php/chat/chat_all.php",
