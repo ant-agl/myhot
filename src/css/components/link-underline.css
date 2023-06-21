@@ -6,7 +6,7 @@
   font-size: 18px;
   line-height: 22px;
   color: var(--color);
-  background-color: #fff;
+  background-color: transparent;
   border: none;
   cursor: pointer;
   position: relative;
@@ -29,4 +29,7 @@
 }
 .link-underline:hover::after {
   width: 100%;
+}
+.link-underline_white {
+  --color: #fff;
 }

@@ -88,7 +88,7 @@ body {
   border: 1px solid #005382;
   border-radius: 7px;
   font-size: 15px;
-  width: 50px;
+  width: 60px;
   height: 30px;
   text-align: center;
 }
@@ -286,6 +286,42 @@ body {
   font-size: 14px;
   line-height: 17px;
   padding: 10px 30px;
+}
+
+.hotels-sort {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+.hotels-sort__item {
+  background-color: #fff;
+  padding: 3px 8px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  transition: 0.2s;
+  user-select: none;
+}
+.hotels-sort__item:hover {
+  background-color: #e2f2ff;
+}
+.hotels-sort__item img {
+  visibility: hidden;
+  transition: 0.2s;
+  opacity: 0;
+  width: 15px;
+}
+.hotels-sort__item.desc img,
+.hotels-sort__item.asc img {
+  visibility: visible;
+  opacity: 1;
+}
+.hotels-sort__item.asc img {
+  transform: rotate(-180deg);
 }
 
 @media (max-width: 1500px) {

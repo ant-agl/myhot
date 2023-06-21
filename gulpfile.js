@@ -124,7 +124,7 @@ function cssBuild(done) {
   done();
 }
 
-function imgBuild() {
+function imgBuild(done) {
   return gulp
     .src(path.src.img)
     .pipe(

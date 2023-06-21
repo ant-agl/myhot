@@ -8,6 +8,8 @@
     
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Raleway&display=swap"
       rel="stylesheet">
+    
+    <link rel="icon" href="./img/favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="../css/hotels-list.css">
     <script
         src="https://api-maps.yandex.ru/2.1/?apikey=a0c76f9a-3a83-47c5-8684-cd13b06be955&load=package.standard&lang=ru_RU">
@@ -270,7 +272,7 @@
                 <button class="link-underline" type="button" data-modal-target="modal-login"
                   data-modal-target-close="modal-forgot">Назад</button>
                 <p class="part_botton">1 из 3 этапов</p>
-                <button class="link-underline" to-page="1" page-validate="true" type="button btn-hash-forgot">Далее</button>
+                <button class="link-underline btn-hash-forgot" to-page="1" page-validate="true" type="button">Далее</button>
               </div>
             </div>
             <div class="modal__page" data-page="1">
@@ -380,9 +382,9 @@
                           <div class="filter__body">
                             <div class="filter__row">
                               От
-                              <input type="text" class="filter__input" name="price-min" value="0" />
+                              <input type="text" class="filter__input" name="price_start" value="0" />
                               до
-                              <input type="text" class="filter__input" name="price-max" value="20000" />
+                              <input type="text" class="filter__input" name="price_end" value="200000" />
                               руб.
                             </div>
                             <div id="dual-range-price"></div>
@@ -420,7 +422,7 @@
                         <div class="filter">
                           <div class="filter__title">Оценка гостей</div>
                           <div class="filter__body">
-                            <span>от <input type="text" class="filter__input" name="reviews" value="9"> и более</span>
+                            <span>от <input type="text" class="filter__input" name="reviews" value="0"> и более</span>
                             <div id="dual-range-guest-rating" class="single"></div>
                           </div>
                         </div>
@@ -441,12 +443,32 @@
                               <span>от центра, км</span>
                             </label>
                             <label class="filter__row">
-                              <input type="radio" name="from_location" value="from_metro">
-                              <span>от метро, км</span>
-                            </label>
-                            <label class="filter__row">
                               <input type="radio" name="from_location" value="from_sea">
                               <span>от моря, км</span>
+                            </label>
+                          </div>
+                          <br>
+                          <div class="filter__body">
+                            <div class="filter__row">
+                              От
+                              <input type="text" class="filter__input" name="location-place-min" value="0" />
+                              до
+                              <input type="text" class="filter__input" name="location-place-max" value="50" />
+                              км
+                            </div>
+                            <div id="dual-range-location-place"></div>
+                    
+                            <label class="filter__row">
+                              <input type="radio" name="from_location-place" value="from_airport" checked>
+                              <span>от аэропорта, км</span>
+                            </label>
+                            <label class="filter__row">
+                              <input type="radio" name="from_location-place" value="from_train">
+                              <span>от Ж/Д, км</span>
+                            </label>
+                            <label class="filter__row">
+                              <input type="radio" name="from_location-place" value="from_metro">
+                              <span>от метро, км</span>
                             </label>
                           </div>
                         </div>
@@ -460,10 +482,110 @@
   <div class="map-big__space"></div>
 </div>
 
+<div class="hotels-sort">
+  <div class="hotels-sort__item" data-sort="price">
+    <img src="../img/icons/arr.png">
+    <span>Цена</span>
+  </div>
+  <div class="hotels-sort__item desc" data-sort="recom">
+    <img src="../img/icons/arr.png">
+    <span>Рекомендации</span>
+  </div>
+  <div class="hotels-sort__item" data-sort="reviews">
+    <img src="../img/icons/arr.png">
+    <span>Отзывы</span>
+  </div>
+</div>
+
 <div class="hotels-list">
 
 </div>
 
+<div class="widget-chat">
+  <img class="widget-chat__img" src="../img/chat/message.png">
+  <div class="widget-chat__content">
+    <div class="chat">
+      <div class="chats">
+        <div class="chats__fix">
+          <div class="chats__item active" data-id="support">
+            <div class="chats__img">
+              <img src="../img/chat/1.png">
+            </div>
+            <div class="chats__content">
+              <div class="chats__info">
+                <div class="chats__name">Тех. поддержка</div>
+                <div class="chats__date">Сегодня</div>
+              </div>
+              <div class="chats__message">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatum mollitia quo
+                repellendus eligendi temporibus tenetur quia facilis, ratione repellat debitis! Aspernatur libero ratione
+                corporis, sapiente fugit placeat quos quam voluptas!</div>
+            </div>
+          </div>
+          <div class="chats__item" data-id="news">
+            <img src="../img/chat/1.png" class="chats__img">
+            <div class="chats__content">
+              <div class="chats__info">
+                <div class="chats__name">Новости</div>
+                <div class="chats__date">Вчера</div>
+              </div>
+              <div class="chats__message">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatum mollitia quo
+                repellendus eligendi temporibus tenetur quia facilis, ratione repellat debitis! Aspernatur libero ratione
+                corporis, sapiente fugit placeat quos quam voluptas!</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="chat__content" data-id="support">
+        <div class="chat__title">
+          <span class="chat__back">
+            <img src="../img/icons/arr.png">
+          </span>
+          <span class="chat__title-value">
+            Тех. поддержка
+          </span>
+        </div>
+        <div class="chat__messages">
+          <div class="chat__message chat__message_left">
+            <div class="chat__avatar">
+              <img src="../img/chat/1.png" class="chat__img">
+              <div class="chat__name">Антон</div>
+            </div>
+            <div class="chat__text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quaerat quibusdam sunt,
+              nostrum accusantium, itaque autem maxime qui a velit impedit facere tempora totam unde modi dignissimos
+              officia? Eveniet, cum aliquam.</div>
+          </div>
+          <div class="chat__message">
+            <div class="chat__avatar">
+              <img src="../img/chat/2.png" class="chat__img">
+              <div class="chat__name">Антон</div>
+            </div>
+            <div class="chat__text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quaerat quibusdam sunt,
+              nostrum accusantium, itaque autem maxime qui a velit impedit facere tempora totam unde modi dignissimos
+              officia? Eveniet, cum aliquam.</div>
+          </div>
+          <div class="chat__message chat__message_left">
+            <div class="chat__avatar">
+              <img src="../img/chat/1.png" class="chat__img">
+              <div class="chat__name">Антон</div>
+            </div>
+            <div class="chat__text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quaerat quibusdam sunt,
+              nostrum accusantium, itaque autem maxime qui a velit impedit facere tempora totam unde modi dignissimos
+              officia? Eveniet, cum aliquam.</div>
+          </div>
+        </div>
+    
+        <div class="chat__input-row">
+          <label class="chat__clip">
+            <img src="../img/icons/clip.png">
+            <input type="file" name="chat-file" accept="image/*">
+          </label>
+          <input type="text" name="chat-message" class="chat__input" placeholder="Сообщение...">
+          <button type="button" class="chat__send" disabled><img src="../img/icons/send.png"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
             </div>
           </div>
         </div>

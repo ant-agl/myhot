@@ -1,6 +1,11 @@
 import "air-datepicker/air-datepicker.css";
 import AirDatepicker from "air-datepicker";
 import moment from "moment";
+import { get2data, data2get } from "./data2get";
+let input_date = get2data().input_date * 1000 || new Date();
+let output_date = get2data().output_date * 1000 || moment().add(1, "days");
+
+import GetData from "./GetData";
 
 export default class ChangeDateBlock {
   inputFromName = "date-from";
@@ -32,7 +37,7 @@ export default class ChangeDateBlock {
     this.datepickerFrom = new AirDatepicker(`[name="${this.inputFromName}"]`, {
       autoClose: true,
       isMobile: $(window).outerWidth() <= 767,
-      selectedDates: new Date(),
+      selectedDates: input_date,
       minDate: new Date(),
       onSelect: ({ date }) => {
         let minDate = moment(date).add(1, "days");
@@ -48,7 +53,7 @@ export default class ChangeDateBlock {
       autoClose: true,
       isMobile: $(window).outerWidth() <= 767,
       minDate: moment().add(1, "days"),
-      selectedDates: moment().add(1, "days"),
+      selectedDates: output_date,
     });
 
     $(window).resize(() => {
@@ -96,6 +101,15 @@ export default class ChangeDateBlock {
       .find('[data-type="to-weekday"]')
       .text(this._firstCharUpper(toWeekday));
     this.$block.find('[data-type="to-date"]').text(toDate);
+
+    let data = get2data();
+    data.input_date = Math.floor(from.getTime() / 1000);
+    data.output_date = Math.floor(to.getTime() / 1000);
+    window.history.pushState({}, "", data2get(data));
+
+    let getData = new GetData();
+    if (!data.id) return;
+    getData.rooms_search(data.id, data.input_date, data.output_date);
   }
   changeText(text) {
     this.$btn.text(text);

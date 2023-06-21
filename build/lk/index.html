@@ -8,6 +8,8 @@
     
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Raleway&display=swap"
       rel="stylesheet">
+    
+    <link rel="icon" href="./img/favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="../css/lk.css">
     <title>Личные данные | MyHot</title>
 </head>
@@ -267,7 +269,7 @@
                 <button class="link-underline" type="button" data-modal-target="modal-login"
                   data-modal-target-close="modal-forgot">Назад</button>
                 <p class="part_botton">1 из 3 этапов</p>
-                <button class="link-underline" to-page="1" page-validate="true" type="button btn-hash-forgot">Далее</button>
+                <button class="link-underline btn-hash-forgot" to-page="1" page-validate="true" type="button">Далее</button>
               </div>
             </div>
             <div class="modal__page" data-page="1">
@@ -417,14 +419,97 @@
     <div class="main__buttons">
       <button class="main__button main__button_danger btn-delete-account">Удалить аккаунт</button>
       <div class="msg">Сохранено!</div>
-      <button class="main__button change-data">
-        <span class="change__text">Изменить личные данные</span>
-        <span class="save__text">Сохранить изменения</span>
-      </button>
+      <div class="main__buttons-block">
+        <button class="main__button change-data">
+          <span class="change__text">Изменить личные данные</span>
+          <span class="save__text">Сохранить изменения</span>
+        </button>
+    
+        <button class="link-underline link-underline_white btn-mail-confirm">Подтвердить почту</button>
+      </div>
     </div>
   </div>
   <div class="tab-content" id="chat">
+    <div class="chat">
+      <div class="chats">
+        <div class="chats__fix">
+          <div class="chats__item active" data-id="support">
+            <div class="chats__img">
+              <img src="../img/chat/1.png">
+            </div>
+            <div class="chats__content">
+              <div class="chats__info">
+                <div class="chats__name">Тех. поддержка</div>
+                <div class="chats__date">Сегодня</div>
+              </div>
+              <div class="chats__message">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatum mollitia quo
+                repellendus eligendi temporibus tenetur quia facilis, ratione repellat debitis! Aspernatur libero ratione
+                corporis, sapiente fugit placeat quos quam voluptas!</div>
+            </div>
+          </div>
+          <div class="chats__item" data-id="news">
+            <img src="../img/chat/1.png" class="chats__img">
+            <div class="chats__content">
+              <div class="chats__info">
+                <div class="chats__name">Новости</div>
+                <div class="chats__date">Вчера</div>
+              </div>
+              <div class="chats__message">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatum mollitia quo
+                repellendus eligendi temporibus tenetur quia facilis, ratione repellat debitis! Aspernatur libero ratione
+                corporis, sapiente fugit placeat quos quam voluptas!</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="chat__content" data-id="support">
+        <div class="chat__title">
+          <span class="chat__back">
+            <img src="../img/icons/arr.png">
+          </span>
+          <span class="chat__title-value">
+            Тех. поддержка
+          </span>
+        </div>
+        <div class="chat__messages">
+          <div class="chat__message chat__message_left">
+            <div class="chat__avatar">
+              <img src="../img/chat/1.png" class="chat__img">
+              <div class="chat__name">Антон</div>
+            </div>
+            <div class="chat__text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quaerat quibusdam sunt,
+              nostrum accusantium, itaque autem maxime qui a velit impedit facere tempora totam unde modi dignissimos
+              officia? Eveniet, cum aliquam.</div>
+          </div>
+          <div class="chat__message">
+            <div class="chat__avatar">
+              <img src="../img/chat/2.png" class="chat__img">
+              <div class="chat__name">Антон</div>
+            </div>
+            <div class="chat__text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quaerat quibusdam sunt,
+              nostrum accusantium, itaque autem maxime qui a velit impedit facere tempora totam unde modi dignissimos
+              officia? Eveniet, cum aliquam.</div>
+          </div>
+          <div class="chat__message chat__message_left">
+            <div class="chat__avatar">
+              <img src="../img/chat/1.png" class="chat__img">
+              <div class="chat__name">Антон</div>
+            </div>
+            <div class="chat__text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quaerat quibusdam sunt,
+              nostrum accusantium, itaque autem maxime qui a velit impedit facere tempora totam unde modi dignissimos
+              officia? Eveniet, cum aliquam.</div>
+          </div>
+        </div>
     
+        <div class="chat__input-row">
+          <label class="chat__clip">
+            <img src="../img/icons/clip.png">
+            <input type="file" name="chat-file" accept="image/*">
+          </label>
+          <input type="text" name="chat-message" class="chat__input" placeholder="Сообщение...">
+          <button type="button" class="chat__send" disabled><img src="../img/icons/send.png"></button>
+        </div>
+      </div>
+    </div>
   </div>
   <div class="tab-content" id="booking">
     <div class="filters booking-filters">
@@ -443,11 +528,10 @@
             <th>Наименование отеля</th>
             <th>Город</th>
             <th>Рейтинг</th>
-            <th>Стоимость</th>
           </tr>
         </thead>
         <tbody>
-          
+    
         </tbody>
       </table>
     </div>
@@ -550,9 +634,8 @@
                 </div>
               </div>
             </div>
-            <a href="#" class="btn btn_big go_button_b_3">перейти</a>
+            <a href="?page=chat" class="btn btn_big go_button_b_3">перейти</a>
           </div>
-          <p class="middle_d_3">ИЛИ</p>
           <form class="form_send">
             <p class="text_form_d_3">Задайте вопрос и мы дадим обратную связь по почте</p>
             <textarea class="question" placeholder="Ваш вопрос"></textarea>
@@ -596,6 +679,92 @@
   </div>
 </div>
 
+
+<div class="widget-chat">
+  <img class="widget-chat__img" src="../img/chat/message.png">
+  <div class="widget-chat__content">
+    <div class="chat">
+      <div class="chats">
+        <div class="chats__fix">
+          <div class="chats__item active" data-id="support">
+            <div class="chats__img">
+              <img src="../img/chat/1.png">
+            </div>
+            <div class="chats__content">
+              <div class="chats__info">
+                <div class="chats__name">Тех. поддержка</div>
+                <div class="chats__date">Сегодня</div>
+              </div>
+              <div class="chats__message">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatum mollitia quo
+                repellendus eligendi temporibus tenetur quia facilis, ratione repellat debitis! Aspernatur libero ratione
+                corporis, sapiente fugit placeat quos quam voluptas!</div>
+            </div>
+          </div>
+          <div class="chats__item" data-id="news">
+            <img src="../img/chat/1.png" class="chats__img">
+            <div class="chats__content">
+              <div class="chats__info">
+                <div class="chats__name">Новости</div>
+                <div class="chats__date">Вчера</div>
+              </div>
+              <div class="chats__message">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatum mollitia quo
+                repellendus eligendi temporibus tenetur quia facilis, ratione repellat debitis! Aspernatur libero ratione
+                corporis, sapiente fugit placeat quos quam voluptas!</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="chat__content" data-id="support">
+        <div class="chat__title">
+          <span class="chat__back">
+            <img src="../img/icons/arr.png">
+          </span>
+          <span class="chat__title-value">
+            Тех. поддержка
+          </span>
+        </div>
+        <div class="chat__messages">
+          <div class="chat__message chat__message_left">
+            <div class="chat__avatar">
+              <img src="../img/chat/1.png" class="chat__img">
+              <div class="chat__name">Антон</div>
+            </div>
+            <div class="chat__text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quaerat quibusdam sunt,
+              nostrum accusantium, itaque autem maxime qui a velit impedit facere tempora totam unde modi dignissimos
+              officia? Eveniet, cum aliquam.</div>
+          </div>
+          <div class="chat__message">
+            <div class="chat__avatar">
+              <img src="../img/chat/2.png" class="chat__img">
+              <div class="chat__name">Антон</div>
+            </div>
+            <div class="chat__text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quaerat quibusdam sunt,
+              nostrum accusantium, itaque autem maxime qui a velit impedit facere tempora totam unde modi dignissimos
+              officia? Eveniet, cum aliquam.</div>
+          </div>
+          <div class="chat__message chat__message_left">
+            <div class="chat__avatar">
+              <img src="../img/chat/1.png" class="chat__img">
+              <div class="chat__name">Антон</div>
+            </div>
+            <div class="chat__text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quaerat quibusdam sunt,
+              nostrum accusantium, itaque autem maxime qui a velit impedit facere tempora totam unde modi dignissimos
+              officia? Eveniet, cum aliquam.</div>
+          </div>
+        </div>
+    
+        <div class="chat__input-row">
+          <label class="chat__clip">
+            <img src="../img/icons/clip.png">
+            <input type="file" name="chat-file" accept="image/*">
+          </label>
+          <input type="text" name="chat-message" class="chat__input" placeholder="Сообщение...">
+          <button type="button" class="chat__send" disabled><img src="../img/icons/send.png"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
             </div>
           </div>
         </div>

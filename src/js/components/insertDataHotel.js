@@ -39,7 +39,20 @@ export function insertHotel(hotel) {
   $(".hotel__estimation")
     .addClass("color_" + getColor(hotel.rating.reviews))
     .text(hotel.rating.reviews);
-  $(".hotel__description").html(hotel.description);
+
+  $(".hotel__description").html(`
+    ${hotel.description}
+    <br>
+    <br>
+    ${hotel.information_hotel}
+    <br>
+    <br>
+    <a href="${hotel.data.url}" target="_blank">${hotel.data.url}</a>
+    <br>
+    <a href="tel:${hotel.data.phone}">${hotel.data.phone}</a>
+    <br>
+    <a href="mailto:${hotel.data.email}">${hotel.data.email}</a>
+  `);
 
   let imagesFor =
     hotel.images?.map(
@@ -82,7 +95,7 @@ export function insertHotel(hotel) {
   hotel.reviews.forEach((review, i) => {
     if (i > 1) return;
     if (!review.img_src) review.img_src = "../img/no-photo.jpg";
-    let name = review.name + review.surname;
+    let name = review.name + " " + review.surname;
     $(".hotel__reviews-content").append(`
       <div class="hotel__review">
         <div class="hotel__row hotel__row_left">
@@ -291,12 +304,8 @@ export function insertReviewsList(reviews) {
   });
 }
 export function insertRooms(rooms) {
+  $(".card-rooms").html("");
   rooms.forEach((room, i) => {
-    let htmlList = "";
-    room.list.forEach((item, j) => {
-      if (j >= 4) return;
-      htmlList += `<li class="card-room__item">${item}</li>`;
-    });
     let html = `
       <div class="card-room page-content">
         <div class="card-room__title">${room.name}</div>
@@ -304,20 +313,24 @@ export function insertRooms(rooms) {
           <div class="card-room__images">
             <div class="card-room__main-img" data-url="${room.images[0]}"></div>
             <div class="card-room__second-images">
-              <div class="card-room__second-img" data-url="${room.images[1]}"></div>
-              <div class="card-room__second-img" data-url="${room.images[2]}"></div>
+              <div class="card-room__second-img" data-url="${
+                room.images[1]
+              }"></div>
+              <div class="card-room__second-img" data-url="${
+                room.images[2]
+              }"></div>
             </div>
           </div>
           <div class="card-room__info">
             <ul class="card-room__list" id="rooms-list-${i}">
-              ${htmlList}
+              ${room.description}
             </ul>
             <button data-modal-target="modal-room" class="link-underline card-room__show-all">
               Посмотреть полностью
             </button>
             <div class="card-room__price-block">
               <div class="card-room__price">
-                <span class="card-room__price-value">${room.price}</span>
+                <span class="card-room__price-value">${room.price.toLocaleString()}</span>
                 руб.
               </div>
               <a href="#" class="btn">Забронировать</a>

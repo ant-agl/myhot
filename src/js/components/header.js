@@ -130,7 +130,7 @@ $("body").on("click", "#modal-signin .btn-signin", function () {
         60 * 60 * 24 * 3
       };`;
       setTimeout(() => {
-        window.location.href = "lk";
+        window.location.href = "/lk";
       }, 10);
     })
     .catch((xhr) => {
@@ -182,7 +182,7 @@ $("body").on("click", "#modal-login .btn-login-hash", function () {
                 60 * 60 * 24 * 3
               };`;
               setTimeout(() => {
-                window.location.href = "lk";
+                window.location.href = "/lk";
               }, 10);
             };
             confirmLogin.afterSendError = (xhr) => {

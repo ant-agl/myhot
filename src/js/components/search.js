@@ -55,6 +55,12 @@ $('[name="search"]').val(data.search || "");
 let selectedDates = [];
 if (data.input_date) selectedDates.push(data.input_date * 1000);
 if (data.output_date) selectedDates.push(data.output_date * 1000);
+if (selectedDates.length == 0) {
+  let d = new Date();
+  d = d.getTime();
+  selectedDates.push(d);
+  selectedDates.push(d + 3600000 * 24);
+}
 $('[name="adult"]')
   .val(data.adult || 1)
   .trigger("change");

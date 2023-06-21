@@ -9,13 +9,16 @@ new DropMenu(".filters-mobile", {
   selectorsNotClose: [".filters"],
 });
 
+import Sorting from "./components/Sorting";
+new Sorting(".hotels-sort");
+
 import Range from "./components/Range";
 new Range({
   id: "dual-range-price",
-  inputMin: "price-min",
-  inputMax: "price-max",
+  inputMin: "price_start",
+  inputMax: "price_end",
   lowerBound: 0,
-  upperBound: 20000,
+  upperBound: 200000,
   minSpan: 1000,
 });
 new Range({
@@ -24,13 +27,21 @@ new Range({
   lowerBound: 0,
   upperBound: 10,
   minSpan: 0,
-  upper: 9,
+  upper: 0,
   single: true,
 });
 new Range({
   id: "dual-range-location",
   inputMin: "location-min",
   inputMax: "location-max",
+  lowerBound: 0,
+  upperBound: 50,
+  minSpan: 5,
+});
+new Range({
+  id: "dual-range-location-place",
+  inputMin: "location-place-min",
+  inputMax: "location-place-max",
   lowerBound: 0,
   upperBound: 50,
   minSpan: 5,

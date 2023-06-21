@@ -4,6 +4,11 @@ import "./default";
 import Menu from "./components/Menu";
 new Menu(".main__menu-list", ".tabs-content");
 
+import { get2data } from "./components/data2get";
+if (get2data().page) {
+  $(`.main__menu-item[data-target="${get2data().page}"]`).trigger("click");
+}
+
 import "air-datepicker/air-datepicker.css";
 import AirDatepicker from "air-datepicker";
 import moment from "moment";
@@ -44,3 +49,6 @@ function reloadChatAnimation(close = true) {
 }
 reloadChatAnimation(false);
 setInterval(reloadChatAnimation, 1000 * 8);
+
+import Chat from "./components/chat";
+new Chat("#chat .chat");

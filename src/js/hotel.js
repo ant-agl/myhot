@@ -9,7 +9,7 @@ new CropText({
 import Menu from "./components/Menu";
 new Menu(".main__menu-list", ".tabs-content");
 
-import { get2data } from "./components/data2get";
+import { get2data, data2get } from "./components/data2get";
 import GetData from "./components/GetData";
 let hotelId = get2data().id;
 let input_date = get2data().input_date;
@@ -50,4 +50,15 @@ new BackgroundImage(".modal-room__main-img", {
 new BackgroundImage(".modal-room__second-img", {
   paddingBottom: "20%",
   size: "cover",
+});
+
+$(".btn-back").on("click", function (e) {
+  e.preventDefault();
+
+  if (document.referrer.includes("/hotels-list"))
+    location.href = document.referrer;
+  else location.href = "/hotels-list" + data2get(get2data());
+
+  // if (history.length > 2) history.back();
+  // else location.href = "/hotels-list" + data2get(get2data());
 });

@@ -41,6 +41,12 @@ $(".change-data").on("click", function () {
   $(this).toggleClass("active");
   $(".btn-delete-account").toggleClass("active");
   $(".input").prop("disabled", !$(this).hasClass("active"));
+
+  if (!$(".email-hint").hasClass("input-hint__not-active")) {
+    $(".btn-mail-confirm").toggleClass("active");
+  } else {
+    $(".btn-mail-confirm").removeClass("active");
+  }
 });
 
 $(".change-data").on("click", function () {
@@ -151,4 +157,8 @@ $(".input-avatar").on("change", function () {
 $(".btn-delete-account").on("click", function () {
   modalConfirm.open();
   console.log("delete account");
+});
+$(".btn-mail-confirm").on("click", function () {
+  $(this).removeClass("active");
+  console.log("confirm mail");
 });

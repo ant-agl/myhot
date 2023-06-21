@@ -1,4 +1,8 @@
 import "./components/header";
+import "./components/WidgetChat";
+
+import Chat from "./components/chat";
+new Chat(".widget-chat__content .chat");
 
 function changeHeightOnResize() {
   let headerH =

@@ -92,9 +92,15 @@ select {
 }
 .main__buttons {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: flex-end;
   margin-top: 10px;
+}
+.main__buttons-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
 }
 .msg {
   margin-right: 15px;
@@ -209,6 +215,9 @@ select {
   padding-bottom: 20px;
   z-index: 1;
   background: transparent;
+}
+.footer-input:focus {
+  box-shadow: none;
 }
 
 ::-webkit-input-placeholder {
@@ -652,9 +661,16 @@ span.reviews-card__date-value {
   transition: 0.2s;
   opacity: 0;
 }
-.btn-delete-account.active {
+.btn-delete-account.active,
+.btn-mail-confirm.active {
   visibility: visible;
   opacity: 1;
+}
+.btn-mail-confirm {
+  font-size: 13px;
+  visibility: hidden;
+  transition: 0.2s;
+  opacity: 0;
 }
 .modal__footer {
   display: flex;
@@ -672,7 +688,9 @@ span.reviews-card__date-value {
   background: none;
 }
 .b_3 {
-  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 0;
 }
 .text_form_d_3 {
   padding: 0;
@@ -680,7 +698,10 @@ span.reviews-card__date-value {
 .left_b_3,
 .form_send {
   width: 100%;
-  max-width: 450px;
+  max-width: 400px;
+}
+.form_send {
+  margin-top: 37px;
 }
 .middle_d_3 {
   margin: 35px 0;
@@ -765,6 +786,7 @@ span.reviews-card__date-value {
     gap: 10px;
     position: relative;
   }
+  .main__buttons-block,
   .main__buttons .main__button {
     width: 100%;
   }

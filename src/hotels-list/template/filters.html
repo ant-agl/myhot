@@ -10,9 +10,9 @@
       <div class="filter__body">
         <div class="filter__row">
           От
-          <input type="text" class="filter__input" name="price-min" value="0" />
+          <input type="text" class="filter__input" name="price_start" value="0" />
           до
-          <input type="text" class="filter__input" name="price-max" value="20000" />
+          <input type="text" class="filter__input" name="price_end" value="200000" />
           руб.
         </div>
         <div id="dual-range-price"></div>
@@ -50,7 +50,7 @@
     <div class="filter">
       <div class="filter__title">Оценка гостей</div>
       <div class="filter__body">
-        <span>от <input type="text" class="filter__input" name="reviews" value="9"> и более</span>
+        <span>от <input type="text" class="filter__input" name="reviews" value="0"> и более</span>
         <div id="dual-range-guest-rating" class="single"></div>
       </div>
     </div>
@@ -71,12 +71,32 @@
           <span>от центра, км</span>
         </label>
         <label class="filter__row">
-          <input type="radio" name="from_location" value="from_metro">
-          <span>от метро, км</span>
-        </label>
-        <label class="filter__row">
           <input type="radio" name="from_location" value="from_sea">
           <span>от моря, км</span>
+        </label>
+      </div>
+      <br>
+      <div class="filter__body">
+        <div class="filter__row">
+          От
+          <input type="text" class="filter__input" name="location-place-min" value="0" />
+          до
+          <input type="text" class="filter__input" name="location-place-max" value="50" />
+          км
+        </div>
+        <div id="dual-range-location-place"></div>
+
+        <label class="filter__row">
+          <input type="radio" name="from_location-place" value="from_airport" checked>
+          <span>от аэропорта, км</span>
+        </label>
+        <label class="filter__row">
+          <input type="radio" name="from_location-place" value="from_train">
+          <span>от Ж/Д, км</span>
+        </label>
+        <label class="filter__row">
+          <input type="radio" name="from_location-place" value="from_metro">
+          <span>от метро, км</span>
         </label>
       </div>
     </div>

@@ -6,6 +6,7 @@ import ShowAll from "./ShowAll";
 import { startLoad, endLoad } from "./load";
 import MapApi from "./MapApi";
 import moment from "moment";
+import { roundNumber } from "./functions";
 import getColor from "./getColor";
 moment.locale("ru");
 moment.updateLocale("ru", {
@@ -39,7 +40,7 @@ export default class GetData {
     let auth = await isAuth();
     console.log(auth);
     if (!auth.ok) {
-      window.location.href = "../";
+      window.location.href = "/";
       return;
     }
     $("body").show();
@@ -135,6 +136,14 @@ export default class GetData {
             '<div id="filter-null-text">Ничего не найдено</div>'
           );
         }
+
+        filters.forEach((filter) => {
+          let $btnFilter = $(`.filter-btn[data-filter="${filter.id}"]`);
+          let count = data.find((hotel) => hotel.status == filter.id).length;
+          if (count > 0) $btnFilter.show();
+          else $btnFilter.hide();
+        });
+
         data.forEach((hotel) => {
           let dates = `${moment(hotel.input_date * 1000).format(
             "DD.MM.YYYY"
@@ -260,27 +269,16 @@ export default class GetData {
           <tr>
             <td>
               <div class="table__image-block">
-                <img src="${hotel.joined_hotel_search[0].image}" alt="${
-            hotel.joined_hotel_search[0].name
-          }">
+                <img src="${hotel.joined_hotel_search[0].image}" alt="${hotel.joined_hotel_search[0].name}">
                 <span>${hotel.joined_hotel_search[0].name}</span>
               </div>
             </td>
             <td>${geo}</td>
             <td>
               <div class="stars favourites-stars">
-                <img src="../img/icons/stars/${
-                  hotel.joined_hotel_search[0].rating.stars
-                }.png">
+                <img src="../img/icons/stars/${hotel.joined_hotel_search[0].rating.stars}.png">
               </div>
-            </td>
-            <td>
-              <span class="nowrap">от ${
-                hotel.joined_hotel_search[0].price?.toLocaleString() ?? "??"
-              } руб.</span>
-              <img src="../img/icons/cross.png" class="remove-favourites" data-id="${
-                hotel.hotel_id
-              }">
+              <img src="../img/icons/cross.png" class="remove-favourites" data-id="${hotel.hotel_id}">
             </td>
           </tr>
         `;
@@ -665,7 +663,13 @@ export default class GetData {
         if (!hotel.image) hotel.image = "../img/empty.png";
 
         html += `
-          <div class="hotel-card" data-id="${hotel.id}">
+          <div class="hotel-card" data-id="${
+            hotel.id
+          }" data-price="${hotel.price.replace(/\s/g, "")}" data-rank="${
+          hotel["rank()"]
+        }" data-popular="${hotel.rating.popularity}" data-reviews="${
+          hotel.rating.reviews
+        }">
             <div class="hotel-card__img">
               <div class="hotel-card__img-filter" data-url="${
                 hotel.image
@@ -684,24 +688,58 @@ export default class GetData {
               <div class="hotel-card__title">${hotel.name}</div>
               <div class="hotel-card__row-info">
                 <img src="../img/icons/geo.svg">
-                <span>От центра ${hotel.position.center} км</span>
+                <span>От центра ${roundNumber(
+                  hotel.position.center / 1000
+                )} км</span>
               </div>
-              <div class="hotel-card__row-info">
-                <img src="../img/icons/metro.svg">
-                <span>От метро ${hotel.position.metro} км</span>
-              </div>
-              <div class="hotel-card__row-info">
-                <img src="../img/icons/sea.svg">
-                <span>От моря ${hotel.position.sea} км</span>
-              </div>
-              <div class="hotel-card__row-info">
-                <img src="../img/icons/train.svg">
-                <span>От вокзала ${hotel.train ?? "??"} км</span>
-              </div>
-              <div class="hotel-card__row-info">
-                <img src="../img/icons/plane.svg">
-                <span>От аэропорта ${hotel.plane ?? "??"} км</span>
-              </div>
+              ${
+                hotel.position.sea != 0
+                  ? `
+                <div class="hotel-card__row-info">
+                  <img src="../img/icons/sea.svg">
+                  <span>От моря ${roundNumber(
+                    hotel.position.sea / 1000
+                  )} км</span>
+                </div>
+              `
+                  : ""
+              }
+              ${
+                hotel.transport.metro.id != -1
+                  ? `
+                <div class="hotel-card__row-info">
+                  <img src="../img/icons/metro.svg">
+                  <span>От метро ${roundNumber(
+                    hotel.transport.metro.distance / 1000
+                  )} км</span>
+                </div>
+                `
+                  : ""
+              }
+              ${
+                hotel.transport.train.id != -1
+                  ? `
+                <div class="hotel-card__row-info">
+                  <img src="../img/icons/train.svg">
+                  <span>От вокзала ${roundNumber(
+                    hotel.transport.train.distance / 1000
+                  )} км</span>
+                </div>
+              `
+                  : ""
+              }
+              ${
+                hotel.transport.airport.id != -1
+                  ? `
+                <div class="hotel-card__row-info">
+                  <img src="../img/icons/plane.svg">
+                  <span>От аэропорта ${roundNumber(
+                    hotel.transport.airport.distance / 1000
+                  )} км</span>
+                </div>
+              `
+                  : ""
+              }
               <div class="hotel-card__row-info">
                 <span class="hotel-card__estimation color_${getColor(
                   hotel.rating.reviews
@@ -754,6 +792,8 @@ export default class GetData {
     );
   }
   hotel({ hotelId, input_date, output_date }) {
+    if (!input_date) input_date = Math.floor(new Date().getTime() / 1000);
+    if (!output_date) output_date = Math.floor(new Date().getTime() / 1000);
     $.get(
       this.path_php +
         `data_hotel.php?id_hotel=${hotelId}&input_date=${input_date}&output_date=${output_date}`,
@@ -761,277 +801,6 @@ export default class GetData {
         data = JSON.parse(data);
         console.log(data);
         insertHotel(data);
-
-        data = {
-          services: {
-            free: [
-              {
-                name: "Общее",
-                list: [
-                  "Банкомат",
-                  "Круглосуточная стойка регистрации",
-                  "Лифт",
-                  "Магазины",
-                  "Обмен валюты",
-                  "Отель для некурящих",
-                  "Охрана",
-                  "Поздняя регистрация выезда",
-                  "Пресса",
-                  "Ранняя регистрация заезда",
-                  "Сувенирный магазин",
-                  "Терраса",
-                  "Ускоренная регистрация заезда и выезда",
-                ],
-              },
-              {
-                name: "В номерах",
-                list: [
-                  "Кабельное телевидение",
-                  "Люкс для новобрачных",
-                  "Мини-бар",
-                  "Номера для некурящих",
-                  "Номера со звукоизоляцией",
-                  "Обслуживание номеров",
-                  "Сейф (в номере)",
-                  "Семейные номера",
-                  "Телевизор",
-                  "Халат",
-                ],
-              },
-              {
-                name: "Дети",
-                list: ["Размещение подходит для семей/детей"],
-              },
-            ],
-            paid: [
-              {
-                name: "Услуги и удобства",
-                list: [
-                  {
-                    name: "Гладильные услуги",
-                    price: "500 руб.",
-                  },
-                  {
-                    name: "Прачечная",
-                    price: "500 руб.",
-                  },
-                  {
-                    name: "Химчистка",
-                    price: "500 руб.",
-                  },
-                  {
-                    name: "Чистка обуви",
-                    price: "500 руб.",
-                  },
-                ],
-              },
-              {
-                name: "Красота и здоровье",
-                list: [
-                  {
-                    name: "Массаж",
-                    price: "1 200 руб.",
-                  },
-                  {
-                    name: "Салон красоты",
-                    price: "1 600 руб.",
-                  },
-                  {
-                    name: "Спа-центр",
-                    price: "2 000 руб.",
-                  },
-                ],
-              },
-            ],
-          },
-          rules: [
-            "Какое-то правило, которое нельзя делать в отеле.",
-            "Какое-то правило, которое нельзя делать в отеле.",
-            "Какое-то правило, которое нельзя делать в отеле.",
-            "Какое-то правило, которое нельзя делать в отеле.",
-            "Какое-то правило, которое нельзя делать в отеле.",
-          ],
-          nearby: [
-            {
-              name: "Достопримечательности",
-              list: [
-                {
-                  name: "Собор Василия Блаженова",
-                  distance: "2.3 км",
-                },
-                {
-                  name: "Московский Кремль",
-                  distance: "2.3 км",
-                },
-                {
-                  name: "Государственная Третьяковская галерея",
-                  distance: "2.3 км",
-                },
-                {
-                  name: "Парк Горького",
-                  distance: "2.3 км",
-                },
-                {
-                  name: "Москва-Сити",
-                  distance: "2.3 км",
-                },
-                {
-                  name: "ВДНХ",
-                  distance: "2.3 км",
-                },
-              ],
-            },
-            {
-              name: "Аэропорт",
-              list: [
-                {
-                  name: "Шереметьево",
-                  distance: "2.3 км",
-                },
-                {
-                  name: "Внуково",
-                  distance: "2.3 км",
-                },
-                {
-                  name: "Жуковский",
-                  distance: "2.3 км",
-                },
-                {
-                  name: "Домодедово",
-                  distance: "2.3 км",
-                },
-              ],
-            },
-            {
-              name: "Метро",
-              list: [
-                {
-                  name: "Маяковская",
-                  distance: "260 м",
-                },
-                {
-                  name: "Пушкинская",
-                  distance: "460 м",
-                },
-                {
-                  name: "Тверская",
-                  distance: "570 м",
-                },
-              ],
-            },
-          ],
-          reviews: {
-            total: {
-              estimation: 8.9,
-              clear: 8.5,
-              hygiene: 7.3,
-              location: 9.9,
-              food: 7.5,
-              price: 8.3,
-              number: 7.8,
-              service: 8.5,
-              wifi: 9.7,
-            },
-            list: [
-              {
-                dateReview: "12.01.2023",
-                dateTrip: "01.01.2023 - 10.01.2023",
-                img: "../img/hotels/1.png",
-                nameRoom: "Двухместный номер Executive",
-                estimation: 8.4,
-                clear: 8,
-                hygiene: 7,
-                location: 10,
-                food: 7,
-                price: 8,
-                number: 7,
-                service: 8,
-                wifi: 9,
-                avatar: "../img/reviews/1.png",
-                name: "Наталья",
-                textGood:
-                  "Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.Понравилось все. Не первый раз тут останавливаюсь.",
-                textBad: "Нет",
-              },
-              {
-                dateReview: "12.01.2023",
-                dateTrip: "01.01.2023 - 10.01.2023",
-                img: "../img/hotels/1.png",
-                nameRoom: "Двухместный номер Executive",
-                estimation: 6.4,
-                clear: 8,
-                hygiene: 7,
-                location: 10,
-                food: 5,
-                price: 8,
-                number: 7,
-                service: 1,
-                wifi: 9,
-                avatar: "../img/reviews/1.png",
-                name: "Наталья",
-                textGood: "Понравилось все. Не первый раз тут останавливаюсь.",
-                textBad: "Нет",
-              },
-              {
-                dateReview: "12.01.2023",
-                dateTrip: "01.01.2023 - 10.01.2023",
-                img: "../img/hotels/1.png",
-                nameRoom: "Двухместный номер Executive",
-                estimation: 4.3,
-                clear: 8,
-                hygiene: 7,
-                location: 10,
-                food: 7,
-                price: 4,
-                number: 5,
-                service: 7,
-                wifi: 9,
-                avatar: "../img/reviews/1.png",
-                name: "Наталья",
-                textGood: "Понравилось все. Не первый раз тут останавливаюсь.",
-                textBad: "Нет",
-              },
-            ],
-          },
-          rooms: [
-            {
-              name: "Двухместный номер Deluxe",
-              images: [
-                "../img/rooms/1.png",
-                "../img/rooms/2.png",
-                "../img/rooms/3.png",
-              ],
-              list: [
-                "Двуспальная кровать",
-                "Питание не включено",
-                "Кровать размера «king size»",
-                "Окно",
-                "Двуспальная кровать",
-                "Питание не включено",
-                "Кровать размера «king size»",
-                "Окно",
-              ],
-              price: "9 000",
-            },
-            {
-              name: "Двухместный номер Deluxe",
-              images: [
-                "../img/rooms/1.png",
-                "../img/rooms/2.png",
-                "../img/rooms/3.png",
-              ],
-              list: [
-                "Двуспальная кровать",
-                "Питание не включено",
-                "Кровать размера «king size»",
-                "Окно",
-              ],
-              price: "9 000",
-            },
-          ],
-        };
-
-        insertRooms(data.rooms);
       }
     );
     $.get(
@@ -1077,13 +846,16 @@ export default class GetData {
         insertNearby(data);
       }
     );
+    this.rooms_search(hotelId, input_date, output_date);
+  }
+  rooms_search(hotelId, input_date, output_date) {
     $.get(
       this.path_php +
-        `get_hotel_rules.php?id_hotel=${hotelId}&input_date=${input_date}&output_date=${output_date}`,
+        `search/rooms_search.php?id=${hotelId}&input_date=${input_date}&output_date=${output_date}`,
       (data) => {
         data = JSON.parse(data);
         console.log(data);
-        insertRules(data);
+        insertRooms(data);
       }
     );
   }

@@ -64,6 +64,9 @@ export default class ConfirmPassword {
       type: "POST",
       url: this.url,
       data: this.data,
+      headers: {
+        "X-Auth": localStorage.token ?? "",
+      },
       success: (data) => {
         try {
           data = JSON.parse(data);
