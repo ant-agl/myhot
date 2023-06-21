@@ -7,7 +7,7 @@ export default async function isAuth() {
         return { key: t[0], value: t[1] };
       })
       .find((item) => item.key == "token")?.value;
-    localStorage.token = token;
+    localStorage.token = token || "";
 
     if (!token)
       resolve({
