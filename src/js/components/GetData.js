@@ -645,7 +645,7 @@ export default class GetData {
           if (hotel.image) {
             image = `<img src="${hotel.image}" style="width:100px;">`;
           }
-          console.log(hotel);
+
           coords.push({
             coords: hotel.position?.coordinate,
             name: hotel.name,
@@ -793,34 +793,47 @@ export default class GetData {
       '<span style="color: #fff;background:#21527d;">Ничего не найдено</span>'
     );
   }
-  hotel({ hotelId, input_date, output_date }) {
+  hotel({ hotelId, input_date, output_date, person }) {
     if (!input_date) input_date = Math.floor(new Date().getTime() / 1000);
     if (!output_date) output_date = Math.floor(new Date().getTime() / 1000);
     $.get(
       this.path_php +
-        `data_hotel.php?id_hotel=${hotelId}&input_date=${input_date}&output_date=${output_date}`,
+        `data_hotel.php?id_hotel=${hotelId}&input_date=${input_date}&output_date=${output_date}&person=${person}`,
       (data) => {
         data = JSON.parse(data);
         console.log(data);
         insertHotel(data);
       }
     );
+    // this.getAllServices().then((allService) => {
     $.get(
-      this.path +
-        `get_all_services.php?id_hotel=${hotelId}&input_date=${input_date}&output_date=${output_date}`,
-      (allService) => {
-        allService = JSON.parse(allService);
-        $.get(
-          this.path_php +
-            `get_services.php?id_hotel=${hotelId}&input_date=${input_date}&output_date=${output_date}`,
-          (data) => {
-            data = JSON.parse(data);
-            console.log(data);
-            insertServices(data, allService);
-          }
-        );
+      this.path_php +
+        `get_services.php?id_hotel=${hotelId}&input_date=${input_date}&output_date=${output_date}`,
+      (data) => {
+        data = JSON.parse(data);
+        console.log(data);
+        let columns = {
+          free: {
+            $col1: $(".services__block_free .services__column").eq(0),
+            $col2: $(".services__block_free .services__column").eq(1),
+          },
+          paid: {
+            $col1: $(".services__block_paid .services__column").eq(0),
+            $col2: $(".services__block_paid .services__column").eq(1),
+          },
+        };
+        // insertServices(data, columns, allService);
+        insertServices(data, columns, {
+          $block: $(".services"),
+          classes: {
+            row: "services__item",
+            price: "services__price",
+            category: "services__subtitle",
+          },
+        });
       }
     );
+    // });
     $.get(
       this.path_php +
         `avg_reviews.php?id_hotel=${hotelId}&input_date=${input_date}&output_date=${output_date}`,
@@ -857,43 +870,67 @@ export default class GetData {
         insertRules(data);
       }
     );
-    this.rooms_search(hotelId, input_date, output_date);
   }
-  rooms_search(hotelId, input_date, output_date) {
+  rooms_search(hotelId, input_date, output_date, person = 1) {
     $.get(
       this.path_php +
-        `search/rooms_search.php?id=${hotelId}&input_date=${input_date}&output_date=${output_date}`,
+        `search/rooms_search.php?id=${hotelId}&input_date=${input_date}&output_date=${output_date}&person=${person}`,
       (data) => {
         data = JSON.parse(data);
         console.log(data);
         insertRooms(data);
         data.forEach((room) => {
-          this.data_room(room.id, input_date, output_date);
+          this.data_room(room.id, input_date, output_date, person);
         });
       }
     );
   }
-  data_room(roomId, input_date, output_date) {
+  data_room(roomId, input_date, output_date, person = 1) {
+    // let data = {
+    //   id: roomId,
+    //   images: [
+    //     "https://wehotel.ru/img/rooms/1.png",
+    //     "https://wehotel.ru/img/rooms/2.png",
+    //     "https://wehotel.ru/img/rooms/3.png",
+    //   ],
+    //   name: "Двухместный номер Delux",
+    //   description: "Просторный номер для двоих",
+    //   price: 17500,
+    // };
+    // insertDataRoom(data);
+    // return;
     $.get(
       this.path_php +
-        `data_room.php?id=${roomId}&input_date=${input_date}&output_date=${output_date}`,
+        `data_room.php?id=${roomId}&input_date=${input_date}&output_date=${output_date}&person=${person}`,
       (data) => {
-        // data = JSON.parse(data);
-        // data.id = roomId;
-        // console.log(data);
-        data = {
-          id: roomId,
-          images: [
-            "https://wehotel.ru/img/rooms/1.png",
-            "https://wehotel.ru/img/rooms/2.png",
-            "https://wehotel.ru/img/rooms/3.png",
-          ],
-          name: "Двухместный номер Delux",
-          description: "Просторный номер для двоих",
-          price: 17500,
-        };
+        data = JSON.parse(data);
+        data.id = roomId;
+        console.log(data);
+        // data = {
+        //   id: roomId,
+        //   images: [
+        //     "https://wehotel.ru/img/rooms/1.png",
+        //     "https://wehotel.ru/img/rooms/2.png",
+        //     "https://wehotel.ru/img/rooms/3.png",
+        //   ],
+        //   name: "Двухместный номер Delux",
+        //   description: "Просторный номер для двоих",
+        //   price: 17500,
+        // };
         insertDataRoom(data);
       }
     );
+  }
+  getAllServices(hotelId, input_date, output_date) {
+    return new Promise((resolve) => {
+      $.get(
+        this.path +
+          `get_all_services.php?id_hotel=${hotelId}&input_date=${input_date}&output_date=${output_date}`,
+        (allService) => {
+          allService = JSON.parse(allService);
+          resolve(allService);
+        }
+      );
+    });
   }
 }

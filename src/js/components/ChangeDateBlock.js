@@ -52,7 +52,7 @@ export default class ChangeDateBlock {
     this.datepickerTo = new AirDatepicker(`[name="${this.inputToName}"]`, {
       autoClose: true,
       isMobile: $(window).outerWidth() <= 767,
-      minDate: moment().add(1, "days"),
+      minDate: moment(input_date).add(1, "days"),
       selectedDates: output_date,
     });
 
@@ -109,7 +109,12 @@ export default class ChangeDateBlock {
 
     let getData = new GetData();
     if (!data.id) return;
-    getData.rooms_search(data.id, data.input_date, data.output_date);
+    getData.rooms_search(
+      data.id,
+      data.input_date,
+      data.output_date,
+      data.person || 1
+    );
   }
   changeText(text) {
     this.$btn.text(text);

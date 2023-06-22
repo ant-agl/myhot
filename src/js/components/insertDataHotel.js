@@ -130,51 +130,99 @@ export function insertHotel(hotel) {
     `);
   });
 }
-export function insertServices(services, allService) {
-  services.free.forEach((id) => {
-    let html = "";
-    let $category = $(`[data-category="${allService[id].category}]`);
-    let category = allService[id].category ?? "";
-    if ($category.length == 0 && category) {
-      html += `<div class="services__subtitle" data-category="${category}">${category}</div>`;
-      html += `<div class="services__item">${allService[id].name}</div>`;
 
-      let $col1 = $(".services__block_free .services__column").eq(0);
-      let $col2 = $(".services__block_free .services__column").eq(1);
-      insertColumn($col1, $col2, html);
-    } else if ($category.length > 0 && category) {
-      html += `<div class="services__item">${allService[id].name}</div>`;
-      $category.after(html);
-    } else {
-      html += `<div class="services__item">${allService[id].name}</div>`;
-
-      let $col1 = $(".services__block_free .services__column").eq(0);
-      let $col2 = $(".services__block_free .services__column").eq(1);
-      insertColumn($col1, $col2, html);
-    }
+import GetData from "./GetData";
+let allService;
+export function insertServices(services, columns, options = {}) {
+  let getData = new GetData();
+  getData.getAllServices().then((data) => {
+    allService = data;
   });
-  services.paid.forEach((id, i) => {
-    let html = "";
-    let $category = $(`[data-category="${allService[id].category}]`);
-    let category = allService[id].category ?? "";
-    if ($category.length == 0 && category) {
-      html += `<div class="services__subtitle" data-category="${category}">${category}</div>`;
-      html += `<div class="services__item">${allService[id].name}</div>`;
+  let interval = setInterval(() => {
+    if (!allService) return;
 
-      let $col1 = $(".services__block_paid .services__column").eq(0);
-      let $col2 = $(".services__block_paid .services__column").eq(1);
-      insertColumn($col1, $col2, html);
-    } else if ($category.length > 0 && category) {
-      html += `<div class="services__item">${allService[id].name}</div>`;
-      $category.after(html);
-    } else {
-      html += `<div class="services__item">${allService[id].name}</div>`;
+    services.free.forEach((id) => {
+      let html = "";
+      let $category;
+      if (options.$block) {
+        $category = options.$block.find(
+          `.${columns.free.class} [data-category="${allService[id].category}"]`
+        );
+      } else {
+        $category = $(
+          `.${columns.free.class} [data-category="${allService[id].category}"]`
+        );
+      }
+      let category = allService[id].category ?? "";
 
-      let $col1 = $(".services__block_paid .services__column").eq(0);
-      let $col2 = $(".services__block_paid .services__column").eq(1);
-      insertColumn($col1, $col2, html);
-    }
-  });
+      let item = `<div class="${options.classes.row}">${allService[id].name}</div>`;
+
+      if ($category.length == 0 && category) {
+        html += `<div class="${options.classes.category}" data-category="${category}">${category}</div>`;
+        html += item;
+        insertColumn(columns.free.$col1, columns.free.$col2, html);
+      } else if ($category.length > 0 && category) {
+        html += item;
+        $category.after(html);
+      } else {
+        html += item;
+        insertColumn(columns.free.$col1, columns.free.$col2, html);
+      }
+    });
+    services.paid.forEach((id, i) => {
+      let html = "";
+      let $category;
+      if (options.$block) {
+        $category = options.$block.find(
+          `.${columns.paid.class} [data-category="${allService[id].category}"]`
+        );
+      } else {
+        $category = $(
+          `.${columns.paid.class} [data-category="${allService[id].category}"]`
+        );
+      }
+
+      let category = allService[id].category ?? "";
+
+      let item = "";
+      if (options.isInput) {
+        item = `
+          <div class="${options.classes.row}">
+            <label>
+              <input type="checkbox" value="${services.price[i]}">
+              ${allService[id].name}
+            </label>
+            <div class="${options.classes.price}">${services.price[
+          i
+        ].toLocaleString()} руб.</div>
+          </div>
+        `;
+      } else {
+        item = `
+          <div class="${options.classes.row}">
+            <span>${allService[id].name}</span>
+            <span class="${options.classes.price}">${services.price[
+          i
+        ].toLocaleString()} руб.</span>
+          </div>
+        `;
+      }
+
+      if ($category.length == 0 && category) {
+        html += `<div class="${options.classes.category}" data-category="${category}">${category}</div>`;
+        html += item;
+        insertColumn(columns.paid.$col1, columns.paid.$col2, html);
+      } else if ($category.length > 0 && category) {
+        html += item;
+        $category.after(html);
+      } else {
+        html += item;
+        insertColumn(columns.paid.$col1, columns.paid.$col2, html);
+      }
+    });
+
+    clearInterval(interval);
+  }, 1);
 }
 export function insertRules(rules) {
   let html = "";
@@ -373,17 +421,6 @@ export function insertRooms(rooms) {
       </div>
     `;
     $(".card-rooms").append(html);
-    let interval = setInterval(() => {
-      if ($(`#modal-room-${room.id}`).length == 0) return;
-      console.log($(`#modal-room-${room.id}`));
-      new Modal(`#modal-room-${room.id}`);
-      clearInterval(interval);
-    }, 1);
-    // new ShowAll("btn-show-all-" + i, {
-    //   minShowElements: 4,
-    //   textShow: "Скрыть",
-    //   textHide: "Посмотреть полностью",
-    // });
   });
   new BackgroundImage(".card-room__main-img", {
     paddingBottom: "40%",
@@ -396,7 +433,7 @@ export function insertRooms(rooms) {
 }
 
 export function insertDataRoom(room) {
-  if ($(`#modal-room-${room.id}`).length) return;
+  $(`#modal-room-${room.id}`).remove();
 
   $("body").append(`
     <div class="modal" id="modal-room-${room.id}">
@@ -430,30 +467,8 @@ export function insertDataRoom(room) {
         <div class="modal-room__title">Доступные бесплантые услуги для данного номера</div>
         <div class="modal-room__free-list">
           <div class="modal-room__free-column">
-            <div class="modal-room__subtitle">Общее</div>
-            <div class="modal-room__item">Банкомат</div>
-            <div class="modal-room__item">Индивидуальная регистрация заезда и отъезда</div>
-            <div class="modal-room__item">Кондиционер</div>
-            <div class="modal-room__item">Круглосуточная стойка регистрации</div>
-            <div class="modal-room__item">Лифт</div>
-            <div class="modal-room__item">Отель для некурящих</div>
-            <div class="modal-room__subtitle">Интернет</div>
-            <div class="modal-room__item">Бесплатный Wi-Fi</div>
-            <div class="modal-room__subtitle">Туризм</div>
-            <div class="modal-room__item">Экскурсионное бюро</div>
           </div>
           <div class="modal-room__free-column">
-            <div class="modal-room__subtitle">В номерах</div>
-            <div class="modal-room__item">Люкс для новобрачных</div>
-            <div class="modal-room__item">Сейф (в номере)</div>
-            <div class="modal-room__subtitle">Услуги и удобства</div>
-            <div class="modal-room__item">Услуги консьержа</div>
-            <div class="modal-room__item">Фен (по запросу)</div>
-            <div class="modal-room__subtitle">Питание</div>
-            <div class="modal-room__item">Диетическое меню (по запросу)</div>
-            <div class="modal-room__subtitle">Персонал говорит</div>
-            <div class="modal-room__item">на английском</div>
-            <div class="modal-room__item">на русском</div>
           </div>
         </div>
         <div class="modal-room__title" id="paid-service-${
@@ -463,85 +478,8 @@ export function insertDataRoom(room) {
   }">Выберете платные услуги +</div>
         <div class="modal-room__paid-block" id="paid-service__list-${room.id}">
           <div class="modal-room__paid-list">
-            <div class="modal-room__paid-column">
-              <div class="modal-room__subtitle">Услуги и удобства</div>
-              <div class="modal-room__item">
-                <label>
-                  <input type="checkbox" value="500">
-                  Гладильные услуги
-                </label>
-                <div class="modal-room__item-price">500 руб.</div>
-              </div>
-              <div class="modal-room__item">
-                <label>
-                  <input type="checkbox" value="500">
-                  Прачечная
-                </label>
-                <div class="modal-room__item-price">500 руб.</div>
-              </div>
-              <div class="modal-room__item">
-                <label>
-                  <input type="checkbox" value="500">
-                  Химчистка
-                </label>
-                <div class="modal-room__item-price">500 руб.</div>
-              </div>
-              <div class="modal-room__item">
-                <label>
-                  <input type="checkbox" value="600">
-                  Чистка обуви
-                </label>
-                <div class="modal-room__item-price">600 руб.</div>
-              </div>
-              <div class="modal-room__subtitle">Красота и здоровье</div>
-              <div class="modal-room__item">
-                <label>
-                  <input type="checkbox" value="1200">
-                  Массаж
-                </label>
-                <div class="modal-room__item-price">1 200 руб.</div>
-              </div>
-              <div class="modal-room__item">
-                <label>
-                  <input type="checkbox" value="1600">
-                  Салон красоты
-                </label>
-                <div class="modal-room__item-price">1 600 руб.</div>
-              </div>
-              <div class="modal-room__item">
-                <label>
-                  <input type="checkbox" value="2000">
-                  Спа-центр
-                </label>
-                <div class="modal-room__item-price">2 000 руб.</div>
-              </div>
-            </div>
-            <div class="modal-room__paid-column">
-              <div class="modal-room__subtitle">Парковка</div>
-              <div class="modal-room__item">
-                <label>
-                  <input type="checkbox" value="8200">
-                  Парковка
-                </label>
-                <div class="modal-room__item-price">8 200 руб.</div>
-              </div>
-              <div class="modal-room__subtitle">Трансфер</div>
-              <div class="modal-room__item">
-                <label>
-                  <input type="checkbox" value="7800">
-                  Трансфер
-                </label>
-                <div class="modal-room__item-price">7 800 руб.</div>
-              </div>
-              <div class="modal-room__subtitle">Животные</div>
-              <div class="modal-room__item">
-                <label>
-                  <input type="checkbox" value="1000">
-                  Размещение с домашними животными
-                </label>
-                <div class="modal-room__item-price">1 000 руб.</div>
-              </div>
-            </div>
+            <div class="modal-room__paid-column"></div>
+            <div class="modal-room__paid-column"></div>
           </div>
           <div class="modal-room__paid-total">
             <span>Всего за платные услуги</span>
@@ -575,6 +513,51 @@ export function insertDataRoom(room) {
     `#modal-room-${room.id} .modal-room__paid-total-value`
   );
   cSum.updateAnswer();
+
+  let columns = {
+    free: {
+      $col1: $(`#modal-room-${room.id} .modal-room__free-column`).eq(0),
+      $col2: $(`#modal-room-${room.id} .modal-room__free-column`).eq(1),
+      class: "modal-room__free-column",
+    },
+    paid: {
+      $col1: $(`#modal-room-${room.id} .modal-room__paid-column`).eq(0),
+      $col2: $(`#modal-room-${room.id} .modal-room__paid-column`).eq(1),
+      class: "modal-room__paid-column",
+    },
+  };
+  insertServices(room.services, columns, {
+    isInput: true,
+    $block: $(`#modal-room-${room.id}`),
+    classes: {
+      row: "modal-room__item",
+      price: "modal-room__item-price",
+      category: "modal-room__subtitle",
+    },
+  });
+
+  new Modal(`#modal-room-${room.id}`, {
+    afterOpen: () => {
+      let $modal = $(`#modal-room-${room.id}`);
+
+      let $elems = $modal.find(".modal-room__paid-column > *");
+
+      $modal.find(".modal-room__paid-column").html("");
+      let $col1 = $modal.find(".modal-room__paid-column").eq(0);
+      let $col2 = $modal.find(".modal-room__paid-column").eq(1);
+
+      let html = "";
+      $elems.each((i, elem) => {
+        let $elem = $(elem);
+        if ($elem.hasClass("modal-room__subtitle")) {
+          insertColumn($col1, $col2, html);
+          html = "";
+        }
+        html += elem.outerHTML;
+      });
+      insertColumn($col1, $col2, html);
+    },
+  });
 }
 
 function getText(number) {

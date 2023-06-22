@@ -14,7 +14,9 @@ export default class ShowAll {
 
     this.calculateHeight();
 
-    this.$btn.on("click", this.toggle.bind(this));
+    setTimeout(() => {
+      this.$btn.on("click", this.toggle.bind(this));
+    });
     this.$block.find("> *").each((i, el) => {
       new ResizeSensor($(el)[0], () => {
         this.calculateHeight();

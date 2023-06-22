@@ -35,6 +35,8 @@ export default class Modal {
     });
 
     $("body").css("overflow", "hidden");
+
+    this.afterOpen();
   }
   close() {
     this.$modal.removeClass(this.openClass);
@@ -45,6 +47,9 @@ export default class Modal {
     $("body").css("overflow", "auto");
   }
   beforeOpen() {
+    return true;
+  }
+  afterOpen() {
     return true;
   }
   validPage(page) {
