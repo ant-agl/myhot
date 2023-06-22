@@ -2,20 +2,28 @@ export default class MapApi {
   myMap;
   center = [55.76, 37.64];
   zoom = 7;
+  fixZoom = false;
   controls = ["zoomControl", "fullscreenControl"];
   isReady = false;
 
   constructor(options) {
+    if ($("head #script-map").length == 0) {
+      $("head").append(`
+        <script
+          id="script-map"
+          src="https://api-maps.yandex.ru/2.1/?apikey=a0c76f9a-3a83-47c5-8684-cd13b06be955&load=package.standard&lang=ru_RU">
+        </script>
+      `);
+    }
+
     for (let key in options) {
       this[key] = options[key];
     }
-
-    ymaps.ready(() => {
-      this.isReady = true;
-      this.initMap();
+    this.onReadyLoad(() => {
       if (this.coords) this.addPoints(this.coords);
-      if (this.btnOpenMap)
+      if (this.btnOpenMap) {
         $(this.btnOpenMap).on("click", this.openMap.bind(this));
+      }
     });
   }
   initMap() {
@@ -26,13 +34,7 @@ export default class MapApi {
     });
   }
   addPointsReady(coords) {
-    if (this.isReady) {
-      this.addPoints(coords);
-      return;
-    }
-
-    ymaps.ready(() => {
-      this.isReady = true;
+    this.onReadyLoad(() => {
       this.addPoints(coords);
     });
   }
@@ -50,9 +52,9 @@ export default class MapApi {
           hintContent: hotel.name || "",
           balloonContentHeader: hotel.name || "",
           balloonContentBody: hotel.image || "",
-          balloonContentFooter: `<a href="../hotel?id=${
-            hotel.id || ""
-          }">Перейти</a>`,
+          balloonContentFooter: hotel.id
+            ? `<a href="../hotel?id=${hotel.id}">Перейти</a>`
+            : "",
         },
       });
     }
@@ -66,6 +68,7 @@ export default class MapApi {
   }
   autoCenter() {
     if (this.myClusterer) this.myMap.setBounds(this.myClusterer.getBounds());
+    if (this.fixZoom) this.setZoom(this.zoom);
   }
   resizeMap() {
     this.myMap.container.fitToViewport();
@@ -78,5 +81,30 @@ export default class MapApi {
       time += 10;
       if (time > 500) clearInterval(t);
     }, 10);
+  }
+  setZoom(zoom) {
+    this.onReadyLoad(() => {
+      this.myMap.setZoom(zoom);
+    });
+  }
+  isLoad() {
+    return typeof ymaps !== "undefined";
+  }
+  onReadyLoad(func) {
+    let interval = setInterval(() => {
+      if (!this.isLoad()) return;
+
+      if (!this.isReady) {
+        ymaps.ready(() => {
+          this.isReady = true;
+          this.initMap();
+          func();
+        });
+      } else {
+        func();
+      }
+
+      clearInterval(interval);
+    }, 1);
   }
 }

@@ -22,43 +22,7 @@ getData.hotel({ hotelId, input_date, output_date });
 import ChangeDateBlock from "./components/ChangeDateBlock";
 new ChangeDateBlock(".dates-booking");
 
-import Modal from "./components/Modal";
-new Modal("#modal-room");
-
-import scrollOverflow from "./components/scrollOverflow";
-scrollOverflow($("#modal-room .modal__content"));
-
-import ShowAll from "./components/ShowAll";
-new ShowAll("paid-service", {
-  minShowElements: 0,
-  gap: 0,
-  textShow: "Выберете платные услуги —",
-  textHide: "Выберете платные услуги +",
-});
-
-import CheckboxSum from "./components/CheckboxSum";
-let cSum = new CheckboxSum(
-  ".modal-room__paid-list",
-  ".modal-room__paid-total-value"
-);
-cSum.updateAnswer();
-
-new BackgroundImage(".modal-room__main-img", {
-  paddingBottom: "40%",
-  size: "cover",
-});
-new BackgroundImage(".modal-room__second-img", {
-  paddingBottom: "20%",
-  size: "cover",
-});
-
 $(".btn-back").on("click", function (e) {
   e.preventDefault();
-
-  if (document.referrer.includes("/hotels-list"))
-    location.href = document.referrer;
-  else location.href = "/hotels-list" + data2get(get2data());
-
-  // if (history.length > 2) history.back();
-  // else location.href = "/hotels-list" + data2get(get2data());
+  location.href = "/hotels-list" + data2get(get2data());
 });

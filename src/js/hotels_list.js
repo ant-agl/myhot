@@ -32,16 +32,16 @@ new Range({
 });
 new Range({
   id: "dual-range-location",
-  inputMin: "location-min",
-  inputMax: "location-max",
+  inputMin: "position_short",
+  inputMax: "position_long",
   lowerBound: 0,
-  upperBound: 50,
-  minSpan: 5,
+  upperBound: 20000,
+  minSpan: 50,
 });
 new Range({
   id: "dual-range-location-place",
-  inputMin: "location-place-min",
-  inputMax: "location-place-max",
+  inputMin: "availability_short",
+  inputMax: "availability_long",
   lowerBound: 0,
   upperBound: 50,
   minSpan: 5,

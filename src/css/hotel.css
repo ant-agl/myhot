@@ -188,6 +188,7 @@
   background-color: #fff;
   border-radius: 10px;
   max-width: 296px;
+  z-index: 9;
 }
 .geo__address-title {
   font-size: 18px;
@@ -584,7 +585,7 @@
   align-items: center;
   gap: 5px;
 }
-#paid-service {
+[id^="paid-service"] {
   cursor: pointer;
 }
 .modal-room__paid-block {

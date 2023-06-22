@@ -30,6 +30,7 @@ import {
   insertReviewsTotal,
   insertReviewsList,
   insertRooms,
+  insertDataRoom,
 } from "./insertDataHotel";
 
 export default class GetData {
@@ -662,6 +663,9 @@ export default class GetData {
 
         if (!hotel.image) hotel.image = "../img/empty.png";
 
+        let getParams = get2data();
+        getParams.id = hotel.id;
+
         html += `
           <div class="hotel-card" data-id="${
             hotel.id
@@ -754,9 +758,7 @@ export default class GetData {
         }</span>
                 <span class="hotel-card__price-ruble">&#8381;</span>
               </span>
-              <a href="../hotel?id=${hotel.id}&input_date=${
-          getData.input_date
-        }&output_date=${getData.output_date}" class="btn">Подробнее</a>
+              <a href="/hotel${data2get(getParams)}" class="btn">Подробнее</a>
             </div>
           </div>
         `;
@@ -846,6 +848,15 @@ export default class GetData {
         insertNearby(data);
       }
     );
+    $.get(
+      this.path_php +
+        `get_hotel_rules.php?id_hotel=${hotelId}&input_date=${input_date}&output_date=${output_date}`,
+      (data) => {
+        data = JSON.parse(data);
+        console.log(data);
+        insertRules(data);
+      }
+    );
     this.rooms_search(hotelId, input_date, output_date);
   }
   rooms_search(hotelId, input_date, output_date) {
@@ -856,6 +867,32 @@ export default class GetData {
         data = JSON.parse(data);
         console.log(data);
         insertRooms(data);
+        data.forEach((room) => {
+          this.data_room(room.id, input_date, output_date);
+        });
+      }
+    );
+  }
+  data_room(roomId, input_date, output_date) {
+    $.get(
+      this.path_php +
+        `data_room.php?id=${roomId}&input_date=${input_date}&output_date=${output_date}`,
+      (data) => {
+        // data = JSON.parse(data);
+        // data.id = roomId;
+        // console.log(data);
+        data = {
+          id: roomId,
+          images: [
+            "https://wehotel.ru/img/rooms/1.png",
+            "https://wehotel.ru/img/rooms/2.png",
+            "https://wehotel.ru/img/rooms/3.png",
+          ],
+          name: "Двухместный номер Delux",
+          description: "Просторный номер для двоих",
+          price: 17500,
+        };
+        insertDataRoom(data);
       }
     );
   }

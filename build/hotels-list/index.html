@@ -9,11 +9,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Raleway&display=swap"
       rel="stylesheet">
     
-    <link rel="icon" href="./img/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="../css/hotels-list.css">
-    <script
-        src="https://api-maps.yandex.ru/2.1/?apikey=a0c76f9a-3a83-47c5-8684-cd13b06be955&load=package.standard&lang=ru_RU">
-    </script>
     <title>Список отелей | MyHot</title>
 </head>
 
@@ -431,44 +428,44 @@
                           <div class="filter__body">
                             <div class="filter__row">
                               От
-                              <input type="text" class="filter__input" name="location-min" value="0" />
+                              <input type="text" class="filter__input" name="position_short" value="0" />
                               до
-                              <input type="text" class="filter__input" name="location-max" value="50" />
-                              км
+                              <input type="text" class="filter__input" name="position_long" value="20000" />
+                              м
                             </div>
                             <div id="dual-range-location"></div>
                     
                             <label class="filter__row">
-                              <input type="radio" name="from_location" value="from_center" checked>
-                              <span>от центра, км</span>
+                              <input type="radio" name="position" value="center" checked>
+                              <span>от центра</span>
                             </label>
                             <label class="filter__row">
-                              <input type="radio" name="from_location" value="from_sea">
-                              <span>от моря, км</span>
+                              <input type="radio" name="position" value="sea">
+                              <span>от моря</span>
                             </label>
                           </div>
                           <br>
                           <div class="filter__body">
                             <div class="filter__row">
                               От
-                              <input type="text" class="filter__input" name="location-place-min" value="0" />
+                              <input type="text" class="filter__input" name="availability_short" value="0" />
                               до
-                              <input type="text" class="filter__input" name="location-place-max" value="50" />
+                              <input type="text" class="filter__input" name="availability_long" value="50" />
                               км
                             </div>
                             <div id="dual-range-location-place"></div>
                     
                             <label class="filter__row">
-                              <input type="radio" name="from_location-place" value="from_airport" checked>
-                              <span>от аэропорта, км</span>
+                              <input type="radio" name="availability" value="airport" checked>
+                              <span>от аэропорта</span>
                             </label>
                             <label class="filter__row">
-                              <input type="radio" name="from_location-place" value="from_train">
-                              <span>от Ж/Д, км</span>
+                              <input type="radio" name="availability" value="train">
+                              <span>от Ж/Д</span>
                             </label>
                             <label class="filter__row">
-                              <input type="radio" name="from_location-place" value="from_metro">
-                              <span>от метро, км</span>
+                              <input type="radio" name="availability" value="metro">
+                              <span>от метро</span>
                             </label>
                           </div>
                         </div>
