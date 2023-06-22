@@ -140,7 +140,8 @@ export default class GetData {
 
         filters.forEach((filter) => {
           let $btnFilter = $(`.filter-btn[data-filter="${filter.id}"]`);
-          let count = data.find((hotel) => hotel.status == filter.id).length;
+          let count =
+            data.find((hotel) => hotel.status == filter.id)?.length || 0;
           if (count > 0) $btnFilter.show();
           else $btnFilter.hide();
         });

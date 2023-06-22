@@ -47,6 +47,12 @@ export function insertHotel(hotel) {
     .addClass("color_" + getColor(hotel.rating.reviews))
     .text(hotel.rating.reviews);
 
+  if (hotel.recording_permission == 1) {
+    $(".hotel__btn").append(`
+      <a href="#" class="btn btn_white btn_big btn-msg-hotel">Написать</a>
+    `);
+  }
+
   let htmlDescription = hotel.description;
   if (hotel.information_hotel) {
     htmlDescription += `<br><br>${hotel.information_hotel}`;
@@ -134,10 +140,12 @@ export function insertHotel(hotel) {
 import GetData from "./GetData";
 let allService;
 export function insertServices(services, columns, options = {}) {
-  let getData = new GetData();
-  getData.getAllServices().then((data) => {
-    allService = data;
-  });
+  if (!allService) {
+    let getData = new GetData();
+    getData.getAllServices().then((data) => {
+      allService = data;
+    });
+  }
   let interval = setInterval(() => {
     if (!allService) return;
 
@@ -189,7 +197,9 @@ export function insertServices(services, columns, options = {}) {
         item = `
           <div class="${options.classes.row}">
             <label>
-              <input type="checkbox" value="${services.price[i]}">
+              <input type="checkbox" value="${
+                services.price[i]
+              }" data-id="${id}">
               ${allService[id].name}
             </label>
             <div class="${options.classes.price}">${services.price[
@@ -386,7 +396,7 @@ export function insertRooms(rooms) {
   $(".card-rooms").html("");
   rooms.forEach((room, i) => {
     let html = `
-      <div class="card-room page-content">
+      <div class="card-room page-content" data-id="${room.id}">
         <div class="card-room__title">${room.name}</div>
         <div class="card-room__body">
           <div class="card-room__images">
@@ -414,7 +424,11 @@ export function insertRooms(rooms) {
                 <span class="card-room__price-value">${room.price.toLocaleString()}</span>
                 руб.
               </div>
-              <a href="#" class="btn">Забронировать</a>
+              <a href="#"
+                class="btn btn-booking-temp"
+                data-room-id="${room.id}">
+                Забронировать
+              </a>
             </div>
           </div>
         </div>
@@ -460,7 +474,10 @@ export function insertDataRoom(room) {
                 <span class="modal-room__price-value">${room.price.toLocaleString()}</span>
                 руб.
               </div>
-              <a href="#" class="btn">Забронировать</a>
+              <a href="#" class="btn btn-booking-temp"
+                data-room-id="${room.id}">
+                Забронировать
+              </a>
             </div>
           </div>
         </div>
@@ -542,6 +559,8 @@ export function insertDataRoom(room) {
 
       let $elems = $modal.find(".modal-room__paid-column > *");
 
+      let $checkedInputs = $modal.find('[type="checkbox"]:checked');
+
       $modal.find(".modal-room__paid-column").html("");
       let $col1 = $modal.find(".modal-room__paid-column").eq(0);
       let $col2 = $modal.find(".modal-room__paid-column").eq(1);
@@ -556,6 +575,10 @@ export function insertDataRoom(room) {
         html += elem.outerHTML;
       });
       insertColumn($col1, $col2, html);
+      $checkedInputs.each((i, el) => {
+        let id = $(el).data("id");
+        $modal.find(`[data-id="${id}"]`).prop("checked", true);
+      });
     },
   });
 }

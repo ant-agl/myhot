@@ -8,13 +8,15 @@
   z-index: 3;
   opacity: 0;
   transition: opacity 0.2s;
-  display: none;
   align-items: center;
   justify-content: center;
+  display: flex;
+  visibility: hidden;
 }
 .modal_open {
   opacity: 1;
   transform: scale(1);
+  visibility: visible;
 }
 .modal_open .modal__content {
   transform: scale(1);
