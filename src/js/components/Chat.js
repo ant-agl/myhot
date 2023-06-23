@@ -73,6 +73,7 @@ export default class Chat {
         "X-Auth": localStorage.token ?? "",
       },
       success: (data) => {
+        if (!data) return;
         let items = JSON.parse(data);
         items.forEach((item) => {
           let hotel = item.joined_hotel_search[0];

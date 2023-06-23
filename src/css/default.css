@@ -55,7 +55,8 @@ label {
   color: #fff;
   margin-top: 20px;
 }
-input:focus {
+input:focus,
+textarea:focus {
   transition: border 0.1s;
   outline: 0;
   box-shadow: 0 0 0 3px #469bdf;

@@ -137,103 +137,8 @@ export function insertHotel(hotel) {
   });
 }
 
-import GetData from "./GetData";
-let allService;
-export function insertServices(services, columns, options = {}) {
-  if (!allService) {
-    let getData = new GetData();
-    getData.getAllServices().then((data) => {
-      allService = data;
-    });
-  }
-  let interval = setInterval(() => {
-    if (!allService) return;
+import { insertServices } from "./insertServices";
 
-    services.free.forEach((id) => {
-      let html = "";
-      let $category;
-      if (options.$block) {
-        $category = options.$block.find(
-          `.${columns.free.class} [data-category="${allService[id].category}"]`
-        );
-      } else {
-        $category = $(
-          `.${columns.free.class} [data-category="${allService[id].category}"]`
-        );
-      }
-      let category = allService[id].category ?? "";
-
-      let item = `<div class="${options.classes.row}">${allService[id].name}</div>`;
-
-      if ($category.length == 0 && category) {
-        html += `<div class="${options.classes.category}" data-category="${category}">${category}</div>`;
-        html += item;
-        insertColumn(columns.free.$col1, columns.free.$col2, html);
-      } else if ($category.length > 0 && category) {
-        html += item;
-        $category.after(html);
-      } else {
-        html += item;
-        insertColumn(columns.free.$col1, columns.free.$col2, html);
-      }
-    });
-    services.paid.forEach((id, i) => {
-      let html = "";
-      let $category;
-      if (options.$block) {
-        $category = options.$block.find(
-          `.${columns.paid.class} [data-category="${allService[id].category}"]`
-        );
-      } else {
-        $category = $(
-          `.${columns.paid.class} [data-category="${allService[id].category}"]`
-        );
-      }
-
-      let category = allService[id].category ?? "";
-
-      let item = "";
-      if (options.isInput) {
-        item = `
-          <div class="${options.classes.row}">
-            <label>
-              <input type="checkbox" value="${
-                services.price[i]
-              }" data-id="${id}">
-              ${allService[id].name}
-            </label>
-            <div class="${options.classes.price}">${services.price[
-          i
-        ].toLocaleString()} руб.</div>
-          </div>
-        `;
-      } else {
-        item = `
-          <div class="${options.classes.row}">
-            <span>${allService[id].name}</span>
-            <span class="${options.classes.price}">${services.price[
-          i
-        ].toLocaleString()} руб.</span>
-          </div>
-        `;
-      }
-
-      if ($category.length == 0 && category) {
-        html += `<div class="${options.classes.category}" data-category="${category}">${category}</div>`;
-        html += item;
-        insertColumn(columns.paid.$col1, columns.paid.$col2, html);
-      } else if ($category.length > 0 && category) {
-        html += item;
-        $category.after(html);
-      } else {
-        html += item;
-        insertColumn(columns.paid.$col1, columns.paid.$col2, html);
-      }
-    });
-
-    clearInterval(interval);
-  }, 1);
-}
 export function insertRules(rules) {
   let html = "";
   rules.forEach((rule) => {
@@ -436,6 +341,8 @@ export function insertRooms(rooms) {
     `;
     $(".card-rooms").append(html);
   });
+  if (rooms.length == 0)
+    $(".card-rooms").append("На выбранные даты свободных номеров нет");
   new BackgroundImage(".card-room__main-img", {
     paddingBottom: "40%",
     size: "cover",

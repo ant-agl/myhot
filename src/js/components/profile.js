@@ -160,5 +160,12 @@ $(".btn-delete-account").on("click", function () {
 });
 $(".btn-mail-confirm").on("click", function () {
   $(this).removeClass("active");
-  console.log("confirm mail");
+
+  $.ajax({
+    type: "GET",
+    url: "https://wehotel.ru/handler/email_confirm.php",
+    headers: {
+      "X-Auth": localStorage.token ?? "",
+    },
+  });
 });

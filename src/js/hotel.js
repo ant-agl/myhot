@@ -62,16 +62,22 @@ $("body").on("click", ".btn-booking-temp", function (e) {
     console.log(e);
     childrenAge = [];
   }
+
+  let adults = Number(getParams.adult || 0);
+  let kidsCount = childrenAge.length || 0;
+  let person = adults + kidsCount;
+
   let data = {
-    adults: getParams.adult || 0,
-    children: childrenAge.length || 0,
+    adults,
+    kids: childrenAge,
+    person,
     input_date: getParams.input_date,
     output_date: getParams.output_date,
     paid: paidService,
     price: priceService,
     night: price,
     services: servicesTotal,
-    id_hotel: getParams.id,
+    id_hotel: Number(getParams.id),
     id_room: roomId,
     device: isPhone ? 1 : 0,
   };
@@ -89,7 +95,8 @@ $("body").on("click", ".btn-booking-temp", function (e) {
     headers: {
       "X-Auth": localStorage.token ?? "",
     },
-    success: () => {
+    success: (data) => {
+      // console.log(data);
       location.href = "/booking" + data2get(getParams);
     },
     error: (xhr) => {
@@ -99,14 +106,19 @@ $("body").on("click", ".btn-booking-temp", function (e) {
             "Ваша сессия истекла. Пожалуйста, обновите страницу"
           );
           break;
-        case 456: //неверные цены
+        case 409: //неверные цены
           $("#modal-text .modal__title").text(
             "Цена на данный номер изменилась. Пожалуйста, обновите страницу"
           );
           break;
-        case "??": //бронь
+        case 400: //бронь
           $("#modal-text .modal__title").text(
-            "Данный номер уже заронирован. Пожалуйста, обновите страницу"
+            "Данный номер уже забронирован. Пожалуйста, обновите страницу"
+          );
+          break;
+        case 410: //попытка второй брони
+          $("#modal-text .modal__title").text(
+            "У вас уже есть предварительная бронь номера. Попробуйте позже"
           );
           break;
 

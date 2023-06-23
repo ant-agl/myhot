@@ -18,36 +18,19 @@
       <div class="booking-hotel__name">Отель Marriott Royal Aurora</div>
       <div class="booking-hotel__row">
         <img src="../img/icons/geo.svg">
-        <span>Москва, ул. Николоямская, д. 83/33</span>
+        <span class="booking-hotel__address">Москва, ул. Николоямская, д. 83/33</span>
       </div>
       <div class="booking-hotel__row">
         <img src="../img/icons/bed.svg">
-        <span>2 человека, 1 ребенок</span>
+        <span class="booking-hotel__people"></span>
       </div>
       <div class="booking-hotel__row">
-        <img src="../img/icons/car.svg">
-        <span>Номер класса «люкс»</span>
-      </div>
-      <div class="booking-hotel__row">
-        <img src="../img/icons/key.svg">
-        <span>1 двух местная кровать, 1 одноместная</span>
-      </div>
-      <div class="booking-hotel__row">
-        <img src="../img/icons/pawPrint.svg">
-        <span>Оплата наличными без возврата</span>
-      </div>
-      <div class="booking-hotel__row">
-        <img src="../img/icons/person.svg">
-        <span>Без животных</span>
-      </div>
-      <div class="booking-hotel__row">
-        <img src="../img/icons/wallet.svg">
-        <span>1 парковочное место</span>
+        <span class="booking-hotel__description"></span>
       </div>
       <div class="booking-hotel__price-block">
         <span class="booking-hotel__price-text">За номер:</span>
         <span>
-          <span class="booking-hotel__price-value">22 660</span>
+          <span class="booking-hotel__price-value"></span>
           руб.
         </span>
       </div>
@@ -59,89 +42,12 @@
     </div>
     <div id="paid-service__list">
       <div class="booking-services__list">
-        <div class="booking-services__column">
-          <div class="booking-services__category">Услуги и удобства</div>
-          <div class="booking-services__row">
-            <label>
-              <input type="checkbox" value="500">
-              Гладильные услуги
-            </label>
-            <div class="booking-services__price">500 руб.</div>
-          </div>
-          <div class="booking-services__row">
-            <label>
-              <input type="checkbox" value="500">
-              Прачечная
-            </label>
-            <div class="booking-services__price">500 руб.</div>
-          </div>
-          <div class="booking-services__row">
-            <label>
-              <input type="checkbox" value="500">
-              Химчистка
-            </label>
-            <div class="booking-services__price">500 руб.</div>
-          </div>
-          <div class="booking-services__row">
-            <label>
-              <input type="checkbox" value="600">
-              Чистка обуви
-            </label>
-            <div class="booking-services__price">600 руб.</div>
-          </div>
-          <div class="booking-services__category">Красота и здоровье</div>
-          <div class="booking-services__row">
-            <label>
-              <input type="checkbox" value="1200">
-              Массаж
-            </label>
-            <div class="booking-services__price">1 200 руб.</div>
-          </div>
-          <div class="booking-services__row">
-            <label>
-              <input type="checkbox" value="1600">
-              Салон красоты
-            </label>
-            <div class="booking-services__price">1 600 руб.</div>
-          </div>
-          <div class="booking-services__row">
-            <label>
-              <input type="checkbox" value="2000">
-              Спа-центр
-            </label>
-            <div class="booking-services__price">2 000 руб.</div>
-          </div>
-        </div>
-        <div class="booking-services__column">
-          <div class="booking-services__category">Парковка</div>
-          <div class="booking-services__row">
-            <label>
-              <input type="checkbox" value="8200">
-              Парковка
-            </label>
-            <div class="booking-services__price">8 200 руб.</div>
-          </div>
-          <div class="booking-services__category">Трансфер</div>
-          <div class="booking-services__row">
-            <label>
-              <input type="checkbox" value="7800">
-              Трансфер
-            </label>
-            <div class="booking-services__price">7 800 руб.</div>
-          </div>
-          <div class="booking-services__category">Животные</div>
-          <div class="booking-services__row">
-            <label>
-              <input type="checkbox" value="1000">
-              Размещение с домашними животными
-            </label>
-            <div class="booking-services__price">1 000 руб.</div>
-          </div>
-        </div>
+        <div class="booking-services__column"></div>
+        <div class="booking-services__column"></div>
       </div>
       <div class="booking-services__total">
         <span>Всего</span>
-        <div class="booking-services__total-price">12 324 руб.</div>
+        <div class="booking-services__total-price"><span></span> руб.</div>
       </div>
     </div>
   </div>
@@ -165,31 +71,31 @@
 
   <div class="booking-form page-content">
     <div class="booking-form__title">Данные гостя, на которого будет оформлен номер</div>
-    <div class="booking-form__row">
+    <!-- <div class="booking-form__row">
       <label>
         <input type="checkbox" checked name="data-profile">
         <span>Заполнить данные из личного кабинета</span>
       </label>
+    </div> -->
+    <div class="booking-form__row">
+      <input type="text" name="surname" placeholder="Фамилия" required>
+      <input type="text" name="name" placeholder="Имя" required>
+      <input type="text" name="patronymic" placeholder="Отчество (при наличии)" required>
     </div>
     <div class="booking-form__row">
-      <input type="text" name="surname" placeholder="Фамилия">
-      <input type="text" name="name" placeholder="Имя">
-      <input type="text" name="patronymic" placeholder="Отчество (при наличии)">
-    </div>
-    <div class="booking-form__row">
-      <input type="tel" name="phone" placeholder="Номер телефона" class="mask-phone">
-      <input type="text" name="email" placeholder="Почта">
+      <input type="tel" name="phone" placeholder="Номер телефона" class="mask-phone" required>
+      <input type="text" name="email" placeholder="Почта" required>
     </div>
     <div class="booking-form__small">
       <label>
         <input type="checkbox" checked name="policy">
-        <span>Я принимаю условия обработки <a href="#">персональных данных</a></span>
+        <span>Я принимаю условия обработки <a href="/files/policy.txt" target="_blank">персональных данных</a></span>
       </label>
     </div>
 
-    <div class="booking-form__guests"></div>
+    <!-- <div class="booking-form__guests"></div>
     <div class="booking-form__title booking-form__add-guest">Добавить гостя <img class="booking-form__sign"
-        src="../img/icons/plus.png"></div>
+        src="../img/icons/plus.png"></div> -->
 
     <div class="booking-form__title">Ваши пожелания к номеру</div>
     <textarea placeholder="Ваши пожелания" name="wishes"></textarea>
@@ -198,14 +104,14 @@
   <div class="booking-total page-content">
     <div class="booking-total__title">Итого к оплате:</div>
     <div class="booking-total__row">
-      <span>За номер класса «люкс»</span>
-      <div class="booking-total__price">22 660 руб.</div>
+      <span>За номер</span>
+      <div class="booking-total__price booking-total__room-price"><span></span> руб.</div>
     </div>
     <div class="booking-total__row">
       <span>Платные услуги</span>
-      <div class="booking-total__price booking-total__paid-price">13 324 руб.</div>
+      <div class="booking-total__price booking-total__paid-price"><span></span> руб.</div>
     </div>
-    <div class="booking-total__total-price">34 984 руб.</div>
+    <div class="booking-total__total-price"><span></span> руб.</div>
   </div>
   <div class="booking-btns">
     <button class="btn btn_big booking-btn">Забронировать</button>

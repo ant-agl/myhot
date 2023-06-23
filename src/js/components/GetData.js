@@ -24,7 +24,6 @@ import RemoveRow from "./RemoveRow";
 import insertColumn from "./insertColumn";
 import {
   insertHotel,
-  insertServices,
   insertRules,
   insertNearby,
   insertReviewsTotal,
@@ -32,6 +31,7 @@ import {
   insertRooms,
   insertDataRoom,
 } from "./insertDataHotel";
+import { insertServices } from "./insertServices";
 
 export default class GetData {
   path = "https://wehotel.ru/handler/";
@@ -141,34 +141,34 @@ export default class GetData {
         filters.forEach((filter) => {
           let $btnFilter = $(`.filter-btn[data-filter="${filter.id}"]`);
           let count =
-            data.find((hotel) => hotel.status == filter.id)?.length || 0;
+            data.filter((hotel) => hotel.status == filter.id)?.length || 0;
           if (count > 0) $btnFilter.show();
           else $btnFilter.hide();
         });
 
         data.forEach((hotel) => {
-          let dates = `${moment(hotel.input_date * 1000).format(
+          let dates = `${moment(hotel.date.input * 1000).format(
             "DD.MM.YYYY"
           )} - `;
-          dates += `${moment(hotel.output_date * 1000).format("DD.MM.YYYY")}`;
+          dates += `${moment(hotel.date.output * 1000).format("DD.MM.YYYY")}`;
 
           let filter = filters.find((f) => f.id == hotel.status);
           let status = filter.nick ?? filter.name;
           let statusColor = filter.color ?? "#000";
 
-          let peoples = [];
-          if (hotel.number_of_adults == 1)
-            peoples.push(hotel.number_of_adults + " взрослый");
-          else if (hotel.number_of_adults > 1)
-            peoples.push(hotel.number_of_adults + " взрослых");
+          // let peoples = [];
+          // if (hotel.number_of_adults == 1)
+          //   peoples.push(hotel.number_of_adults + " взрослый");
+          // else if (hotel.number_of_adults > 1)
+          //   peoples.push(hotel.number_of_adults + " взрослых");
 
-          if (hotel.count_of_kids == 1)
-            peoples.push(hotel.count_of_kids + " ребенок");
-          else if (hotel.count_of_kids > 1)
-            peoples.push(hotel.count_of_kids + " ребенка");
+          // if (hotel.count_of_kids == 1)
+          //   peoples.push(hotel.count_of_kids + " ребенок");
+          // else if (hotel.count_of_kids > 1)
+          //   peoples.push(hotel.count_of_kids + " ребенка");
 
-          let peoplesText =
-            peoples.length > 0 ? peoples.join(",<br>") : "&mdash;";
+          // let peoplesText =
+          //   peoples.length > 0 ? peoples.join(",<br>") : "&mdash;";
 
           let geo =
             hotel.joined_hotel_search[0].city +
@@ -177,10 +177,10 @@ export default class GetData {
 
           let image = hotel.joined_hotel_search[0].image ?? "../img/empty.png";
           let price = hotel.cost_per_night
-            ? hotel.cost_per_night?.toLocaleString() + " руб."
+            ? hotel.cost?.night?.toLocaleString() + " руб."
             : "&mdash;";
           let fullPrice = hotel.cost_full
-            ? hotel.cost_full?.toLocaleString() + " руб."
+            ? hotel.cost?.full?.toLocaleString() + " руб."
             : "&mdash;";
 
           html += `
@@ -216,7 +216,9 @@ export default class GetData {
                 </div>
                 <div class="hotel-card__info-row">
                   <span class="hotel-card__info-title">Количество человек</span>
-                  <span class="hotel-card__info-value">${peoplesText}</span>
+                  <span class="hotel-card__info-value">${
+                    hotel.number.people
+                  }</span>
                 </div>
                 <div class="hotel-card__info-row">
                   <span class="hotel-card__info-value">${
@@ -806,7 +808,6 @@ export default class GetData {
         insertHotel(data);
       }
     );
-    // this.getAllServices().then((allService) => {
     $.get(
       this.path_php +
         `get_services.php?id_hotel=${hotelId}&input_date=${input_date}&output_date=${output_date}`,
@@ -823,7 +824,6 @@ export default class GetData {
             $col2: $(".services__block_paid .services__column").eq(1),
           },
         };
-        // insertServices(data, columns, allService);
         insertServices(data, columns, {
           $block: $(".services"),
           classes: {
@@ -834,7 +834,6 @@ export default class GetData {
         });
       }
     );
-    // });
     $.get(
       this.path_php +
         `avg_reviews.php?id_hotel=${hotelId}&input_date=${input_date}&output_date=${output_date}`,
@@ -887,19 +886,6 @@ export default class GetData {
     );
   }
   data_room(roomId, input_date, output_date, person = 1) {
-    // let data = {
-    //   id: roomId,
-    //   images: [
-    //     "https://wehotel.ru/img/rooms/1.png",
-    //     "https://wehotel.ru/img/rooms/2.png",
-    //     "https://wehotel.ru/img/rooms/3.png",
-    //   ],
-    //   name: "Двухместный номер Delux",
-    //   description: "Просторный номер для двоих",
-    //   price: 17500,
-    // };
-    // insertDataRoom(data);
-    // return;
     $.get(
       this.path_php +
         `data_room.php?id=${roomId}&input_date=${input_date}&output_date=${output_date}&person=${person}`,
@@ -907,17 +893,6 @@ export default class GetData {
         data = JSON.parse(data);
         data.id = roomId;
         console.log(data);
-        // data = {
-        //   id: roomId,
-        //   images: [
-        //     "https://wehotel.ru/img/rooms/1.png",
-        //     "https://wehotel.ru/img/rooms/2.png",
-        //     "https://wehotel.ru/img/rooms/3.png",
-        //   ],
-        //   name: "Двухместный номер Delux",
-        //   description: "Просторный номер для двоих",
-        //   price: 17500,
-        // };
         insertDataRoom(data);
       }
     );
