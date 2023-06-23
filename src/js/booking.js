@@ -45,7 +45,7 @@ $.ajax({
 
     $(".booking-hotel__people").text(peoplesText);
     $(".booking-hotel__description").text(data.hotel.description);
-    $(".booking-hotel__price-value span, .booking-total__room-price span").text(
+    $(".booking-hotel__price-value, .booking-total__room-price span").text(
       data.cost.night.toLocaleString()
     );
     let servicesPrice =

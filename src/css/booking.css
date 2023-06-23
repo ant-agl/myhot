@@ -120,6 +120,7 @@
   display: flex;
   align-items: center;
   gap: 5px;
+  width: 100%;
 }
 .booking-services__price {
   white-space: nowrap;

@@ -9,6 +9,18 @@ menuMobile.setBtnToggle(".main__menu-mobil img");
 import Modal from "./Modal";
 new Modal("#modal-logout");
 
+import moment from "moment";
+import "air-datepicker/air-datepicker.css";
+import AirDatepicker from "air-datepicker";
+new AirDatepicker('#modal-signin [name="date"]', {
+  autoClose: true,
+  maxDate: moment(new Date()).subtract(18, "years"),
+  isMobile: window.outerWidth < 700,
+  onSelect() {
+    $('#modal-signin [name="date"]').trigger("change");
+  },
+});
+
 import BtnRepeat from "./BtnRepeat";
 new BtnRepeat("#modal-login .btn-repeat", "#modal-login .btn-login-hash");
 new BtnRepeat("#modal-signin .btn-repeat", "#modal-signin .btn-reg-hash");
