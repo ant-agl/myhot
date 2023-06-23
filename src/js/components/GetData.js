@@ -176,10 +176,10 @@ export default class GetData {
             hotel.joined_hotel_search[0].country;
 
           let image = hotel.joined_hotel_search[0].image ?? "../img/empty.png";
-          let price = hotel.cost_per_night
+          let price = hotel.cost?.night
             ? hotel.cost?.night?.toLocaleString() + " руб."
             : "&mdash;";
-          let fullPrice = hotel.cost_full
+          let fullPrice = hotel.cost?.full
             ? hotel.cost?.full?.toLocaleString() + " руб."
             : "&mdash;";
 
@@ -435,8 +435,8 @@ export default class GetData {
           geo += hotel.joined_hotel_search[0].country;
 
           let price = "&mdash;";
-          if (hotel.cost_full) {
-            price = hotel.cost_full.toLocaleString() + " руб.";
+          if (hotel.cost?.full) {
+            price = hotel.cost.full.toLocaleString() + " руб.";
           }
 
           html += `
@@ -460,10 +460,10 @@ export default class GetData {
             </td>
             <td class="table-dates">
               <span class="nowrap"><span class="bonus-table__date-desc">От</span> ${moment(
-                hotel.input_date * 1000
+                hotel.date.input * 1000
               ).format("DD.MM.YYYY")}</span>
               <span class="nowrap"><span class="bonus-table__date-desc">До</span> ${moment(
-                hotel.output_date * 1000
+                hotel.date.output * 1000
               ).format("DD.MM.YYYY")}</span>
             </td>
           </tr>
