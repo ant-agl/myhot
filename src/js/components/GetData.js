@@ -643,6 +643,9 @@ export default class GetData {
 
       let html = "";
       data.forEach((hotel) => {
+        let getParams = get2data();
+        getParams.id = hotel.id;
+
         if (hotel.position?.coordinate) {
           let image = "";
           if (hotel.image) {
@@ -654,6 +657,7 @@ export default class GetData {
             name: hotel.name,
             image,
             id: String(hotel.id),
+            getParams: data2get(getParams),
           });
         }
 
@@ -665,9 +669,6 @@ export default class GetData {
         if (fzPrice) stylePrice = `font-size:${fzPrice}px`;
 
         if (!hotel.image) hotel.image = "../img/empty.png";
-
-        let getParams = get2data();
-        getParams.id = hotel.id;
 
         html += `
           <div class="hotel-card" data-id="${

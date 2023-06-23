@@ -52,8 +52,8 @@ export default class MapApi {
           hintContent: hotel.name || "",
           balloonContentHeader: hotel.name || "",
           balloonContentBody: hotel.image || "",
-          balloonContentFooter: hotel.id
-            ? `<a href="../hotel?id=${hotel.id}">Перейти</a>`
+          balloonContentFooter: hotel.getParams
+            ? `<a href="/hotel${hotel.getParams}">Перейти</a>`
             : "",
         },
       });
