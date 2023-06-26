@@ -63,6 +63,9 @@ let modalReview = new Modal("#modal-review", {
   beforeOpen: ($el) => {
     let hotelId = $el.data("hotel-id");
     let reserveId = $el.data("reserve-id");
+    let isReview = $el.data("is-review");
+    if (!isReview) return true;
+
     $.ajax({
       type: "GET",
       url: `https://wehotel.ru/php/get_review.php?hotel_id=${hotelId}&reserve_id=${reserveId}`,

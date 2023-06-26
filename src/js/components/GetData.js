@@ -295,13 +295,14 @@ export default class GetData {
                 <div class="hotel-card__info-row" ${
                   hotel.status != 1 ? 'style="display: none;"' : ""
                 }>
-                  <button type="button" class="link-underline" data-reserve-id="${
-                    hotel.id
-                  }" data-hotel-id="${
-            hotel.id_hotel
-          }" data-modal-target="modal-review">${
-            hotel.id_reviews ? "Редактировать" : "Оставить"
-          } отзыв</button>
+                  <button type="button" class="link-underline"
+                    data-reserve-id="${hotel.id}"
+                    data-hotel-id="${hotel.id_hotel}"
+                    data-is-review="${hotel.id_reviews ? 1 : 0}"
+                    data-modal-target="modal-review">
+                    ${hotel.id_reviews ? "Редактировать" : "Оставить"}
+                    отзыв
+                  </button>
                 </div>
 
               </div>
