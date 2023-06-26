@@ -123,6 +123,7 @@ $("body").on("click", "#modal-signin .btn-reg-hash", function () {
       };
     })
     .catch((xhr) => {
+      modalSignin.toPage(1);
       console.error(xhr);
     });
 });
