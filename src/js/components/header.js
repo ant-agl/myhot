@@ -80,7 +80,14 @@ let confirmRegister = new ConfirmPassword(
 );
 
 let validateRegHash = new Validation('#modal-signin [data-page="1"]');
-import { login, login_hash, reg_gen, reg_hash, forgot_hash } from "./login";
+import {
+  login,
+  login_hash,
+  reg_gen,
+  reg_hash,
+  forgot_hash,
+  recovery_password,
+} from "./login";
 let hash_verify, hash_verify2, register_login;
 $("body").on("click", "#modal-signin .btn-reg-hash", function () {
   if (!validateRegHash.validate()) return;
