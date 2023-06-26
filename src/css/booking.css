@@ -95,6 +95,7 @@
   display: flex;
   gap: 40px;
 }
+#free-service__list,
 #paid-service__list {
   overflow: hidden;
 }

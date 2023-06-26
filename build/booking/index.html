@@ -424,17 +424,18 @@
       </label>
     </div> -->
     <div class="booking-form__row">
-      <input type="text" name="surname" placeholder="Фамилия" required>
-      <input type="text" name="name" placeholder="Имя" required>
+      <input data-validate="required" type="text" name="surname" placeholder="Фамилия" required>
+      <input data-validate="required" type="text" name="name" placeholder="Имя" required>
       <input type="text" name="patronymic" placeholder="Отчество (при наличии)" required>
     </div>
     <div class="booking-form__row">
-      <input type="tel" name="phone" placeholder="Номер телефона" class="mask-phone" required>
-      <input type="text" name="email" placeholder="Почта" required>
+      <input data-validate="required phone" type="tel" name="phone" placeholder="Номер телефона" class="mask-phone"
+        required>
+      <input data-validate="required mail" type="text" name="email" placeholder="Почта" required>
     </div>
     <div class="booking-form__small">
       <label>
-        <input type="checkbox" checked name="policy">
+        <input data-validate="required" type="checkbox" checked name="policy">
         <span>Я принимаю условия обработки <a href="/files/policy.txt" target="_blank">персональных данных</a></span>
       </label>
     </div>

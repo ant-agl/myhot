@@ -11,6 +11,9 @@ import { insertServices } from "./components/insertServices";
 import moment from "moment";
 moment.locale("ru");
 
+import Validation from "./components/Validation";
+let validationForm = new Validation(".booking-form");
+
 $.ajax({
   type: "GET",
   url: "https://wehotel.ru/handler/get_reserve_temp.php",
@@ -135,8 +138,8 @@ import ShowAll from "./components/ShowAll";
 new ShowAll("free-service", {
   minShowElements: 0,
   gap: 0,
-  textShow: "Бесплатные услуги",
-  textHide: "Бесплатные услуги",
+  textShow: "Бесплатные услуги -",
+  textHide: "Бесплатные услуги +",
 });
 new ShowAll("paid-service", {
   minShowElements: 0,
@@ -147,6 +150,8 @@ new ShowAll("paid-service", {
 
 $(".booking-btn").on("click", function (e) {
   e.preventDefault();
+
+  if (!validationForm.validate()) return;
 
   let paidService = [];
   let priceService = [];

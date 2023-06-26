@@ -36,6 +36,9 @@ export default class Validation {
       this.clearError($input);
 
       let val = $input.val().trim();
+      if ($input.attr("type") == "checkbox") {
+        val = $input.prop("checked") ? "1" : "";
+      }
       let rules = $input
         .data("validate")
         .split(" ")
