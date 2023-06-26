@@ -71,7 +71,6 @@ let modalReview = new Modal("#modal-review", {
     modalReview.$modal.find(`[name="hotel_id"]`).val(hotelId);
     modalReview.$modal.find(`[name="reserve_id"]`).val(reserveId);
 
-    debugger;
     if (!isReview) return true;
 
     $.ajax({
@@ -167,8 +166,8 @@ $("body").on("click", ".btn-add-review", function () {
 
 $("body").on("click", ".btn-remove-review", function () {
   let data = {
-    hotel_id: $('[name="hotel_id"]'),
-    reserve_id: $('[name="reserve_id"]'),
+    hotel_id: $('[name="hotel_id"]').val(),
+    reserve_id: $('[name="reserve_id"]').val(),
   };
   $.ajax({
     type: "POST",
