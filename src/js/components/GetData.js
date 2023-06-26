@@ -490,6 +490,11 @@ export default class GetData {
         });
       },
     });
+    if (data.length == 0) {
+      let $col1 = $(".reviews__column").eq(0);
+      let $col2 = $(".reviews__column").eq(1);
+      insertColumn($col1, $col2, "<p>Ничего не найдено</p>");
+    }
   }
   bonus() {
     $.ajax({
