@@ -403,6 +403,9 @@ export default class GetData {
                   review.joined_hotel_search[0].name
                 }</div>
                 <div class="reviews-card__geo">${geo}</div>
+                <div class="reviews-card__geo">${
+                  review.joined_rooms_search[0].name
+                }</div>
               </div>
             </div>
             <div class="reviews-card__content">
