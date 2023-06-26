@@ -13,6 +13,7 @@ export default async function isAuth() {
       resolve({
         ok: false,
       });
+
     // resolve({
     //   name: "wefew",
     //   surname: "wefewf",
@@ -20,6 +21,7 @@ export default async function isAuth() {
     //   ok: true,
     // });
     // return;
+
     $.ajax({
       type: "GET",
       url: "https://wehotel.ru/handler/auth.php",

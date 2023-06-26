@@ -63,7 +63,7 @@ let modalReview = new Modal("#modal-review", {
   beforeOpen: ($el) => {
     let hotelId = $el.data("hotel-id");
     let reserveId = $el.data("reserve-id");
-    let isReview = $el.data("is-review");
+    let isReview = $el.data("is-review") == 1;
 
     modalReview.$modal.find(".modal__title span").text("Добавить");
     modalReview.$modal.find(".btn-remove-review").hide();
@@ -71,6 +71,7 @@ let modalReview = new Modal("#modal-review", {
     modalReview.$modal.find(`[name="hotel_id"]`).val(hotelId);
     modalReview.$modal.find(`[name="reserve_id"]`).val(reserveId);
 
+    debugger;
     if (!isReview) return true;
 
     $.ajax({
@@ -142,7 +143,7 @@ $("body").on("click", ".btn-add-review", function () {
       if (!data[names[0]]) data[names[0]] = {};
       data[names[0]][names[1]] = val;
     } else {
-      if (val != "") data[name] = Number(val);
+      if (val != "") data[name] = val;
     }
   });
   console.log(data);

@@ -28,7 +28,7 @@ export default class Chat {
 
     setTimeout(() => {
       this.addMobileClass();
-    });
+    }, 10);
     $(window).on("resize", this.addMobileClass.bind(this));
   }
   replaceStateBtn() {

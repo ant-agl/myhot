@@ -491,7 +491,7 @@ export default class GetData {
           insertColumn(
             $col1,
             $col2,
-            '<p style="color: #fff;">Ничего не най   дено</p>'
+            '<p style="color: #fff;">Ничего не найдено</p>'
           );
         }
       },
