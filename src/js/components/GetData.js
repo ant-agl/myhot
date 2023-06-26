@@ -32,6 +32,7 @@ import {
   insertDataRoom,
 } from "./insertDataHotel";
 import { insertServices } from "./insertServices";
+import Modal from "./Modal";
 
 export default class GetData {
   path = "https://wehotel.ru/handler/";
@@ -129,6 +130,66 @@ export default class GetData {
       },
       success: (data) => {
         data = JSON.parse(data);
+        // data = [
+        //   {
+        //     id_room: 0,
+        //     number: {
+        //       people: 3,
+        //     },
+        //     date: {
+        //       input: 1687986000,
+        //       output: 1688072400,
+        //     },
+        //     cost: {
+        //       night: 3500,
+        //       full: 4200,
+        //     },
+        //     status: 1,
+        //     id: 59,
+        //     joined_hotel_search: [
+        //       {
+        //         country: "Россия",
+        //         city: "Тольятти",
+        //         name: "Вега",
+        //         image: "https://hotel.bytrip.ru/img/hotels/gallery/0/1.webp",
+        //       },
+        //     ],
+        //     joined_rooms_search: [
+        //       {
+        //         name: "Трёхместный номер Delux",
+        //       },
+        //     ],
+        //   },
+        //   {
+        //     id_room: 23,
+        //     number: {
+        //       people: 3,
+        //     },
+        //     date: {
+        //       input: 1687986000,
+        //       output: 1688072400,
+        //     },
+        //     cost: {
+        //       night: 3500,
+        //       full: 3500,
+        //     },
+        //     status: 5,
+        //     id: 60,
+        //     joined_hotel_search: [
+        //       {
+        //         country: "Россия",
+        //         city: "Тольятти",
+        //         name: "Вега",
+        //         image: "https://hotel.bytrip.ru/img/hotels/gallery/0/1.webp",
+        //       },
+        //     ],
+        //     joined_rooms_search: [
+        //       {
+        //         name: "Тестовая",
+        //       },
+        //     ],
+        //   },
+        // ];
         console.log(data);
 
         let html = "";
@@ -184,7 +245,9 @@ export default class GetData {
             : "&mdash;";
 
           html += `
-            <div class="hotel-card" data-filter-item="${hotel.status}">
+            <div class="hotel-card" data-id="${
+              hotel.id_hotel
+            }" data-filter-item="${hotel.status}">
               <div class="hotel-card__head">
                 <div class="hotel-card__img">
                   <img src="${image}" alt="${
@@ -233,10 +296,22 @@ export default class GetData {
                   <span class="hotel-card__info-title">Общая стоимость</span>
                   <span class="hotel-card__info-value">${fullPrice}</span>
                 </div>
+
+                <div class="hotel-card__info-row" ${
+                  hotel.status != 1 ? 'style="display: none;"' : ""
+                }>
+                  <button type="button" class="link-underline" data-reserve-id="${
+                    hotel.id
+                  }" data-hotel-id="${
+            hotel.id_hotel
+          }" data-modal-target="modal-review">Оставить отзыв</button>
+                </div>
+
               </div>
             </div>
           `;
         });
+
         if (data.length % 2 != 0)
           html += '<div class="hotel-card hotel-card_hidden"></div>';
 

@@ -41,8 +41,9 @@
                   stroke="#005382" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
               </svg>
               <ul class="profile-menu__list">
-                <li class="profile-menu__item"><a class="profile-menu__link" href="/lk/">Иванов Иван
+                <li class="profile-menu__item"><a class="profile-menu__link" href="/lk">Иванов Иван
                     Иванович</a></li>
+                <li class="profile-menu__item"><a class="profile-menu__link" href="/booking">Бронирование</a></li>
                 <li class="profile-menu__item">
                   <span class="profile-menu__link" data-modal-target="modal-logout">Выход</span>
                 </li>
@@ -322,8 +323,8 @@
           </div>
         </div>
       </div>
-    <div class="modal" id="modal-text">
-      <div class="modal__content">
+    <div class="modal" id="modal-text" style="z-index: 99;">
+      <div class="modal__content modal__content_small">
         <div class="modal__title"></div>
       </div>
     </div>
@@ -682,7 +683,299 @@
     </div>
   </div>
 </div>
+<div class="modal" id="modal-review">
+  <div class="modal__content modal__content_small">
+    <div class="modal__cross" data-modal-target-close="modal-review">
+      <img src="/img/icons/cross.png" alt="">
+    </div>
+    <h1 class="modal__title"><span>Добавить</span> отзыв</h1>
+    <input type="hidden" name="hotel_id">
+    <input type="hidden" name="reserve_id">
+    <input type="hidden" name="id">
+    <div class="input-row">
+      <span>Персонал</span>
+      <div class="input-review_block">
+        <label>
+          <input type="radio" name="staff" class="input-review" value="1">
+          <span>1</span>
+        </label>
+        <label>
+          <input type="radio" name="staff" class="input-review" value="2">
+          <span>2</span>
+        </label>
+        <label>
+          <input type="radio" name="staff" class="input-review" value="3">
+          <span>3</span>
+        </label>
+        <label>
+          <input type="radio" name="staff" class="input-review" value="4">
+          <span>4</span>
+        </label>
+        <label>
+          <input type="radio" name="staff" class="input-review" value="5">
+          <span>5</span>
+        </label>
+        <label>
+          <input type="radio" name="staff" class="input-review" value="6">
+          <span>6</span>
+        </label>
+        <label>
+          <input type="radio" name="staff" class="input-review" value="7">
+          <span>7</span>
+        </label>
+        <label>
+          <input type="radio" name="staff" class="input-review" value="8">
+          <span>8</span>
+        </label>
+        <label>
+          <input type="radio" name="staff" class="input-review" value="9">
+          <span>9</span>
+        </label>
+        <label>
+          <input type="radio" name="staff" class="input-review" value="10" checked>
+          <span>10</span>
+        </label>
+      </div>
+    </div>
+    <div class="input-row">
+      <span>Чистота</span>
+      <div class="input-review_block">
+        <label>
+          <input type="radio" name="cleanliness" class="input-review" value="1">
+          <span>1</span>
+        </label>
+        <label>
+          <input type="radio" name="cleanliness" class="input-review" value="2">
+          <span>2</span>
+        </label>
+        <label>
+          <input type="radio" name="cleanliness" class="input-review" value="3">
+          <span>3</span>
+        </label>
+        <label>
+          <input type="radio" name="cleanliness" class="input-review" value="4">
+          <span>4</span>
+        </label>
+        <label>
+          <input type="radio" name="cleanliness" class="input-review" value="5">
+          <span>5</span>
+        </label>
+        <label>
+          <input type="radio" name="cleanliness" class="input-review" value="6">
+          <span>6</span>
+        </label>
+        <label>
+          <input type="radio" name="cleanliness" class="input-review" value="7">
+          <span>7</span>
+        </label>
+        <label>
+          <input type="radio" name="cleanliness" class="input-review" value="8">
+          <span>8</span>
+        </label>
+        <label>
+          <input type="radio" name="cleanliness" class="input-review" value="9">
+          <span>9</span>
+        </label>
+        <label>
+          <input type="radio" name="cleanliness" class="input-review" value="10" checked>
+          <span>10</span>
+        </label>
+      </div>
+    </div>
+    <div class="input-row">
+      <span>Местоположение</span>
+      <div class="input-review_block">
+        <label>
+          <input type="radio" name="location" class="input-review" value="1">
+          <span>1</span>
+        </label>
+        <label>
+          <input type="radio" name="location" class="input-review" value="2">
+          <span>2</span>
+        </label>
+        <label>
+          <input type="radio" name="location" class="input-review" value="3">
+          <span>3</span>
+        </label>
+        <label>
+          <input type="radio" name="location" class="input-review" value="4">
+          <span>4</span>
+        </label>
+        <label>
+          <input type="radio" name="location" class="input-review" value="5">
+          <span>5</span>
+        </label>
+        <label>
+          <input type="radio" name="location" class="input-review" value="6">
+          <span>6</span>
+        </label>
+        <label>
+          <input type="radio" name="location" class="input-review" value="7">
+          <span>7</span>
+        </label>
+        <label>
+          <input type="radio" name="location" class="input-review" value="8">
+          <span>8</span>
+        </label>
+        <label>
+          <input type="radio" name="location" class="input-review" value="9">
+          <span>9</span>
+        </label>
+        <label>
+          <input type="radio" name="location" class="input-review" value="10" checked>
+          <span>10</span>
+        </label>
+      </div>
+    </div>
+    <div class="input-row">
+      <span>Удобства</span>
+      <div class="input-review_block">
+        <label>
+          <input type="radio" name="conveniences" class="input-review" value="1">
+          <span>1</span>
+        </label>
+        <label>
+          <input type="radio" name="conveniences" class="input-review" value="2">
+          <span>2</span>
+        </label>
+        <label>
+          <input type="radio" name="conveniences" class="input-review" value="3">
+          <span>3</span>
+        </label>
+        <label>
+          <input type="radio" name="conveniences" class="input-review" value="4">
+          <span>4</span>
+        </label>
+        <label>
+          <input type="radio" name="conveniences" class="input-review" value="5">
+          <span>5</span>
+        </label>
+        <label>
+          <input type="radio" name="conveniences" class="input-review" value="6">
+          <span>6</span>
+        </label>
+        <label>
+          <input type="radio" name="conveniences" class="input-review" value="7">
+          <span>7</span>
+        </label>
+        <label>
+          <input type="radio" name="conveniences" class="input-review" value="8">
+          <span>8</span>
+        </label>
+        <label>
+          <input type="radio" name="conveniences" class="input-review" value="9">
+          <span>9</span>
+        </label>
+        <label>
+          <input type="radio" name="conveniences" class="input-review" value="10" checked>
+          <span>10</span>
+        </label>
+      </div>
+    </div>
+    <div class="input-row">
+      <span>Комфорт</span>
+      <div class="input-review_block">
+        <label>
+          <input type="radio" name="comfort" class="input-review" value="1">
+          <span>1</span>
+        </label>
+        <label>
+          <input type="radio" name="comfort" class="input-review" value="2">
+          <span>2</span>
+        </label>
+        <label>
+          <input type="radio" name="comfort" class="input-review" value="3">
+          <span>3</span>
+        </label>
+        <label>
+          <input type="radio" name="comfort" class="input-review" value="4">
+          <span>4</span>
+        </label>
+        <label>
+          <input type="radio" name="comfort" class="input-review" value="5">
+          <span>5</span>
+        </label>
+        <label>
+          <input type="radio" name="comfort" class="input-review" value="6">
+          <span>6</span>
+        </label>
+        <label>
+          <input type="radio" name="comfort" class="input-review" value="7">
+          <span>7</span>
+        </label>
+        <label>
+          <input type="radio" name="comfort" class="input-review" value="8">
+          <span>8</span>
+        </label>
+        <label>
+          <input type="radio" name="comfort" class="input-review" value="9">
+          <span>9</span>
+        </label>
+        <label>
+          <input type="radio" name="comfort" class="input-review" value="10" checked>
+          <span>10</span>
+        </label>
+      </div>
+    </div>
+    <div class="input-row">
+      <span>Соотношение цена/качество</span>
+      <div class="input-review_block">
+        <label>
+          <input type="radio" name="ration" class="input-review" value="1">
+          <span>1</span>
+        </label>
+        <label>
+          <input type="radio" name="ration" class="input-review" value="2">
+          <span>2</span>
+        </label>
+        <label>
+          <input type="radio" name="ration" class="input-review" value="3">
+          <span>3</span>
+        </label>
+        <label>
+          <input type="radio" name="ration" class="input-review" value="4">
+          <span>4</span>
+        </label>
+        <label>
+          <input type="radio" name="ration" class="input-review" value="5">
+          <span>5</span>
+        </label>
+        <label>
+          <input type="radio" name="ration" class="input-review" value="6">
+          <span>6</span>
+        </label>
+        <label>
+          <input type="radio" name="ration" class="input-review" value="7">
+          <span>7</span>
+        </label>
+        <label>
+          <input type="radio" name="ration" class="input-review" value="8">
+          <span>8</span>
+        </label>
+        <label>
+          <input type="radio" name="ration" class="input-review" value="9">
+          <span>9</span>
+        </label>
+        <label>
+          <input type="radio" name="ration" class="input-review" value="10" checked>
+          <span>10</span>
+        </label>
+      </div>
+    </div>
+    <div class="input-row">
+      <textarea name="opinion.well" data-validate="required min(5)" class="opinion-textarea"
+        placeholder="Что было положительного"></textarea>
+    </div>
+    <div class="input-row">
+      <textarea name="opinion.badly" data-validate="required min(5)" class="opinion-textarea"
+        placeholder="Что было отрицательного"></textarea>
+    </div>
 
+    <div class="modal__footer">
+      <button type="button" class="link-underline btn-add-review">Отправить</button>
+    </div>
+  </div>
+</div>
 
 <div class="widget-chat">
   <img class="widget-chat__img" src="../img/chat/message.png">

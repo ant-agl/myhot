@@ -8,7 +8,9 @@ export default class Validation {
 
   constructor(selectorForm, options = {}) {
     this.$form = $(selectorForm);
-    this.$inputs = this.$form.find("input[data-validate]");
+    this.$inputs = this.$form.find(
+      "input[data-validate], textarea[data-validate]"
+    );
 
     for (let key in options) {
       this[key] = options[key];

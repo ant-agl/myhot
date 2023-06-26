@@ -3,6 +3,7 @@
 /*= components/mainMenu */
 /*= components/mainButton */
 /*= components/colors */
+/*= components/input-review */
 
 .main__section::before {
   content: "";
@@ -28,7 +29,10 @@
   );
 }
 
-.modal__content {
+.modal__content:not(
+    #modal-review .modal__content,
+    #modal-text .modal__content
+  ) {
   padding: 25px;
   width: 90%;
   max-width: 580px;
@@ -37,6 +41,9 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+#modal-review .modal__content .input-row {
+  text-align: center;
 }
 
 select {
@@ -672,12 +679,12 @@ span.reviews-card__date-value {
   transition: 0.2s;
   opacity: 0;
 }
-.modal__footer {
+.modal__footer:not(#modal-review .modal__footer) {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-.error-text {
+#user-data .error-text {
   position: absolute;
   left: 0;
   right: 0;

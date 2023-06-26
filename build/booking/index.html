@@ -41,8 +41,9 @@
                   stroke="#005382" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
               </svg>
               <ul class="profile-menu__list">
-                <li class="profile-menu__item"><a class="profile-menu__link" href="/lk/">Иванов Иван
+                <li class="profile-menu__item"><a class="profile-menu__link" href="/lk">Иванов Иван
                     Иванович</a></li>
+                <li class="profile-menu__item"><a class="profile-menu__link" href="/booking">Бронирование</a></li>
                 <li class="profile-menu__item">
                   <span class="profile-menu__link" data-modal-target="modal-logout">Выход</span>
                 </li>
@@ -322,8 +323,8 @@
           </div>
         </div>
       </div>
-    <div class="modal" id="modal-text">
-      <div class="modal__content">
+    <div class="modal" id="modal-text" style="z-index: 99;">
+      <div class="modal__content modal__content_small">
         <div class="modal__title"></div>
       </div>
     </div>
@@ -340,7 +341,7 @@
     </div>
     <div class="booking-hotel__info">
       <div class="booking-hotel__header">
-        <img class="booking-hotel__stars" src="../img/icons/stars/5.png">
+        <img class="booking-hotel__stars" src="">
         <svg class="booking-hotel__heart" width="16" height="14" viewBox="0 0 16 14" fill="#fff"
           xmlns="http://www.w3.org/2000/svg">
           <path
@@ -348,10 +349,10 @@
             stroke="#000" />
         </svg>
       </div>
-      <div class="booking-hotel__name">Отель Marriott Royal Aurora</div>
+      <div class="booking-hotel__name"></div>
       <div class="booking-hotel__row">
         <img src="../img/icons/geo.svg">
-        <span class="booking-hotel__address">Москва, ул. Николоямская, д. 83/33</span>
+        <span class="booking-hotel__address"></span>
       </div>
       <div class="booking-hotel__row">
         <img src="../img/icons/bed.svg">
@@ -370,13 +371,24 @@
     </div>
   </div>
 
-  <div class="booking-services page-content">
+  <div class="booking-services booking-services_free page-content">
+    <div class="booking-services__title" id="free-service" data-target="free-service__list">Бесплатные услуги
+    </div>
+    <div id="free-service__list">
+      <div class="booking-services__list">
+        <div class="booking-services__column booking-services__column_free"></div>
+        <div class="booking-services__column booking-services__column_free"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="booking-services booking-services_paid page-content">
     <div class="booking-services__title" id="paid-service" data-target="paid-service__list">Выберете платные услуги
     </div>
     <div id="paid-service__list">
-      <div class="booking-services__list">
-        <div class="booking-services__column"></div>
-        <div class="booking-services__column"></div>
+      <div class="booking-services__list booking-services__list_paid">
+        <div class="booking-services__column booking-services__column_paid"></div>
+        <div class="booking-services__column booking-services__column_paid"></div>
       </div>
       <div class="booking-services__total">
         <span>Всего</span>

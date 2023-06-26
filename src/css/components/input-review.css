@@ -1,0 +1,43 @@
+.input-review_block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+.input-review_block input {
+  display: none;
+}
+.input-review_block span {
+  width: 25px;
+  height: 25px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100px;
+  color: #fff;
+  background-color: #bbb;
+  transition: 0.1s;
+  cursor: pointer;
+}
+.input-review_block span:hover {
+  background-color: #aaa;
+}
+.input-review_block input:checked + span {
+  background-color: #0175ff;
+}
+.opinion-textarea {
+  min-width: 100%;
+  max-width: 100%;
+  min-height: 75px;
+  margin-top: 10px;
+  padding: 15px 20px;
+  background-color: #eee;
+  border: none;
+  border-radius: 15px;
+  font-family: "Montserrat", sans-serif;
+  transition: 0.2s;
+}
+.opinion-textarea.error {
+  background-color: #ffd6d6;
+}

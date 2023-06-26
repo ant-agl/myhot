@@ -27,8 +27,8 @@ export default class Modal {
     });
     this.$modal.on("click", "[to-page]", this.changePage.bind(this));
   }
-  open() {
-    if (!this.beforeOpen()) return;
+  open(e) {
+    if (!this.beforeOpen($(e?.target))) return;
     // this.$modal.css("display", "flex");
     // setTimeout(() => {
     this.$modal.addClass(this.openClass);

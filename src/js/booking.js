@@ -1,5 +1,7 @@
 import "./default";
 
+let id_hotel = false;
+
 import Modal from "./components/Modal";
 let modalText = new Modal("#modal-text");
 import { get2data, data2get } from "./components/data2get";
@@ -18,6 +20,8 @@ $.ajax({
   success: (data) => {
     data = JSON.parse(data);
     console.log(data);
+
+    id_hotel = data.id_hotel;
 
     $(".booking-hotel__img img").attr(
       "src",
@@ -57,7 +61,7 @@ $.ajax({
     ).text(servicesPrice.toLocaleString());
     $(".booking-total__total-price span").text(data.cost.full.toLocaleString());
     new CheckboxSumTotal(
-      ".booking-services__list",
+      ".booking-services__list_paid",
       ".booking-services__total-price, .booking-total__paid-price",
       {
         defaultPrice: data.cost.night,
@@ -85,10 +89,15 @@ $.ajax({
     $('[name="email"]').val(data.email || "");
 
     let columns = {
+      free: {
+        $col1: $(".booking-services__column_free").eq(0),
+        $col2: $(".booking-services__column_free").eq(1),
+        class: "booking-services__column_free",
+      },
       paid: {
-        $col1: $(".booking-services__column").eq(0),
-        $col2: $(".booking-services__column").eq(1),
-        class: "booking-services__column",
+        $col1: $(".booking-services__column_paid").eq(0),
+        $col2: $(".booking-services__column_paid").eq(1),
+        class: "booking-services__column_paid",
       },
     };
     insertServices(data.room.services, columns, {
@@ -123,6 +132,12 @@ new GuestList(
 );
 
 import ShowAll from "./components/ShowAll";
+new ShowAll("free-service", {
+  minShowElements: 0,
+  gap: 0,
+  textShow: "Бесплатные услуги",
+  textHide: "Бесплатные услуги",
+});
 new ShowAll("paid-service", {
   minShowElements: 0,
   gap: 0,
@@ -135,7 +150,7 @@ $(".booking-btn").on("click", function (e) {
 
   let paidService = [];
   let priceService = [];
-  $(`.booking-services [type="checkbox"]:checked`).each((i, el) => {
+  $(`.booking-services_paid [type="checkbox"]:checked`).each((i, el) => {
     paidService.push($(el).data("id"));
     priceService.push($(el).val());
   });
@@ -196,16 +211,16 @@ $(".booking-btn").on("click", function (e) {
 $("body").on("click", ".booking-hotel__heart", function () {
   $(this).toggleClass("active");
 
-  let id = get2data().id;
+  if (id_hotel === false) return;
   let get = data2get({
-    hotel_id: id,
+    hotel_id: id_hotel,
   });
   let file = "";
   if ($(this).hasClass("active")) {
-    console.log("add " + id);
+    console.log("add " + id_hotel);
     file = "add_favourites.php";
   } else {
-    console.log("remove " + id);
+    console.log("remove " + id_hotel);
     file = "delete_favourites.php";
   }
   $.ajax({

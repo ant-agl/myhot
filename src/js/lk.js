@@ -52,3 +52,109 @@ setInterval(reloadChatAnimation, 1000 * 8);
 
 import Chat from "./components/chat";
 new Chat("#chat .chat");
+
+import scrollOverflow from "./components/scrollOverflow";
+scrollOverflow($("#modal-review .modal__content"));
+
+import Modal from "./components/Modal";
+let modalText = new Modal("#modal-text");
+let modalReview = new Modal("#modal-review", {
+  closeToBackground: false,
+  beforeOpen: ($el) => {
+    let hotelId = $el.data("hotel-id");
+    let reserveId = $el.data("reserve-id");
+    $.ajax({
+      type: "GET",
+      url: `https://wehotel.ru/php/get_review.php?id_hotel=${hotelId}&reserve_id=${reserveId}`,
+      headers: {
+        "X-Auth": localStorage.token ?? "",
+      },
+      beforeSend: () => {
+        modalReview.$modal.find(".modal__title span").text("Добавить");
+
+        modalReview.$modal.find(`[name="hotel_id"]`).val(hotelId);
+        modalReview.$modal.find(`[name="reserve_id"]`).val(reserveId);
+      },
+      success: (data) => {
+        // data = {
+        //   hotel_id: "",
+        //   reserve_id: "",
+        //   id: "",
+        //   staff: "9",
+        //   cleanliness: "2",
+        //   location: "3",
+        //   conveniences: "4",
+        //   comfort: "6",
+        //   ration: "8",
+        //   opinion: {
+        //     well: "Все было круто",
+        //     badly: "Все было плохо",
+        //   },
+        // };
+        data = JSON.parse(data);
+        console.log("get_review", data);
+        if (!data.id) return;
+
+        modalReview.$modal.find(".modal__title span").text("Редактировать");
+
+        let arrRadio = [
+          "staff",
+          "cleanliness",
+          "location",
+          "conveniences",
+          "comfort",
+          "ration",
+        ];
+        arrRadio.forEach((name) => {
+          modalReview.$modal
+            .find(`[name="${name}"][value="${data[name]}"]`)
+            .prop("checked", true);
+        });
+        modalReview.$modal.find(`[name="id"]`).val(data.id);
+        modalReview.$modal
+          .find(`[name="opinion.well"]`)
+          .val(data.opinion?.well || "");
+        modalReview.$modal
+          .find(`[name="opinion.badly"]`)
+          .val(data.opinion?.badly || "");
+      },
+    });
+    return true;
+  },
+});
+
+import Validation from "./components/Validation";
+let validationReview = new Validation("#modal-review");
+$("body").on("click", ".btn-add-review", function () {
+  if (!validationReview.validate()) return;
+  let data = {};
+  $("#modal-review input, #modal-review textarea").each((i, el) => {
+    if ($(el).attr("type") == "radio" && !$(el).prop("checked")) return;
+    let name = $(el).attr("name");
+    let val = $(el).val().trim();
+    if (name.split(".").length > 1) {
+      let names = name.split(".");
+      if (!data[names[0]]) data[names[0]] = {};
+      data[names[0]][names[1]] = val;
+    } else {
+      data[name] = val;
+    }
+  });
+  console.log(data);
+
+  $.ajax({
+    type: "POST",
+    url: "https://wehotel.ru/php/edit_review.php",
+    data,
+    headers: {
+      "X-Auth": localStorage.token ?? "",
+    },
+    success: () => {
+      modalReview.close();
+    },
+    error: () => {
+      $("#modal-text .modal__title").text("Что-то пошло не так");
+      modalText.open();
+    },
+  });
+});
