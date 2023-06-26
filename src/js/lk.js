@@ -64,6 +64,13 @@ let modalReview = new Modal("#modal-review", {
     let hotelId = $el.data("hotel-id");
     let reserveId = $el.data("reserve-id");
     let isReview = $el.data("is-review");
+
+    modalReview.$modal.find(".modal__title span").text("Добавить");
+    modalReview.$modal.find(".btn-remove-review").hide();
+
+    modalReview.$modal.find(`[name="hotel_id"]`).val(hotelId);
+    modalReview.$modal.find(`[name="reserve_id"]`).val(reserveId);
+
     if (!isReview) return true;
 
     $.ajax({
@@ -71,13 +78,6 @@ let modalReview = new Modal("#modal-review", {
       url: `https://wehotel.ru/php/get_review.php?hotel_id=${hotelId}&reserve_id=${reserveId}`,
       headers: {
         "X-Auth": localStorage.token ?? "",
-      },
-      beforeSend: () => {
-        modalReview.$modal.find(".modal__title span").text("Добавить");
-        modalReview.$modal.find(".btn-remove-review").hide();
-
-        modalReview.$modal.find(`[name="hotel_id"]`).val(hotelId);
-        modalReview.$modal.find(`[name="reserve_id"]`).val(reserveId);
       },
       success: (data) => {
         // data = {
