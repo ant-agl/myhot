@@ -9,11 +9,11 @@ export default async function isAuth() {
       .find((item) => item.key == "token")?.value;
     localStorage.token = token || "";
 
-    if (!token)
+    if (!token) {
       resolve({
         ok: false,
       });
-
+    }
     // resolve({
     //   name: "wefew",
     //   surname: "wefewf",
@@ -32,7 +32,19 @@ export default async function isAuth() {
         data = JSON.parse(data);
         data.ok = true;
         console.log(data);
-        resolve(data);
+
+        $.ajax({
+          type: "GET",
+          url: "https://wehotel.ru/handler/get_pre_reserve.php",
+          headers: {
+            "X-Auth": token,
+          },
+          success: (pre_reserve) => {
+            console.log(pre_reserve);
+            data.pre_reserve = false;
+            resolve(data);
+          },
+        });
       },
       error: (xhr) => {
         console.error(xhr);
