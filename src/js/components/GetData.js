@@ -295,7 +295,7 @@ export default class GetData {
                 <div class="hotel-card__info-row" ${
                   hotel.status != 1 ? 'style="display: none;"' : ""
                 }>
-                  <button type="button" class="link-underline"
+                  <button type="button" class="link-underline btn-open-review"
                     data-reserve-id="${hotel.id}"
                     data-hotel-id="${hotel.id_hotel}"
                     data-is-review="${hotel.id_reviews ? 1 : 0}"

@@ -162,6 +162,9 @@ $("body").on("click", ".btn-add-review", function () {
       "X-Auth": localStorage.token ?? "",
     },
     success: () => {
+      $(
+        `.btn-open-review[data-hotel-id=${data.hotel_id}][data-reserve-id=${data.reserve_id}]`
+      ).text("Редактировать отзыв");
       modalReview.close();
     },
     error: () => {
@@ -178,12 +181,15 @@ $("body").on("click", ".btn-remove-review", function () {
   };
   $.ajax({
     type: "POST",
-    url: "https://wehotel.ru/php/delete_review.php",
+    url: "https://wehotel.ru/handler/delete_review.php",
     data,
     headers: {
       "X-Auth": localStorage.token ?? "",
     },
     success: () => {
+      $(
+        `.btn-open-review[data-hotel-id=${data.hotel_id}][data-reserve-id=${data.reserve_id}]`
+      ).text("Оставить отзыв");
       modalReview.close();
     },
     error: () => {
