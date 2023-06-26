@@ -71,6 +71,7 @@ let modalReview = new Modal("#modal-review", {
       },
       beforeSend: () => {
         modalReview.$modal.find(".modal__title span").text("Добавить");
+        modalReview.$modal.find(".btn-remove-review").hide();
 
         modalReview.$modal.find(`[name="hotel_id"]`).val(hotelId);
         modalReview.$modal.find(`[name="reserve_id"]`).val(reserveId);
@@ -96,6 +97,7 @@ let modalReview = new Modal("#modal-review", {
         if (!data.id) return;
 
         modalReview.$modal.find(".modal__title span").text("Редактировать");
+        modalReview.$modal.find(".btn-remove-review").show();
 
         let arrRadio = [
           "staff",
@@ -145,6 +147,28 @@ $("body").on("click", ".btn-add-review", function () {
   $.ajax({
     type: "POST",
     url: "https://wehotel.ru/php/edit_review.php",
+    data,
+    headers: {
+      "X-Auth": localStorage.token ?? "",
+    },
+    success: () => {
+      modalReview.close();
+    },
+    error: () => {
+      $("#modal-text .modal__title").text("Что-то пошло не так");
+      modalText.open();
+    },
+  });
+});
+
+$("body").on("click", ".btn-remove-review", function () {
+  let data = {
+    hotel_id: $('[name="hotel_id"]'),
+    reserve_id: $('[name="reserve_id"]'),
+  };
+  $.ajax({
+    type: "POST",
+    url: "https://wehotel.ru/php/delete_review.php",
     data,
     headers: {
       "X-Auth": localStorage.token ?? "",
