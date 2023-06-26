@@ -492,7 +492,11 @@ export default class GetData {
         if (data.length == 0) {
           let $col1 = $(".reviews__column").eq(0);
           let $col2 = $(".reviews__column").eq(1);
-          insertColumn($col1, $col2, "<p>Ничего не найдено</p>");
+          insertColumn(
+            $col1,
+            $col2,
+            '<p style="color: #fff;background:#21527d;">Ничего не найдено</p>'
+          );
         }
       },
     });
@@ -511,11 +515,10 @@ export default class GetData {
         let html = "";
         let htmlMobile = "";
         data.history.forEach((hotel) => {
-          if (!hotel.joined_hotel_search[0].image)
-            hotel.joined_hotel_search[0].image = "../img/empty.png";
+          if (!hotel.hotel.image) hotel.hotel.image = "../img/empty.png";
 
-          let geo = hotel.joined_hotel_search[0].city + ", ";
-          geo += hotel.joined_hotel_search[0].country;
+          let geo = hotel.hotel.city + ", ";
+          geo += hotel.hotel.country;
 
           let price = "&mdash;";
           if (hotel.cost?.full) {
@@ -526,10 +529,8 @@ export default class GetData {
           <tr>
             <td>
               <div class="table__image-block">
-                <img src="${hotel.joined_hotel_search[0].image}" alt="${
-            hotel.joined_hotel_search[0].name
-          }">
-                <span>${hotel.joined_hotel_search[0].name}</span>
+                <img src="${hotel.hotel.image}" alt="${hotel.hotel.name}">
+                <span>${hotel.hotel.name}</span>
               </div>
             </td>
             <td>${geo}</td>
