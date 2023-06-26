@@ -139,7 +139,7 @@ $("body").on("click", ".btn-add-review", function () {
       if (!data[names[0]]) data[names[0]] = {};
       data[names[0]][names[1]] = val;
     } else {
-      data[name] = val;
+      data[name] = Number(val);
     }
   });
   console.log(data);
