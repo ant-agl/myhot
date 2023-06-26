@@ -71,9 +71,7 @@ let modalReview = new Modal("#modal-review", {
     modalReview.$modal.find(`[name="hotel_id"]`).val(hotelId);
     modalReview.$modal.find(`[name="reserve_id"]`).val(reserveId);
 
-    modalReview.$modal
-      .find(`[type="checked"][value="10"]`)
-      .prop("checked", true);
+    modalReview.$modal.find(`[type="radio"][value="10"]`).prop("checked", true);
     modalReview.$modal
       .find(`[name="opinion.well"], [name="opinion.badly"]`)
       .val("");
@@ -115,7 +113,7 @@ let modalReview = new Modal("#modal-review", {
           "location",
           "conveniences",
           "comfort",
-          "ration",
+          "ratio",
         ];
         arrRadio.forEach((name) => {
           modalReview.$modal
@@ -164,7 +162,9 @@ $("body").on("click", ".btn-add-review", function () {
     success: () => {
       $(
         `.btn-open-review[data-hotel-id=${data.hotel_id}][data-reserve-id=${data.reserve_id}]`
-      ).text("Редактировать отзыв");
+      )
+        .data("is-review", 1)
+        .text("Редактировать отзыв");
       modalReview.close();
     },
     error: () => {
@@ -189,7 +189,10 @@ $("body").on("click", ".btn-remove-review", function () {
     success: () => {
       $(
         `.btn-open-review[data-hotel-id=${data.hotel_id}][data-reserve-id=${data.reserve_id}]`
-      ).text("Оставить отзыв");
+      )
+        .data("is-review", 0)
+        .text("Оставить отзыв");
+
       modalReview.close();
     },
     error: () => {
