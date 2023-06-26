@@ -65,7 +65,7 @@ let modalReview = new Modal("#modal-review", {
     let reserveId = $el.data("reserve-id");
     $.ajax({
       type: "GET",
-      url: `https://wehotel.ru/php/get_review.php?id_hotel=${hotelId}&reserve_id=${reserveId}`,
+      url: `https://wehotel.ru/php/get_review.php?hotel_id=${hotelId}&reserve_id=${reserveId}`,
       headers: {
         "X-Auth": localStorage.token ?? "",
       },
