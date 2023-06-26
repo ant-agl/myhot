@@ -300,7 +300,7 @@ export default class GetData {
                   }" data-hotel-id="${
             hotel.id_hotel
           }" data-modal-target="modal-review">${
-            hotel.id_review ? "Редактировать" : "Оставить"
+            hotel.id_reviews ? "Редактировать" : "Оставить"
           } отзыв</button>
                 </div>
 
