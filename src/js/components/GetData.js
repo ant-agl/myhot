@@ -231,12 +231,9 @@ export default class GetData {
           // let peoplesText =
           //   peoples.length > 0 ? peoples.join(",<br>") : "&mdash;";
 
-          let geo =
-            hotel.joined_hotel_search[0].city +
-            ", " +
-            hotel.joined_hotel_search[0].country;
+          let geo = hotel.hotel.city + ", " + hotel.hotel.country;
 
-          let image = hotel.joined_hotel_search[0].image ?? "../img/empty.png";
+          let image = hotel.hotel.image ?? "../img/empty.png";
           let price = hotel.cost?.night
             ? hotel.cost?.night?.toLocaleString() + " руб."
             : "&mdash;";
@@ -250,9 +247,7 @@ export default class GetData {
             }" data-filter-item="${hotel.status}">
               <div class="hotel-card__head">
                 <div class="hotel-card__img">
-                  <img src="${image}" alt="${
-            hotel.joined_hotel_search[0].name
-          }">
+                  <img src="${image}" alt="${hotel.hotel.name}">
                 </div>
                 <div class="hotel-card__main-info">
                   <div class="hotel-card__status">
@@ -265,7 +260,7 @@ export default class GetData {
                     </span>
                   </div>
                   <div class="hotel-card__name">
-                    ${hotel.joined_hotel_search[0].name}
+                    ${hotel.hotel.name}
                   </div>
                   <div class="hotel-card__geo">
                     ${geo}
@@ -515,10 +510,11 @@ export default class GetData {
         let html = "";
         let htmlMobile = "";
         data.history.forEach((hotel) => {
-          if (!hotel.hotel.image) hotel.hotel.image = "../img/empty.png";
+          if (!hotel.joined_hotel_search[0].image)
+            hotel.joined_hotel_search[0].image = "../img/empty.png";
 
-          let geo = hotel.hotel.city + ", ";
-          geo += hotel.hotel.country;
+          let geo = hotel.joined_hotel_search[0].city + ", ";
+          geo += hotel.joined_hotel_search[0].country;
 
           let price = "&mdash;";
           if (hotel.cost?.full) {
@@ -529,8 +525,10 @@ export default class GetData {
           <tr>
             <td>
               <div class="table__image-block">
-                <img src="${hotel.hotel.image}" alt="${hotel.hotel.name}">
-                <span>${hotel.hotel.name}</span>
+                <img src="${hotel.joined_hotel_search[0].image}" alt="${
+            hotel.joined_hotel_search[0].name
+          }">
+                <span>${hotel.joined_hotel_search[0].name}</span>
               </div>
             </td>
             <td>${geo}</td>
