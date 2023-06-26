@@ -12,7 +12,9 @@ import moment from "moment";
 moment.locale("ru");
 
 import Validation from "./components/Validation";
-let validationForm = new Validation(".booking-form");
+let validationForm = new Validation(".booking-form", {
+  isOutputErrors: false,
+});
 
 $.ajax({
   type: "GET",

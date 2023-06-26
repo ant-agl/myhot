@@ -224,6 +224,10 @@ textarea {
   background-color: #eaeaea;
   width: 100%;
 }
+input.error:not([type="checkbox"]),
+textarea.error {
+  background-color: #ffd6d6;
+}
 textarea {
   min-width: 100%;
   max-width: 100%;
@@ -231,6 +235,9 @@ textarea {
 }
 input[type="checkbox"] {
   margin-right: 5px;
+}
+input.error[type="checkbox"] + span {
+  color: red;
 }
 
 .booking-form__remove-guest,
