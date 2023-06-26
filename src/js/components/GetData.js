@@ -419,10 +419,10 @@ export default class GetData {
 
         data.forEach((review) => {
           let dates =
-            moment(review.joined_reserve[0].input_date * 1000).format(
+            moment(review.joined_reserve[0].date.input * 1000).format(
               "DD.MM.YYYY"
             ) + " - ";
-          dates += moment(review.joined_reserve[0].output_date * 1000).format(
+          dates += moment(review.joined_reserve[0].date.output * 1000).format(
             "DD.MM.YYYY"
           );
 
