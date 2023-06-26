@@ -40,8 +40,9 @@ export default async function isAuth() {
             "X-Auth": token,
           },
           success: (pre_reserve) => {
+            pre_reserve = JSON.parse(pre_reserve);
             console.log(pre_reserve);
-            data.pre_reserve = false;
+            data.pre_reserve = pre_reserve.pre_reserve;
             resolve(data);
           },
         });
