@@ -223,6 +223,7 @@ textarea {
   line-height: 27px;
   background-color: #eaeaea;
   width: 100%;
+  transition: 0.2s;
 }
 input.error:not([type="checkbox"]),
 textarea.error {
@@ -235,6 +236,9 @@ textarea {
 }
 input[type="checkbox"] {
   margin-right: 5px;
+}
+input[type="checkbox"] + span {
+  transition: 0.2s;
 }
 input.error[type="checkbox"] + span {
   color: red;

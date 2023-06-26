@@ -157,19 +157,19 @@ export default class GetData {
           let status = filter.nick ?? filter.name;
           let statusColor = filter.color ?? "#000";
 
-          // let peoples = [];
-          // if (hotel.number_of_adults == 1)
-          //   peoples.push(hotel.number_of_adults + " взрослый");
-          // else if (hotel.number_of_adults > 1)
-          //   peoples.push(hotel.number_of_adults + " взрослых");
+          let peoples = [];
+          if (hotel.number.adults == 1)
+            peoples.push(hotel.number.adults + " взрослый");
+          else if (hotel.number.adults > 1)
+            peoples.push(hotel.number.adults + " взрослых");
 
-          // if (hotel.count_of_kids == 1)
-          //   peoples.push(hotel.count_of_kids + " ребенок");
-          // else if (hotel.count_of_kids > 1)
-          //   peoples.push(hotel.count_of_kids + " ребенка");
+          if (hotel.number.children == 1)
+            peoples.push(hotel.number.children + " ребенок");
+          else if (hotel.number.children > 1)
+            peoples.push(hotel.number.children + " ребенка");
 
-          // let peoplesText =
-          //   peoples.length > 0 ? peoples.join(",<br>") : "&mdash;";
+          let peoplesText =
+            peoples.length > 0 ? peoples.join(",<br>") : "&mdash;";
 
           let geo = hotel.hotel.city + ", " + hotel.hotel.country;
 
@@ -214,9 +214,7 @@ export default class GetData {
                 </div>
                 <div class="hotel-card__info-row">
                   <span class="hotel-card__info-title">Количество человек</span>
-                  <span class="hotel-card__info-value">${
-                    hotel.number.people
-                  }</span>
+                  <span class="hotel-card__info-value">${peoplesText}</span>
                 </div>
                 <div class="hotel-card__info-row">
                   <span class="hotel-card__info-value">${
