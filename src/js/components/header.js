@@ -61,7 +61,7 @@ let modalLogin = new Modal("#modal-login", {
   },
 });
 let modalSignin = new Modal("#modal-signin", { closeToBackground: false });
-new Modal("#modal-forgot", { closeToBackground: false });
+let modalForgot = new Modal("#modal-forgot", { closeToBackground: false });
 
 import Validation from "./Validation";
 let signIn = new Validation('#modal-signin [data-page="3"]', {
@@ -239,7 +239,7 @@ $("body").on("click", "#modal-forgot .btn-hash-forgot", function () {
   forgot_hash({ login })
     .then((getData) => {
       console.log(getData);
-      forgotObj.hash = getData.hash;
+      forgotObj.hash = getData.hash_verify;
       forgotObj.login = login;
 
       let sendData = {
@@ -254,7 +254,7 @@ $("body").on("click", "#modal-forgot .btn-hash-forgot", function () {
         forgotObj.code = data.code;
       };
       confirmForgot.afterSendError = (xhr) => {
-        modalSignin.toPage(1);
+        modalForgot.toPage(1);
       };
     })
     .catch((xhr) => {

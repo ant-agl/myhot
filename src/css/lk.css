@@ -424,6 +424,7 @@ select {
 }
 .favourites-stars {
   width: 115px;
+  margin: 0 auto;
 }
 .balance-bonus {
   background-color: #fff;
