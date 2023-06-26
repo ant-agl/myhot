@@ -71,6 +71,13 @@ let modalReview = new Modal("#modal-review", {
     modalReview.$modal.find(`[name="hotel_id"]`).val(hotelId);
     modalReview.$modal.find(`[name="reserve_id"]`).val(reserveId);
 
+    modalReview.$modal
+      .find(`[type="checked"][value="10"]`)
+      .prop("checked", true);
+    modalReview.$modal
+      .find(`[name="opinion.well"], [name="opinion.badly"]`)
+      .val("");
+
     if (!isReview) return true;
 
     $.ajax({
