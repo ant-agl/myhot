@@ -130,66 +130,6 @@ export default class GetData {
       },
       success: (data) => {
         data = JSON.parse(data);
-        // data = [
-        //   {
-        //     id_room: 0,
-        //     number: {
-        //       people: 3,
-        //     },
-        //     date: {
-        //       input: 1687986000,
-        //       output: 1688072400,
-        //     },
-        //     cost: {
-        //       night: 3500,
-        //       full: 4200,
-        //     },
-        //     status: 1,
-        //     id: 59,
-        //     joined_hotel_search: [
-        //       {
-        //         country: "Россия",
-        //         city: "Тольятти",
-        //         name: "Вега",
-        //         image: "https://hotel.bytrip.ru/img/hotels/gallery/0/1.webp",
-        //       },
-        //     ],
-        //     joined_rooms_search: [
-        //       {
-        //         name: "Трёхместный номер Delux",
-        //       },
-        //     ],
-        //   },
-        //   {
-        //     id_room: 23,
-        //     number: {
-        //       people: 3,
-        //     },
-        //     date: {
-        //       input: 1687986000,
-        //       output: 1688072400,
-        //     },
-        //     cost: {
-        //       night: 3500,
-        //       full: 3500,
-        //     },
-        //     status: 5,
-        //     id: 60,
-        //     joined_hotel_search: [
-        //       {
-        //         country: "Россия",
-        //         city: "Тольятти",
-        //         name: "Вега",
-        //         image: "https://hotel.bytrip.ru/img/hotels/gallery/0/1.webp",
-        //       },
-        //     ],
-        //     joined_rooms_search: [
-        //       {
-        //         name: "Тестовая",
-        //       },
-        //     ],
-        //   },
-        // ];
         console.log(data);
 
         let html = "";

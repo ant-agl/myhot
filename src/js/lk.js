@@ -68,6 +68,7 @@ let modalReview = new Modal("#modal-review", {
     modalReview.$modal.find(".modal__title span").text("Добавить");
     modalReview.$modal.find(".btn-remove-review").hide();
 
+    modalReview.$modal.find(`[name="id"]`).val("");
     modalReview.$modal.find(`[name="hotel_id"]`).val(hotelId);
     modalReview.$modal.find(`[name="reserve_id"]`).val(reserveId);
 
@@ -85,21 +86,6 @@ let modalReview = new Modal("#modal-review", {
         "X-Auth": localStorage.token ?? "",
       },
       success: (data) => {
-        // data = {
-        //   hotel_id: "",
-        //   reserve_id: "",
-        //   id: "",
-        //   staff: "9",
-        //   cleanliness: "2",
-        //   location: "3",
-        //   conveniences: "4",
-        //   comfort: "6",
-        //   ration: "8",
-        //   opinion: {
-        //     well: "Все было круто",
-        //     badly: "Все было плохо",
-        //   },
-        // };
         data = JSON.parse(data);
         console.log("get_review", data);
         if (!data.id) return;
