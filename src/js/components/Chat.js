@@ -174,14 +174,12 @@ export default class Chat {
         data = JSON.parse(data);
         console.log(data);
         data.messages.forEach((message) => {
-          let img = data?.hotel?.image || "../img/no-photo.jpg";
-          let name = data?.hotel?.name || "";
           this.addMessage(
             message.id,
             message.text,
-            message.image,
-            img,
-            name,
+            message.file,
+            "/img/chat/info.jpg",
+            "Новости",
             false
           );
         });
@@ -340,12 +338,15 @@ export default class Chat {
       },
     });
   }
-  addMessage(id, text, img, avatar, name, isUser) {
+  addMessage(id, text, images, avatar, name, isUser) {
     if (this.$chat.find(`.chat__message[data-id="${id}"]`).length) return;
 
-    if (img) {
-      console.log(img);
-      img = `<img src="${img}">`;
+    let imgHtml = "";
+    if (images.length > 0) {
+      console.log(images);
+      images.forEach((img) => {
+        imgHtml += `<img src="${img}">`;
+      });
     }
 
     let messagePosition = isUser ? "chat__message_left" : "";
@@ -357,7 +358,7 @@ export default class Chat {
           </div>
           <div class="chat__name">${name}</div>
         </div>
-        <div class="chat__text">${text || img}</div>
+        <div class="chat__text"><p>${text}</p>${imgHtml}</div>
       </div>
     `);
     this.scrollDown();
