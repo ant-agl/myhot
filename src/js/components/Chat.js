@@ -17,7 +17,7 @@ export default class Chat {
     this.intervalAll = setTimeout(function getAllChatInterval() {
       $this.getAllInfo();
       $this.getAllHotel();
-      $this.intervalAll = setTimeout(getAllChatInterval, 1000);
+      $this.intervalAll = setTimeout(getAllChatInterval, 3000);
     }, 0);
 
     this.input.on("input", this.replaceStateBtn.bind(this));
@@ -64,13 +64,13 @@ export default class Chat {
     if ($item.hasClass("hotel-chat")) {
       this.intervalChat = setTimeout(function getChatInterval() {
         $this.getChatHotel(chatId);
-        $this.intervalChat = setTimeout(getChatInterval, 1000);
+        $this.intervalChat = setTimeout(getChatInterval, 3000);
       }, 0);
     }
     if ($item.hasClass("info-chat")) {
       this.intervalChat = setTimeout(function getChatInterval() {
         $this.getChatInfo(chatId);
-        $this.intervalChat = setTimeout(getChatInterval, 1000);
+        $this.intervalChat = setTimeout(getChatInterval, 3000);
       }, 0);
     }
   }
@@ -91,7 +91,7 @@ export default class Chat {
         let items = JSON.parse(data);
         items.forEach((item) => {
           item.class = "hotel-chat";
-          this.insertChat(item);
+          this.insertChatHotel(item);
         });
       },
     });
@@ -151,7 +151,7 @@ export default class Chat {
         let items = JSON.parse(data);
         items.forEach((item) => {
           item.class = "info-chat";
-          this.insertChat(item, ".chats__fix");
+          this.insertChatInfo(item);
         });
       },
     });
@@ -188,7 +188,7 @@ export default class Chat {
       },
     });
   }
-  insertChat(item, selectorInsert = ".chats") {
+  insertChatHotel(item) {
     let hotel = item.joined_hotel_search[0];
     let countMessage = Number(item.message?.number_of_unread || 0);
 
@@ -229,16 +229,61 @@ export default class Chat {
             }</div>
             ${
               countMessage > 0
-                ? `
-              <div class="chats__count">${countMessage}</div>
-            `
+                ? `<div class="chats__count">${countMessage}</div>`
                 : ""
             }
           </div>
         </div>
       </div>
     `;
-    this.$chat.find(selectorInsert).append(html);
+    this.$chat.find(".chats").append(html);
+  }
+  insertChatInfo(item) {
+    let countMessage = Number(item.message?.number_of_unread || 0);
+
+    let $chatItem = this.$chat.find(`.chats__item[data-id="${item.id}"]`);
+    if ($chatItem.length) {
+      $chatItem
+        .find(".chats__date")
+        .text(moment(item.time * 1000).format("DD.MM.YY"));
+      $chatItem.find(".chats__message").text(item.message?.last_massage || "");
+
+      $chatItem.find(".chats__count").remove();
+      if (countMessage > 0) {
+        $chatItem
+          .find(".chats__info")
+          .last()
+          .append(`<div class="chats__count">${countMessage}</div>`);
+      }
+      return;
+    }
+
+    let html = `
+      <div class="chats__item ${item.class}" data-id="${item.id}">
+        <div class="chats__img">
+          <img src="/img/chat/info.jpg">
+        </div>
+        <div class="chats__content">
+          <div class="chats__info">
+            <div class="chats__name">Новости</div>
+            <div class="chats__date">${moment(item.time * 1000).format(
+              "DD.MM.YY"
+            )}</div>
+          </div>
+          <div class="chats__info">
+            <div class="chats__message">${
+              item.message?.last_massage || ""
+            }</div>
+            ${
+              countMessage > 0
+                ? `<div class="chats__count">${countMessage}</div>`
+                : ""
+            }
+          </div>
+        </div>
+      </div>
+    `;
+    this.$chat.find(".chats__fix").append(html);
   }
   onSendMessage() {
     console.log("send");
