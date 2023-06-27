@@ -84,6 +84,8 @@ $("body").on("click", ".send_button", function (e) {
   });
 });
 //efwef
+//efwef
+//efwef
 $("body").on("click", ".btn-go-sup", function (e) {
   e.preventDefault();
   $(".chats__item.support-chat").trigger("click");
