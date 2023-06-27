@@ -342,11 +342,7 @@ export default class Chat {
     if (this.$chat.find(`.chat__message[data-id="${id}"]`).length) return;
 
     let imgHtml = "";
-<<<<<<< Updated upstream
     if (images?.length > 0) {
-=======
-    if (images.length > 0) {
->>>>>>> Stashed changes
       console.log(images);
       images.forEach((img) => {
         imgHtml += `<img src="${img}">`;
