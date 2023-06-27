@@ -13,9 +13,10 @@ export default class Chat {
     this.onInit();
   }
   onInit() {
+    let $this = this;
     this.intervalAll = setTimeout(function getAllChatInterval() {
-      this.getAllInfo();
-      this.getAllHotel();
+      $this.getAllInfo();
+      $this.getAllHotel();
       $this.intervalAll = setTimeout(getAllChatInterval, 1000);
     }, 0);
 
@@ -163,7 +164,7 @@ export default class Chat {
 
     return $.ajax({
       type: "GET",
-      url: "https://wehotel.ru/php/chat/get_chat.php?id_chat=" + id,
+      url: "https://wehotel.ru/php/chat/get_info_chat.php",
       headers: {
         "X-Auth": localStorage.token ?? "",
       },
