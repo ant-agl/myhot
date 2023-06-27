@@ -327,8 +327,8 @@ export default class Chat {
           fileReader.readAsDataURL(file);
           fileReader.onload = () => {
             fileImg.push(fileReader.result);
+            this.addMessage(data.id, text, fileImg, img, name, true);
           };
-          this.addMessage(data.id, text, fileImg, img, name, true);
         } else {
           this.addMessage(data.id, text, [], img, name, true);
         }
