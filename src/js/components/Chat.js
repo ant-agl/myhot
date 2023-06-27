@@ -129,7 +129,7 @@ export default class Chat {
           this.addMessage(
             message.id,
             message.text,
-            message.file,
+            [message.image],
             img,
             name,
             isUser
