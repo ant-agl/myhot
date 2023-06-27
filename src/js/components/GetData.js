@@ -32,7 +32,6 @@ import {
   insertDataRoom,
 } from "./insertDataHotel";
 import { insertServices } from "./insertServices";
-import Modal from "./Modal";
 
 export default class GetData {
   path = "https://wehotel.ru/handler/";

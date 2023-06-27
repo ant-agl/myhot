@@ -29,8 +29,10 @@ export default class Chat {
     this.$chat.on("click", ".chats__item", this.openChat.bind(this));
     this.$chat.on("click", ".chat__back", this.closeChat.bind(this));
 
-    setTimeout(() => {
+    let intervalIsMobile = setInterval(() => {
+      if ($("body").css("display") == "none") return;
       this.addMobileClass();
+      clearInterval(intervalIsMobile);
     }, 10);
     $(window).on("resize", this.addMobileClass.bind(this));
   }
