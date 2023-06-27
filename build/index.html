@@ -452,13 +452,13 @@
       <p class="middle_d_3">ИЛИ</p>
       <form class="form_send">
         <p class="text_form_d_3">Задайте вопрос и мы дадим обратную связь по почте</p>
-        <textarea class="question" placeholder="Ваш вопрос"></textarea>
-        <input type="mail" class="mail" placeholder="Ваша почта">
+        <textarea data-validate="required" name="question-text" class="question" placeholder="Ваш вопрос"></textarea>
+        <input data-validate="required mail" name="question-mail" type="mail" class="mail" placeholder="Ваша почта">
         <button type="button" class="btn btn_big send_button">отправить</button>
         <label class="form_send__row">
-          <input type="checkbox">
+          <input type="checkbox" data-validate="required" checked>
           <span>
-            Я принимаю условия обработки <a href="#">персональных данных</a>
+            Я принимаю условия обработки <a href="/files/personal-data.txt" target="_blank">персональных данных</a>
           </span>
         </label>
       </form>
