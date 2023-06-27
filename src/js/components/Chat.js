@@ -89,7 +89,7 @@ export default class Chat {
         let items = JSON.parse(data);
         items.forEach((item) => {
           item.class = "hotel-chat";
-          insertChat(item);
+          this.insertChat(item);
         });
       },
     });
@@ -149,7 +149,7 @@ export default class Chat {
         let items = JSON.parse(data);
         items.forEach((item) => {
           item.class = "info-chat";
-          insertChat(item, ".chats__fix");
+          this.insertChat(item, ".chats__fix");
         });
       },
     });

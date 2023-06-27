@@ -14,13 +14,13 @@ export default async function isAuth() {
         ok: false,
       });
     }
-    resolve({
-      name: "wefew",
-      surname: "wefewf",
-      patronymic: "wefefw",
-      ok: true,
-    });
-    return;
+    // resolve({
+    //   name: "wefew",
+    //   surname: "wefewf",
+    //   patronymic: "wefefw",
+    //   ok: true,
+    // });
+    // return;
 
     $.ajax({
       type: "GET",
