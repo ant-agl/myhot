@@ -24,7 +24,7 @@ var path = {
     files: "build/files/"
   },
   src: {
-    html: ["src/*.html", "src/lk/*.html", "src/hotels-list/*.html", "src/hotel/*.html", "src/booking/*.html", "build/404/*.html"],
+    html: ["src/*.html", "src/lk/*.html", "src/hotels-list/*.html", "src/hotel/*.html", "src/booking/*.html", "src/404/*.html"],
     js: ["./src/js/index.js", "./src/js/lk.js", "./src/js/hotels_list.js", "./src/js/hotel.js", "./src/js/booking.js"],
     css: ["src/css/index.css", "src/css/lk.css", "src/css/hotels-list.css", "src/css/hotel.css", "src/css/booking.css"],
     img: "src/img/**/*.*",

@@ -37,7 +37,7 @@ var path = {
       "src/hotels-list/*.html",
       "src/hotel/*.html",
       "src/booking/*.html",
-      "build/404/*.html",
+      "src/404/*.html",
     ],
     js: [
       "./src/js/index.js",
