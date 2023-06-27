@@ -166,7 +166,7 @@ export default class Chat {
 
     return $.ajax({
       type: "GET",
-      url: "https://wehotel.ru/php/chat/get_info_chat.php",
+      url: "https://wehotel.ru/php/chat/get_info_chat.php?id_chat=" + id,
       headers: {
         "X-Auth": localStorage.token ?? "",
       },
