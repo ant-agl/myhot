@@ -358,7 +358,7 @@ export default class Chat {
           </div>
           <div class="chat__name">${name}</div>
         </div>
-        <div class="chat__text"><p>${text}</p>${imgHtml}</div>
+        <div class="chat__text"><span>${text}</span>${imgHtml}</div>
       </div>
     `);
     this.scrollDown();

@@ -120,6 +120,9 @@
 .chat__message_left .chat__text {
   background-color: royalblue;
 }
+.chat__message_left .chat__text img {
+  margin-top: 10px;
+}
 .chat__avatar {
   display: flex;
   flex-direction: column;
