@@ -197,7 +197,7 @@ export default class Chat {
       $chatItem
         .find(".chats__date")
         .text(moment(item.time * 1000).format("DD.MM.YY"));
-      $chatItem.find(".chats__message").text(item.message?.last_massage || "");
+      $chatItem.find(".chats__message").text(item.message?.last_message || "");
 
       $chatItem.find(".chats__count").remove();
       if (countMessage > 0) {
@@ -225,7 +225,7 @@ export default class Chat {
           </div>
           <div class="chats__info">
             <div class="chats__message">${
-              item.message?.last_massage || ""
+              item.message?.last_message || ""
             }</div>
             ${
               countMessage > 0
@@ -246,7 +246,7 @@ export default class Chat {
       $chatItem
         .find(".chats__date")
         .text(moment(item.time * 1000).format("DD.MM.YY"));
-      $chatItem.find(".chats__message").text(item.message?.last_massage || "");
+      $chatItem.find(".chats__message").text(item.message?.last_message || "");
 
       $chatItem.find(".chats__count").remove();
       if (countMessage > 0) {
@@ -272,7 +272,7 @@ export default class Chat {
           </div>
           <div class="chats__info">
             <div class="chats__message">${
-              item.message?.last_massage || ""
+              item.message?.last_message || ""
             }</div>
             ${
               countMessage > 0

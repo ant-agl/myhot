@@ -63,7 +63,7 @@ $("body").on("click", ".send_button", function (e) {
   };
   $.ajax({
     type: "POST",
-    url: "",
+    url: "https://wehotel.ru/handler/send_request.php",
     data,
     headers: {
       "X-Auth": localStorage.token ?? "",

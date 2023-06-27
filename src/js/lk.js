@@ -124,7 +124,9 @@ let modalReview = new Modal("#modal-review", {
 });
 
 import Validation from "./components/Validation";
-let validationReview = new Validation("#modal-review");
+let validationReview = new Validation("#modal-review", {
+  isOutputErrors: false,
+});
 $("body").on("click", ".btn-add-review", function () {
   if (!validationReview.validate()) return;
   let data = {};
