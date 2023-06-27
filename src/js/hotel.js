@@ -133,3 +133,37 @@ $("body").on("click", ".btn-booking-temp", function (e) {
     },
   });
 });
+
+$("body").on("click", ".btn-msg-hotel", function (e) {
+  e.preventDefault();
+
+  if (!localStorage.token) {
+    $(".log_in_button").trigger("click");
+    return;
+  }
+
+  let id_hotel = get2data().id;
+  $.ajax({
+    type: "POST",
+    url: "https://wehotel.ru/chat/create_chat.php",
+    data: {
+      id_hotel,
+    },
+    headers: {
+      "X-Auth": localStorage.token ?? "",
+    },
+    success: (data) => {
+      data = JSON.parse(data);
+      console.log(data);
+
+      location.href = "/lk?page=chat&id_chat=" + data.id;
+    },
+    error: (xhr) => {
+      $("#modal-text .modal__title").text(
+        "Что-то пошло не так. Пожалуйста, обновите страницу"
+      );
+      $(".modal").removeClass("modal_open");
+      modalText.open();
+    },
+  });
+});

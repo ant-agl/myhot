@@ -6,25 +6,27 @@ export default class Chat {
   user = {};
 
   constructor(selector, options = []) {
-    this.chat = $(selector);
-    this.input = this.chat.find(".chat__input");
-    this.btnSend = this.chat.find(".chat__send");
+    this.$chat = $(selector);
+    this.input = this.$chat.find(".chat__input");
+    this.btnSend = this.$chat.find(".chat__send");
 
     this.onInit();
   }
   onInit() {
-    this.intervalAll = setInterval(() => {
-      this.getAll();
-    }, 1000);
+    this.intervalAll = setTimeout(function getAllChatInterval() {
+      this.getAllInfo();
+      this.getAllHotel();
+      $this.intervalAll = setTimeout(getAllChatInterval, 1000);
+    }, 0);
 
     this.input.on("input", this.replaceStateBtn.bind(this));
-    this.chat.on("click", ".chat__send", this.onSendMessage.bind(this));
-    this.chat.on("change", '[name="chat-file"]', this.onSendFile.bind(this));
+    this.$chat.on("click", ".chat__send", this.onSendMessage.bind(this));
+    this.$chat.on("change", '[name="chat-file"]', this.onSendFile.bind(this));
 
-    this.chat.on("click", ".chat__text img", this.openImage.bind(this));
+    this.$chat.on("click", ".chat__text img", this.openImage.bind(this));
 
-    this.chat.on("click", ".chats__item", this.openChat.bind(this));
-    this.chat.on("click", ".chat__back", this.closeChat.bind(this));
+    this.$chat.on("click", ".chats__item", this.openChat.bind(this));
+    this.$chat.on("click", ".chat__back", this.closeChat.bind(this));
 
     setTimeout(() => {
       this.addMobileClass();
@@ -39,15 +41,15 @@ export default class Chat {
     }
   }
   addMobileClass() {
-    if (this.chat.outerWidth() > 640) this.chat.removeClass("chat_mobile");
-    else this.chat.addClass("chat_mobile");
+    if (this.$chat.outerWidth() > 640) this.$chat.removeClass("chat_mobile");
+    else this.$chat.addClass("chat_mobile");
   }
   openChat(e) {
-    this.chat.addClass("chat_open");
-    this.chat.find(".chat__messages").html("");
+    this.$chat.addClass("chat_open");
+    this.$chat.find(".chat__messages").html("");
 
     let $item = $(e.target).closest(".chats__item");
-    this.chat.find(".chats__item").removeClass("active");
+    this.$chat.find(".chats__item").removeClass("active");
     $item.addClass("active");
     $item.find(".chats__count").remove();
 
@@ -55,16 +57,25 @@ export default class Chat {
     if (this.intervalChat) clearTimeout(this.intervalChat);
 
     let $this = this;
-    this.intervalChat = setTimeout(function getChatInterval() {
-      $this.getChat(chatId);
-      $this.intervalChat = setTimeout(getChatInterval, 1000);
-    }, 0);
+
+    if ($item.hasClass("hotel-chat")) {
+      this.intervalChat = setTimeout(function getChatInterval() {
+        $this.getChatHotel(chatId);
+        $this.intervalChat = setTimeout(getChatInterval, 1000);
+      }, 0);
+    }
+    if ($item.hasClass("info-chat")) {
+      this.intervalChat = setTimeout(function getChatInterval() {
+        $this.getChatInfo(chatId);
+        $this.intervalChat = setTimeout(getChatInterval, 1000);
+      }, 0);
+    }
   }
   closeChat() {
-    this.chat.removeClass("chat_open");
-    this.chat.find(".chats__item").removeClass("active");
+    this.$chat.removeClass("chat_open");
+    this.$chat.find(".chats__item").removeClass("active");
   }
-  getAll() {
+  getAllHotel() {
     if (!localStorage.token) return;
     $.ajax({
       type: "GET",
@@ -76,68 +87,19 @@ export default class Chat {
         if (!data) return;
         let items = JSON.parse(data);
         items.forEach((item) => {
-          let hotel = item.joined_hotel_search[0];
-          let countMessage = Number(item.message?.number_of_unread || 0);
-
-          let $chatItem = this.chat.find(`.chats__item[data-id="${item.id}"]`);
-          if ($chatItem.length) {
-            $chatItem
-              .find(".chats__date")
-              .text(moment(item.time * 1000).format("DD.MM.YY"));
-            $chatItem
-              .find(".chats__message")
-              .text(item.message?.last_massage || "");
-
-            $chatItem.find(".chats__count").remove();
-            if (countMessage > 0) {
-              $chatItem
-                .find(".chats__info")
-                .last()
-                .append(`<div class="chats__count">${countMessage}</div>`);
-            }
-            return;
-          }
-
-          let html = `
-            <div class="chats__item" data-id="${item.id}" data-hotel-id="${
-            item.id_hotel
-          }">
-              <div class="chats__img">
-                <img src="${hotel.image}">
-              </div>
-              <div class="chats__content">
-                <div class="chats__info">
-                  <div class="chats__name">${hotel.name}</div>
-                  <div class="chats__date">${moment(item.time * 1000).format(
-                    "DD.MM.YY"
-                  )}</div>
-                </div>
-                <div class="chats__info">
-                  <div class="chats__message">${
-                    item.message?.last_massage || ""
-                  }</div>
-                  ${
-                    countMessage > 0
-                      ? `
-                    <div class="chats__count">${countMessage}</div>
-                  `
-                      : ""
-                  }
-                </div>
-              </div>
-            </div>
-          `;
-          this.chat.find(".chats").append(html);
+          item.class = "hotel-chat";
+          insertChat(item);
         });
       },
     });
   }
-  getChat(id) {
-    this.chat.find(".chat__content").data("id", id);
+  getChatHotel(id) {
+    this.$chat.find(".chat__input-row").show();
+    this.$chat.find(".chat__content").data("id", id);
 
-    let $chat = this.chat.find(`.chats__item[data-id="${id}"]`);
+    let $chat = this.$chat.find(`.chats__item[data-id="${id}"]`);
     let name = $chat.find(".chats__name").text().trim();
-    this.chat.find(".chat__title-value").text(name);
+    this.$chat.find(".chat__title-value").text(name);
 
     return $.ajax({
       type: "GET",
@@ -173,11 +135,113 @@ export default class Chat {
       },
     });
   }
+  getAllInfo() {
+    if (!localStorage.token) return;
+    $.ajax({
+      type: "GET",
+      url: "https://wehotel.ru/php/chat/get_all_info_chat.php",
+      headers: {
+        "X-Auth": localStorage.token ?? "",
+      },
+      success: (data) => {
+        if (!data) return;
+        let items = JSON.parse(data);
+        items.forEach((item) => {
+          item.class = "info-chat";
+          insertChat(item, ".chats__fix");
+        });
+      },
+    });
+  }
+  getChatInfo(id) {
+    this.$chat.find(".chat__input-row").hide();
+    this.$chat.find(".chat__content").data("id", id);
+
+    let $chat = this.$chat.find(`.chats__item[data-id="${id}"]`);
+    let name = $chat.find(".chats__name").text().trim();
+    this.$chat.find(".chat__title-value").text(name);
+
+    return $.ajax({
+      type: "GET",
+      url: "https://wehotel.ru/php/chat/get_chat.php?id_chat=" + id,
+      headers: {
+        "X-Auth": localStorage.token ?? "",
+      },
+      success: (data) => {
+        data = JSON.parse(data);
+        console.log(data);
+        data.messages.forEach((message) => {
+          let img = data?.hotel?.image || "../img/no-photo.jpg";
+          let name = data?.hotel?.name || "";
+          this.addMessage(
+            message.id,
+            message.text,
+            message.image,
+            img,
+            name,
+            false
+          );
+        });
+      },
+    });
+  }
+  insertChat(item, selectorInsert = ".chats") {
+    let hotel = item.joined_hotel_search[0];
+    let countMessage = Number(item.message?.number_of_unread || 0);
+
+    let $chatItem = this.$chat.find(`.chats__item[data-id="${item.id}"]`);
+    if ($chatItem.length) {
+      $chatItem
+        .find(".chats__date")
+        .text(moment(item.time * 1000).format("DD.MM.YY"));
+      $chatItem.find(".chats__message").text(item.message?.last_massage || "");
+
+      $chatItem.find(".chats__count").remove();
+      if (countMessage > 0) {
+        $chatItem
+          .find(".chats__info")
+          .last()
+          .append(`<div class="chats__count">${countMessage}</div>`);
+      }
+      return;
+    }
+
+    let html = `
+      <div class="chats__item ${item.class}" data-id="${
+      item.id
+    }" data-hotel-id="${item.id_hotel}">
+        <div class="chats__img">
+          <img src="${hotel.image}">
+        </div>
+        <div class="chats__content">
+          <div class="chats__info">
+            <div class="chats__name">${hotel.name}</div>
+            <div class="chats__date">${moment(item.time * 1000).format(
+              "DD.MM.YY"
+            )}</div>
+          </div>
+          <div class="chats__info">
+            <div class="chats__message">${
+              item.message?.last_massage || ""
+            }</div>
+            ${
+              countMessage > 0
+                ? `
+              <div class="chats__count">${countMessage}</div>
+            `
+                : ""
+            }
+          </div>
+        </div>
+      </div>
+    `;
+    this.$chat.find(selectorInsert).append(html);
+  }
   onSendMessage() {
     console.log("send");
-    let $inputText = this.chat.find(".chat__input");
+    let $inputText = this.$chat.find(".chat__input");
     let text = $inputText.val().trim();
-    let id = this.chat.find(".chat__content").data("id");
+    let id = this.$chat.find(".chat__content").data("id");
     if (!id || !text) return;
     this.sendMessage(id, text);
     $inputText.val("");
@@ -185,7 +249,7 @@ export default class Chat {
   onSendFile() {
     console.log("send file");
     let file = $('[name="chat-file"]')[0].files[0];
-    let id = this.chat.find(".chat__content").data("id");
+    let id = this.$chat.find(".chat__content").data("id");
     if (!id || !file) return;
     this.sendMessage(id, "", file);
   }
@@ -211,7 +275,6 @@ export default class Chat {
       this.addMessage(Math.random(), text, "", img, name, true);
     }
 
-    return;
     $.ajax({
       type: "POST",
       url: "https://wehotel.ru/php/chat/send_message.php",
@@ -225,12 +288,12 @@ export default class Chat {
         console.log(data);
         let img = this.user.img || "../img/no-photo.jpg";
         let name = this.user.name || "";
-        this.addMessage(0, text, file, img, name, true);
+        this.addMessage(data.id, text, file, img, name, true);
       },
     });
   }
   addMessage(id, text, img, avatar, name, isUser) {
-    if (this.chat.find(`.chat__message[data-id="${id}"]`).length) return;
+    if (this.$chat.find(`.chat__message[data-id="${id}"]`).length) return;
 
     if (img) {
       console.log(img);
@@ -238,7 +301,7 @@ export default class Chat {
     }
 
     let messagePosition = isUser ? "chat__message_left" : "";
-    this.chat.find(".chat__messages").append(`
+    this.$chat.find(".chat__messages").append(`
       <div class="chat__message ${messagePosition}" data-id="${id}">
         <div class="chat__avatar">
           <div class="chat__img">
@@ -252,8 +315,8 @@ export default class Chat {
     this.scrollDown();
   }
   scrollDown() {
-    let scrollTop = this.chat.find(".chat__messages")[0].scrollHeight;
-    this.chat.find(".chat__messages").scrollTop(scrollTop);
+    let scrollTop = this.$chat.find(".chat__messages")[0].scrollHeight;
+    this.$chat.find(".chat__messages").scrollTop(scrollTop);
   }
   openImage(e) {
     this.closeImage();

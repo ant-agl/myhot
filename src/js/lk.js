@@ -4,9 +4,17 @@ import "./default";
 import Menu from "./components/Menu";
 new Menu(".main__menu-list", ".tabs-content");
 
+import Chat from "./components/chat";
+new Chat("#chat .chat");
+
 import { get2data } from "./components/data2get";
 if (get2data().page) {
   $(`.main__menu-item[data-target="${get2data().page}"]`).trigger("click");
+}
+if (get2data().id_chat) {
+  $(`.tab-content#chat .chats__item[data-id="${get2data().id_chat}"]`).trigger(
+    "click"
+  );
 }
 
 import "air-datepicker/air-datepicker.css";
@@ -49,9 +57,6 @@ function reloadChatAnimation(close = true) {
 }
 reloadChatAnimation(false);
 setInterval(reloadChatAnimation, 1000 * 8);
-
-import Chat from "./components/chat";
-new Chat("#chat .chat");
 
 import scrollOverflow from "./components/scrollOverflow";
 scrollOverflow($("#modal-review .modal__content"));
