@@ -152,7 +152,7 @@ $("body").on("click", "#modal-signin .btn-signin", function () {
       document.cookie = `token=${data.token}; path=/; max-age=${
         60 * 60 * 24 * 3
       };`;
-      localStorage = data.token;
+      localStorage.token = data.token;
       setTimeout(() => {
         window.location.href = "/lk";
       }, 10);
@@ -205,7 +205,7 @@ $("body").on("click", "#modal-login .btn-login-hash", function () {
               document.cookie = `token=${data.token}; path=/; max-age=${
                 60 * 60 * 24 * 3
               };`;
-              localStorage = data.token;
+              localStorage.token = data.token;
               setTimeout(() => {
                 window.location.href = "/lk";
               }, 10);
