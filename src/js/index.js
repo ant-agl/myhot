@@ -83,3 +83,8 @@ $("body").on("click", ".send_button", function (e) {
     },
   });
 });
+
+$("body").on("click", ".btn-go-sup", function (e) {
+  e.preventDefault();
+  $(".chats__item.support-chat").trigger("click");
+});

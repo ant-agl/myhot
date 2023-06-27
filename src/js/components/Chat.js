@@ -296,7 +296,6 @@ export default class Chat {
   onSendFile() {
     console.log("send file");
     let file = this.$chat.find('[name="chat-file"]')[0].files[0];
-
     let id = this.$chat.find(".chat__content").data("id");
     if (!id || !file) return;
     this.sendMessage(id, "", file);
@@ -306,7 +305,7 @@ export default class Chat {
     formData.append("id_chat", id);
     if (!text && !file) return;
 
-    if (text) formData.append("text", text);
+    formData.append("text", text);
     if (file) formData.append("file", file);
 
     let img = this.user.img || "../img/no-photo.jpg";
