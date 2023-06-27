@@ -306,7 +306,7 @@ export default class Chat {
     if (!text && !file) return;
 
     if (text) formData.append("text", text);
-    if (file) formData.append("image", file);
+    if (file) formData.append("file", file);
 
     let img = this.user.img || "../img/no-photo.jpg";
     let name = this.user.name || "";
@@ -340,7 +340,11 @@ export default class Chat {
     });
   }
   addMessage(id, text, images, avatar, name, isUser) {
-    if (this.$chat.find(`.chat__message[data-id="${id}"]`).length) return;
+    if (
+      id != "undefined" &&
+      this.$chat.find(`.chat__message[data-id="${id}"]`).length
+    )
+      return;
 
     let imgHtml = "";
     if (images?.length > 0) {
