@@ -189,6 +189,7 @@ export default class Chat {
   insertChatHotel(item) {
     let hotel = item.joined_hotel_search[0];
     let countMessage = Number(item.message?.number_of_unread || 0);
+    if (item.last_host_user) countMessage = 0;
 
     let $chatItem = this.$chat.find(`.chats__item[data-id="${item.id}"]`);
     if ($chatItem.length) {
