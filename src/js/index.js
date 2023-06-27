@@ -50,7 +50,9 @@ import Modal from "./components/Modal";
 let modalText = new Modal("#modal-text");
 
 import Validation from "./components/Validation";
-let validationForm = new Validation(".form_send");
+let validationForm = new Validation(".form_send", {
+  isOutputErrors: false,
+});
 
 $("body").on("click", ".send_button", function (e) {
   e.preventDefault();
