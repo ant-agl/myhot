@@ -126,10 +126,12 @@ export default class Chat {
             img = data?.hotel?.image || "../img/no-photo.jpg";
             name = data?.hotel?.name || "";
           }
+          let arrImage = [];
+          if (message.image) arrImage.push(message.image);
           this.addMessage(
             message.id,
             message.text,
-            [message.image],
+            arrImage,
             img,
             name,
             isUser
