@@ -295,7 +295,7 @@ export default class Chat {
   }
   onSendFile() {
     console.log("send file");
-    let file = $('[name="chat-file"]')[0].files[0];
+    let file = this.$chat.find('[name="chat-file"]')[0].files[0];
     let id = this.$chat.find(".chat__content").data("id");
     if (!id || !file) return;
     this.sendMessage(id, "", file);
