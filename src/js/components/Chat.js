@@ -129,7 +129,7 @@ export default class Chat {
           this.addMessage(
             message.id,
             message.text,
-            message.image,
+            message.file,
             img,
             name,
             isUser
@@ -309,16 +309,16 @@ export default class Chat {
 
     let img = this.user.img || "../img/no-photo.jpg";
     let name = this.user.name || "";
+    let fileImg = [];
     if (file) {
-      let fileImg;
       var fileReader = new FileReader();
       fileReader.readAsDataURL(file);
       fileReader.onload = () => {
-        fileImg = fileReader.result;
+        fileImg.push(fileReader.result);
         this.addMessage(Math.random(), text, fileImg, img, name, true);
       };
     } else {
-      this.addMessage(Math.random(), text, "", img, name, true);
+      this.addMessage(Math.random(), text, [], img, name, true);
     }
 
     $.ajax({
@@ -334,7 +334,7 @@ export default class Chat {
         console.log(data);
         let img = this.user.img || "../img/no-photo.jpg";
         let name = this.user.name || "";
-        this.addMessage(data.id, text, file, img, name, true);
+        this.addMessage(data.id, text, fileImg, img, name, true);
       },
     });
   }
