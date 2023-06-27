@@ -308,20 +308,6 @@ export default class Chat {
     formData.append("text", text);
     if (file) formData.append("file", file);
 
-    let img = this.user.img || "../img/no-photo.jpg";
-    let name = this.user.name || "";
-    let fileImg = [];
-    if (file) {
-      var fileReader = new FileReader();
-      fileReader.readAsDataURL(file);
-      fileReader.onload = () => {
-        fileImg.push(fileReader.result);
-        this.addMessage(Math.random(), text, fileImg, img, name, true);
-      };
-    } else {
-      this.addMessage(Math.random(), text, [], img, name, true);
-    }
-
     $.ajax({
       type: "POST",
       url: "https://wehotel.ru/php/chat/send_message.php",
@@ -335,13 +321,23 @@ export default class Chat {
         console.log(data);
         let img = this.user.img || "../img/no-photo.jpg";
         let name = this.user.name || "";
-        this.addMessage(data.id, text, fileImg, img, name, true);
+        if (file) {
+          let fileImg = [];
+          var fileReader = new FileReader();
+          fileReader.readAsDataURL(file);
+          fileReader.onload = () => {
+            fileImg.push(fileReader.result);
+            this.addMessage(data.id, text, fileImg, img, name, true);
+          };
+        } else {
+          this.addMessage(data.id, text, [], img, name, true);
+        }
       },
     });
   }
   addMessage(id, text, images, avatar, name, isUser) {
     if (
-      id != "undefined" &&
+      id == "undefined" ||
       this.$chat.find(`.chat__message[data-id="${id}"]`).length
     )
       return;
