@@ -22,6 +22,7 @@ var path = {
       "build/hotels-list/",
       "build/hotel/",
       "build/booking/",
+      "build/404/",
     ],
     js: "build/js/",
     css: "build/css/",
@@ -36,6 +37,7 @@ var path = {
       "src/hotels-list/*.html",
       "src/hotel/*.html",
       "src/booking/*.html",
+      "build/404/*.html",
     ],
     js: [
       "./src/js/index.js",
