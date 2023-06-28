@@ -367,9 +367,8 @@ export default class Chat {
   }
   scrollDown() {
     let scrollTop = this.$chat.find(".chat__messages")[0].scrollHeight;
-    setTimeout(() => {
-      this.$chat.find(".chat__messages").scrollTop(scrollTop);
-    });
+    console.log("scrollTop", scrollTop);
+    this.$chat.find(".chat__messages").scrollTop(scrollTop);
   }
   openImage(e) {
     this.closeImage();
