@@ -216,25 +216,26 @@ export default class Chat {
       },
       success: (data) => {
         data = JSON.parse(data);
-        debugger;
         console.log(data);
-        let isUser = message.sub_host == "users";
-        let img, name;
-        if (data.user) {
-          this.user = data.user;
-        }
-        if (isUser) {
-          img = data?.user?.img || "/img/no-photo.jpg";
-          name = data?.user?.name || "";
-        } else {
-          img = data?.support?.image || "/img/chat/support.jpg";
-          name = data?.support?.name || "";
-        }
-        data.messages.forEach((message) => {
+        data.messages?.forEach((message) => {
+          let isUser = message.sub_host == "users";
+          let img, name;
+          if (data.user) {
+            this.user = data.user;
+          }
+          if (isUser) {
+            img = data?.user?.img || "/img/no-photo.jpg";
+            name = data?.user?.name || "";
+          } else {
+            img = "/img/chat/support.jpg";
+            name = "";
+          }
+          let arrImage = [];
+          if (message.image) arrImage.push(message.image);
           this.addMessage(
             message.id,
             message.text,
-            message.file,
+            arrImage,
             img,
             name,
             isUser
