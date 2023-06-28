@@ -38,9 +38,10 @@ export default class GetData {
   path_php = "https://wehotel.ru/php/";
 
   async getLk(obj = {}) {
-    let auth = await isAuth();
-    console.log(auth);
-    if (!auth.ok) {
+    // let auth = await isAuth();
+    // console.log(auth);
+    // if (!auth.ok) {
+    if (!localStorage.token) {
       window.location.href = "/";
       return;
     }

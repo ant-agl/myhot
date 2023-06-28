@@ -155,7 +155,7 @@ $("body").on("click", "#modal-signin .btn-signin", function () {
       localStorage.token = data.token;
       setTimeout(() => {
         window.location.href = "/lk";
-      }, 10);
+      }, 100);
     })
     .catch((xhr) => {
       console.log(xhr);
