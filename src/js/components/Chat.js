@@ -367,10 +367,11 @@ export default class Chat {
   }
   scrollDown() {
     let time = 0;
+    let $this = this;
     setTimeout(function scroll() {
       if ($("body").css("display") != "none") {
-        let scrollTop = this.$chat.find(".chat__messages")[0].scrollHeight;
-        this.$chat.find(".chat__messages").scrollTop(scrollTop);
+        let scrollTop = $this.$chat.find(".chat__messages")[0].scrollHeight;
+        $this.$chat.find(".chat__messages").scrollTop(scrollTop);
       } else if (time <= 2000) {
         setTimeout(scroll, 100);
         time += 100;
