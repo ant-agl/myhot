@@ -11,6 +11,7 @@
   overflow-y: auto;
   z-index: 1;
   width: 100%;
+  top: 130%;
 }
 .find-hint.active {
   transform: scale(1);
