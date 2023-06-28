@@ -194,11 +194,9 @@ export default class Chat {
       },
       success: (data) => {
         if (!data) return;
-        let items = JSON.parse(data);
-        items.forEach((item) => {
-          item.class = "support-chat";
-          this.insertChatSup(item);
-        });
+        let item = JSON.parse(data);
+        item.class = "support-chat";
+        this.insertChatSup(item);
       },
     });
   }
