@@ -249,7 +249,9 @@ export default class Chat {
     let countMessage = Number(item.message?.number_of_unread || 0);
     if (item.last_host_user) countMessage = 0;
 
-    let $chatItem = this.$chat.find(`.chats__item[data-id="${item.id}"]`);
+    let $chatItem = this.$chat.find(
+      `.chats__item.${item.class}[data-id="${item.id}"]`
+    );
     if ($chatItem.length) {
       $chatItem
         .find(".chats__date")
@@ -298,7 +300,9 @@ export default class Chat {
   insertChatInfo(item) {
     let countMessage = Number(item.message?.number_of_unread || 0);
 
-    let $chatItem = this.$chat.find(`.chats__item[data-id="${item.id}"]`);
+    let $chatItem = this.$chat.find(
+      `.chats__item.${item.class}[data-id="${item.id}"]`
+    );
     if ($chatItem.length) {
       $chatItem
         .find(".chats__date")
@@ -344,8 +348,11 @@ export default class Chat {
   }
   insertChatSup(item) {
     let countMessage = Number(item.message?.number_of_unread || 0);
+    if (!item.last_host_staff) countMessage = 0;
 
-    let $chatItem = this.$chat.find(`.chats__item[data-id="${item.id}"]`);
+    let $chatItem = this.$chat.find(
+      `.chats__item.${item.class}[data-id="${item.id}"]`
+    );
     if ($chatItem.length) {
       $chatItem
         .find(".chats__date")
