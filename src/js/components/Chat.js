@@ -15,6 +15,7 @@ export default class Chat {
   onInit() {
     let $this = this;
     this.intervalAll = setTimeout(function getAllChatInterval() {
+      $this.getAllSup();
       $this.getAllInfo();
       $this.getAllHotel();
       $this.intervalAll = setTimeout(getAllChatInterval, 3000);
@@ -64,6 +65,7 @@ export default class Chat {
     this.intervalChat = setTimeout(function getChatInterval() {
       if ($item.hasClass("hotel-chat")) $this.getChatHotel(chatId);
       else if ($item.hasClass("info-chat")) $this.getChatInfo(chatId);
+      else if ($item.hasClass("support-chat")) $this.getChatSup(chatId);
 
       $this.intervalChat = setTimeout(getChatInterval, 3000);
     }, 0);
@@ -114,10 +116,10 @@ export default class Chat {
             this.user = data.user;
           }
           if (isUser) {
-            img = data?.user?.img || "../img/no-photo.jpg";
+            img = data?.user?.img || "/img/no-photo.jpg";
             name = data?.user?.name || "";
           } else {
-            img = data?.hotel?.image || "../img/no-photo.jpg";
+            img = data?.hotel?.image || "/img/no-photo.jpg";
             name = data?.hotel?.name || "";
           }
           let arrImage = [];
@@ -177,6 +179,67 @@ export default class Chat {
             "/img/chat/info.jpg",
             "Новости",
             false
+          );
+        });
+      },
+    });
+  }
+  getAllSup() {
+    if (!localStorage.token) return;
+    $.ajax({
+      type: "GET",
+      url: "https://wehotel.ru/php/chat/get_all_supp_chat.php",
+      headers: {
+        "X-Auth": localStorage.token ?? "",
+      },
+      success: (data) => {
+        if (!data) return;
+        let items = JSON.parse(data);
+        items.forEach((item) => {
+          item.class = "support-chat";
+          this.insertChatSup(item);
+        });
+      },
+    });
+  }
+  getChatSup(id) {
+    this.$chat.find(".chat__input-row").show();
+    this.$chat.find(".chat__content").data("id", id);
+
+    let $chat = this.$chat.find(`.chats__item[data-id="${id}"]`);
+    let name = $chat.find(".chats__name").text().trim();
+    this.$chat.find(".chat__title-value").text(name);
+
+    return $.ajax({
+      type: "GET",
+      url: "https://wehotel.ru/php/chat/get_supp_chat.php?id_chat=" + id,
+      headers: {
+        "X-Auth": localStorage.token ?? "",
+      },
+      success: (data) => {
+        data = JSON.parse(data);
+        debugger;
+        console.log(data);
+        let isUser = message.sub_host == "users";
+        let img, name;
+        if (data.user) {
+          this.user = data.user;
+        }
+        if (isUser) {
+          img = data?.user?.img || "/img/no-photo.jpg";
+          name = data?.user?.name || "";
+        } else {
+          img = data?.support?.image || "/img/chat/support.jpg";
+          name = data?.support?.name || "";
+        }
+        data.messages.forEach((message) => {
+          this.addMessage(
+            message.id,
+            message.text,
+            message.file,
+            img,
+            name,
+            isUser
           );
         });
       },
@@ -279,6 +342,53 @@ export default class Chat {
       </div>
     `;
     this.$chat.find(".chats__fix").append(html);
+  }
+  insertChatSup(item) {
+    let countMessage = Number(item.message?.number_of_unread || 0);
+
+    let $chatItem = this.$chat.find(`.chats__item[data-id="${item.id}"]`);
+    if ($chatItem.length) {
+      $chatItem
+        .find(".chats__date")
+        .text(moment(item.time * 1000).format("DD.MM.YY"));
+      $chatItem.find(".chats__message").text(item.message?.last_message || "");
+
+      $chatItem.find(".chats__count").remove();
+      if (countMessage > 0) {
+        $chatItem
+          .find(".chats__info")
+          .last()
+          .append(`<div class="chats__count">${countMessage}</div>`);
+      }
+      return;
+    }
+
+    let html = `
+      <div class="chats__item ${item.class}" data-id="${item.id}">
+        <div class="chats__img">
+          <img src="/img/chat/support.jpg">
+        </div>
+        <div class="chats__content">
+          <div class="chats__info">
+            <div class="chats__name">Тех. поддержка</div>
+            <div class="chats__date">${moment(item.time * 1000).format(
+              "DD.MM.YY"
+            )}</div>
+          </div>
+          <div class="chats__info">
+            <div class="chats__message">${
+              item.message?.last_message || ""
+            }</div>
+            ${
+              countMessage > 0
+                ? `<div class="chats__count">${countMessage}</div>`
+                : ""
+            }
+          </div>
+        </div>
+      </div>
+    `;
+    this.$chat.find(".chats__fix").prepend(html);
   }
   onSendMessage() {
     console.log("send");
