@@ -96,7 +96,7 @@ export default class Chat {
     this.$chat.find(".chat__input-row").show();
     this.$chat.find(".chat__content").data("id", id);
 
-    let $chat = this.$chat.find(`.chats__item[data-id="${id}"]`);
+    let $chat = this.$chat.find(`.chats__item.hotel-chat[data-id="${id}"]`);
     let name = $chat.find(".chats__name").text().trim();
     this.$chat.find(".chat__title-value").text(name);
 
@@ -158,7 +158,7 @@ export default class Chat {
     this.$chat.find(".chat__input-row").hide();
     this.$chat.find(".chat__content").data("id", id);
 
-    let $chat = this.$chat.find(`.chats__item[data-id="${id}"]`);
+    let $chat = this.$chat.find(`.chats__item.info-chat[data-id="${id}"]`);
     let name = $chat.find(".chats__name").text().trim();
     this.$chat.find(".chat__title-value").text(name);
 
@@ -204,7 +204,7 @@ export default class Chat {
     this.$chat.find(".chat__input-row").show();
     this.$chat.find(".chat__content").data("id", id);
 
-    let $chat = this.$chat.find(`.chats__item[data-id="${id}"]`);
+    let $chat = this.$chat.find(`.chats__item.support-chat[data-id="${id}"]`);
     let name = $chat.find(".chats__name").text().trim();
     this.$chat.find(".chat__title-value").text(name);
 
