@@ -155,7 +155,7 @@ $("body").on("click", "#modal-signin .btn-signin", function () {
       localStorage.token = data.token;
       setTimeout(() => {
         window.location.href = "/lk";
-      }, 100);
+      }, 500);
     })
     .catch((xhr) => {
       console.log(xhr);
@@ -208,7 +208,7 @@ $("body").on("click", "#modal-login .btn-login-hash", function () {
               localStorage.token = data.token;
               setTimeout(() => {
                 window.location.href = "/lk";
-              }, 100);
+              }, 500);
             };
             confirmLogin.afterSendError = (xhr) => {
               modalLogin.toPage(1);
