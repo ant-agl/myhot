@@ -185,6 +185,8 @@ export default class Chat {
     });
   }
   getAllSup() {
+    let $item = this.$chat.find(`.chats__item.support-chat`);
+    if ($item.length) return;
     $.ajax({
       type: "GET",
       url: "https://wehotel.ru/php/chat/get_all_supp_chat.php",
@@ -349,7 +351,9 @@ export default class Chat {
     let countMessage = Number(item.message?.number_of_unread || 0);
     if (!item.last_host_staff) countMessage = 0;
 
-    let $chatItem = this.$chat.find(`.chats__item.${item.class}`);
+    let $chatItem = this.$chat.find(
+      `.chats__item.${item.class}[data-id="${item.id}"]`
+    );
     if ($chatItem.length) {
       $chatItem
         .find(".chats__date")
