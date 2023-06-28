@@ -186,7 +186,8 @@ export default class Chat {
   }
   getAllSup() {
     let $item = this.$chat.find(`.chats__item.support-chat`);
-    if ($item.length) return;
+    if ($item.length > 0) return;
+
     $.ajax({
       type: "GET",
       url: "https://wehotel.ru/php/chat/get_all_supp_chat.php",
