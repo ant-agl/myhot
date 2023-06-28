@@ -208,6 +208,7 @@
 .chat_mobile .chats {
   width: 100%;
   max-width: none;
+  min-width: none;
   border-right: 0;
   transition: 0.2s;
 }
