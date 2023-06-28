@@ -53,6 +53,7 @@ export default class ChangeDateBlock {
       autoClose: true,
       isMobile: $(window).outerWidth() <= 767,
       minDate: moment(input_date).add(1, "days"),
+      maxDate: moment().add(1, "years"),
       selectedDates: output_date,
     });
 

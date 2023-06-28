@@ -145,7 +145,7 @@ $("body").on("click", ".btn-msg-hotel", function (e) {
   let id_hotel = get2data().id;
   $.ajax({
     type: "POST",
-    url: "https://wehotel.ru/chat/create_chat.php",
+    url: "https://wehotel.ru/php/chat/create_chat.php",
     data: {
       id_hotel,
     },

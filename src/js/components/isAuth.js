@@ -14,13 +14,16 @@ export default async function isAuth() {
         ok: false,
       });
     }
-    // resolve({
-    //   name: "wefew",
-    //   surname: "wefewf",
-    //   patronymic: "wefefw",
-    //   ok: true,
-    // });
-    // return;
+
+    if (location.hostname == "localhost") {
+      resolve({
+        name: "wefew",
+        surname: "wefewf",
+        patronymic: "wefefw",
+        ok: true,
+      });
+      return;
+    }
 
     $.ajax({
       type: "GET",

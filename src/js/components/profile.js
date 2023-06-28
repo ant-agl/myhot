@@ -158,14 +158,26 @@ $(".btn-delete-account").on("click", function () {
   modalConfirm.open();
   console.log("delete account");
 });
-$(".btn-mail-confirm").on("click", function () {
-  $(this).removeClass("active");
 
+let modalText = new Modal("#modal-text");
+$(".btn-mail-confirm").on("click", function () {
   $.ajax({
     type: "GET",
     url: "https://wehotel.ru/handler/email_confirm.php",
     headers: {
       "X-Auth": localStorage.token ?? "",
+    },
+    success: () => {
+      $("#modal-text .modal__title").text("Вам на почту отправлено письмо");
+      modalText.open();
+      $(this).removeClass("active");
+      setTimeout(() => {
+        $(this).remove();
+      }, 200);
+    },
+    error: () => {
+      $("#modal-text .modal__title").text("Что-то пошло не так");
+      modalText.open();
     },
   });
 });

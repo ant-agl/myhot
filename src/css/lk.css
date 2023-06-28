@@ -194,6 +194,14 @@ select {
   transform: translateY(-50%);
   right: 20px;
 }
+[name="2fa"] + .input-hint_dfa {
+  visibility: visible;
+  opacity: 1;
+}
+[name="2fa"]:disabled + .input-hint_dfa {
+  visibility: hidden;
+  opacity: 0;
+}
 .input-hint__not-active {
   display: none;
 }

@@ -289,7 +289,7 @@ export default class Chat {
   onSendMessage() {
     console.log("send");
     let $inputText = this.$chat.find(".chat__input");
-    let text = $inputText.val().trim();
+    let text = $inputText.val()?.trim();
     let id = this.$chat.find(".chat__content").data("id");
     if (!id || !text) return;
     this.sendMessage(id, text);
@@ -306,6 +306,8 @@ export default class Chat {
     let formData = new FormData();
     formData.append("id_chat", id);
     if (!text && !file) return;
+
+    if (!text) text = "";
 
     formData.append("text", text);
     if (file) formData.append("file", file);
@@ -339,7 +341,8 @@ export default class Chat {
   }
   addMessage(id, text, images, avatar, name, isUser) {
     if (
-      id == "undefined" ||
+      id === undefined ||
+      id === "undefined" ||
       this.$chat.find(`.chat__message[data-id="${id}"]`).length
     )
       return;
