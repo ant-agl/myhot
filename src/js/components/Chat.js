@@ -110,7 +110,7 @@ export default class Chat {
         data = JSON.parse(data);
         console.log(data);
         data.messages.forEach((message) => {
-          let isUser = message.host?.host == "users";
+          let isUser = message.sub_host == "users";
           let img, name;
           if (data.user) {
             this.user = data.user;
@@ -224,7 +224,7 @@ export default class Chat {
         data = JSON.parse(data);
         console.log(data);
         data.messages?.forEach((message) => {
-          let isUser = message.sub_host == "users";
+          let isUser = message.host?.host == "users";
           let img, name;
           if (data.user) {
             this.user = data.user;
