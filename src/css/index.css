@@ -12,6 +12,10 @@
 .info_area.success {
   border-color: #31bb00;
 }
+input,
+textarea {
+  transition: 0.2s;
+}
 input.error,
 textarea.error {
   background-color: #ffd6d6;
