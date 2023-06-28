@@ -423,9 +423,13 @@ export default class Chat {
     formData.append("text", text);
     if (file) formData.append("file", file);
 
+    let url = "https://wehotel.ru/php/chat/send_message.php";
+    if (this.$chat.find(".support-chat.active").length > 0)
+      url = "https://wehotel.ru/php/chat/send_supp_message.php";
+
     $.ajax({
       type: "POST",
-      url: "https://wehotel.ru/php/chat/send_message.php",
+      url,
       headers: {
         "X-Auth": localStorage.token ?? "",
       },
