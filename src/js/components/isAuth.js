@@ -9,6 +9,7 @@ export default async function isAuth() {
       .find((item) => item.key == "token")?.value;
     localStorage.token = token || "";
 
+    debugger;
     if (!token) {
       resolve({
         ok: false,
@@ -25,6 +26,7 @@ export default async function isAuth() {
       return;
     }
 
+    debugger;
     $.ajax({
       type: "GET",
       url: "https://wehotel.ru/handler/auth.php",
@@ -32,6 +34,7 @@ export default async function isAuth() {
         "X-Auth": token,
       },
       success: (data) => {
+        debugger;
         data = JSON.parse(data);
         data.ok = true;
         console.log(data);
@@ -51,6 +54,7 @@ export default async function isAuth() {
         });
       },
       error: (xhr) => {
+        debugger;
         document.cookie = "token=; path=/; max-age=-1";
         localStorage.clear("token");
 
