@@ -1,21 +1,5 @@
 import "./default";
 
-import Menu from "./components/Menu";
-new Menu(".main__menu-list", ".tabs-content");
-
-import Chat from "./components/chat";
-new Chat("#chat .chat");
-
-import { get2data } from "./components/data2get";
-if (get2data().page) {
-  $(`.main__menu-item[data-target="${get2data().page}"]`).trigger("click");
-}
-if (get2data().id_chat) {
-  $(`.tab-content#chat .chats__item[data-id="${get2data().id_chat}"]`).trigger(
-    "click"
-  );
-}
-
 import "air-datepicker/air-datepicker.css";
 import AirDatepicker from "air-datepicker";
 import moment from "moment";
@@ -38,6 +22,22 @@ let getData = new GetData();
 getData.getLk({
   user: birthday,
 });
+
+import Menu from "./components/Menu";
+new Menu(".main__menu-list", ".tabs-content");
+
+import Chat from "./components/chat";
+new Chat("#chat .chat");
+
+import { get2data } from "./components/data2get";
+if (get2data().page) {
+  $(`.main__menu-item[data-target="${get2data().page}"]`).trigger("click");
+}
+if (get2data().id_chat) {
+  $(`.tab-content#chat .chats__item[data-id="${get2data().id_chat}"]`).trigger(
+    "click"
+  );
+}
 
 import "./components/profile";
 

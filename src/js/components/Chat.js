@@ -309,7 +309,7 @@ export default class Chat {
 
     if (!text) text = "";
 
-    formData.append("text", text);
+    if (text) formData.append("text", text);
     if (file) formData.append("file", file);
 
     $.ajax({

@@ -159,9 +159,7 @@ $("body").on("click", ".btn-msg-hotel", function (e) {
       location.href = "/lk?page=chat&id_chat=" + data.id;
     },
     error: (xhr) => {
-      $("#modal-text .modal__title").text(
-        "Что-то пошло не так. Пожалуйста, обновите страницу"
-      );
+      $("#modal-text .modal__title").text("Что-то пошло не так");
       $(".modal").removeClass("modal_open");
       modalText.open();
     },
