@@ -232,12 +232,11 @@ export default class Chat {
             img = "/img/chat/support.jpg";
             name = "";
           }
-          let arrImage = [];
-          if (message.image) arrImage.push(message.image);
+
           this.addMessage(
             message.id,
             message.text,
-            arrImage,
+            message.file,
             img,
             name,
             isUser
