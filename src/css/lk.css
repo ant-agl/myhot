@@ -47,6 +47,11 @@
   text-align: center;
 }
 
+input.error,
+textarea.error {
+  background-color: #ffd6d6;
+}
+
 select {
   -webkit-appearance: none;
   -moz-appearance: none;
