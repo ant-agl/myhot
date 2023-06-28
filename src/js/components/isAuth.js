@@ -51,7 +51,6 @@ export default async function isAuth() {
         });
       },
       error: (xhr) => {
-        debugger;
         document.cookie = "token=; path=/; max-age=-1";
         localStorage.clear("token");
 
