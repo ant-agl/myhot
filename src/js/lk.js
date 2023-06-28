@@ -34,9 +34,18 @@ if (get2data().page) {
   $(`.main__menu-item[data-target="${get2data().page}"]`).trigger("click");
 }
 if (get2data().id_chat) {
-  $(`.tab-content#chat .chats__item[data-id="${get2data().id_chat}"]`).trigger(
-    "click"
-  );
+  let time = 0;
+  setTimeout(function openChat() {
+    let $item = $(
+      `.tab-content#chat .chats__item[data-id="${get2data().id_chat}"]`
+    );
+    if ($item.length) {
+      $item.trigger("click");
+    } else if (time <= 2000) {
+      time += 100;
+      setTimeout(openChat, 100);
+    }
+  });
 }
 
 import "./components/profile";
