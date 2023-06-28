@@ -349,9 +349,7 @@ export default class Chat {
     let countMessage = Number(item.message?.number_of_unread || 0);
     if (!item.last_host_staff) countMessage = 0;
 
-    let $chatItem = this.$chat.find(
-      `.chats__item.${item.class}[data-id="${item.id}"]`
-    );
+    let $chatItem = this.$chat.find(`.chats__item.${item.class}`);
     if ($chatItem.length) {
       $chatItem
         .find(".chats__date")
