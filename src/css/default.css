@@ -67,6 +67,17 @@ input[type="checkbox"]:focus {
   outline: none;
   box-shadow: none;
 }
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear,
+input::-ms-reveal,
+input::-ms-clear {
+  display: none;
+}
+input[type="password"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+}
 a:hover {
   text-decoration: none;
 }
@@ -75,7 +86,7 @@ a:hover {
 }
 .toggle-show-password {
   position: absolute;
-  right: 20px;
+  right: 30px;
   top: 50%;
   transform: translateY(-50%);
   opacity: 0.5;

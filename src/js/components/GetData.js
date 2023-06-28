@@ -694,13 +694,14 @@ export default class GetData {
         if (!hotel.image) hotel.image = "../img/empty.png";
 
         html += `
-          <div class="hotel-card" data-id="${
-            hotel.id
-          }" data-price="${hotel.price.replace(/\s/g, "")}" data-rank="${
-          hotel["rank()"]
-        }" data-popular="${hotel.rating.popularity}" data-reviews="${
-          hotel.rating.reviews
-        }">
+          <a class="hotel-card"
+            href="/hotel${data2get(getParams)}"
+            data-id="${hotel.id}"
+            data-price="${hotel.price.replace(/\s/g, "")}"
+            data-rank="${hotel["rank()"]}"
+            data-popular="${hotel.rating.popularity}"
+            data-reviews="${hotel.rating.reviews}">
+
             <div class="hotel-card__img">
               <div class="hotel-card__img-filter" data-url="${
                 hotel.image
@@ -785,9 +786,9 @@ export default class GetData {
         }</span>
                 <span class="hotel-card__price-ruble">&#8381;</span>
               </span>
-              <a href="/hotel${data2get(getParams)}" class="btn">Подробнее</a>
+              <button class="btn">Подробнее</button>
             </div>
-          </div>
+          </a>
         `;
       });
       if (html == "") {

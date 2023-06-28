@@ -52,7 +52,10 @@ import GetData from "./components/GetData";
 let getData = new GetData();
 getData.getHotelsListPage(get2data());
 
-$("body").on("click", ".hotel-card__img-heart", function () {
+$("body").on("click", ".hotel-card__img-heart", function (e) {
+  e.preventDefault();
+  e.stopPropagation();
+
   $(this).toggleClass("active");
   let id = $(this).closest(".hotel-card").data("id");
   let get = data2get({

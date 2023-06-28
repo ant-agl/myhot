@@ -120,6 +120,7 @@ body {
   background-color: #fff;
   flex: 1 1 22%;
   border-radius: 20px;
+  display: block;
 }
 .hotel-card_hidden {
   visibility: hidden;
