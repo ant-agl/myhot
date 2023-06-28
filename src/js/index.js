@@ -1,3 +1,7 @@
+import "animate.css";
+import { WOW } from "wowjs";
+new WOW().init();
+
 import "./components/WidgetChat";
 import Chat from "./components/chat";
 new Chat(".widget-chat__content .chat");

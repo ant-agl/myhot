@@ -305,7 +305,7 @@ body {
   flex-direction: row;
   justify-content: space-evenly;
   flex-wrap: wrap;
-  align-items: center;
+  align-items: flex-start;
   padding: 5%;
 }
 
@@ -350,7 +350,7 @@ body {
   box-shadow: 0 14px 28px rgb(0 0 0 / 25%), 0 10px 10px rgb(0 0 0 / 22%);
   width: 100%;
   background-color: #fff;
-  margin: 10px 0 25px;
+  margin: 0 0 25px;
   padding: 20px;
   overflow: hidden;
   display: flex;
@@ -529,6 +529,7 @@ body {
   letter-spacing: 0.05em;
   color: #005382;
   text-align: center;
+  margin-top: 200px;
 }
 
 @media (max-width: 1400px) {
@@ -543,6 +544,7 @@ body {
 @media (max-width: 950px) {
   .b_3 {
     flex-direction: column;
+    align-items: center;
   }
   .text_form_d_3 {
     padding: 0;

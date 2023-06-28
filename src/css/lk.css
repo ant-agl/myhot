@@ -705,9 +705,10 @@ span.reviews-card__date-value {
   background: none;
 }
 .b_3 {
-  align-items: flex-start;
-  justify-content: space-between;
+  margin-top: 30px;
   padding: 0;
+  gap: 20px;
+  justify-content: space-between;
 }
 .text_form_d_3 {
   padding: 0;
@@ -716,9 +717,7 @@ span.reviews-card__date-value {
 .form_send {
   width: 100%;
   max-width: 400px;
-}
-.form_send {
-  margin-top: 37px;
+  margin: 0 auto;
 }
 .middle_d_3 {
   margin: 35px 0;

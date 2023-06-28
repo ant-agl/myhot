@@ -200,3 +200,37 @@ $("body").on("click", ".btn-remove-review", function () {
     },
   });
 });
+
+let validationForm = new Validation(".form_send", {
+  isOutputErrors: false,
+});
+
+$("body").on("click", ".send_button_support", function (e) {
+  e.preventDefault();
+
+  if (!validationForm.validate()) return;
+
+  let data = {
+    message: $('[name="question-text"]').val()?.trim() || "",
+    email: $('[name="question-mail"]').val()?.trim() || "",
+  };
+  $.ajax({
+    type: "POST",
+    url: "https://wehotel.ru/handler/send_request.php",
+    data,
+    headers: {
+      "X-Auth": localStorage.token ?? "",
+    },
+    success: () => {
+      $("#modal-text .modal__title").text("Письмо успешно отправлено");
+      modalText.open();
+
+      $('[name="question-text"]').val("");
+      $('[name="question-mail"]').val("");
+    },
+    error: () => {
+      $("#modal-text .modal__title").text("Что-то пошло не так");
+      modalText.open();
+    },
+  });
+});
