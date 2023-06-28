@@ -369,7 +369,9 @@ export default class Chat {
         <div class="chat__text"><span>${text}</span>${imgHtml}</div>
       </div>
     `);
-    this.scrollDown();
+    setTimeout(() => {
+      this.scrollDown();
+    });
   }
   scrollDown() {
     let scrollTop = this.$chat.find(".chat__messages")[0].scrollHeight;

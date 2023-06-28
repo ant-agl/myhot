@@ -20,6 +20,14 @@ function changeHeightOnResize() {
   $(".main__section").css("max-height", hMainSection);
 }
 changeHeightOnResize();
+if ($("body").css("display") == "none") {
+  let intervalH = setInterval(() => {
+    if ($("body").css("display") != "none") {
+      changeHeightOnResize();
+      clearInterval(intervalH);
+    }
+  }, 100);
+}
 $(window).resize(changeHeightOnResize);
 
 import "jquery-mask-plugin";
