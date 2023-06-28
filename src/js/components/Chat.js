@@ -237,10 +237,12 @@ export default class Chat {
             name = "";
           }
 
+          let arrImage = [];
+          if (message.file) arrImage.push(message.file);
           this.addMessage(
             message.id,
             message.text,
-            [message.file],
+            arrImage,
             img,
             name,
             isUser
