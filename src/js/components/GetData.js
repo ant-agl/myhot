@@ -42,9 +42,8 @@ export default class GetData {
     // console.log(auth);
     // if (!auth.ok) {
     if (!localStorage.token) {
-      console.log("РЕДИРЕКТ НА ГЛАВНУЮ");
-      // window.location.href = "/";
-      // return;
+      window.location.href = "/";
+      return;
     }
     $("body").show();
 
