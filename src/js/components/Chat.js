@@ -185,7 +185,6 @@ export default class Chat {
     });
   }
   getAllSup() {
-    if (!localStorage.token) return;
     $.ajax({
       type: "GET",
       url: "https://wehotel.ru/php/chat/get_all_supp_chat.php",
