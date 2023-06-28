@@ -366,9 +366,16 @@ export default class Chat {
     this.scrollDown();
   }
   scrollDown() {
-    let scrollTop = this.$chat.find(".chat__messages")[0].scrollHeight;
-    console.log("scrollTop", scrollTop);
-    this.$chat.find(".chat__messages").scrollTop(scrollTop);
+    let time = 0;
+    setTimeout(function scroll() {
+      if ($("body").css("display") != "none") {
+        let scrollTop = this.$chat.find(".chat__messages")[0].scrollHeight;
+        this.$chat.find(".chat__messages").scrollTop(scrollTop);
+      } else if (time <= 2000) {
+        setTimeout(scroll, 100);
+        time += 100;
+      }
+    });
   }
   openImage(e) {
     this.closeImage();
