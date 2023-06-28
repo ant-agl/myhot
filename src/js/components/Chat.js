@@ -321,8 +321,8 @@ export default class Chat {
       data: formData,
       contentType: false,
       processData: false,
-      success: (data) => {
-        console.log(data);
+      success: (id) => {
+        console.log(id);
         let img = this.user.img || "../img/no-photo.jpg";
         let name = this.user.name || "";
         if (file) {
@@ -331,10 +331,10 @@ export default class Chat {
           fileReader.readAsDataURL(file);
           fileReader.onload = () => {
             fileImg.push(fileReader.result);
-            this.addMessage(data.id, text, fileImg, img, name, true);
+            this.addMessage(id, text, fileImg, img, name, true);
           };
         } else {
-          this.addMessage(data.id, text, [], img, name, true);
+          this.addMessage(id, text, [], img, name, true);
         }
       },
     });
