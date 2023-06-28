@@ -110,7 +110,7 @@ export default class Chat {
         data = JSON.parse(data);
         console.log(data);
         data.messages.forEach((message) => {
-          let isUser = message.sub_host == "users";
+          let isUser = message.host?.host == "users";
           let img, name;
           if (data.user) {
             this.user = data.user;
@@ -185,9 +185,13 @@ export default class Chat {
     });
   }
   getAllSup() {
-    let $item = this.$chat.find(`.chats__item.support-chat`);
-    if ($item.length > 0) return;
+    // let $item = this.$chat.find(`.chats__item.support-chat`);
 
+    // let idChat = false;
+    // if ($item.length > 0) idChat = $item.data("id");
+
+    // let url = "https://wehotel.ru/php/chat/get_all_supp_chat.php";
+    // if (idChat !== false) url += "?id_chat=" + idChat;
     $.ajax({
       type: "GET",
       url: "https://wehotel.ru/php/chat/get_all_supp_chat.php",
@@ -466,7 +470,6 @@ export default class Chat {
 
     let imgHtml = "";
     if (images?.length > 0) {
-      console.log(images);
       images.forEach((img) => {
         imgHtml += `<img src="${img}">`;
       });
