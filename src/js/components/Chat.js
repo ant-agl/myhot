@@ -309,7 +309,7 @@ export default class Chat {
 
     if (!text) text = "";
 
-    if (text) formData.append("text", text);
+    formData.append("text", text);
     if (file) formData.append("file", file);
 
     $.ajax({
@@ -346,6 +346,8 @@ export default class Chat {
       this.$chat.find(`.chat__message[data-id="${id}"]`).length
     )
       return;
+
+    if (text === undefined) text = "";
 
     let imgHtml = "";
     if (images?.length > 0) {
