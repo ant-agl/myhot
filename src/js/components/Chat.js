@@ -61,18 +61,12 @@ export default class Chat {
 
     let $this = this;
 
-    if ($item.hasClass("hotel-chat")) {
-      this.intervalChat = setTimeout(function getChatInterval() {
-        $this.getChatHotel(chatId);
-        $this.intervalChat = setTimeout(getChatInterval, 3000);
-      }, 0);
-    }
-    if ($item.hasClass("info-chat")) {
-      this.intervalChat = setTimeout(function getChatInterval() {
-        $this.getChatInfo(chatId);
-        $this.intervalChat = setTimeout(getChatInterval, 3000);
-      }, 0);
-    }
+    this.intervalChat = setTimeout(function getChatInterval() {
+      if ($item.hasClass("hotel-chat")) $this.getChatHotel(chatId);
+      else if ($item.hasClass("info-chat")) $this.getChatInfo(chatId);
+
+      $this.intervalChat = setTimeout(getChatInterval, 3000);
+    }, 0);
   }
   closeChat() {
     this.$chat.removeClass("chat_open");
@@ -369,13 +363,13 @@ export default class Chat {
         <div class="chat__text"><span>${text}</span>${imgHtml}</div>
       </div>
     `);
-    setTimeout(() => {
-      this.scrollDown();
-    });
+    this.scrollDown();
   }
   scrollDown() {
     let scrollTop = this.$chat.find(".chat__messages")[0].scrollHeight;
-    this.$chat.find(".chat__messages").scrollTop(scrollTop);
+    setTimeout(() => {
+      this.$chat.find(".chat__messages").scrollTop(scrollTop);
+    });
   }
   openImage(e) {
     this.closeImage();
