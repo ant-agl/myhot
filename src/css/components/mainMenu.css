@@ -32,16 +32,16 @@
 .main__menu-item_active::before {
   border-top: 1px solid #005382;
   border-left: 1px solid #005382;
-  border-bottom-color: transparent;
-  border-right-color: transparent;
+  border-bottom: 1px solid transparent;
+  border-right: 1px solid transparent;
   top: 0;
   left: 0;
 }
 .main__menu-item_active::after {
   border-bottom: 1px solid #005382;
   border-right: 1px solid #005382;
-  border-top-color: transparent;
-  border-left-color: transparent;
+  border-top: 1px solid transparent;
+  border-left: 1px solid transparent;
   bottom: 0;
   right: 0;
 }
