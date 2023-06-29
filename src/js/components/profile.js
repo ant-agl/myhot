@@ -189,7 +189,7 @@ $(".btn-delete-account").on("click", function () {
     success: () => {
       modalConfirmDelete.open();
 
-      confirmRegister.afterSendError = (xhr) => {
+      confirmPassDelete.afterSendError = (xhr) => {
         $("#modal-text .modal__title").text("Что-то пошло не так");
         modalText.open();
       };
