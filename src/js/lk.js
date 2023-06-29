@@ -234,3 +234,10 @@ $(".form_send").on("submit", function (e) {
     },
   });
 });
+
+$("body").on("click", ".btn-go-sup", function (e) {
+  e.preventDefault();
+  setTimeout(() => {
+    $(".chats__item.support-chat").trigger("click");
+  });
+});

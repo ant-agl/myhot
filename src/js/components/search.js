@@ -94,7 +94,9 @@ new AirDatepicker(".search__input_dates", {
 import moment from "moment";
 import { data2get, get2data } from "./data2get";
 
-$(".search__button").on("click", function () {
+$(".form-search").on("submit", function (e) {
+  e.preventDefault();
+
   if (!searchValid.validate()) return;
 
   let search = $('[name="search"]').val().trim();
