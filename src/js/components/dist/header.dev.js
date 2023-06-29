@@ -95,7 +95,7 @@ var modalSignin = new _Modal["default"]("#modal-signin", {
 var modalForgot = new _Modal["default"]("#modal-forgot", {
   closeToBackground: false
 });
-var signIn = new _Validation["default"]('#modal-signin [data-page="3"]', {
+var signIn = new _Validation["default"]('#modal-signin [data-page="2"]', {
   textRepeat: "Пароли не совпадают"
 });
 var forgot = new _Validation["default"]('#modal-forgot [data-page="2"]', {
@@ -104,7 +104,7 @@ var forgot = new _Validation["default"]('#modal-forgot [data-page="2"]', {
 var confirmRegister = new _ConfirmPassword["default"]("#modal-signin .input-code-confirm", "#modal-signin .btn-confirm-password", {
   url: "https://wehotel.ru/handler/reg.php"
 });
-var validateRegHash = new _Validation["default"]('#modal-signin [data-page="1"]');
+var validateRegHash = new _Validation["default"]('#modal-signin [data-page="0"]');
 var hash_verify, hash_verify2, register_login;
 $("body").on("click", "#modal-signin .btn-reg-hash", function () {
   if (!validateRegHash.validate()) return;

@@ -65,7 +65,7 @@ let modalSignin = new Modal("#modal-signin", { closeToBackground: false });
 let modalForgot = new Modal("#modal-forgot", { closeToBackground: false });
 
 import Validation from "./Validation";
-let signIn = new Validation('#modal-signin [data-page="3"]', {
+let signIn = new Validation('#modal-signin [data-page="2"]', {
   textRepeat: "Пароли не совпадают",
 });
 let forgot = new Validation('#modal-forgot [data-page="2"]', {
@@ -80,7 +80,7 @@ let confirmRegister = new ConfirmPassword(
   }
 );
 
-let validateRegHash = new Validation('#modal-signin [data-page="1"]');
+let validateRegHash = new Validation('#modal-signin [data-page="0"]');
 import {
   login,
   login_hash,
