@@ -142,10 +142,11 @@ $("body").on("click", "#modal-signin .btn-reg-hash", function () {
     };
   })["catch"](function (xhr) {
     console.error(xhr);
+    var data = JSON.parse(xhr.responseText);
 
     switch (xhr.status) {
       case 403:
-        $("#modal-text .modal__title").text("Извините, введённый вами телефон уже зарегистрирован. Введите другой номер");
+        $("#modal-text .modal__title").text(data.description);
         modalSignin.$modal.find('[name="phone"]').addClass("error");
         break;
 
