@@ -22,7 +22,8 @@ export default class Chat {
     }, 0);
 
     this.input.on("input", this.replaceStateBtn.bind(this));
-    this.$chat.on("click", ".chat__send", this.onSendMessage.bind(this));
+    // this.$chat.on("click", ".chat__send", this.onSendMessage.bind(this));
+    this.$chat.on("submit", ".form-chat-send", this.onSendMessage.bind(this));
     this.$chat.on("change", '[name="chat-file"]', this.onSendFile.bind(this));
 
     this.$chat.on("click", ".chat__text img", this.openImage.bind(this));
@@ -404,7 +405,9 @@ export default class Chat {
     `;
     this.$chat.find(".chats__fix").prepend(html);
   }
-  onSendMessage() {
+  onSendMessage(e) {
+    e.preventDefault();
+
     console.log("send");
     let $inputText = this.$chat.find(".chat__input");
     let text = $inputText.val()?.trim();
