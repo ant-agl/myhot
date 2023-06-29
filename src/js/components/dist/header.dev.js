@@ -31,6 +31,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 new _DropMenu["default"](".profile-menu");
 var menuMobile = new _DropMenu["default"](".main__menu-mobil");
 menuMobile.setBtnToggle(".main__menu-mobil img");
+var modalText = new _Modal["default"]("#modal-text");
 new _Modal["default"]("#modal-logout");
 new _airDatepicker2["default"]('#modal-signin [name="date"]', {
   autoClose: true,
@@ -140,6 +141,18 @@ $("body").on("click", "#modal-signin .btn-reg-hash", function () {
   })["catch"](function (xhr) {
     modalSignin.toPage(0);
     console.error(xhr);
+
+    switch (xhr.status) {
+      case 403:
+        $("#modal-text .modal__title").text("Извините, введённый вами телефон уже зарегистрирован. Введите другой номер");
+        break;
+
+      default:
+        $("#modal-text .modal__title").text("Что-то пошло не так");
+        break;
+    }
+
+    modalText.open();
   });
 });
 $("body").on("click", "#modal-signin .btn-signin", function () {

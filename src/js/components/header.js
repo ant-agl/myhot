@@ -7,6 +7,7 @@ let menuMobile = new DropMenu(".main__menu-mobil");
 menuMobile.setBtnToggle(".main__menu-mobil img");
 
 import Modal from "./Modal";
+let modalText = new Modal("#modal-text");
 new Modal("#modal-logout");
 
 import moment from "moment";
@@ -125,6 +126,19 @@ $("body").on("click", "#modal-signin .btn-reg-hash", function () {
     .catch((xhr) => {
       modalSignin.toPage(0);
       console.error(xhr);
+
+      switch (xhr.status) {
+        case 403:
+          $("#modal-text .modal__title").text(
+            "Извините, введённый вами телефон уже зарегистрирован. Введите другой номер"
+          );
+          break;
+
+        default:
+          $("#modal-text .modal__title").text("Что-то пошло не так");
+          break;
+      }
+      modalText.open();
     });
 });
 
