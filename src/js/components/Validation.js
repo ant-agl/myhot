@@ -17,6 +17,7 @@ export default class Validation {
     }
 
     let $this = this;
+    console.log(this.$inputs);
     this.$inputs.on("input change", function () {
       $this.clearError($(this));
     });
