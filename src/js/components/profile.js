@@ -133,6 +133,7 @@ $(".change-data").on("click", function () {
     contentType: false,
     processData: false,
     success: (data) => {
+      if (data === "") return;
       data = JSON.parse(data);
       console.log(data);
       let token = data.token;

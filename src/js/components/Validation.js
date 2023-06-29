@@ -17,7 +17,6 @@ export default class Validation {
     }
 
     let $this = this;
-    console.log(this.$inputs);
     setTimeout(() => {
       this.$inputs.on("input change", function () {
         $this.clearError($(this));
