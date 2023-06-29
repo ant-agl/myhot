@@ -166,7 +166,7 @@ $(".booking-btn").on("click", function (e) {
     surname: $('.booking-form [name="surname"]').val().trim(),
     name: $('.booking-form [name="name"]').val().trim(),
     patronymic: $('.booking-form [name="patronymic"]').val().trim(),
-    phone: $('.booking-form [name="phone"]').val().trim(),
+    phone: $('.booking-form [name="phone"]').val().trim().replace(/\D/g, ""),
     email: $('.booking-form [name="email"]').val().trim(),
     services: {
       paid: paidService,
