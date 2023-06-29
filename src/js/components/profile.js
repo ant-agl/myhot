@@ -3,8 +3,8 @@ import ConfirmPassword from "./ConfirmPassword.js";
 import Validation from "./Validation";
 
 let confirmPass = new ConfirmPassword(
-  ".input-code-confirm",
-  ".btn-confirm-password",
+  "#modal-confirm-password .input-code-confirm",
+  "#modal-confirm-password .btn-confirm-password",
   { url: "https://wehotel.ru/handler/code_check.php" }
 );
 let modalConfirm = new Modal("#modal-confirm-password", {
