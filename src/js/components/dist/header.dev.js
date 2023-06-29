@@ -104,6 +104,7 @@ var forgot = new _Validation["default"]('#modal-forgot [data-page="2"]', {
 var confirmRegister = new _ConfirmPassword["default"]("#modal-signin .input-code-confirm", "#modal-signin .btn-confirm-password", {
   url: "https://wehotel.ru/handler/reg.php"
 });
+console.log($('#modal-signin [data-page="0"]'));
 var validateRegHash = new _Validation["default"]('#modal-signin [data-page="0"]');
 var hash_verify, hash_verify2, register_login;
 $("body").on("click", "#modal-signin .btn-reg-hash", function () {

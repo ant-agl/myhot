@@ -80,6 +80,7 @@ let confirmRegister = new ConfirmPassword(
   }
 );
 
+console.log($('#modal-signin [data-page="0"]'));
 let validateRegHash = new Validation('#modal-signin [data-page="0"]');
 import {
   login,
