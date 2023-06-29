@@ -121,6 +121,7 @@ $("body").on("click", "#modal-signin .btn-reg-hash", function () {
     data[name] = val;
   });
   (0, _login.reg_hash)(data).then(function (getData) {
+    modalSignin.toPage(1);
     console.log(getData);
     hash_verify = getData.hash_verify;
     var sendData = {
@@ -130,6 +131,7 @@ $("body").on("click", "#modal-signin .btn-reg-hash", function () {
     confirmRegister.data = sendData;
 
     confirmRegister.afterSendSuccess = function (data) {
+      modalSignin.toPage(2);
       console.log(data);
       hash_verify2 = data.hash_verify2;
       register_login = data.login;
@@ -139,12 +141,12 @@ $("body").on("click", "#modal-signin .btn-reg-hash", function () {
       modalSignin.toPage(1);
     };
   })["catch"](function (xhr) {
-    modalSignin.toPage(0);
     console.error(xhr);
 
     switch (xhr.status) {
       case 403:
         $("#modal-text .modal__title").text("Извините, введённый вами телефон уже зарегистрирован. Введите другой номер");
+        modalSignin.$modal.find('[name="phone"]').addClass("error");
         break;
 
       default:
