@@ -1,4 +1,6 @@
 import Modal from "./Modal";
+let modalText = new Modal("#modal-text");
+
 import ConfirmPassword from "./ConfirmPassword.js";
 import Validation from "./Validation";
 
@@ -7,6 +9,11 @@ let confirmPass = new ConfirmPassword(
   "#modal-confirm-password .btn-confirm-password",
   { url: "https://wehotel.ru/handler/code_check.php" }
 );
+let confirmPassDelete = new ConfirmPassword(
+  "#modal-confirm-delete .input-code-confirm",
+  "#modal-confirm-delete .btn-delete-account",
+  { url: "https://wehotel.ru/handler/delete_account_confirm.php" }
+);
 let modalConfirm = new Modal("#modal-confirm-password", {
   beforeOpen: () => {
     confirmPass.clearAll();
@@ -14,9 +21,24 @@ let modalConfirm = new Modal("#modal-confirm-password", {
     return true;
   },
 });
+let modalConfirmDelete = new Modal("#modal-confirm-delete", {
+  beforeOpen: () => {
+    confirmPassDelete.clearAll();
+    confirmPassDelete.focusFirst();
+    return true;
+  },
+});
 confirmPass.afterSendSuccess = () => {
   setTimeout(() => {
     modalConfirm.close();
+  }, 750);
+};
+confirmPassDelete.afterSendSuccess = () => {
+  setTimeout(() => {
+    modalConfirmDelete.close();
+    document.cookie = `token=; path=/; max-age=-1`;
+    localStorage.clear("token");
+    location.href = "/";
   }, 750);
 };
 
@@ -156,11 +178,29 @@ $(".input-avatar").on("change", function () {
 });
 
 $(".btn-delete-account").on("click", function () {
-  modalConfirm.open();
   console.log("delete account");
+
+  $.ajax({
+    type: "GET",
+    url: "https://wehotel.ru/handler/delete_account.php",
+    headers: {
+      "X-Auth": localStorage.token ?? "",
+    },
+    success: () => {
+      modalConfirmDelete.open();
+
+      confirmRegister.afterSendError = (xhr) => {
+        $("#modal-text .modal__title").text("Что-то пошло не так");
+        modalText.open();
+      };
+    },
+    error: () => {
+      $("#modal-text .modal__title").text("Что-то пошло не так");
+      modalText.open();
+    },
+  });
 });
 
-let modalText = new Modal("#modal-text");
 $(".btn-mail-confirm").on("click", function () {
   $.ajax({
     type: "GET",
