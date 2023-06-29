@@ -15,7 +15,7 @@ import "air-datepicker/air-datepicker.css";
 import AirDatepicker from "air-datepicker";
 new AirDatepicker('#modal-signin [name="date"]', {
   autoClose: true,
-  maxDate: moment(new Date()).subtract(18, "years"),
+  maxDate: moment(new Date()).subtract(14, "years"),
   isMobile: window.outerWidth < 700,
   onSelect() {
     $('#modal-signin [name="date"]').trigger("change");

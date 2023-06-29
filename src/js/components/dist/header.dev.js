@@ -35,7 +35,7 @@ var modalText = new _Modal["default"]("#modal-text");
 new _Modal["default"]("#modal-logout");
 new _airDatepicker2["default"]('#modal-signin [name="date"]', {
   autoClose: true,
-  maxDate: (0, _moment["default"])(new Date()).subtract(18, "years"),
+  maxDate: (0, _moment["default"])(new Date()).subtract(14, "years"),
   isMobile: window.outerWidth < 700,
   onSelect: function onSelect() {
     $('#modal-signin [name="date"]').trigger("change");
