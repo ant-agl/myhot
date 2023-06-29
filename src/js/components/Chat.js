@@ -9,6 +9,7 @@ export default class Chat {
     this.$chat = $(selector);
     this.input = this.$chat.find(".chat__input");
     this.btnSend = this.$chat.find(".chat__send");
+    this.$form = this.$chat.find(".form-chat-send");
 
     this.onInit();
   }
@@ -23,7 +24,8 @@ export default class Chat {
 
     this.input.on("input", this.replaceStateBtn.bind(this));
     // this.$chat.on("click", ".chat__send", this.onSendMessage.bind(this));
-    this.$chat.on("submit", ".form-chat-send", this.onSendMessage.bind(this));
+    // this.$chat.on("submit", ".form-chat-send", this.onSendMessage.bind(this));
+    this.$form.on("submit", this.onSendMessage.bind(this));
     this.$chat.on("change", '[name="chat-file"]', this.onSendFile.bind(this));
 
     this.$chat.on("click", ".chat__text img", this.openImage.bind(this));
