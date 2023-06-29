@@ -133,7 +133,10 @@ $("body").on("click", "#modal-signin .btn-reg-hash", function () {
       switch (xhr.status) {
         case 403:
           $("#modal-text .modal__title").text(data.description);
-          modalSignin.$modal.find('[name="phone"]').addClass("error");
+          modalSignin.$modal
+            .find('[name="phone"]')
+            .addClass("error")
+            .removeClass("success");
           break;
 
         default:

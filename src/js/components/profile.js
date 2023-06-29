@@ -35,7 +35,6 @@ confirmPass.afterSendSuccess = () => {
 };
 confirmPassDelete.afterSendSuccess = () => {
   setTimeout(() => {
-    modalConfirmDelete.close();
     document.cookie = `token=; path=/; max-age=-1`;
     localStorage.clear("token");
     location.href = "/";
