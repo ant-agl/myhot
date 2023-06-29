@@ -132,7 +132,8 @@ body {
 .hotel-card__img {
   position: relative;
   width: 100%;
-  border-radius: 20px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
   overflow: hidden;
 }
 .hotel-card__img img {
@@ -203,7 +204,7 @@ body {
 }
 .hotel-card__footer {
   width: 100%;
-  background-color: #dddddd;
+  /* background-color: #dddddd; */
   border-radius: 20px;
   padding: 10px;
   padding-right: 5px;
@@ -215,7 +216,6 @@ body {
   font-size: 15px;
   line-height: 18px;
   color: #002a31;
-  /* white-space: nowrap;  */
 }
 .hotel-card__price-value {
   font-size: 18px;
