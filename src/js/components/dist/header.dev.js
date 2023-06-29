@@ -310,3 +310,8 @@ $("body").on("click", "#modal-forgot .btn-forgot", function () {
 (0, _scrollOverflow["default"])($("#modal-login .modal__content"));
 (0, _scrollOverflow["default"])($("#modal-signin .modal__content"));
 (0, _scrollOverflow["default"])($("#modal-forgot .modal__content"));
+$("body").keyup(function (e) {
+  if (e.keyCode === 13) {
+    $(".modal__page.active button").last().trigger("click");
+  }
+});

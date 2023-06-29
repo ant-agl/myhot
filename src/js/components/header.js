@@ -338,3 +338,9 @@ import scrollOverflow from "./scrollOverflow";
 scrollOverflow($("#modal-login .modal__content"));
 scrollOverflow($("#modal-signin .modal__content"));
 scrollOverflow($("#modal-forgot .modal__content"));
+
+$("body").keyup(function (e) {
+  if (e.keyCode === 13) {
+    $(".modal__page.active button").last().trigger("click");
+  }
+});
