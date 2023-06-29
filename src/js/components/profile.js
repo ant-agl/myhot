@@ -11,7 +11,7 @@ let confirmPass = new ConfirmPassword(
 );
 let confirmPassDelete = new ConfirmPassword(
   "#modal-confirm-delete .input-code-confirm",
-  "#modal-confirm-delete .btn-delete-account",
+  "#modal-confirm-delete .btn-confirm-delete",
   { url: "https://wehotel.ru/handler/delete_account_confirm.php" }
 );
 let modalConfirm = new Modal("#modal-confirm-password", {

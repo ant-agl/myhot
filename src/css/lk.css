@@ -675,6 +675,7 @@ span.reviews-card__date-value {
   transform-origin: top;
 }
 .btn-delete-account {
+  margin-right: auto;
   visibility: hidden;
   transition: 0.2s;
   opacity: 0;
