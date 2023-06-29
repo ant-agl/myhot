@@ -29,11 +29,7 @@
   );
 }
 
-.modal__content:not(
-    #modal-review .modal__content,
-    #modal-text .modal__content,
-    #modal-logout .modal__content
-  ) {
+#modal-confirm-password {
   padding: 25px;
   width: 90%;
   max-width: 580px;
