@@ -33,7 +33,6 @@ confirmPass.afterSendSuccess = (data) => {
     modalConfirm.close();
 
     if (data === "") return;
-    data = JSON.parse(data);
     console.log(data);
     let token = data.token;
     document.cookie = `token=${token}; path=/; max-age=${60 * 60 * 24 * 3}`;
