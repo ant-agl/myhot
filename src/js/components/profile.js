@@ -28,9 +28,16 @@ let modalConfirmDelete = new Modal("#modal-confirm-delete", {
     return true;
   },
 });
-confirmPass.afterSendSuccess = () => {
+confirmPass.afterSendSuccess = (data) => {
   setTimeout(() => {
     modalConfirm.close();
+
+    if (data === "") return;
+    data = JSON.parse(data);
+    console.log(data);
+    let token = data.token;
+    document.cookie = `token=${token}; path=/; max-age=${60 * 60 * 24 * 3}`;
+    localStorage.token = token;
   }, 750);
 };
 confirmPassDelete.afterSendSuccess = () => {
