@@ -78,6 +78,23 @@ input[type="password"] {
   -moz-appearance: none;
   -ms-appearance: none;
 }
+.info_area.error {
+  border-color: #ff5f5f;
+}
+.info_area.success {
+  border-color: #31bb00;
+}
+input,
+textarea {
+  transition: 0.2s;
+}
+input.error,
+textarea.error {
+  background-color: #ffd6d6;
+}
+input.error[type="checkbox"] + span {
+  color: #ff5f5f;
+}
 a:hover {
   text-decoration: none;
 }
