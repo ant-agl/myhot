@@ -204,6 +204,8 @@ $("body").on("click", "#modal-login .btn-login-hash", function () {
           setTimeout(function () {
             window.location.href = "/lk";
           }, 500);
+        } else {
+          modalLogin.toPage(1);
         }
 
         confirmLogin.data = loginData;

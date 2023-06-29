@@ -210,6 +210,8 @@ $("body").on("click", "#modal-login .btn-login-hash", function () {
               setTimeout(() => {
                 window.location.href = "/lk";
               }, 500);
+            } else {
+              modalLogin.toPage(1);
             }
 
             confirmLogin.data = loginData;
