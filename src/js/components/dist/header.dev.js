@@ -192,10 +192,20 @@ $("body").on("click", "#modal-login .btn-login-hash", function () {
     console.log(data);
     loginData.login = data.login;
     loginData.hash_verify = data.hash_verify;
+    var is2fa = data["2fa"] != 0;
     (0, _login.login)(loginData).then(function (data) {
       console.log(data);
 
       if (data.status == "ok") {
+        if (!is2fa) {
+          modalLogin.close();
+          document.cookie = "token=".concat(data.token, "; path=/; max-age=").concat(60 * 60 * 24 * 3, ";");
+          localStorage.token = data.token;
+          setTimeout(function () {
+            window.location.href = "/lk";
+          }, 500);
+        }
+
         confirmLogin.data = loginData;
 
         confirmLogin.afterSendSuccess = function (data) {

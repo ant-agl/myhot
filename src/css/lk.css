@@ -727,6 +727,9 @@ span.reviews-card__date-value {
 .middle_d_3 {
   margin: 35px 0;
 }
+.chat-preview {
+  box-shadow: none;
+}
 
 @media (max-width: 1140px) {
   .hotel-card {

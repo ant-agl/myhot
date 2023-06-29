@@ -195,10 +195,23 @@ $("body").on("click", "#modal-login .btn-login-hash", function () {
       loginData.login = data.login;
       loginData.hash_verify = data.hash_verify;
 
+      let is2fa = data["2fa"] != 0;
+
       login(loginData)
         .then((data) => {
           console.log(data);
           if (data.status == "ok") {
+            if (!is2fa) {
+              modalLogin.close();
+              document.cookie = `token=${data.token}; path=/; max-age=${
+                60 * 60 * 24 * 3
+              };`;
+              localStorage.token = data.token;
+              setTimeout(() => {
+                window.location.href = "/lk";
+              }, 500);
+            }
+
             confirmLogin.data = loginData;
             confirmLogin.afterSendSuccess = (data) => {
               console.log(data);
