@@ -691,7 +691,10 @@ span.reviews-card__date-value {
   transition: 0.2s;
   opacity: 0;
 }
-#modal-confirm-password .modal__footer,
+#modal-confirm-password .modal__footer {
+  display: flex;
+  align-items: center;
+}
 #modal-confirm-delete .modal__footer {
   display: flex;
   align-items: center;

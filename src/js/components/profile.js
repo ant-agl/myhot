@@ -179,6 +179,7 @@ $(".input-avatar").on("change", function () {
 
 $(".btn-delete-account").on("click", function () {
   console.log("delete account");
+  modalConfirmDelete.open();
 
   $.ajax({
     type: "GET",
@@ -187,8 +188,6 @@ $(".btn-delete-account").on("click", function () {
       "X-Auth": localStorage.token ?? "",
     },
     success: () => {
-      modalConfirmDelete.open();
-
       confirmPassDelete.afterSendError = (xhr) => {
         $("#modal-text .modal__title").text("Что-то пошло не так");
         modalText.open();
