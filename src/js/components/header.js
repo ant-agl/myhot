@@ -342,6 +342,6 @@ scrollOverflow($("#modal-forgot .modal__content"));
 $("body").keyup(function (e) {
   if (e.keyCode === 13) {
     debugger;
-    $(".modal__page.active button").last().trigger("click");
+    $(".modal_open .modal__page.active button").last().trigger("click");
   }
 });

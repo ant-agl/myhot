@@ -313,6 +313,6 @@ $("body").on("click", "#modal-forgot .btn-forgot", function () {
 $("body").keyup(function (e) {
   if (e.keyCode === 13) {
     debugger;
-    $(".modal__page.active button").last().trigger("click");
+    $(".modal_open .modal__page.active button").last().trigger("click");
   }
 });
