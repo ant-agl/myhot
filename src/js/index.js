@@ -58,7 +58,7 @@ let validationForm = new Validation(".form_send", {
   isOutputErrors: false,
 });
 
-$("body").on("click", ".send_button", function (e) {
+$(".form_send").on("submit", function (e) {
   e.preventDefault();
 
   if (!validationForm.validate()) return;
