@@ -135,10 +135,10 @@ $("body").on("click", "#modal-signin .btn-reg-hash", function () {
     };
 
     confirmRegister.afterSendError = function (xhr) {
-      modalSignin.toPage(2);
+      modalSignin.toPage(1);
     };
   })["catch"](function (xhr) {
-    modalSignin.toPage(1);
+    modalSignin.toPage(0);
     console.error(xhr);
   });
 });

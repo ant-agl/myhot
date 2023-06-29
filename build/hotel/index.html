@@ -180,28 +180,30 @@
               <input data-validate="required mail" type="text" name="email" class="info_area" placeholder="e-mail"
                 required>
             </div>
-  
-            <div class="botton_section_form">
-              <button class="link-underline" type="button" data-modal-target="modal-login"
-                data-modal-target-close="modal-signin">Есть аккаунт?</button>
-              <p class="part_botton">1 из 4 этапов</p>
-              <button class="link-underline" to-page="1" page-validate="true" type="button">Далее</button>
-            </div>
-          </div>
-          <div class="modal__page" data-page="1">
-            <h1 class="heading_form_h1 uk-modal-title">Введите номер</h1>
-            <h2 class="heading_form_h2">Ваш номер телефона будет использоваться для входа в аккаунт</h2>
             <div class="input-row">
               <input data-validate="required phone" type="text" name="phone" class="info_area mask-phone"
                 placeholder="Номер телефона" required>
             </div>
+  
+            <div class="botton_section_form">
+              <button class="link-underline" type="button" data-modal-target="modal-login"
+                data-modal-target-close="modal-signin">Есть аккаунт?</button>
+              <p class="part_botton">1 из 3 этапов</p>
+              <button class="link-underline btn-reg-hash" to-page="1" page-validate="true" type="button">Далее</button>
+            </div>
+          </div>
+          <!-- <div class="modal__page" data-page="1">
+            <h1 class="heading_form_h1 uk-modal-title">Введите номер</h1>
+            <h2 class="heading_form_h2">Ваш номер телефона будет использоваться для входа в аккаунт</h2>
+            <div class="input-row">
+            </div>
             <div class="botton_section_form">
               <button class="link-underline" type="button" to-page="0">Назад</button>
               <p class="part_botton">2 из 4 этапов</p>
-              <button class="link-underline btn-reg-hash" to-page="2" page-validate="true" type="button">Далее</button>
+  
             </div>
-          </div>
-          <div class="modal__page" data-page="2">
+          </div> -->
+          <div class="modal__page" data-page="1">
             <div class="modal__title">Подтверждение почты</div>
             <div class="modal__desc">Мы отправили код <span>на вашу почту</span></div>
   
@@ -216,13 +218,13 @@
   
             <button type="button" class="modal__link btn-repeat btn-reg-hash" disabled>Отправить повторно</button>
             <div class="modal__footer modal__footer_space">
-              <button type="button" class="link-underline" to-page="1">Назад</button>
-              <p class="part_botton">3 из 4 этапов</p>
+              <button type="button" class="link-underline" to-page="0">Назад</button>
+              <p class="part_botton">2 из 3 этапов</p>
               <button type="button" class="link-underline modal__btn btn-confirm-password"
-                to-page="3">Подтвердить</button>
+                to-page="2">Подтвердить</button>
             </div>
           </div>
-          <div class="modal__page" data-page="3">
+          <div class="modal__page" data-page="2">
             <div class="modal__title">Придумайте пароль</div>
   
             <div class="input-row">
@@ -244,8 +246,8 @@
               </div>
             </div>
             <div class="modal__footer modal__footer_space">
-              <button type="button" class="link-underline" to-page="1">Назад</button>
-              <p class="part_botton">4 из 4 этапов</p>
+              <button type="button" class="link-underline" to-page="0">Назад</button>
+              <p class="part_botton">3 из 3 этапов</p>
               <button type="button" class="link-underline btn-signin">Зарегистрироваться</button>
             </div>
           </div>

@@ -119,11 +119,11 @@ $("body").on("click", "#modal-signin .btn-reg-hash", function () {
         register_login = data.login;
       };
       confirmRegister.afterSendError = (xhr) => {
-        modalSignin.toPage(2);
+        modalSignin.toPage(1);
       };
     })
     .catch((xhr) => {
-      modalSignin.toPage(1);
+      modalSignin.toPage(0);
       console.error(xhr);
     });
 });
