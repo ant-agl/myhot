@@ -172,9 +172,11 @@ $("body").on("click", "#modal-signin .btn-signin", function () {
         60 * 60 * 24 * 3
       };`;
       localStorage.token = data.token;
-      setTimeout(() => {
-        window.location.href = "/lk";
-      }, 500);
+      if (location.pathname == "/") {
+        setTimeout(() => {
+          window.location.href = "/lk";
+        }, 500);
+      }
     })
     .catch((xhr) => {
       console.log(xhr);
@@ -226,9 +228,11 @@ $("body").on("click", "#modal-login .btn-login-hash", function () {
                 60 * 60 * 24 * 3
               };`;
               localStorage.token = data.token;
-              setTimeout(() => {
-                window.location.href = "/lk";
-              }, 500);
+              if (location.pathname == "/") {
+                setTimeout(() => {
+                  window.location.href = "/lk";
+                }, 500);
+              }
             } else {
               modalLogin.toPage(1);
             }
@@ -240,9 +244,11 @@ $("body").on("click", "#modal-login .btn-login-hash", function () {
                 60 * 60 * 24 * 3
               };`;
               localStorage.token = data.token;
-              setTimeout(() => {
-                window.location.href = "/lk";
-              }, 500);
+              if (location.pathname == "/") {
+                setTimeout(() => {
+                  window.location.href = "/lk";
+                }, 500);
+              }
             };
             confirmLogin.afterSendError = (xhr) => {
               modalLogin.toPage(1);
