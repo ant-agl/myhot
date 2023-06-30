@@ -69,11 +69,11 @@ $(".change-data").on("click", function () {
   $(".btn-delete-account").toggleClass("active");
   $(".input").prop("disabled", !$(this).hasClass("active"));
 
-  if (!$(".email-hint").hasClass("input-hint__not-active")) {
-    $(".btn-mail-confirm").toggleClass("active");
-  } else {
-    $(".btn-mail-confirm").removeClass("active");
-  }
+  // if (!$(".email-hint").hasClass("input-hint__not-active")) {
+  //   $(".btn-mail-confirm").toggleClass("active");
+  // } else {
+  //   $(".btn-mail-confirm").removeClass("active");
+  // }
 });
 
 $(".change-data").on("click", function () {
