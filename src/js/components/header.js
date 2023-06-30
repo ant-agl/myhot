@@ -335,13 +335,9 @@ $("body").on("click", "#modal-forgot .btn-forgot", function () {
 });
 
 import scrollOverflow from "./scrollOverflow";
-function overflowModal() {
-  scrollOverflow($("#modal-login .modal__content"));
-  scrollOverflow($("#modal-signin .modal__content"));
-  scrollOverflow($("#modal-forgot .modal__content"));
-}
-overflowModal();
-setTimeout(overflowModal, 500);
+scrollOverflow($("#modal-login .modal__content"));
+scrollOverflow($("#modal-signin .modal__content"));
+scrollOverflow($("#modal-forgot .modal__content"));
 
 $("body").keyup(function (e) {
   if (e.keyCode === 13) {

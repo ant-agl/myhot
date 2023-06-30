@@ -12,24 +12,15 @@ function scrollOverflow($elements) {
       borderRadius: $(el).css("borderRadius"),
       maxHeight: $(el).css("maxHeight"),
       overflowY: "auto",
+      padding: $(el).css("padding"),
       position: "relative"
     };
     $el.css({
       overflow: "hidden",
       padding: 0
     });
-    var $elScroll = $el.find(".scroll-overflow-class");
-
-    if ($elScroll.length > 0) {
-      $elScroll.css("maxHeight", "none");
-      setTimeout(function () {
-        if ($(el).css("height") != $elScroll.css("height")) $elScroll.css("maxHeight", $(el).css("maxHeight"));
-      });
-    } else {
-      style.padding = $(el).css("padding");
-      var scrollContent = $el.children();
-      $el.html('<div class="scroll-overflow-class"></div>');
-      $el.children().css(style).append(scrollContent);
-    }
+    var scrollContent = $el.children();
+    $el.html("<div></div>");
+    $el.children().css(style).append(scrollContent);
   });
 }
