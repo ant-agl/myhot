@@ -537,6 +537,7 @@ span.reviews-card__date-value {
   background-color: #f1feff;
   border-radius: 13px;
   padding: 10px;
+  margin-bottom: 10px;
 }
 .reviews-card__author {
   display: flex;
