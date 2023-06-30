@@ -5,3 +5,53 @@
 /*= index/Monitor_2k */
 /*= index/Modals_4k */
 /*= components/search */
+
+.footer {
+  padding: 50px 0;
+  background-color: #477bba;
+}
+.footer__columns {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.footer__column {
+  max-width: 460px;
+}
+.footer__icons {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+.footer__icon {
+  width: 100px;
+  cursor: pointer;
+  padding: 20px;
+  border-radius: 100px;
+  border: 2px solid #fff;
+  transition: 0.2s;
+}
+.footer__icon:hover {
+  transform: translateY(-2px);
+}
+.footer__icon img {
+  filter: brightness(0) invert(1);
+}
+.footer__title {
+  margin-bottom: 35px;
+  color: #fff;
+}
+.footer__item {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin-bottom: 30px;
+  color: #fff;
+}
+.footer__copy {
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  opacity: 0.5;
+  font-size: 12px;
+}
