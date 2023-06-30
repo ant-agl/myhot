@@ -189,8 +189,14 @@ select {
 .email-hint {
   z-index: 1;
 }
+.email-hint .input-hint__text {
+  margin-right: 0;
+}
 .email-hint:hover .input-hint__text {
   transform: scale(1) translateY(-50%);
+}
+.btn-mail-confirm {
+  cursor: pointer;
 }
 .input-hint {
   position: absolute;

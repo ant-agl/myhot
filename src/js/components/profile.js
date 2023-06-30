@@ -214,11 +214,8 @@ $(".btn-mail-confirm").on("click", function () {
     },
     success: () => {
       $("#modal-text .modal__title").text("Вам на почту отправлено письмо");
+      $(".email-hint").addClass("input-hint__not-active");
       modalText.open();
-      $(this).removeClass("active");
-      setTimeout(() => {
-        $(this).remove();
-      }, 200);
     },
     error: () => {
       $("#modal-text .modal__title").text("Что-то пошло не так");
