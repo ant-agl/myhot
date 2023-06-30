@@ -156,6 +156,7 @@ $("body").on("click", ".btn-msg-hotel", function (e) {
       data = JSON.parse(data);
       console.log(data);
 
+      $(".widget-chat").trigger("click");
       setTimeout(function openChat() {
         let $chat = $(`.chats__item.hotel-chat[data-id="${data.id}"]`);
         if ($chat.length == 0) setTimeout(openChat, 100);
