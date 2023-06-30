@@ -302,17 +302,17 @@ export default class GetData {
           <div class="hotel-card">
             <div class="hotel-card__head">
               <div class="hotel-card__img">
-                <img src="${hotel.img}" alt="${hotel.name}">
+                <img src="${hotel.joined_hotel_search[0].image}" alt="${hotel.joined_hotel_search[0].name}">
               </div>
               <div class="hotel-card__main-info">
                 <div class="hotel-card__status">
-                  <img src="../img/icons/cross.png" class="remove-favourites">
+                  <img src="../img/icons/cross.png" class="remove-favourites" data-id="${hotel.hotel_id}">
                 </div>
                 <div class="hotel-card__name">
-                  ${hotel.name}
+                  ${hotel.joined_hotel_search[0].name}
                 </div>
                 <div class="hotel-card__geo">
-                  ${hotel.geo}
+                  ${geo}
                 </div>
               </div>
             </div>
@@ -321,13 +321,9 @@ export default class GetData {
                 <span class="hotel-card__info-title">Рейтинг</span>
                 <span class="hotel-card__info-value">
                   <div class="stars favourites-stars">
-                    <img src="../img/icons/stars/${hotel.stars}.png">
+                    <img src="../img/icons/stars/${hotel.joined_hotel_search[0].rating.stars}.png">
                   </div>
                 </span>
-              </div>
-              <div class="hotel-card__info-row">
-                <span class="hotel-card__info-title">Стоимость</span>
-                <span class="hotel-card__info-value">${hotel.price}</span>
               </div>
             </div>
           </div>
@@ -497,22 +493,24 @@ export default class GetData {
           <div class="hotel-card">
             <div class="hotel-card__head">
               <div class="hotel-card__img">
-                <img src="${hotel.img}" alt="${hotel.name}">
+                <img src="${hotel.joined_hotel_search[0].image}" alt="${
+            hotel.joined_hotel_search[0].name
+          }">
               </div>
               <div class="hotel-card__main-info">
                 <div class="hotel-card__status"></div>
                 <div class="hotel-card__name">
-                  ${hotel.name}
+                  ${hotel.joined_hotel_search[0].name}
                 </div>
                 <div class="hotel-card__geo">
-                  ${hotel.geo}
+                  ${geo}
                 </div>
               </div>
             </div>
             <div class="hotel-card__info">
               <div class="hotel-card__info-row">
                 <span class="hotel-card__info-title">Стоимость</span>
-                <span class="hotel-card__info-value">${hotel.price}</span>
+                <span class="hotel-card__info-value">${price}</span>
               </div>
               <div class="hotel-card__info-row">
                 <span class="hotel-card__info-title">Количество бонусов</span>
@@ -526,9 +524,12 @@ export default class GetData {
               </div>
               <div class="hotel-card__info-row">
                 <span class="hotel-card__info-title">Даты</span>
-                <span class="hotel-card__info-value">${hotel.fromDate} - ${
-            hotel.toDate
-          }</span>
+                <span class="hotel-card__info-value">
+                  ${moment(hotel.date.input * 1000).format("DD.MM.YYYY")}
+                  -
+                  ${moment(hotel.date.output * 1000).format(
+                    "DD.MM.YYYY"
+                  )}</span>
               </div>
             </div>
           </div>
