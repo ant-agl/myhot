@@ -156,7 +156,9 @@ $("body").on("click", ".btn-msg-hotel", function (e) {
       data = JSON.parse(data);
       console.log(data);
 
-      location.href = "/lk?page=chat&id_chat=" + data.id;
+      setTimeout(() => {
+        $(`.chats__item.hotel-chat[data-id="${data.id}"]`).trigger("click");
+      });
     },
     error: (xhr) => {
       $("#modal-text .modal__title").text("Что-то пошло не так");
