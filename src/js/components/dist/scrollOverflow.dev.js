@@ -12,7 +12,6 @@ function scrollOverflow($elements) {
       borderRadius: $(el).css("borderRadius"),
       maxHeight: $(el).css("maxHeight"),
       overflowY: "auto",
-      padding: $(el).css("padding"),
       position: "relative"
     };
     $el.css({
@@ -24,6 +23,7 @@ function scrollOverflow($elements) {
     if ($elScroll.length > 0) {
       $elScroll.css(style);
     } else {
+      style.padding = $(el).css("padding");
       var scrollContent = $el.children();
       $el.html('<div class="scroll-overflow-class"></div>');
       $el.children().css(style).append(scrollContent);
