@@ -113,6 +113,10 @@
   border: 1px solid #005382;
   white-space: nowrap;
 }
+.header-auth .req_object_button {
+  border: none;
+  font-size: 12px;
+}
 .log_in_button {
   background: #005382;
   border-color: #ffffff;
@@ -188,5 +192,8 @@
   .mobile_nav {
     display: block;
     margin-right: 10px;
+  }
+  .header-auth .req_object_button {
+    display: none;
   }
 }
