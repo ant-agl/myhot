@@ -39,7 +39,11 @@ $(".add-child").on("click", function () {
       </div>
     </div>
   `);
-  $(this).parent().scrollTop($(this).parent().outerHeight());
+  $(this)
+    .parent()
+    .find("> *")
+    .toArray()
+    .reduce((sum, item) => (sum += item.clientHeight), 0);
 });
 $("body").on("click", ".delete-child", function () {
   $(this).closest(".count-child").remove();
