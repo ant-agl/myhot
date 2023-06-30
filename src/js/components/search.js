@@ -131,6 +131,3 @@ $("body").keyup(function (e) {
     }
   }
 });
-
-import scrollOverflow from "./scrollOverflow";
-scrollOverflow($(".search .count-guest__modal"));
