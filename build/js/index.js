@@ -1646,7 +1646,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _DropMenu__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./DropMenu */ \"./src/js/components/DropMenu.js\");\n\nnew _DropMenu__WEBPACK_IMPORTED_MODULE_0__[\"default\"](\".widget-chat\", {\n  classActive: \"open\",\n  selectorsNotClose: [\".widget-chat__content\"],\n});\n\n\n//# sourceURL=webpack://gulp/./src/js/components/WidgetChat.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _DropMenu__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./DropMenu */ \"./src/js/components/DropMenu.js\");\n\nnew _DropMenu__WEBPACK_IMPORTED_MODULE_0__[\"default\"](\".widget-chat\", {\n  classActive: \"open\",\n  selectorsNotClose: [\".widget-chat__content\"],\n});\n\n// $(\".widget-chat\").on(\"click\", function () {\n//   $(this).toggleClass(\"open\");\n// });\n\n\n//# sourceURL=webpack://gulp/./src/js/components/WidgetChat.js?");
 
 /***/ }),
 
