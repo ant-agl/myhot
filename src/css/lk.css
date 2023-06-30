@@ -680,16 +680,9 @@ span.reviews-card__date-value {
   transition: 0.2s;
   opacity: 0;
 }
-.btn-delete-account.active,
-.btn-mail-confirm.active {
+.btn-delete-account.active {
   visibility: visible;
   opacity: 1;
-}
-.btn-mail-confirm {
-  font-size: 13px;
-  visibility: hidden;
-  transition: 0.2s;
-  opacity: 0;
 }
 #modal-confirm-password .modal__footer {
   display: flex;
