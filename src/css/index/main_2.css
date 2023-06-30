@@ -93,7 +93,7 @@ body {
   justify-content: center;
   align-items: center;
   position: relative;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 .block_1_video {
   position: absolute;
