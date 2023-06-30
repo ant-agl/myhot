@@ -189,6 +189,9 @@ select {
 .email-hint {
   z-index: 1;
 }
+.email-hint:hover .input-hint__text {
+  transform: scale(1) translateY(-50%);
+}
 .input-hint {
   position: absolute;
   width: 16px;
