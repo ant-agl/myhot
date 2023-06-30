@@ -20,6 +20,7 @@ $("body").on("click", ".add-child, .delete-child", function () {
   setTimeout(() => {
     let val = $(".count-child").length;
     $(".count-guest__value .child").text(val);
+    scrollOverflow($(".search .count-guest__modal"));
   });
 });
 $(".add-child").on("click", function () {
@@ -39,6 +40,7 @@ $(".add-child").on("click", function () {
       </div>
     </div>
   `);
+  scrollOverflow($(".search .count-guest__modal"));
 });
 $("body").on("click", ".delete-child", function () {
   $(this).closest(".count-child").remove();
@@ -131,3 +133,6 @@ $("body").keyup(function (e) {
     }
   }
 });
+
+import scrollOverflow from "./scrollOverflow";
+scrollOverflow($(".search .count-guest__modal"));
