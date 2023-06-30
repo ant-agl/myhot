@@ -18,7 +18,7 @@ export default function scrollOverflow($elements) {
       $elScroll.css("maxHeight", "none");
       setTimeout(() => {
         if ($(el).css("height") != $elScroll.css("height"))
-          $elScroll.css("maxHeight", $(el).css("height"));
+          $elScroll.css("maxHeight", $(el).css("maxHeight"));
       });
     } else {
       style.padding = $(el).css("padding");
