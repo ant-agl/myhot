@@ -414,6 +414,15 @@ export default class GetData {
               <div class="reviews-card__msg-title reviews-card__msg-title_bad">Что было плохо</div>
               <div class="reviews-card__msg-text">${review.opinion.badly}</div>
             </div>
+            <button
+              type="button"
+              class="link-underline btn-open-review"
+              data-reserve-id="${review.reserve_id}"
+              data-hotel-id="${review.hotel_id}"
+              data-is-review="1"
+              data-modal-target="modal-review">
+                Редактировать отзыв
+            </button>
           </div>
         `;
 
