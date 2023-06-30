@@ -115,6 +115,7 @@
 }
 .add-child {
   font-weight: 600;
+  cursor: pointer;
 }
 .delete-child img {
   margin-right: 10px;
