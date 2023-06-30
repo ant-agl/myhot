@@ -123,3 +123,11 @@ $(".form-search").on("submit", function (e) {
   else link = "./hotels-list";
   window.location.href = link + data2get(data);
 });
+
+$("body").keyup(function (e) {
+  if (e.keyCode === 13) {
+    if ($(".modal_open .modal__page.active").length == 0) {
+      $(".search__button").eq(0).trigger("click");
+    }
+  }
+});
