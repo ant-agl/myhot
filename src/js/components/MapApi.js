@@ -3,7 +3,7 @@ export default class MapApi {
   center = [55.76, 37.64];
   zoom = 7;
   fixZoom = false;
-  controls = ["zoomControl", "fullscreenControl"];
+  controls = ["fullscreenControl"];
   isReady = false;
 
   constructor(options) {
