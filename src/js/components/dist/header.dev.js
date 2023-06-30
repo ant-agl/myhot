@@ -315,7 +315,7 @@ function overflowModal() {
 }
 
 overflowModal();
-$(window).resize(overflowModal);
+setTimeout(overflowModal, 500);
 $("body").keyup(function (e) {
   if (e.keyCode === 13) {
     $(".modal_open .modal__page.active button").last().trigger("click");

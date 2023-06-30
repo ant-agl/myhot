@@ -341,7 +341,7 @@ function overflowModal() {
   scrollOverflow($("#modal-forgot .modal__content"));
 }
 overflowModal();
-$(window).resize(overflowModal);
+setTimeout(overflowModal, 500);
 
 $("body").keyup(function (e) {
   if (e.keyCode === 13) {
