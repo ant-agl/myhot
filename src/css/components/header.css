@@ -7,7 +7,9 @@
   background-color: #fff;
 }
 .header__buttons {
-  margin-left: 624px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
 .header__button {
   -webkit-appearance: none;
