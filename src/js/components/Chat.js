@@ -485,7 +485,7 @@ export default class Chat {
 
     let messagePosition = isUser ? "chat__message_left" : "";
     this.$chat.find(".chat__messages").append(`
-      <div class="chat__message ${messagePosition}" data-id="${id}" title="">
+      <div class="chat__message ${messagePosition}" data-id="${id}">
         <div class="chat__avatar">
           <div class="chat__img">
             <img src="${avatar}">
