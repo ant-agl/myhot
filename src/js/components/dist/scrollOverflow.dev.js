@@ -23,7 +23,7 @@ function scrollOverflow($elements) {
     if ($elScroll.length > 0) {
       $elScroll.css("maxHeight", "none");
       setTimeout(function () {
-        if ($(el).css("height") != $elScroll.css("height")) $elScroll.css("maxHeight", $(el).css("maxHeight"));
+        if ($(el).css("height") != $elScroll.css("height")) $elScroll.css("maxHeight", $(el).css("height"));
       });
     } else {
       style.padding = $(el).css("padding");
