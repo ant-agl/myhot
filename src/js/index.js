@@ -34,7 +34,7 @@ $(window).resize(bgVideo);
 function bgVideo() {
   if ($(window).outerWidth() < 700) {
     $(".block_1_video").remove();
-  } else {
+  } else if ($(".block_1_video").length == 0) {
     $(".block_1").prepend(`
       <video class="block_1_video" pip="false" autoplay muted loop poster="./img/index/avif/bg.png">
         <source src="./img/index/avif/sea.webm" type="video/webm">
