@@ -307,9 +307,15 @@ $("body").on("click", "#modal-forgot .btn-forgot", function () {
     console.log(xhr);
   });
 });
-(0, _scrollOverflow["default"])($("#modal-login .modal__content"));
-(0, _scrollOverflow["default"])($("#modal-signin .modal__content"));
-(0, _scrollOverflow["default"])($("#modal-forgot .modal__content"));
+
+function overflowModal() {
+  (0, _scrollOverflow["default"])($("#modal-login .modal__content"));
+  (0, _scrollOverflow["default"])($("#modal-signin .modal__content"));
+  (0, _scrollOverflow["default"])($("#modal-forgot .modal__content"));
+}
+
+overflowModal();
+$(window).resize(overflowModal);
 $("body").keyup(function (e) {
   if (e.keyCode === 13) {
     $(".modal_open .modal__page.active button").last().trigger("click");
