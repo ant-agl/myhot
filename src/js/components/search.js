@@ -39,6 +39,7 @@ $(".add-child").on("click", function () {
       </div>
     </div>
   `);
+  $(this).parent().scrollTop($(this).parent().outerHeight());
 });
 $("body").on("click", ".delete-child", function () {
   $(this).closest(".count-child").remove();
