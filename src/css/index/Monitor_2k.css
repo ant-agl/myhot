@@ -185,18 +185,6 @@
   }
 
   /*FOOTER*/
-  footer {
-    display: flex;
-    width: 100%;
-    min-height: 178px;
-    max-height: 300px;
-    padding: 2% auto;
-    gap: 8%;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-  }
-
   .icon_sponsers {
     display: flex;
     justify-content: space-between;
