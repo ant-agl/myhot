@@ -14,23 +14,27 @@
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
+  gap: 40px;
 }
 .footer__column {
   max-width: 320px;
 }
+.footer__column:nth-child(1) {
+  margin-right: auto;
+}
 .footer__icons {
   display: flex;
   align-items: center;
-  gap: 40px;
+  gap: 20px;
 }
 .footer__icon {
-  width: 70px;
-  height: 70px;
+  width: 50px;
+  height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  padding: 20px;
+  padding: 15px;
   border-radius: 100px;
   border: 2px solid #fff;
   transition: 0.2s;
@@ -42,7 +46,7 @@
   filter: brightness(0) invert(1);
 }
 .footer__title {
-  margin-bottom: 35px;
+  margin-bottom: 20px;
   color: #fff;
   font-weight: bold;
   font-size: 16px;
@@ -60,6 +64,9 @@
 }
 .footer__item a {
   color: #fff;
+}
+.footer__item a:hover {
+  text-decoration: underline;
 }
 .footer__copy {
   width: 100%;
