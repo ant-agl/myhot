@@ -24,17 +24,23 @@
 .modal__content {
   background-color: #fff;
   border-radius: 20px;
-  padding: 20px;
   box-sizing: border-box;
   transform: scale(0.5);
   transition: 0.2s;
   width: 100%;
   max-width: 960px;
+
+  padding: 0;
   max-height: 90vh;
-  overflow-y: auto;
+  overflow-y: hidden;
 }
 .modal__content_small {
   max-width: 600px;
+}
+.modal__content-ovreflow {
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 20px;
 }
 .modal__cross {
   width: 14px;
