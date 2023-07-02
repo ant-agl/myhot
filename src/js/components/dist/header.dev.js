@@ -24,8 +24,6 @@ var _Validation = _interopRequireDefault(require("./Validation"));
 
 var _login = require("./login");
 
-var _scrollOverflow = _interopRequireDefault(require("./scrollOverflow"));
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 new _DropMenu["default"](".profile-menu");
@@ -315,10 +313,11 @@ $("body").on("click", "#modal-forgot .btn-forgot", function () {
   })["catch"](function (xhr) {
     console.log(xhr);
   });
-});
-(0, _scrollOverflow["default"])($("#modal-login .modal__content"));
-(0, _scrollOverflow["default"])($("#modal-signin .modal__content"));
-(0, _scrollOverflow["default"])($("#modal-forgot .modal__content"));
+}); // import scrollOverflow from "./scrollOverflow";
+// scrollOverflow($("#modal-login .modal__content"));
+// scrollOverflow($("#modal-signin .modal__content"));
+// scrollOverflow($("#modal-forgot .modal__content"));
+
 $("body").keyup(function (e) {
   if (e.keyCode === 13) {
     $(".modal_open .modal__page.active button").last().trigger("click");

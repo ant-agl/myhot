@@ -340,10 +340,10 @@ $("body").on("click", "#modal-forgot .btn-forgot", function () {
     });
 });
 
-import scrollOverflow from "./scrollOverflow";
-scrollOverflow($("#modal-login .modal__content"));
-scrollOverflow($("#modal-signin .modal__content"));
-scrollOverflow($("#modal-forgot .modal__content"));
+// import scrollOverflow from "./scrollOverflow";
+// scrollOverflow($("#modal-login .modal__content"));
+// scrollOverflow($("#modal-signin .modal__content"));
+// scrollOverflow($("#modal-forgot .modal__content"));
 
 $("body").keyup(function (e) {
   if (e.keyCode === 13) {

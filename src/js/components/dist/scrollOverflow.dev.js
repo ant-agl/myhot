@@ -1,7 +1,7 @@
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+  value: true,
 });
 exports["default"] = scrollOverflow;
 
@@ -13,11 +13,11 @@ function scrollOverflow($elements) {
       maxHeight: $(el).css("maxHeight"),
       overflowY: "auto",
       padding: $(el).css("padding"),
-      position: "relative"
+      position: "relative",
     };
     $el.css({
       overflow: "hidden",
-      padding: 0
+      padding: 0,
     });
     var scrollContent = $el.children();
     $el.html("<div></div>");

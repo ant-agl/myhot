@@ -1,5 +1,5 @@
 import { data2get } from "./data2get";
-import scrollOverflow from "./scrollOverflow";
+// import scrollOverflow from "./scrollOverflow";
 
 export default class FindHint {
   classActive = "active";
@@ -49,7 +49,7 @@ export default class FindHint {
     this.$hint.html(html);
     if (html != "") {
       this.$hint.addClass(this.classActive);
-      scrollOverflow(this.$hint);
+      // scrollOverflow(this.$hint);
     }
   }
   request() {

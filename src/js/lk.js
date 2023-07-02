@@ -66,8 +66,8 @@ function reloadChatAnimation(close = true) {
 reloadChatAnimation(false);
 setInterval(reloadChatAnimation, 1000 * 8);
 
-import scrollOverflow from "./components/scrollOverflow";
-scrollOverflow($("#modal-review .modal__content"));
+// import scrollOverflow from "./components/scrollOverflow";
+// scrollOverflow($("#modal-review .modal__content"));
 
 import Modal from "./components/Modal";
 let modalText = new Modal("#modal-text");

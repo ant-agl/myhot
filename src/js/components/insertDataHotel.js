@@ -11,7 +11,7 @@ import "slick-carousel";
 import Modal from "./Modal";
 import MapApi from "./MapApi";
 import CheckboxSum from "./CheckboxSum";
-import scrollOverflow from "./scrollOverflow";
+// import scrollOverflow from "./scrollOverflow";
 
 export function insertHotel(hotel) {
   $(".hotel__name").text(hotel.name || "??");
@@ -359,55 +359,59 @@ export function insertDataRoom(room) {
   $("body").append(`
     <div class="modal" id="modal-room-${room.id}">
       <div class="modal__content">
-        <div class="modal-room__main">
-          <div class="modal-room__images">
-            <div class="modal-room__main-img" data-url="${
-              room.images[0]
-            }"></div>
-            <div class="modal-room__second-images">
-              <div class="modal-room__second-img" data-url="${
-                room.images[1]
+        <div class="modal__content-ovreflow">
+          <div class="modal-room__main">
+            <div class="modal-room__images">
+              <div class="modal-room__main-img" data-url="${
+                room.images[0]
               }"></div>
-              <div class="modal-room__second-img" data-url="${
-                room.images[2]
-              }"></div>
-            </div>
-          </div>
-          <div class="modal-room_info">
-            <div class="modal-room__name">${room.name}</div>
-            <div class="modal-room__row">${room.description}</div>
-            <div class="modal-room__price-block">
-              <div class="modal-room__price">
-                <span class="modal-room__price-value">${room.price.toLocaleString()}</span>
-                руб.
+              <div class="modal-room__second-images">
+                <div class="modal-room__second-img" data-url="${
+                  room.images[1]
+                }"></div>
+                <div class="modal-room__second-img" data-url="${
+                  room.images[2]
+                }"></div>
               </div>
-              <a href="#" class="btn btn-booking-temp"
-                data-room-id="${room.id}">
-                Забронировать
-              </a>
+            </div>
+            <div class="modal-room_info">
+              <div class="modal-room__name">${room.name}</div>
+              <div class="modal-room__row">${room.description}</div>
+              <div class="modal-room__price-block">
+                <div class="modal-room__price">
+                  <span class="modal-room__price-value">${room.price.toLocaleString()}</span>
+                  руб.
+                </div>
+                <a href="#" class="btn btn-booking-temp"
+                  data-room-id="${room.id}">
+                  Забронировать
+                </a>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="modal-room__title">Доступные бесплантые услуги для данного номера</div>
-        <div class="modal-room__free-list">
-          <div class="modal-room__free-column">
+          <div class="modal-room__title">Доступные бесплантые услуги для данного номера</div>
+          <div class="modal-room__free-list">
+            <div class="modal-room__free-column">
+            </div>
+            <div class="modal-room__free-column">
+            </div>
           </div>
-          <div class="modal-room__free-column">
-          </div>
-        </div>
-        <div class="modal-room__title" id="paid-service-${
-          room.id
-        }" data-target="paid-service__list-${
+          <div class="modal-room__title" id="paid-service-${
+            room.id
+          }" data-target="paid-service__list-${
     room.id
   }">Выберете платные услуги +</div>
-        <div class="modal-room__paid-block" id="paid-service__list-${room.id}">
-          <div class="modal-room__paid-list">
-            <div class="modal-room__paid-column"></div>
-            <div class="modal-room__paid-column"></div>
-          </div>
-          <div class="modal-room__paid-total">
-            <span>Всего за платные услуги</span>
-            <div class="modal-room__paid-total-value">0 руб.</div>
+          <div class="modal-room__paid-block" id="paid-service__list-${
+            room.id
+          }">
+            <div class="modal-room__paid-list">
+              <div class="modal-room__paid-column"></div>
+              <div class="modal-room__paid-column"></div>
+            </div>
+            <div class="modal-room__paid-total">
+              <span>Всего за платные услуги</span>
+              <div class="modal-room__paid-total-value">0 руб.</div>
+            </div>
           </div>
         </div>
       </div>
@@ -430,7 +434,7 @@ export function insertDataRoom(room) {
     size: "cover",
   });
 
-  scrollOverflow($(`#modal-room-${room.id} .modal__content`));
+  // scrollOverflow($(`#modal-room-${room.id} .modal__content`));
 
   let cSum = new CheckboxSum(
     `#modal-room-${room.id} .modal-room__paid-list`,
