@@ -144,6 +144,8 @@ $(".change-data").on("click", function () {
     if (data["2fa"] || data.phone || data.change_pass) {
       modalConfirm.open();
     }
+  } else if (data.email) {
+    modalConfirm.open();
   }
   if (data.email) {
     $(".email-hint").removeClass("input-hint__not-active");
