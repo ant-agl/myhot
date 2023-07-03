@@ -54,10 +54,15 @@ $(".btn-logout").on("click", function (e) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
-          _context.next = 2;
+          if (localStorage.token) {
+            $(".header-auth").show();
+            $(".header-noauth").hide();
+          }
+
+          _context.next = 3;
           return regeneratorRuntime.awrap((0, _isAuth["default"])());
 
-        case 2:
+        case 3:
           auth = _context.sent;
 
           if (auth.ok) {
@@ -71,7 +76,7 @@ $(".btn-logout").on("click", function (e) {
             $(".header-noauth").show();
           }
 
-        case 4:
+        case 5:
         case "end":
           return _context.stop();
       }
@@ -179,6 +184,8 @@ $("body").on("click", "#modal-signin .btn-signin", function () {
       setTimeout(function () {
         window.location.href = "/lk";
       }, 500);
+    } else {
+      window.reload();
     }
   })["catch"](function (xhr) {
     console.log(xhr);
@@ -224,6 +231,8 @@ $("body").on("click", "#modal-login .btn-login-hash", function () {
             setTimeout(function () {
               window.location.href = "/lk";
             }, 500);
+          } else {
+            window.reload();
           }
         } else {
           modalLogin.toPage(1);
@@ -240,6 +249,8 @@ $("body").on("click", "#modal-login .btn-login-hash", function () {
             setTimeout(function () {
               window.location.href = "/lk";
             }, 500);
+          } else {
+            window.reload();
           }
         };
 
