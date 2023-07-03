@@ -180,7 +180,7 @@ $("body").on("click", "#modal-signin .btn-signin", function () {
         window.location.href = "/lk";
       }, 500);
     } else {
-      window.reload();
+      location.reload();
     }
   })["catch"](function (xhr) {
     console.log(xhr);
@@ -227,7 +227,7 @@ $("body").on("click", "#modal-login .btn-login-hash", function () {
               window.location.href = "/lk";
             }, 500);
           } else {
-            window.reload();
+            location.reload();
           }
         } else {
           modalLogin.toPage(1);
@@ -245,7 +245,7 @@ $("body").on("click", "#modal-login .btn-login-hash", function () {
               window.location.href = "/lk";
             }, 500);
           } else {
-            window.reload();
+            location.reload();
           }
         };
 
