@@ -48,21 +48,21 @@ $(".btn-logout").on("click", function (e) {
   window.location.reload();
 });
 
+if (localStorage.token) {
+  $(".header-auth").show();
+  $(".header-noauth").hide();
+}
+
 (function _callee() {
   var auth, fio;
   return regeneratorRuntime.async(function _callee$(_context) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
-          if (localStorage.token) {
-            $(".header-auth").show();
-            $(".header-noauth").hide();
-          }
-
-          _context.next = 3;
+          _context.next = 2;
           return regeneratorRuntime.awrap((0, _isAuth["default"])());
 
-        case 3:
+        case 2:
           auth = _context.sent;
 
           if (auth.ok) {
@@ -76,7 +76,7 @@ $(".btn-logout").on("click", function (e) {
             $(".header-noauth").show();
           }
 
-        case 5:
+        case 4:
         case "end":
           return _context.stop();
       }

@@ -34,12 +34,11 @@ $(".btn-logout").on("click", function (e) {
 });
 
 import isAuth from "./isAuth";
+if (localStorage.token) {
+  $(".header-auth").show();
+  $(".header-noauth").hide();
+}
 (async () => {
-  if (localStorage.token) {
-    $(".header-auth").show();
-    $(".header-noauth").hide();
-  }
-
   let auth = await isAuth();
   if (auth.ok) {
     $(".header-auth").show();
