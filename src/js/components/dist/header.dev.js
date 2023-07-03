@@ -48,11 +48,6 @@ $(".btn-logout").on("click", function (e) {
   window.location.reload();
 });
 
-if (localStorage.token) {
-  $(".header-auth").show();
-  $(".header-noauth").hide();
-}
-
 (function _callee() {
   var auth, fio;
   return regeneratorRuntime.async(function _callee$(_context) {

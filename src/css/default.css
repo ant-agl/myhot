@@ -45,11 +45,8 @@ label {
   overflow: hidden;
   background-color: #fffef7;
 }
-#modal-logout .modal__content {
-  height: 200px;
-  width: 580px;
-  display: flex;
-  flex-direction: column;
+#modal-logout .modal__footer {
+  margin-top: 30px;
 }
 #filter-null-text {
   color: #fff;
