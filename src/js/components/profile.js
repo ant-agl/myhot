@@ -225,3 +225,10 @@ $(".btn-mail-confirm").on("click", function () {
     },
   });
 });
+
+$("body").keyup(function (e) {
+  if (e.keyCode === 13) {
+    console.log($(".change-data.active"));
+    $(".change-data.active").trigger("click");
+  }
+});

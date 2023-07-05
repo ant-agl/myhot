@@ -43,7 +43,8 @@ export default class FindHint {
       html += `<div class="${this.classHintItem}">${el.name}</div>`;
     });
     this.foundElements.hotel.forEach((el) => {
-      html += `<div class="${this.classHintItem}">${el.name}. ${el.city}, ${el.country}</div>`;
+      // html += `<div class="${this.classHintItem}">${el.name}. ${el.city}, ${el.country}</div>`;
+      html += `<div class="${this.classHintItem}">${el.name}. ${el.city}</div>`;
     });
 
     this.$hint.html(html);

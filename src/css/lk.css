@@ -29,17 +29,6 @@
   );
 }
 
-#modal-confirm-password .modal__content,
-#modal-confirm-delete .modal__content {
-  padding: 25px;
-  width: 90%;
-  max-width: 580px;
-  text-align: center;
-  height: 487px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
 #modal-review .modal__content .input-row {
   text-align: center;
 }
