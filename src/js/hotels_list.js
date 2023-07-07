@@ -71,7 +71,7 @@ $("body").on("click", ".hotel-card__img-heart", function (e) {
   }
   $.ajax({
     type: "GET",
-    url: "https://wehotel.ru/handler/" + file + get,
+    url: "https://bytrip.ru/handler/" + file + get,
     headers: {
       "X-Auth": localStorage.token ?? "",
     },

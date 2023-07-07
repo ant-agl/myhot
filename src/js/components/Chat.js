@@ -81,7 +81,7 @@ export default class Chat {
     if (!localStorage.token) return;
     $.ajax({
       type: "GET",
-      url: "https://wehotel.ru/php/chat/chat_all.php",
+      url: "https://bytrip.ru/php/chat/chat_all.php",
       headers: {
         "X-Auth": localStorage.token ?? "",
       },
@@ -105,7 +105,7 @@ export default class Chat {
 
     return $.ajax({
       type: "GET",
-      url: "https://wehotel.ru/php/chat/get_chat.php?id_chat=" + id,
+      url: "https://bytrip.ru/php/chat/get_chat.php?id_chat=" + id,
       headers: {
         "X-Auth": localStorage.token ?? "",
       },
@@ -143,7 +143,7 @@ export default class Chat {
     if (!localStorage.token) return;
     $.ajax({
       type: "GET",
-      url: "https://wehotel.ru/php/chat/get_all_info_chat.php",
+      url: "https://bytrip.ru/php/chat/get_all_info_chat.php",
       headers: {
         "X-Auth": localStorage.token ?? "",
       },
@@ -167,7 +167,7 @@ export default class Chat {
 
     return $.ajax({
       type: "GET",
-      url: "https://wehotel.ru/php/chat/get_info_chat.php?id_chat=" + id,
+      url: "https://bytrip.ru/php/chat/get_info_chat.php?id_chat=" + id,
       headers: {
         "X-Auth": localStorage.token ?? "",
       },
@@ -193,11 +193,11 @@ export default class Chat {
     // let idChat = false;
     // if ($item.length > 0) idChat = $item.data("id");
 
-    // let url = "https://wehotel.ru/php/chat/get_all_supp_chat.php";
+    // let url = "https://bytrip.ru/php/chat/get_all_supp_chat.php";
     // if (idChat !== false) url += "?id_chat=" + idChat;
     $.ajax({
       type: "GET",
-      url: "https://wehotel.ru/php/chat/get_all_supp_chat.php",
+      url: "https://bytrip.ru/php/chat/get_all_supp_chat.php",
       headers: {
         "X-Auth": localStorage.token ?? "",
       },
@@ -219,7 +219,7 @@ export default class Chat {
 
     return $.ajax({
       type: "GET",
-      url: "https://wehotel.ru/php/chat/get_supp_chat.php?id_chat=" + id,
+      url: "https://bytrip.ru/php/chat/get_supp_chat.php?id_chat=" + id,
       headers: {
         "X-Auth": localStorage.token ?? "",
       },
@@ -435,9 +435,9 @@ export default class Chat {
     formData.append("text", text);
     if (file) formData.append("file", file);
 
-    let url = "https://wehotel.ru/php/chat/send_message.php";
+    let url = "https://bytrip.ru/php/chat/send_message.php";
     if (this.$chat.find(".support-chat.active").length > 0)
-      url = "https://wehotel.ru/php/chat/send_supp_message.php";
+      url = "https://bytrip.ru/php/chat/send_supp_message.php";
 
     $.ajax({
       type: "POST",

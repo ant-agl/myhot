@@ -18,7 +18,7 @@ let validationForm = new Validation(".booking-form", {
 
 $.ajax({
   type: "GET",
-  url: "https://wehotel.ru/handler/get_reserve_temp.php",
+  url: "https://bytrip.ru/handler/get_reserve_temp.php",
   headers: {
     "X-Auth": localStorage.token ?? "",
   },
@@ -178,7 +178,7 @@ $(".booking-btn").on("click", function (e) {
 
   $.ajax({
     type: "POST",
-    url: "https://wehotel.ru/handler/reserve.php",
+    url: "https://bytrip.ru/handler/reserve.php",
     data,
     headers: {
       "X-Auth": localStorage.token ?? "",
@@ -232,7 +232,7 @@ $("body").on("click", ".booking-hotel__heart", function () {
   }
   $.ajax({
     type: "GET",
-    url: "https://wehotel.ru/handler/" + file + get,
+    url: "https://bytrip.ru/handler/" + file + get,
     headers: {
       "X-Auth": localStorage.token ?? "",
     },

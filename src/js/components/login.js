@@ -3,7 +3,7 @@ export function reg_hash(data) {
   return new Promise((resolve, reject) => {
     $.ajax({
       type: "POST",
-      url: "https://wehotel.ru/handler/reg_hash.php",
+      url: "https://bytrip.ru/handler/reg_hash.php",
       data,
       success: (data) => {
         try {
@@ -24,7 +24,7 @@ export function reg_gen(data) {
   return new Promise((resolve, reject) => {
     $.ajax({
       type: "POST",
-      url: "https://wehotel.ru/handler/reg_gen.php",
+      url: "https://bytrip.ru/handler/reg_gen.php",
       data,
       success: (data) => {
         console.log(data);
@@ -47,7 +47,7 @@ export function login_hash(data) {
   return new Promise((resolve, reject) => {
     $.ajax({
       type: "POST",
-      url: "https://wehotel.ru/handler/login_hash.php",
+      url: "https://bytrip.ru/handler/login_hash.php",
       data,
       success: (data) => {
         try {
@@ -68,7 +68,7 @@ export function login(data) {
   return new Promise((resolve, reject) => {
     $.ajax({
       type: "POST",
-      url: "https://wehotel.ru/handler/login.php",
+      url: "https://bytrip.ru/handler/login.php",
       data,
       success: (data) => {
         try {
@@ -89,7 +89,7 @@ export function forgot_hash(data) {
   return new Promise((resolve, reject) => {
     $.ajax({
       type: "POST",
-      url: "https://wehotel.ru/handler/recovery_hash.php",
+      url: "https://bytrip.ru/handler/recovery_hash.php",
       data,
       success: (data) => {
         try {
@@ -110,7 +110,7 @@ export function recovery_password(data) {
   return new Promise((resolve, reject) => {
     $.ajax({
       type: "POST",
-      url: "https://wehotel.ru/handler/recovery_password.php",
+      url: "https://bytrip.ru/handler/recovery_password.php",
       data,
       success: (data) => {
         try {

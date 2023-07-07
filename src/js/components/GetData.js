@@ -34,8 +34,8 @@ import {
 import { insertServices } from "./insertServices";
 
 export default class GetData {
-  path = "https://wehotel.ru/handler/";
-  path_php = "https://wehotel.ru/php/";
+  path = "https://bytrip.ru/handler/";
+  path_php = "https://bytrip.ru/php/";
 
   async getLk(obj = {}) {
     // let auth = await isAuth();

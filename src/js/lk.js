@@ -94,7 +94,7 @@ let modalReview = new Modal("#modal-review", {
 
     $.ajax({
       type: "GET",
-      url: `https://wehotel.ru/php/get_review.php?hotel_id=${hotelId}&reserve_id=${reserveId}`,
+      url: `https://bytrip.ru/php/get_review.php?hotel_id=${hotelId}&reserve_id=${reserveId}`,
       headers: {
         "X-Auth": localStorage.token ?? "",
       },
@@ -153,7 +153,7 @@ $("body").on("click", ".btn-add-review", function () {
 
   $.ajax({
     type: "POST",
-    url: "https://wehotel.ru/php/edit_review.php",
+    url: "https://bytrip.ru/php/edit_review.php",
     data,
     headers: {
       "X-Auth": localStorage.token ?? "",
@@ -180,7 +180,7 @@ $("body").on("click", ".btn-remove-review", function () {
   };
   $.ajax({
     type: "POST",
-    url: "https://wehotel.ru/handler/delete_review.php",
+    url: "https://bytrip.ru/handler/delete_review.php",
     data,
     headers: {
       "X-Auth": localStorage.token ?? "",
@@ -216,7 +216,7 @@ $(".form_send").on("submit", function (e) {
   };
   $.ajax({
     type: "POST",
-    url: "https://wehotel.ru/handler/send_request.php",
+    url: "https://bytrip.ru/handler/send_request.php",
     data,
     headers: {
       "X-Auth": localStorage.token ?? "",

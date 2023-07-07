@@ -7,7 +7,7 @@ export default class FindHint {
   classHintItem = "find-hint__item";
   foundElements = {};
   search = "";
-  url = "https://wehotel.ru/php/conditional_search.php";
+  url = "https://bytrip.ru/php/conditional_search.php";
 
   constructor(selectorInput, options = {}) {
     this.$input = $(selectorInput);

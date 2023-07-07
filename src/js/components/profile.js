@@ -7,12 +7,12 @@ import Validation from "./Validation";
 let confirmPass = new ConfirmPassword(
   "#modal-confirm-password .input-code-confirm",
   "#modal-confirm-password .btn-confirm-password",
-  { url: "https://wehotel.ru/handler/code_check.php" }
+  { url: "https://bytrip.ru/handler/code_check.php" }
 );
 let confirmPassDelete = new ConfirmPassword(
   "#modal-confirm-delete .input-code-confirm",
   "#modal-confirm-delete .btn-confirm-delete",
-  { url: "https://wehotel.ru/handler/delete_account_confirm.php" }
+  { url: "https://bytrip.ru/handler/delete_account_confirm.php" }
 );
 let modalConfirm = new Modal("#modal-confirm-password", {
   beforeOpen: () => {
@@ -154,7 +154,7 @@ $(".change-data").on("click", function () {
   console.log(data);
   $.ajax({
     type: "POST",
-    url: "https://wehotel.ru/handler/change_info.php",
+    url: "https://bytrip.ru/handler/change_info.php",
     headers: {
       "X-Auth": localStorage.token ?? "",
     },
@@ -190,7 +190,7 @@ $(".btn-delete-account").on("click", function () {
 
   $.ajax({
     type: "GET",
-    url: "https://wehotel.ru/handler/delete_account.php",
+    url: "https://bytrip.ru/handler/delete_account.php",
     headers: {
       "X-Auth": localStorage.token ?? "",
     },
@@ -210,7 +210,7 @@ $(".btn-delete-account").on("click", function () {
 $(".btn-mail-confirm").on("click", function () {
   $.ajax({
     type: "GET",
-    url: "https://wehotel.ru/handler/email_confirm.php",
+    url: "https://bytrip.ru/handler/email_confirm.php",
     headers: {
       "X-Auth": localStorage.token ?? "",
     },

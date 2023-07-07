@@ -90,7 +90,7 @@ $("body").on("click", ".btn-booking-temp", function (e) {
   }
   $.ajax({
     type: "POST",
-    url: "https://wehotel.ru/handler/reserve_temp.php",
+    url: "https://bytrip.ru/handler/reserve_temp.php",
     data,
     headers: {
       "X-Auth": localStorage.token ?? "",
@@ -145,7 +145,7 @@ $("body").on("click", ".btn-msg-hotel", function (e) {
   let id_hotel = get2data().id;
   $.ajax({
     type: "POST",
-    url: "https://wehotel.ru/php/chat/create_chat.php",
+    url: "https://bytrip.ru/php/chat/create_chat.php",
     data: {
       id_hotel,
     },

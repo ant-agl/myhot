@@ -100,7 +100,7 @@ var forgot = new _Validation["default"]('#modal-forgot [data-page="2"]', {
   textRepeat: "Пароли не совпадают"
 });
 var confirmRegister = new _ConfirmPassword["default"]("#modal-signin .input-code-confirm", "#modal-signin .btn-confirm-password", {
-  url: "https://wehotel.ru/handler/reg.php"
+  url: "https://bytrip.ru/handler/reg.php"
 });
 console.log($('#modal-signin [data-page="0"]'));
 var validateRegHash = new _Validation["default"]('#modal-signin [data-page="0"]');
@@ -187,7 +187,7 @@ $("body").on("click", "#modal-signin .btn-signin", function () {
   });
 });
 var confirmLogin = new _ConfirmPassword["default"]("#modal-login .input-code-confirm", "#modal-login .btn-confirm-password", {
-  url: "https://wehotel.ru/handler/token_generation.php"
+  url: "https://bytrip.ru/handler/token_generation.php"
 });
 var validateLoginHash = new _Validation["default"]('#modal-login [data-page="0"]');
 var loginData = {
@@ -266,7 +266,7 @@ $("body").on("click", "#modal-login .btn-login-hash", function () {
 });
 var validateHashForgot = new _Validation["default"]('#modal-forgot [data-page="0"]');
 var confirmForgot = new _ConfirmPassword["default"]("#modal-forgot .input-code-confirm", "#modal-forgot .btn-confirm-password", {
-  url: "https://wehotel.ru/handler/recovery_code.php"
+  url: "https://bytrip.ru/handler/recovery_code.php"
 });
 var forgotObj = {};
 $("body").on("click", "#modal-forgot .btn-hash-forgot", function () {

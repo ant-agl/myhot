@@ -76,7 +76,7 @@ let confirmRegister = new ConfirmPassword(
   "#modal-signin .input-code-confirm",
   "#modal-signin .btn-confirm-password",
   {
-    url: "https://wehotel.ru/handler/reg.php",
+    url: "https://bytrip.ru/handler/reg.php",
   }
 );
 
@@ -189,7 +189,7 @@ let confirmLogin = new ConfirmPassword(
   "#modal-login .input-code-confirm",
   "#modal-login .btn-confirm-password",
   {
-    url: "https://wehotel.ru/handler/token_generation.php",
+    url: "https://bytrip.ru/handler/token_generation.php",
   }
 );
 
@@ -282,7 +282,7 @@ let confirmForgot = new ConfirmPassword(
   "#modal-forgot .input-code-confirm",
   "#modal-forgot .btn-confirm-password",
   {
-    url: "https://wehotel.ru/handler/recovery_code.php",
+    url: "https://bytrip.ru/handler/recovery_code.php",
   }
 );
 let forgotObj = {};

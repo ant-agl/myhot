@@ -27,7 +27,7 @@ export default async function isAuth() {
 
     $.ajax({
       type: "GET",
-      url: "https://wehotel.ru/handler/auth.php",
+      url: "https://bytrip.ru/handler/auth.php",
       headers: {
         "X-Auth": token,
       },
@@ -38,7 +38,7 @@ export default async function isAuth() {
 
         $.ajax({
           type: "GET",
-          url: "https://wehotel.ru/handler/get_pre_reserve.php",
+          url: "https://bytrip.ru/handler/get_pre_reserve.php",
           headers: {
             "X-Auth": token,
           },
