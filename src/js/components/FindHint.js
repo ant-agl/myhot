@@ -4,7 +4,7 @@ import { data2get } from "./data2get";
 export default class FindHint {
   classActive = "active";
   // selectorHint = "+ .find-hint";
-  selectorHint = "+ .find-hint__overflow";
+  selectorHint = "+ .find-hint";
   classHintItem = "find-hint__item";
   foundElements = {};
   search = "";
@@ -48,7 +48,7 @@ export default class FindHint {
       html += `<div class="${this.classHintItem}">${el.name}. ${el.city}</div>`;
     });
 
-    this.$hint.html(html);
+    this.$hint.find(".find-hint__overflow").html(html);
     if (html != "") {
       this.$hint.addClass(this.classActive);
       // scrollOverflow(this.$hint);
