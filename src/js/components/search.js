@@ -131,7 +131,7 @@ $(".form-search").on("submit", function (e) {
   window.location.href = link + data2get(data);
 });
 
-$("body").keyup(function (e) {
+$("body").on("keydown", function (e) {
   if (e.keyCode === 13) {
     debugger;
     if ($(".modal_open").length == 0 && $(".find-hint.active").length == 0) {
