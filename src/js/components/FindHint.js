@@ -96,7 +96,7 @@ export default class FindHint {
       case 13: // enter
         let $itemSelect = this.$hint.find(".find-hint__item.select");
         let text = $itemSelect.text().trim();
-        this.$input.val(text).trigger("change");
+        this.$input.val(text).trigger("change").blur();
         return;
     }
   }
