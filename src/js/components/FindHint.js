@@ -20,6 +20,7 @@ export default class FindHint {
     this.$hint = this.$input.find(this.selectorHint);
     this.$input.on("focus input", this.changeSearch.bind(this));
     this.$input.on("keyup", this.selectKey.bind(this));
+    this.$input.on("keyup", this.selectItem.bind(this));
     this.$input.on("blur", () => this.$hint.removeClass(this.classActive));
     this.$hint.on(
       "mousedown",
@@ -68,26 +69,31 @@ export default class FindHint {
     let $itemSelect = this.$hint.find(".find-hint__item.select");
     let indexSelect = $itemSelect?.index();
 
-    $itemSelect.removeClass("select");
     switch (e.keyCode) {
       case 38: // top
+        $itemSelect.removeClass("select");
         if (indexSelect == -1 || indexSelect == 0)
           this.$hint.find(".find-hint__item").last().addClass("select");
         else $itemSelect.prev().addClass("select");
         break;
       case 40: // bottom
+        $itemSelect.removeClass("select");
         if (indexSelect == -1 || indexSelect == itemsCount - 1)
           this.$hint.find(".find-hint__item").first().addClass("select");
         else $itemSelect.next().addClass("select");
         break;
+    }
+
+    $itemSelect = this.$hint.find(".find-hint__item.select");
+    this.$hint.find("> *").scrollTop($itemSelect[0].offsetTop);
+  }
+  selectItem(e) {
+    switch (e.keyCode) {
       case 13: // enter
         $itemSelect = this.$hint.find(".find-hint__item.select");
         let text = $itemSelect.text().trim();
         this.$input.val(text).trigger("change").blur();
         return;
     }
-
-    $itemSelect = this.$hint.find(".find-hint__item.select");
-    this.$hint.find("> *").scrollTop($itemSelect[0].offsetTop);
   }
 }
