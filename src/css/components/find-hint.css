@@ -7,11 +7,15 @@
   transform: scaleY(0);
   transform-origin: top;
   transition: 0.3s;
-  max-height: 180px;
-  overflow-y: auto;
   z-index: 1;
   width: 100%;
   top: 130%;
+
+  overflow: hidden;
+}
+.find-hint__overflow {
+  max-height: 180px;
+  overflow-y: auto;
 }
 .find-hint.active {
   transform: scale(1);

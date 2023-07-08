@@ -3,7 +3,8 @@ import { data2get } from "./data2get";
 
 export default class FindHint {
   classActive = "active";
-  selectorHint = "+ .find-hint";
+  // selectorHint = "+ .find-hint";
+  selectorHint = "+ .find-hint__overflow";
   classHintItem = "find-hint__item";
   foundElements = {};
   search = "";
