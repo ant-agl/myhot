@@ -83,6 +83,6 @@ export default class FindHint {
     }
 
     $itemSelect = this.$hint.find(".find-hint__item.select");
-    this.$hint.find("> *").scrollTop($itemSelect.scrollTop());
+    this.$hint.find("> *").scrollTop($itemSelect.offset().top);
   }
 }
