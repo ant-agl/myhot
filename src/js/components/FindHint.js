@@ -19,6 +19,7 @@ export default class FindHint {
 
     this.$hint = this.$input.find(this.selectorHint);
     this.$input.on("focus input", this.changeSearch.bind(this));
+    this.$input.on("keyup", this.selectKey.bind(this));
     this.$input.on("blur", () => this.$hint.removeClass(this.classActive));
     this.$hint.on(
       "mousedown",
@@ -61,5 +62,24 @@ export default class FindHint {
       this.foundElements = data;
       this.updateHint();
     });
+  }
+  selectKey(e) {
+    let itemsCount = this.$hint.find(".find-hint__item").length;
+    let $itemSelect = this.$hint.find(".find-hint__item.select");
+    let indexSelect = $itemSelect?.index();
+
+    $itemSelect.removeClass("select");
+    switch (e.keyCode) {
+      case 38: // top
+        if (!indexSelect || indexSelect == 0)
+          this.$hint.find(".find-hint__item").last().addClass("select");
+        else $itemSelect.prev().addClass("select");
+        break;
+      case 40: // bottom
+        if (!indexSelect || indexSelect == itemsCount - 1)
+          this.$hint.find(".find-hint__item").first().addClass("select");
+        else $itemSelect.next().addClass("select");
+        break;
+    }
   }
 }

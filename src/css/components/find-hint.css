@@ -28,6 +28,7 @@
 .find-hint__item:not(:last-child) {
   border-bottom: 1px solid #eaeaea;
 }
-.find-hint__item:hover {
+.find-hint__item:hover,
+.find-hint__item.select {
   background: #e2f8ff;
 }
