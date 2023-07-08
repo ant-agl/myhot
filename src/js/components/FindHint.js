@@ -80,6 +80,11 @@ export default class FindHint {
           this.$hint.find(".find-hint__item").first().addClass("select");
         else $itemSelect.next().addClass("select");
         break;
+      case 13: // enter
+        $itemSelect = this.$hint.find(".find-hint__item.select");
+        let text = $itemSelect.text().trim();
+        this.$input.val(text).trigger("change").blur();
+        return;
     }
 
     $itemSelect = this.$hint.find(".find-hint__item.select");
