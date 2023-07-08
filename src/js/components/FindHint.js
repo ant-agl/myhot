@@ -90,7 +90,7 @@ export default class FindHint {
   selectItem(e) {
     switch (e.keyCode) {
       case 13: // enter
-        $itemSelect = this.$hint.find(".find-hint__item.select");
+        let $itemSelect = this.$hint.find(".find-hint__item.select");
         let text = $itemSelect.text().trim();
         this.$input.val(text).trigger("change").blur();
         return;
