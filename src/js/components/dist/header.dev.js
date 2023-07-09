@@ -174,14 +174,13 @@ $("body").on("click", "#modal-signin .btn-signin", function () {
     console.log(data);
     document.cookie = "token=".concat(data.token, "; path=/; max-age=").concat(60 * 60 * 24 * 3, ";");
     localStorage.token = data.token;
-
-    if (location.pathname == "/") {
-      setTimeout(function () {
+    setTimeout(function () {
+      if (location.pathname == "/") {
         window.location.href = "/lk";
-      }, 500);
-    } else {
-      location.reload();
-    }
+      } else {
+        location.reload();
+      }
+    }, 500);
   })["catch"](function (xhr) {
     console.log(xhr);
   });
@@ -221,14 +220,13 @@ $("body").on("click", "#modal-login .btn-login-hash", function () {
           modalLogin.close();
           document.cookie = "token=".concat(data.token, "; path=/; max-age=").concat(60 * 60 * 24 * 3, ";");
           localStorage.token = data.token;
-
-          if (location.pathname == "/") {
-            setTimeout(function () {
+          setTimeout(function () {
+            if (location.pathname == "/") {
               window.location.href = "/lk";
-            }, 500);
-          } else {
-            location.reload();
-          }
+            } else {
+              location.reload();
+            }
+          }, 500);
         } else {
           modalLogin.toPage(1);
         }
@@ -239,14 +237,13 @@ $("body").on("click", "#modal-login .btn-login-hash", function () {
           console.log(data);
           document.cookie = "token=".concat(data.token, "; path=/; max-age=").concat(60 * 60 * 24 * 3, ";");
           localStorage.token = data.token;
-
-          if (location.pathname == "/") {
-            setTimeout(function () {
+          setTimeout(function () {
+            if (location.pathname == "/") {
               window.location.href = "/lk";
-            }, 500);
-          } else {
-            location.reload();
-          }
+            } else {
+              location.reload();
+            }
+          }, 500);
         };
 
         confirmLogin.afterSendError = function (xhr) {

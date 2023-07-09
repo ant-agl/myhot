@@ -172,13 +172,13 @@ $("body").on("click", "#modal-signin .btn-signin", function () {
         60 * 60 * 24 * 3
       };`;
       localStorage.token = data.token;
-      if (location.pathname == "/") {
-        setTimeout(() => {
+      setTimeout(() => {
+        if (location.pathname == "/") {
           window.location.href = "/lk";
-        }, 500);
-      } else {
-        location.reload();
-      }
+        } else {
+          location.reload();
+        }
+      }, 500);
     })
     .catch((xhr) => {
       console.log(xhr);
@@ -230,13 +230,13 @@ $("body").on("click", "#modal-login .btn-login-hash", function () {
                 60 * 60 * 24 * 3
               };`;
               localStorage.token = data.token;
-              if (location.pathname == "/") {
-                setTimeout(() => {
+              setTimeout(() => {
+                if (location.pathname == "/") {
                   window.location.href = "/lk";
-                }, 500);
-              } else {
-                location.reload();
-              }
+                } else {
+                  location.reload();
+                }
+              }, 500);
             } else {
               modalLogin.toPage(1);
             }
@@ -248,13 +248,13 @@ $("body").on("click", "#modal-login .btn-login-hash", function () {
                 60 * 60 * 24 * 3
               };`;
               localStorage.token = data.token;
-              if (location.pathname == "/") {
-                setTimeout(() => {
+              setTimeout(() => {
+                if (location.pathname == "/") {
                   window.location.href = "/lk";
-                }, 500);
-              } else {
-                location.reload();
-              }
+                } else {
+                  location.reload();
+                }
+              }, 500);
             };
             confirmLogin.afterSendError = (xhr) => {
               modalLogin.toPage(1);
