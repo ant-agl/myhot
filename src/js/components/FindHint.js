@@ -90,10 +90,10 @@ export default class FindHint {
     this.$hint.find("> *").scrollTop($itemSelect[0].offsetTop);
   }
   selectItem(e) {
-    e.preventDefault();
-    e.stopPropagation();
     switch (e.keyCode) {
       case 13: // enter
+        e.preventDefault();
+        e.stopPropagation();
         let $itemSelect = this.$hint.find(".find-hint__item.select");
         let text = $itemSelect.text().trim();
         this.$input.val(text).trigger("change").blur();

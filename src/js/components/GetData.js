@@ -230,7 +230,7 @@ export default class GetData {
                   <span class="hotel-card__info-value">${fullPrice}</span>
                 </div>
 
-                <div class="hotel-card__info-row" ${
+                <div class="hotel-card__info-row hotel-card__info-row__right" ${
                   hotel.status != 1 ? 'style="display: none;"' : ""
                 }>
                   <button type="button" class="link-underline btn-open-review"

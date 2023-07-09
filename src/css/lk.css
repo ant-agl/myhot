@@ -343,6 +343,9 @@ select {
   display: flex;
   align-items: baseline;
 }
+.hotel-card__info-row__right {
+  justify-content: flex-end;
+}
 .hotel-card__info-title {
   font-size: 14px;
   line-height: 17px;
