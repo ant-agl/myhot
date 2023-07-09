@@ -729,6 +729,7 @@ export default class GetData {
                 hotel.rating.stars
               }.png" class="hotel-card__img-stars">
               <div class="hotel-card__title">${hotel.name}</div>
+              <div class="hotel-card__city">${hotel.city}</div>
               <div class="hotel-card__row-info">
                 <img src="../img/icons/geo.svg">
                 <span>От центра ${roundNumber(

@@ -185,6 +185,10 @@ body {
   line-height: 22px;
   color: #002a31;
 }
+.hotel-card__city {
+  font-size: 14px;
+  color: #002a31;
+}
 .hotel-card__row-info {
   margin: 8px 0;
   display: flex;

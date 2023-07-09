@@ -133,7 +133,6 @@ $(".form-search").on("submit", function (e) {
 
 $("body").on("keydown", function (e) {
   if (e.keyCode === 13) {
-    debugger;
     if ($(".modal_open").length == 0 && $(".find-hint.active").length == 0) {
       $(".search__button").eq(0).trigger("click");
     }
