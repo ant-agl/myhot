@@ -19,7 +19,7 @@ new Range({
   inputMax: "price_end",
   lowerBound: 0,
   upperBound: 200000,
-  minSpan: 1000,
+  minSpan: 100,
 });
 new Range({
   id: "dual-range-guest-rating",

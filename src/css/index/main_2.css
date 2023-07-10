@@ -308,6 +308,7 @@ body {
   flex-wrap: wrap;
   align-items: flex-start;
   padding: 5%;
+  z-index: 2;
 }
 
 .left_b_3 {
