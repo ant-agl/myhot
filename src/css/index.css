@@ -76,3 +76,9 @@
   font-size: 12px;
   margin-top: 50px;
 }
+
+@media (max-width: 860px) {
+  .footer__columns {
+    flex-direction: column;
+  }
+}
