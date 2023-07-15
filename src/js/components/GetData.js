@@ -181,6 +181,47 @@ export default class GetData {
             ? hotel.cost?.full?.toLocaleString() + " руб."
             : "&mdash;";
 
+          let htmlBtns = "";
+          switch (hotel.status) {
+            case 1:
+              // отзыв
+              htmlBtns = `
+              <div class="hotel-card__info-row hotel-card__info-row__right">
+                <button type="button" class="link-underline btn-open-review"
+                  data-reserve-id="${hotel.id}"
+                  data-hotel-id="${hotel.id_hotel}"
+                  data-is-review="${hotel.id_reviews ? 1 : 0}"
+                  data-modal-target="modal-review">
+                  ${hotel.id_reviews ? "Редактировать" : "Оставить"}
+                  отзыв
+                </button>
+              </div>`;
+              break;
+
+            case 4: // ожидание предоплаты
+              htmlBtns = `
+                <div class="hotel-card__info-row hotel-card__info-row__right">
+                  <a href="${hotel}" type="button" class="link-underline">
+                    Оплатить
+                  </a>
+                  <button type="button" class="link-underline">
+                    Отменить бронирование
+                  </button>
+                </div>`;
+              break;
+
+            case 2: // Ожидание заезда
+            case 5: // Ожидание подтверждения
+              // отменить бронирование
+              htmlBtns = `
+                <div class="hotel-card__info-row hotel-card__info-row__right">
+                  <button type="button" class="link-underline">
+                    Отменить бронирование
+                  </button>
+                </div>`;
+              break;
+          }
+
           html += `
             <div class="hotel-card" data-id="${
               hotel.id_hotel
@@ -230,18 +271,7 @@ export default class GetData {
                   <span class="hotel-card__info-value">${fullPrice}</span>
                 </div>
 
-                <div class="hotel-card__info-row hotel-card__info-row__right" ${
-                  hotel.status != 1 ? 'style="display: none;"' : ""
-                }>
-                  <button type="button" class="link-underline btn-open-review"
-                    data-reserve-id="${hotel.id}"
-                    data-hotel-id="${hotel.id_hotel}"
-                    data-is-review="${hotel.id_reviews ? 1 : 0}"
-                    data-modal-target="modal-review">
-                    ${hotel.id_reviews ? "Редактировать" : "Оставить"}
-                    отзыв
-                  </button>
-                </div>
+                ${htmlBtns}
 
               </div>
             </div>
