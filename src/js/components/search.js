@@ -131,14 +131,15 @@ $(".form-search").on("submit", function (e) {
   window.location.href = link + data2get(data);
 });
 
-// $("body").on("keydown", function (e) {
-//   if (e.keyCode === 13) {
-//     if (
-//       $(".modal_open").length == 0 &&
-//       $(".find-hint.active .find-hint__item.select").length == 0 &&
-//       $(".widget-chat.open").length == 0
-//     ) {
-//       $(".search__button").eq(0).trigger("click");
-//     }
-//   }
-// });
+$("body").on("keydown", function (e) {
+  debugger;
+  if (e.keyCode === 13) {
+    if (
+      $(".modal_open").length == 0 &&
+      $(".find-hint.active .find-hint__item.select").length == 0 &&
+      $(".widget-chat.open").length == 0
+    ) {
+      $(".search__button").eq(0).trigger("click");
+    }
+  }
+});

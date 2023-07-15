@@ -13,6 +13,13 @@ export function insertServices(services, columns, options = {}) {
     let interval = setInterval(() => {
       if (!allService) return;
 
+      if (services.free.length == 0) {
+        insertColumn(
+          columns.free.$col1,
+          columns.free.$col2,
+          "Услуги отсутствуют"
+        );
+      }
       services.free.forEach((id) => {
         if (!columns.free) return;
         let html = "";
@@ -42,6 +49,13 @@ export function insertServices(services, columns, options = {}) {
           insertColumn(columns.free.$col1, columns.free.$col2, html);
         }
       });
+      if (services.paid.length == 0) {
+        insertColumn(
+          columns.paid.$col1,
+          columns.paid.$col2,
+          "Услуги отсутствуют"
+        );
+      }
       services.paid.forEach((id, i) => {
         if (!columns.paid) return;
         let html = "";
