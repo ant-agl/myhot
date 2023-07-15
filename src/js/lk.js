@@ -273,6 +273,12 @@ confirmCancel.afterSendError = () => {
   modalText.open();
 };
 
+import BtnRepeat from "./components/BtnRepeat";
+new BtnRepeat(
+  "#modal-confirm-cancel .btn-repeat",
+  "#modal-confirm-cancel .btn-cancel-booking"
+);
+
 $("body").on("click", ".btn-cancel-booking", function () {
   let reserveId = $(this).data("reserve-id");
   if (!reserveId) return;
