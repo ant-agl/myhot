@@ -31,7 +31,7 @@ export default class FindHint {
   selectHint(e) {
     let $el = $(e.target).closest(`.${this.classHintItem}`);
     let val = $el.text().trim();
-    this.$input.val(val);
+    this.$input.val(val).trigger("change");
     this.$hint.removeClass(this.classActive);
   }
   changeSearch() {
@@ -99,7 +99,6 @@ export default class FindHint {
         let $itemSelect = this.$hint.find(".find-hint__item.select");
         let text = $itemSelect.text().trim();
         this.$input.val(text).blur();
-        debugger;
         this.$input.trigger("change");
         return;
     }
