@@ -76,7 +76,10 @@ $("body").on("click", ".hotel-card__img-heart", function (e) {
 });
 
 let timerInterval = false;
-$(".filters").on("change", function () {
+$(".filters, .search input").on("change", updateSearch);
+$(".search .add-child, .search .delete-child").on("click", updateSearch);
+
+function updateSearch() {
   let query = get2data();
   let searchQuery = {
     input_date: query?.input_date || "",
@@ -94,7 +97,7 @@ $(".filters").on("change", function () {
   timerInterval = setTimeout(() => {
     getData.hotelsList(query);
   }, 500);
-});
+}
 
 function getQueryFilter() {
   let filters = {};
@@ -131,9 +134,13 @@ $("body").on("click", ".filter__reset", function () {
   $(`#filter-content-${id} input`).prop("checked", false).trigger("change");
 });
 
-$(".search input").on("change", function () {
-  $(".search__button").trigger("click");
-});
-$(".search .add-child").on("click", function () {
-  $(".search__button").trigger("click");
-});
+// let searchTimerInterval = false;
+// $(".search input").on("change", function () {
+//   if (searchTimerInterval) clearTimeout(searchTimerInterval);
+//   searchTimerInterval = setTimeout(() => {
+//     $(".search__button").trigger("click");
+//   }, 500);
+// });
+// $(".search .add-child").on("click", function () {
+//   $(".search__button").trigger("click");
+// });

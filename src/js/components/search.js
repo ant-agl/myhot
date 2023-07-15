@@ -101,11 +101,10 @@ new AirDatepicker(".search__input_dates", {
 import moment from "moment";
 import { data2get, get2data } from "./data2get";
 
-$(".form-search").on("submit", function (e) {
-  e.preventDefault();
+$(".form-search input").on("change", updateGet);
+$(".search .add-child, .search .delete-child").on("click", updateGet);
 
-  if (!searchValid.validate()) return;
-
+function updateGet() {
   let search = $('[name="search"]').val().trim();
   let dates = $('[name="dates"]').val().trim();
   let adult = $('[name="adult"]').val();
@@ -123,11 +122,24 @@ $(".form-search").on("submit", function (e) {
   console.log(input_date, output_date);
   let person = Number(adult) + Number(child);
 
-  let data = { input_date, output_date, search, person, adult, childAge };
+  let searchData = { input_date, output_date, search, person, adult, childAge };
+
+  let data = { ...get2data(), ...searchData };
+
+  window.history.pushState({}, "", data2get(data));
+}
+
+$(".form-search").on("submit", function (e) {
+  e.preventDefault();
+
+  if (!searchValid.validate()) return;
+
+  let data = get2data();
 
   let link = "";
   if (window.location.pathname.includes("hotels-list")) link = "./";
   else link = "./hotels-list";
+
   window.location.href = link + data2get(data);
 });
 
@@ -136,8 +148,10 @@ $("body").on("keydown", function (e) {
   if (
     $el.closest("form").length > 0 &&
     !$el.closest("form").hasClass(".search")
-  )
+  ) {
     return;
+  }
+
   if (e.keyCode === 13) {
     if (
       $(".modal_open").length == 0 &&
