@@ -132,6 +132,7 @@ $(".form-search").on("submit", function (e) {
 });
 
 $("body").on("keydown", function (e) {
+  console.log($("*:focus"));
   debugger;
   if (e.keyCode === 13) {
     if (
