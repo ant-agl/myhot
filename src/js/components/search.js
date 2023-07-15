@@ -132,7 +132,12 @@ $(".form-search").on("submit", function (e) {
 });
 
 $("body").on("keydown", function (e) {
-  console.log($("*:focus"));
+  let $el = $("*:focus");
+  if (
+    $el.closest("form").length > 0 &&
+    !$el.closest("form").hasClass(".search")
+  )
+    return;
   debugger;
   if (e.keyCode === 13) {
     if (
