@@ -1,3 +1,5 @@
+import Map from "./Map";
+
 export default class MapApi {
   myMap;
   center = [55.76, 37.64];
@@ -22,6 +24,7 @@ export default class MapApi {
     this.onReadyLoad(() => {
       if (this.coords) this.addPoints(this.coords);
       if (this.btnOpenMap) {
+        new Map(this.btnOpenMap);
         $(this.btnOpenMap).on("click", this.openMap.bind(this));
       }
     });

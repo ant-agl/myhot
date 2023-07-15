@@ -1,9 +1,6 @@
 import "./default";
 import "./components/search";
 
-import Map from "./components/Map";
-new Map(".btn-open-map");
-
 import DropMenu from "./components/DropMenu";
 new DropMenu(".filters-mobile", {
   selectorsNotClose: [".filters"],
