@@ -274,10 +274,7 @@ confirmCancel.afterSendError = () => {
 };
 
 import BtnRepeat from "./components/BtnRepeat";
-new BtnRepeat(
-  "#modal-confirm-cancel .btn-repeat",
-  ".hotel-card .btn-cancel-booking"
-);
+new BtnRepeat("#modal-confirm-cancel .btn-repeat", ".btn-cancel-booking");
 
 $("body").on("click", ".btn-cancel-booking", function () {
   let reserveId = $(this).data("reserve-id");
@@ -294,6 +291,9 @@ $("body").on("click", ".btn-cancel-booking", function () {
     success: (data) => {
       console.log(data);
       modalCancelBooking.open();
+      modalCancelBooking.$modal
+        .find(".btn-repeat.btn-cancel-booking")
+        .data("reserve-id", reserveId);
     },
     error: () => {
       $("#modal-text .modal__title").text("Что-то пошло не так");
