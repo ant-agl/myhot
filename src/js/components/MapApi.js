@@ -35,7 +35,9 @@ export default class MapApi {
   }
   addPointsReady(coords) {
     this.onReadyLoad(() => {
-      this.addPoints(coords);
+      setTimeout(() => {
+        this.addPoints(coords);
+      });
     });
   }
   addPoints(coords = []) {
