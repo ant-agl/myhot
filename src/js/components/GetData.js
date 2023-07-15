@@ -149,9 +149,9 @@ export default class GetData {
 
         data.forEach((hotel) => {
           let dates = `${moment(hotel.date.input * 1000).format(
-            "DD.MM.YYYY"
+            "DD.MM.YY"
           )} - `;
-          dates += `${moment(hotel.date.output * 1000).format("DD.MM.YYYY")}`;
+          dates += `${moment(hotel.date.output * 1000).format("DD.MM.YY")}`;
 
           let filter = filters.find((f) => f.id == hotel.status);
           let status = filter.nick ?? filter.name;

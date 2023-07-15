@@ -75,6 +75,7 @@ export default class ConfirmPassword {
           this.afterSendSuccess(data);
         } catch (e) {
           console.error(e.message);
+          this.afterSendError(xhr);
         }
       },
       error: (xhr) => {

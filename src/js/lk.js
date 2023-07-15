@@ -263,7 +263,7 @@ confirmCancel.afterSendSuccess = (data) => {
   console.log(data);
 
   return;
-  let $hotel = $(`.hotel-card__status[data-id=${id}]`);
+  let $hotel = $(`.hotel-card__status[data-id=${data.id_reserve}]`);
   let $hint = $hotel.find(".hotel-card__status .value");
   $hint.find("span").text("Отмена");
   $hint.find(".hint__text").text("Отмена бронирования");
