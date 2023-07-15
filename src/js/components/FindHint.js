@@ -99,6 +99,7 @@ export default class FindHint {
         let $itemSelect = this.$hint.find(".find-hint__item.select");
         let text = $itemSelect.text().trim();
         this.$input.val(text).blur();
+        debugger;
         this.$input.trigger("change");
         return;
     }
