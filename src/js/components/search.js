@@ -102,11 +102,7 @@ import moment from "moment";
 import { data2get, get2data } from "./data2get";
 
 $(".form-search input").on("change", updateGet);
-$(".form-search").on("click", ".add-child, .delete-child", function () {
-  setTimeout(() => {
-    updateGet();
-  });
-});
+$(".form-search").on("click", ".add-child, .delete-child", updateGet);
 
 function updateGet() {
   let search = $('[name="search"]').val().trim();
@@ -125,7 +121,6 @@ function updateGet() {
   output_date = Math.floor(output_date / 1000);
   console.log(input_date, output_date);
   let person = Number(adult) + Number(child);
-  debugger;
 
   let searchData = { input_date, output_date, search, person, adult, childAge };
 

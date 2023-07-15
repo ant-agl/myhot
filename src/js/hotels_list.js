@@ -80,21 +80,21 @@ $(".filters, .search input").on("change", updateSearch);
 $(".search .add-child, .search .delete-child").on("click", updateSearch);
 
 function updateSearch() {
-  let query = get2data();
-  let searchQuery = {
-    input_date: query?.input_date || "",
-    output_date: query?.output_date || "",
-    search: query?.search || "",
-    person: query?.person || "",
-    adult: query?.adult || "",
-    childAge: query?.childAge || "",
-  };
-  let filters = getQueryFilter();
-  console.log(filters);
-  query = { ...searchQuery, ...filters };
-
   if (timerInterval) clearTimeout(timerInterval);
   timerInterval = setTimeout(() => {
+    let query = get2data();
+    let searchQuery = {
+      input_date: query?.input_date || "",
+      output_date: query?.output_date || "",
+      search: query?.search || "",
+      person: query?.person || "",
+      adult: query?.adult || "",
+      childAge: query?.childAge || "",
+    };
+    let filters = getQueryFilter();
+    console.log(filters);
+    query = { ...searchQuery, ...filters };
+
     getData.hotelsList(query);
   }, 500);
 }
