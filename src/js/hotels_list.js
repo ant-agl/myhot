@@ -76,7 +76,7 @@ $("body").on("click", ".hotel-card__img-heart", function (e) {
 });
 
 let timerInterval = false;
-$(".filters, .search input").on("change", function () {
+$(".filters").on("change", function () {
   let query = get2data();
   let searchQuery = {
     input_date: query?.input_date || "",
@@ -129,4 +129,11 @@ function getQueryFilter() {
 $("body").on("click", ".filter__reset", function () {
   let id = $(this).data("id");
   $(`#filter-content-${id} input`).prop("checked", false).trigger("change");
+});
+
+$(".search input").on("change", function () {
+  $(".search__button").trigger("click");
+});
+$(".search .add-child").on("click", function () {
+  $(".search__button").trigger("click");
 });
