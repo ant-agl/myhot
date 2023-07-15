@@ -138,7 +138,6 @@ $("body").on("keydown", function (e) {
     !$el.closest("form").hasClass(".search")
   )
     return;
-  debugger;
   if (e.keyCode === 13) {
     if (
       $(".modal_open").length == 0 &&
