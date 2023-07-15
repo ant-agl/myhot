@@ -229,9 +229,10 @@ export default class GetData {
           }
 
           html += `
-            <div class="hotel-card" data-id="${
-              hotel.id_hotel
-            }" data-filter-item="${hotel.status}">
+            <div class="hotel-card"
+              data-id="${hotel.id_hotel}"
+              data-filter-item="${hotel.status}"
+              data-reserve-id="${hotel.id}">
               <div class="hotel-card__head">
                 <div class="hotel-card__img">
                   <img src="${image}" alt="${hotel.hotel.name}">
