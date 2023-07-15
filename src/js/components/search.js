@@ -125,6 +125,7 @@ function updateGet() {
   output_date = Math.floor(output_date / 1000);
   console.log(input_date, output_date);
   let person = Number(adult) + Number(child);
+  debugger;
 
   let searchData = { input_date, output_date, search, person, adult, childAge };
 
