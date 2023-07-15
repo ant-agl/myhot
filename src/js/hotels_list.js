@@ -76,7 +76,7 @@ $("body").on("click", ".hotel-card__img-heart", function (e) {
 });
 
 let timerInterval = false;
-$(".filters").on("change", function () {
+$(".filters, .search input").on("change", function () {
   let query = get2data();
   let searchQuery = {
     input_date: query?.input_date || "",
