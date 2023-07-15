@@ -29,10 +29,7 @@ export default class Modal {
   }
   open(e) {
     if (!this.beforeOpen($(e?.target))) return;
-    // this.$modal.css("display", "flex");
-    // setTimeout(() => {
     this.$modal.addClass(this.openClass);
-    // }, 1);
 
     $("body").css("overflow", "hidden");
 
@@ -40,10 +37,6 @@ export default class Modal {
   }
   close() {
     this.$modal.removeClass(this.openClass);
-    // setTimeout(() => {
-    // this.$modal.css("display", "none");
-    // }, this.timeAnimate);
-
     $("body").css("overflow", "auto");
   }
   beforeOpen() {

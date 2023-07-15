@@ -276,7 +276,7 @@ confirmCancel.afterSendError = () => {
 import BtnRepeat from "./components/BtnRepeat";
 new BtnRepeat(
   "#modal-confirm-cancel .btn-repeat",
-  "#modal-confirm-cancel .btn-cancel-booking"
+  ".hotel-card .btn-cancel-booking"
 );
 
 $("body").on("click", ".btn-cancel-booking", function () {
