@@ -53,7 +53,6 @@ export default class FindHint {
     this.$hint.find(".find-hint__overflow").html(html);
     if (html != "") {
       this.$hint.addClass(this.classActive);
-      // scrollOverflow(this.$hint);
     }
   }
   request() {
@@ -90,6 +89,9 @@ export default class FindHint {
     this.$hint.find("> *").scrollTop($itemSelect[0].offsetTop);
   }
   selectItem(e) {
+    if (this.$hint.find(".find-hint__item.select").length === 0) {
+      this.$hint.find(".find-hint__item").first().addClass("select");
+    }
     switch (e.keyCode) {
       case 13: // enter
         e.preventDefault();
