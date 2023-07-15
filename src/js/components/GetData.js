@@ -186,7 +186,7 @@ export default class GetData {
             case 1:
               // отзыв
               htmlBtns = `
-              <div class="hotel-card__info-row hotel-card__info-row__right">
+              <div class="hotel-card__info-row hotel-card__info-row__right hotel-card__btns">
                 <button type="button" class="link-underline btn-open-review"
                   data-reserve-id="${hotel.id}"
                   data-hotel-id="${hotel.id_hotel}"
@@ -200,11 +200,15 @@ export default class GetData {
 
             case 4: // ожидание предоплаты
               htmlBtns = `
-                <div class="hotel-card__info-row hotel-card__info-row__right">
-                  <a href="${hotel}" type="button" class="link-underline">
+                <div class="hotel-card__info-row hotel-card__info-row__right hotel-card__btns">
+                  <button type="button"
+                    class="link-underline btn-pay-booking"
+                    data-reserve-id="${hotel.id}">
                     Оплатить
-                  </a>
-                  <button type="button" class="link-underline">
+                  </button>
+                  <button type="button"
+                    class="link-underline btn-cancel-booking"
+                    data-reserve-id="${hotel.id}">
                     Отменить бронирование
                   </button>
                 </div>`;
@@ -214,8 +218,10 @@ export default class GetData {
             case 5: // Ожидание подтверждения
               // отменить бронирование
               htmlBtns = `
-                <div class="hotel-card__info-row hotel-card__info-row__right">
-                  <button type="button" class="link-underline">
+                <div class="hotel-card__info-row hotel-card__info-row__right hotel-card__btns">
+                  <button type="button"
+                    class="link-underline btn-cancel-booking"
+                    data-reserve-id="${hotel.id}">
                     Отменить бронирование
                   </button>
                 </div>`;

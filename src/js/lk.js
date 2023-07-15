@@ -241,3 +241,108 @@ $("body").on("click", ".btn-go-sup", function (e) {
     $(".chats__item.support-chat").trigger("click");
   });
 });
+
+import ConfirmPassword from "./components/ConfirmPassword";
+let confirmCancel = new ConfirmPassword(
+  "#modal-confirm-cancel .input-code-confirm",
+  "#modal-confirm-cancel .btn-confirm-password",
+  { url: "https://bytrip.ru/handler/cancel_reserve_code.php" }
+);
+
+let modalCancelBooking = new Modal("#modal-confirm-cancel", {
+  closeToBackground: false,
+  beforeOpen: () => {
+    confirmCancel.clearAll();
+    confirmCancel.focusFirst();
+    return true;
+  },
+});
+
+confirmCancel.afterSendSuccess = (data) => {
+  modalCancelBooking.close();
+  console.log(data);
+
+  return;
+  let $hotel = $(`.hotel-card__status[data-id=${id}]`);
+  let $hint = $hotel.find(".hotel-card__status .value");
+  $hint.find("span").text("Отмена");
+  $hint.find(".hint__text").text("Отмена бронирования");
+  $hotel.find(".hotel-card__btns").remove();
+};
+confirmCancel.afterSendError = () => {
+  $("#modal-text .modal__title").text("Что-то пошло не так");
+  modalText.open();
+};
+
+$("body").on("click", ".btn-cancel-booking", function () {
+  let reserveId = $(this).data("reserve-id");
+  if (!reserveId) return;
+  $.ajax({
+    type: "POST",
+    url: "https://bytrip.ru/handler/cancel_reserve.php",
+    data: {
+      id: reserveId,
+    },
+    headers: {
+      "X-Auth": localStorage.token ?? "",
+    },
+    success: (data) => {
+      console.log(data);
+      modalCancelBooking.open();
+    },
+    error: () => {
+      $("#modal-text .modal__title").text("Что-то пошло не так");
+      modalText.open();
+    },
+  });
+});
+
+$("body").on("click", ".btn-cancel-booking", function () {
+  let reserveId = $(this).data("reserve-id");
+  if (!reserveId) return;
+  $.ajax({
+    type: "POST",
+    url: "https://bytrip.ru/handler/cancel_reserve.php",
+    data: {
+      id: reserveId,
+    },
+    headers: {
+      "X-Auth": localStorage.token ?? "",
+    },
+    success: (data) => {
+      console.log(data);
+      modalCancelBooking.open();
+    },
+    error: () => {
+      $("#modal-text .modal__title").text("Что-то пошло не так");
+      modalText.open();
+    },
+  });
+});
+
+$("body").on("click", ".btn-pay-booking", function () {
+  let reserveId = $(this).data("reserve-id");
+  if (!reserveId) return;
+  $.ajax({
+    type: "POST",
+    url: "https://bytrip.ru/handler/get_pay_generation.php",
+    data: {
+      id_reserve: reserveId,
+    },
+    headers: {
+      "X-Auth": localStorage.token ?? "",
+    },
+    success: (data) => {
+      location.href = data.url;
+    },
+    error: (xhr) => {
+      let textError = "Что-то пошло не так";
+      if (xhr.status == 410) {
+        textError = "Истёк срок платежа";
+      }
+
+      $("#modal-text .modal__title").text(textError);
+      modalText.open();
+    },
+  });
+});

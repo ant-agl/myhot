@@ -342,6 +342,7 @@ select {
   margin-top: 10px;
   display: flex;
   align-items: baseline;
+  gap: 15px;
 }
 .hotel-card__info-row__right {
   justify-content: flex-end;
