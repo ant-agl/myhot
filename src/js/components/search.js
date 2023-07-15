@@ -102,7 +102,7 @@ import moment from "moment";
 import { data2get, get2data } from "./data2get";
 
 $(".form-search input").on("change", updateGet);
-$(".form-search .add-child, .form-search .delete-child").on("click", updateGet);
+$(".form-search").on("click", ".add-child, .delete-child", updateGet);
 
 function updateGet() {
   let search = $('[name="search"]').val().trim();

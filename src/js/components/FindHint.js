@@ -98,7 +98,8 @@ export default class FindHint {
         e.stopPropagation();
         let $itemSelect = this.$hint.find(".find-hint__item.select");
         let text = $itemSelect.text().trim();
-        this.$input.val(text).trigger("change").blur();
+        this.$input.val(text).blur();
+        this.$input.trigger("change");
         return;
     }
   }
