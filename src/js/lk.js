@@ -245,7 +245,7 @@ $("body").on("click", ".btn-go-sup", function (e) {
 import ConfirmPassword from "./components/ConfirmPassword";
 let confirmCancel = new ConfirmPassword(
   "#modal-confirm-cancel .input-code-confirm",
-  "#modal-confirm-cancel .btn-confirm-password",
+  "#modal-confirm-cancel .btn-confirm-cancel",
   { url: "https://bytrip.ru/handler/cancel_reserve_code.php" }
 );
 
