@@ -297,29 +297,6 @@ $("body").on("click", ".btn-cancel-booking", function () {
   });
 });
 
-$("body").on("click", ".btn-cancel-booking", function () {
-  let reserveId = $(this).data("reserve-id");
-  if (!reserveId) return;
-  $.ajax({
-    type: "POST",
-    url: "https://bytrip.ru/handler/cancel_reserve.php",
-    data: {
-      id: reserveId,
-    },
-    headers: {
-      "X-Auth": localStorage.token ?? "",
-    },
-    success: (data) => {
-      console.log(data);
-      modalCancelBooking.open();
-    },
-    error: () => {
-      $("#modal-text .modal__title").text("Что-то пошло не так");
-      modalText.open();
-    },
-  });
-});
-
 $("body").on("click", ".btn-pay-booking", function () {
   let reserveId = $(this).data("reserve-id");
   if (!reserveId) return;
