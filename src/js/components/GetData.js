@@ -704,6 +704,8 @@ export default class GetData {
         btnOpenMap: ".btn-open-map",
         zoom: 13,
       });
+    } else {
+      myMap.removeAll();
     }
 
     if (!search) {
