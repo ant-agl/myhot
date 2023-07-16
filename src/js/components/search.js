@@ -13,8 +13,10 @@ new DropMenu(".search__input_guests", {
   selectorsNotClose: [".count-guest__modal", ".delete-child"],
 });
 $(".count-adult").on("input change", function () {
-  let val = $(this).val();
-  $(".count-guest__value .adult").text(val);
+  setTimeout(() => {
+    let val = $(this).val();
+    $(".count-guest__value .adult").text(val);
+  });
 });
 $("body").on("click", ".add-child, .delete-child", function () {
   setTimeout(() => {
