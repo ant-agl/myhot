@@ -242,7 +242,9 @@ import Cropper from "cropperjs";
 let cropper;
 
 $('[name="image"]').on("change", function () {
-  let url = $(this)[0].files[0];
+  let FReader = new FileReader();
+  let file = $(this)[0].files[0];
+  let url = FReader.readAsDataURL(file);
   $("#crop-avatar").attr("src", url);
 
   cropper = new Cropper($("#crop-avatar")[0], {
