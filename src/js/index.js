@@ -98,6 +98,6 @@ $("body").on("click", ".btn-go-sup", function (e) {
 $('[name="search"]').on("blur", function () {
   $('[name="dates"]').focus();
 });
-$('[name="dates"]').on("blur", function () {
+$('[name="dates"]').on("change", function () {
   $(".search__input_guests").trigger("click");
 });
