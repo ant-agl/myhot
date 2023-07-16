@@ -233,6 +233,7 @@ $("body").keyup(function (e) {
   }
 });
 
+import "cropperjs/dist/cropper.css";
 import Cropper from "cropperjs";
 const cropper = new Cropper($("#crop-avatar")[0], {
   aspectRatio: 1 / 1,
