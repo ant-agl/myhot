@@ -133,6 +133,7 @@ export default class Chat {
             arrImage,
             img,
             name,
+            message.time * 1000,
             isUser
           );
         });
@@ -181,6 +182,7 @@ export default class Chat {
             message.file,
             "/img/chat/info.jpg",
             "Новости",
+            message.time * 1000,
             false
           );
         });
@@ -249,6 +251,7 @@ export default class Chat {
             arrImage,
             img,
             name,
+            message.time * 1000,
             isUser
           );
         });
@@ -458,15 +461,15 @@ export default class Chat {
           fileReader.readAsDataURL(file);
           fileReader.onload = () => {
             fileImg.push(fileReader.result);
-            this.addMessage(id, text, fileImg, img, name, true);
+            this.addMessage(id, text, fileImg, img, name, moment(), true);
           };
         } else {
-          this.addMessage(id, text, [], img, name, true);
+          this.addMessage(id, text, [], img, name, moment(), true);
         }
       },
     });
   }
-  addMessage(id, text, images, avatar, name, isUser) {
+  addMessage(id, text, images, avatar, name, time, isUser) {
     if (
       id === undefined ||
       id === "undefined" ||
@@ -491,6 +494,7 @@ export default class Chat {
             <img src="${avatar}">
           </div>
           <div class="chat__name">${name}</div>
+          <div class="chat__name">${moment(time).format("HH:mm")}</div>
         </div>
         <div class="chat__text"><span>${text}</span>${imgHtml}</div>
       </div>
