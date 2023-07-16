@@ -253,7 +253,10 @@ $(".btn-save-avatar").on("click", function () {
   // Show
   let url = roundedCanvas.toDataURL();
   $(".main__photo-img").attr("src", url);
-  // $('[name="image"]').val(url);
+
+  let file = new File(url, "avatar");
+  $('[name="image"]')[0].files[0] = file;
+
   modalAvatar.close();
 });
 
