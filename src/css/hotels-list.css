@@ -123,7 +123,8 @@ body {
   background-color: #fff;
   flex: 1 1 22%;
   border-radius: 20px;
-  display: block;
+  display: flex;
+  flex-direction: column;
 }
 .hotel-card_hidden {
   visibility: hidden;
@@ -215,6 +216,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: auto;
 }
 .hotel-card__price {
   font-size: 15px;
