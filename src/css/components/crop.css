@@ -1,7 +1,11 @@
+.crop-block {
+  margin: 10px auto 20px;
+  width: 400px;
+  max-width: 100%;
+}
 #crop-avatar {
   display: block;
-  max-width: 400px;
-  /* width: 300px; */
+  max-width: 100%;
 }
 .cropper-view-box,
 .cropper-face {

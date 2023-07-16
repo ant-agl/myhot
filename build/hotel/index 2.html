@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, shrink-to-fit=no, user-scalable=0">
+  
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Raleway&display=swap"
+    rel="stylesheet">
+  
+  <link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/hotel.css">
+  <title>Отель | MyHot</title>
+</head>
+
+<body>
+  <header class="header header-auth">
+    <div class="container">
+      <div class="header__content">
+        <a href="../" class="logo">
+          <div class="logo__icon">
+            <svg width="70" height="42" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 264.7923 158.62282">
+              <path fill="#005382"
+                d="M325.9468,332.21468l-16.35,37.5a9.13384,9.13384,0,0,0,.18,7.7l.83,1.68a9.15021,9.15021,0,0,0,16.58-.36l23.73-53.87a9.13683,9.13683,0,0,1,8.37-5.46h16.51a9.15314,9.15314,0,0,1,8.32,12.98l-17.68,38.38a9.15314,9.15314,0,0,0,8.32,12.98h1.15a9.14509,9.14509,0,0,0,8.4-5.51l23.13-53.32a9.14509,9.14509,0,0,1,8.4-5.51h19.17a9.15221,9.15221,0,0,1,8.31,12.99l-64.85,140.32a9.15239,9.15239,0,0,1-16.55.14l-8.2-16.99a9.15562,9.15562,0,0,1-.11-7.71l12.68-28.38a9.15293,9.15293,0,0,0-8.36-12.88h-1.81a9.14318,9.14318,0,0,0-8.31,5.33l-27.57,60.03a9.14934,9.14934,0,0,1-16.62.02l-12.83-27.73a9.15,9.15,0,0,0-16.6-.02l-12.95,27.84a9.15236,9.15236,0,0,1-16.61-.03l-64.4-139.96a9.14657,9.14657,0,0,1,8.31-12.97h14.31a9.15253,9.15253,0,0,1,8.27,5.24l33.33,70.51a9.15263,9.15263,0,0,0,16.61-.13l1.66-3.67a9.169,9.169,0,0,0-.07-7.7l-24.16-50.85a9.15632,9.15632,0,0,1,8.47-13.08l19.33.42a9.14586,9.14586,0,0,1,8.11,5.32l1.46,3.16a9.14866,9.14866,0,0,0,16.7-.2l1.52-3.51a9.16107,9.16107,0,0,1,8.4-5.51h15.08A9.14793,9.14793,0,0,1,325.9468,332.21468Z"
+                transform="translate(-179.37813 -319.40468)" />
+            </svg>
+          </div>
+          <div class="logo__text">
+            WeHotel
+          </div>
+        </a>
+        <div class="header__buttons">
+          <a class="link-underline req_object_button" href="https://hotel.bytrip.ru" target="_blank">зарегистрировать
+            объект</a>
+  
+          <div class="header__icon">
+            <div class="profile-menu">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M16 20C20.4183 20 24 16.4183 24 12C24 7.58172 20.4183 4 16 4C11.5817 4 8 7.58172 8 12C8 16.4183 11.5817 20 16 20Z"
+                  stroke="#005382" stroke-width="2" stroke-miterlimit="10" />
+                <path
+                  d="M4 27C5.216 24.8718 6.96515 23.1044 9.07161 21.8757C11.1781 20.6469 13.5676 20 16 20C18.4324 20 20.8219 20.6469 22.9284 21.8757C25.0348 23.1044 26.784 24.8718 28 27"
+                  stroke="#005382" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+              <ul class="profile-menu__list">
+                <li class="profile-menu__item"><a class="profile-menu__link" href="/lk">Иванов Иван
+                    Иванович</a></li>
+                <li class="profile-menu__item profile-menu__item_booking" style="display: none;"><a
+                    class="profile-menu__link" href="/booking">Бронирование</a></li>
+                <li class="profile-menu__item">
+                  <span class="profile-menu__link" data-modal-target="modal-logout">Выход</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  
+  <header class="header header-noauth">
+    <div class="container">
+      <div class="header__content">
+        <a href="../" class="logo">
+          <div class="logo__icon">
+            <svg width="70" height="42" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 264.7923 158.62282">
+              <path fill="#005382"
+                d="M325.9468,332.21468l-16.35,37.5a9.13384,9.13384,0,0,0,.18,7.7l.83,1.68a9.15021,9.15021,0,0,0,16.58-.36l23.73-53.87a9.13683,9.13683,0,0,1,8.37-5.46h16.51a9.15314,9.15314,0,0,1,8.32,12.98l-17.68,38.38a9.15314,9.15314,0,0,0,8.32,12.98h1.15a9.14509,9.14509,0,0,0,8.4-5.51l23.13-53.32a9.14509,9.14509,0,0,1,8.4-5.51h19.17a9.15221,9.15221,0,0,1,8.31,12.99l-64.85,140.32a9.15239,9.15239,0,0,1-16.55.14l-8.2-16.99a9.15562,9.15562,0,0,1-.11-7.71l12.68-28.38a9.15293,9.15293,0,0,0-8.36-12.88h-1.81a9.14318,9.14318,0,0,0-8.31,5.33l-27.57,60.03a9.14934,9.14934,0,0,1-16.62.02l-12.83-27.73a9.15,9.15,0,0,0-16.6-.02l-12.95,27.84a9.15236,9.15236,0,0,1-16.61-.03l-64.4-139.96a9.14657,9.14657,0,0,1,8.31-12.97h14.31a9.15253,9.15253,0,0,1,8.27,5.24l33.33,70.51a9.15263,9.15263,0,0,0,16.61-.13l1.66-3.67a9.169,9.169,0,0,0-.07-7.7l-24.16-50.85a9.15632,9.15632,0,0,1,8.47-13.08l19.33.42a9.14586,9.14586,0,0,1,8.11,5.32l1.46,3.16a9.14866,9.14866,0,0,0,16.7-.2l1.52-3.51a9.16107,9.16107,0,0,1,8.4-5.51h15.08A9.14793,9.14793,0,0,1,325.9468,332.21468Z"
+                transform="translate(-179.37813 -319.40468)" />
+            </svg>
+          </div>
+          <div class="logo__text">
+            WeHotel
+          </div>
+        </a>
+        <nav class="desktop_nav">
+          <div class="nav_nav">
+            <a class="btn btn_white req_object_button" href="https://hotel.bytrip.ru" target="_blank">зарегистрировать
+              объект</a>
+            <button class="uk-button btn log_in_button" type="button" data-modal-target="modal-login">войти</button>
+          </div>
+        </nav>
+        <nav class="mobile_nav" uk-navbar>
+          <div class="uk-navbar-left">
+            <a class="uk-navbar-toggle uk-navbar-toggle-animate " uk-navbar-toggle-icon href="#"></a>
+            <div class="uk-navbar-dropdown">
+              <ul class="uk-nav uk-navbar-dropdown-nav">
+                <li class="uk-active"><a href="#">Навигация</a></li>
+                <li><a href="https://hotel.bytrip.ru" target="_blank">Зарегистрировать объект</a></li>
+                <li><a href="#" data-modal-target="modal-login">Войти</a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </header>
+  
+  <div class="modal" id="modal-logout">
+    <div class="modal__content modal__content_small">
+      <div class="modal__content-ovreflow">
+        <div class="modal__title">Вы уверены, что хотите выйти?</div>
+        <div class="modal__footer">
+          <button type="button" class="link-underline" data-modal-target-close="modal-logout">Остаться</button>
+          <button type="button" class="btn btn_danger btn-logout">Да</button>
+        </div>
+      </div>
+    </div>
+  </div>
+    <!-- Login -->
+    <div class="modal" id="modal-login">
+      <div class="modal__content modal__content_small">
+        <div class="modal__content-ovreflow">
+          <div class="modal__cross" data-modal-target-close="modal-login">
+            <img src="/img/icons/cross.png" alt="">
+          </div>
+          <div class="modal__pages">
+            <div class="modal__page active" data-page="0">
+              <h1 class="heading_form_h1 uk-modal-title">Вход в аккаунт</h1>
+              <div class="input-row">
+                <input data-validate="required phone" type="text" name="login" class="info_area mask-phone"
+                  placeholder="Телефон" required>
+              </div>
+              <div class="input-row">
+                <input data-validate="required" type="password" name="password" class="info_area" placeholder="Пароль"
+                  required>
+                <div class="toggle-show-password">
+                  <img class="toggle-show-password__img active" src="/img/icons/hide.png" alt="hide">
+                  <img class="toggle-show-password__img" src="/img/icons/show.png" alt="show">
+                </div>
+              </div>
+              <button type="button" class="modal__link" data-modal-target="modal-forgot"
+                data-modal-target-close="modal-login">Забыли пароль?</button>
+              <div class="botton_section_form">
+                <button class="link-underline" type="button" data-modal-target="modal-signin"
+                  data-modal-target-close="modal-login">Нет аккаунта?</button>
+                <button class="link-underline btn-login-hash" page-validate="true" type="button">Войти</button>
+              </div>
+            </div>
+            <div class="modal__page" data-page="1">
+              <div class="modal__title">Подтверждение почты</div>
+              <div class="modal__desc">Мы отправили код <span>на вашу почту</span></div>
+  
+              <div class="inputs-row">
+                <input type="tel" class="input-code-confirm">
+                <input type="tel" class="input-code-confirm">
+                <input type="tel" class="input-code-confirm">
+                <input type="tel" class="input-code-confirm">
+              </div>
+  
+              <div class="modal__message"></div>
+  
+              <button type="button" class="modal__link btn-repeat btn-login-hash" disabled>Отправить повторно</button>
+              <div class="modal__footer modal__footer_space">
+                <button type="button" class="link-underline" to-page="0">Назад</button>
+                <button type="button" class="link-underline modal__btn btn-confirm-password">Подтвердить</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Sign in -->
+    <div class="modal" id="modal-signin">
+      <div class="modal__content modal__content_small">
+        <div class="modal__content-ovreflow">
+          <div class="modal__cross" data-modal-target-close="modal-signin">
+            <img src="/img/icons/cross.png" alt="">
+          </div>
+          <div class="modal__pages">
+            <div class="modal__page active" data-page="0">
+              <h1 class="heading_form_h1 uk-modal-title">Информация о себе</h1>
+              <div class="input-row">
+                <input data-validate="required" type="text" name="surname" class="info_area" placeholder="Фамилия"
+                  required>
+              </div>
+              <div class="input-row">
+                <input data-validate="required" type="text" name="name" class="info_area" placeholder="Имя" required>
+              </div>
+              <div class="input-row">
+                <input type="text" name="patronymic" class="info_area" placeholder="Отчество (при наличии)">
+              </div>
+              <div class="input-row">
+                <input data-validate="required date" type="text" name="date" class="info_area" placeholder="Дата рождения"
+                  required readonly>
+              </div>
+              <div class="input-row">
+                <input data-validate="required mail" type="text" name="email" class="info_area" placeholder="e-mail"
+                  required>
+              </div>
+              <div class="input-row">
+                <input data-validate="required phone" type="text" name="phone" class="info_area mask-phone"
+                  placeholder="Номер телефона" required>
+              </div>
+  
+              <div class="botton_section_form">
+                <button class="link-underline" type="button" data-modal-target="modal-login"
+                  data-modal-target-close="modal-signin">Есть аккаунт?</button>
+                <p class="part_botton">1 из 3 этапов</p>
+                <button class="link-underline btn-reg-hash" page-validate="true" type="button">Далее</button>
+              </div>
+            </div>
+            <!-- <div class="modal__page" data-page="1">
+              <h1 class="heading_form_h1 uk-modal-title">Введите номер</h1>
+              <h2 class="heading_form_h2">Ваш номер телефона будет использоваться для входа в аккаунт</h2>
+              <div class="input-row">
+              </div>
+              <div class="botton_section_form">
+                <button class="link-underline" type="button" to-page="0">Назад</button>
+                <p class="part_botton">2 из 4 этапов</p>
+  
+              </div>
+            </div> -->
+            <div class="modal__page" data-page="1">
+              <div class="modal__title">Подтверждение телефона</div>
+              <div class="modal__desc">Мы отправили код <span>на ваш телефон</span></div>
+  
+              <div class="inputs-row">
+                <input type="tel" class="input-code-confirm">
+                <input type="tel" class="input-code-confirm">
+                <input type="tel" class="input-code-confirm">
+                <input type="tel" class="input-code-confirm">
+              </div>
+  
+              <div class="modal__message"></div>
+  
+              <button type="button" class="modal__link btn-repeat btn-reg-hash" disabled>Отправить повторно</button>
+              <div class="modal__footer modal__footer_space">
+                <button type="button" class="link-underline" to-page="0">Назад</button>
+                <p class="part_botton">2 из 3 этапов</p>
+                <button type="button" class="link-underline modal__btn btn-confirm-password">Подтвердить</button>
+              </div>
+            </div>
+            <div class="modal__page" data-page="2">
+              <div class="modal__title">Придумайте пароль</div>
+  
+              <div class="input-row">
+                <input data-validate="required min(8) password" type="password" name="password" class="info_area"
+                  placeholder="Пароль" required>
+                <div class="toggle-show-password">
+                  <img class="toggle-show-password__img active" src="/img/icons/hide.png" alt="hide">
+                  <img class="toggle-show-password__img" src="/img/icons/show.png" alt="show">
+                </div>
+              </div>
+              <div class="input-row__desc">*не менее 8 знаков</div>
+              <div class="input-row__desc">*должен включать цифры, оба регистра, спец. знак</div>
+              <div class="input-row">
+                <input data-validate="required min(8) repeat(password)" type="password" name="password_repeat"
+                  class="info_area" placeholder="Повторите пароль" required>
+                <div class="toggle-show-password">
+                  <img class="toggle-show-password__img active" src="/img/icons/hide.png" alt="hide">
+                  <img class="toggle-show-password__img" src="/img/icons/show.png" alt="show">
+                </div>
+              </div>
+              <div class="modal__footer modal__footer_space">
+                <button type="button" class="link-underline" to-page="0">Назад</button>
+                <p class="part_botton">3 из 3 этапов</p>
+                <button type="button" class="link-underline btn-signin">Зарегистрироваться</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Forgot password -->
+    <div class="modal" id="modal-forgot">
+      <div class="modal__content modal__content_small">
+        <div class="modal__content-ovreflow">
+          <div class="modal__cross" data-modal-target-close="modal-forgot">
+            <img src="/img/icons/cross.png" alt="">
+          </div>
+          <div class="modal__pages">
+            <div class="modal__page active" data-page="0">
+              <h1 class="heading_form_h1 uk-modal-title">Восстановление пароля</h1>
+              <div class="input-row">
+                <input data-validate="required phone" type="text" name="login" class="info_area mask-phone"
+                  placeholder="Телефон" required>
+              </div>
+              <div class="botton_section_form">
+                <button class="link-underline" type="button" data-modal-target="modal-login"
+                  data-modal-target-close="modal-forgot">Назад</button>
+                <p class="part_botton">1 из 3 этапов</p>
+                <button class="link-underline btn-hash-forgot" to-page="1" page-validate="true"
+                  type="button">Далее</button>
+              </div>
+            </div>
+            <div class="modal__page" data-page="1">
+              <div class="modal__title">Подтверждение смены пароля</div>
+              <div class="modal__desc">Мы отправили код <span>на вашу почту</span></div>
+  
+              <div class="inputs-row">
+                <input type="tel" class="input-code-confirm">
+                <input type="tel" class="input-code-confirm">
+                <input type="tel" class="input-code-confirm">
+                <input type="tel" class="input-code-confirm">
+              </div>
+  
+              <div class="modal__message"></div>
+  
+              <button type="button" class="modal__link btn-repeat btn-hash-forgot" disabled>Отправить повторно</button>
+              <div class="modal__footer modal__footer_space">
+                <button type="button" class="link-underline" to-page="0">Назад</button>
+                <p class="part_botton">2 из 3 этапов</p>
+                <button type="button" class="link-underline modal__btn btn-confirm-password"
+                  to-page="2">Подтвердить</button>
+              </div>
+            </div>
+            <div class="modal__page" data-page="2">
+              <div class="modal__title">Придумайте новый пароль</div>
+  
+              <div class="input-row">
+                <input data-validate="required min(8) password" type="password" name="password" class="info_area"
+                  placeholder="Пароль" required>
+                <div class="toggle-show-password">
+                  <img class="toggle-show-password__img active" src="/img/icons/hide.png" alt="hide">
+                  <img class="toggle-show-password__img" src="/img/icons/show.png" alt="show">
+                </div>
+              </div>
+              <div class="input-row__desc">*не менее 8 знаков</div>
+              <div class="input-row__desc">*должен включать цифры, оба регистра, спец. знак</div>
+              <div class="input-row">
+                <input data-validate="required min(8) repeat(password)" type="password" name="password_repeat"
+                  class="info_area" placeholder="Повторите пароль" required>
+                <div class="toggle-show-password">
+                  <img class="toggle-show-password__img active" src="/img/icons/hide.png" alt="hide">
+                  <img class="toggle-show-password__img" src="/img/icons/show.png" alt="show">
+                </div>
+              </div>
+              <div class="modal__footer modal__footer_space">
+                <button type="button" class="link-underline" to-page="0">Назад</button>
+                <p class="part_botton">3 из 3 этапов</p>
+                <button type="button" class="link-underline btn-forgot">Сохранить</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <div class="modal" id="modal-text" style="z-index: 99;">
+    <div class="modal__content modal__content_small">
+      <div class="modal__content-ovreflow">
+        <div class="modal__title"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section__main-info">
+    <div class="container">
+      <div class="hotel__main-info">
+        <div class="mobile-show">
+          <div class="hotel__row">
+            <div class="hotel__stars">
+              <img src="../img/icons/stars/5.png">
+            </div>
+            <a href="/hotels-list" class="main__button btn-back">Посмотреть другие варианы</a>
+          </div>
+          <div class="hotel__name"></div>
+          <div class="hotel__place hotel__row hotel__row_left">
+            <span class="hotel__geo"></span>
+          </div>
+          <div class="hotel__place hotel__row hotel__row_left">
+            <img src="../img/icons/geo.svg" class="invert">
+            <span>До центра <span class="hotel__place_center"></span> км</span>
+          </div>
+          <div class="hotel__place hotel__row hotel__row_left">
+            <img src="../img/icons/sea.svg" class="invert">
+            <span>До моря <span class="hotel__place_sea"></span> км</span>
+          </div>
+          <div class="hotel__place hotel__row hotel__row_left">
+            <img src="../img/icons/metro.svg" class="invert">
+            <span><span class="hotel__place_metro-name"></span> <span class="hotel__place_metro"></span> км</span>
+          </div>
+          <div class="hotel__place hotel__row hotel__row_left">
+            <img src="../img/icons/train.svg" class="invert">
+            <span><span class="hotel__place_train-name"></span> <span class="hotel__place_train"></span> км</span>
+          </div>
+          <div class="hotel__place hotel__row hotel__row_left">
+            <img src="../img/icons/plane.svg" class="invert">
+            <span><span class="hotel__place_airport-name"></span> <span class="hotel__place_airport"></span> км</span>
+          </div>
+        </div>
+        <div class="hotel__img">
+          <div class="hotel__slider-for"></div>
+          <div class="hotel__slider-nav"></div>
+        </div>
+        <div class="hotel__info">
+          <div class="mobile-hide">
+            <div class="hotel__row">
+              <div class="hotel__stars">
+                <img src="../img/icons/stars/5.png">
+              </div>
+              <a href="/hotels-list" class="main__button btn-back">Посмотреть другие варианы</a>
+            </div>
+            <div class="hotel__name"></div>
+            <div class="hotel__place hotel__row hotel__row_left">
+              <span class="hotel__geo"></span>
+            </div>
+            <div class="hotel__place hotel__row hotel__row_left">
+              <img src="../img/icons/geo.svg" class="invert">
+              <span>До центра <span class="hotel__place_center"></span> км</span>
+            </div>
+            <div class="hotel__place hotel__row hotel__row_left">
+              <img src="../img/icons/sea.svg" class="invert">
+              <span>До моря <span class="hotel__place_sea"></span> км</span>
+            </div>
+            <div class="hotel__place hotel__row hotel__row_left">
+              <img src="../img/icons/metro.svg" class="invert">
+              <span><span class="hotel__place_metro-name"></span> <span class="hotel__place_metro"></span> км</span>
+            </div>
+            <div class="hotel__place hotel__row hotel__row_left">
+              <img src="../img/icons/train.svg" class="invert">
+              <span><span class="hotel__place_train-name"></span> <span class="hotel__place_train"></span> км</span>
+            </div>
+            <div class="hotel__place hotel__row hotel__row_left">
+              <img src="../img/icons/plane.svg" class="invert">
+              <span><span class="hotel__place_airport-name"></span> <span class="hotel__place_airport"></span> км</span>
+            </div>
+          </div>
+          <div class="hotel__reviews">
+            <div class="hotel__row hotel__row_left">
+              <div class="hotel__estimation"></div>
+              <span>по оценкам гостей</span>
+            </div>
+            <div class="hotel__row hotel__reviews-content">
+            </div>
+          </div>
+          <div class="hotel__price">
+            от
+            <span class="hotel__price-value"></span>
+            руб. за 1 ночь
+          </div>
+          <div class="hotel__btn"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main class="main">
+    <div class="container">
+      <div class="main__content">
+        <div class="main__subsection">
+          <div class="main__menu">
+            <div class="main__menu-mobil page-content">
+              <span class="main__menu-select">Выбрать номер</span>
+              <img src="../img/icons/arr.png">
+            </div>
+          
+            <ul class="main__menu-list">
+              <li class="main__menu-item main__menu-item_active" data-target="choose-room" data-title="Выбрать номер">
+                <p class="main__menu-link">Выбрать номер</p>
+              </li>
+              <li class="main__menu-item" data-target="desc" data-title="Описание">
+                <p class="main__menu-link">Описание</p>
+              </li>
+              <li class="main__menu-item" data-target="services" data-title="Услуги">
+                <p class="main__menu-link">Услуги</p>
+              </li>
+              <li class="main__menu-item" data-target="reviews" data-title="Отзывы">
+                <p class="main__menu-link">Отзывы</p>
+              </li>
+              <li class="main__menu-item" data-target="geo" data-title="Местоположение">
+                <p class="main__menu-link">Местоположение</p>
+              </li>
+              <li class="main__menu-item" data-target="rules" data-title="Правила отеля">
+                <p class="main__menu-link">Правила отеля</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="main__section">
+
+<div class="tabs-content">
+  <div class="tab-content tab-content_active" id="choose-room">
+    <div class="choose-room">
+      <div class="dates-booking page-content">
+        <div class="dates-booking__flex">
+          <div class="dates-booking__date">
+            <div class="dates-booking__title">Дата заезда</div>
+            <div class="selected active">
+              <div class="dates-booking__row" data-type="from-weekday">Понедельник</div>
+              <div class="dates-booking__row" data-type="from-date">20 февраля 2023</div>
+              <div class="dates-booking__row" data-type="from-time">С 14:00</div>
+            </div>
+            <div class="not-selected">
+              <input class="dates-booking__input" type="text" name="date-from" readonly>
+            </div>
+          </div>
+          <div class="dates-booking__date">
+            <div class="dates-booking__title">Дата выезда</div>
+            <div class="selected active">
+              <div class="dates-booking__row" data-type="to-weekday">Понедельник</div>
+              <div class="dates-booking__row" data-type="to-date">20 февраля 2023</div>
+              <div class="dates-booking__row" data-type="to-time">До 12:00</div>
+            </div>
+            <div class="not-selected">
+              <input class="dates-booking__input" type="text" name="date-to" readonly>
+            </div>
+          </div>
+        </div>
+        <button class="link-underline dates-booking__change-dates">Изменить</button>
+      </div>
+    
+      <div class="choose-room__title">Список номеров</div>
+    
+      <div class="card-rooms"></div>
+    </div>
+  </div>
+  <div class="tab-content" id="services">
+    <div class="services">
+      <div class="services__block services__block_free page-content">
+        <div class="services__title">Бесплатные</div>
+        <div class="services__list">
+          <div class="services__column"></div>
+          <div class="services__column"></div>
+        </div>
+      </div>
+      <div class="services__block services__block_paid page-content">
+        <div class="services__title">Платные</div>
+        <div class="services__list">
+          <div class="services__column"></div>
+          <div class="services__column"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="tab-content" id="reviews">
+    <div class="reviews">
+      <div class="reviews__total page-content">
+        <div class="reviews__total-estimation">
+          <div class="reviews__estimation"></div>
+          <div class="reviews__estimation-text"></div>
+        </div>
+        <div class="reviews__params">
+          <div class="reviews__param" data-param="staff">
+            <div class="reviews__param-name">Персонал</div>
+            <div class="reviews__param-progressbar">
+              <div class="reviews__param-value"></div>
+              <div class="reviews__param-progress"></div>
+            </div>
+          </div>
+          <div class="reviews__param" data-param="cleanliness">
+            <div class="reviews__param-name">Чистота</div>
+            <div class="reviews__param-progressbar">
+              <div class="reviews__param-value"></div>
+              <div class="reviews__param-progress"></div>
+            </div>
+          </div>
+          <div class="reviews__param" data-param="location">
+            <div class="reviews__param-name">Местоположение</div>
+            <div class="reviews__param-progressbar">
+              <div class="reviews__param-value"></div>
+              <div class="reviews__param-progress"></div>
+            </div>
+          </div>
+          <div class="reviews__param" data-param="conveniences">
+            <div class="reviews__param-name">Удобства</div>
+            <div class="reviews__param-progressbar">
+              <div class="reviews__param-value"></div>
+              <div class="reviews__param-progress"></div>
+            </div>
+          </div>
+          <div class="reviews__param" data-param="comfort">
+            <div class="reviews__param-name">Комфорт</div>
+            <div class="reviews__param-progressbar">
+              <div class="reviews__param-value"></div>
+              <div class="reviews__param-progress"></div>
+            </div>
+          </div>
+          <div class="reviews__param" data-param="ratio">
+            <div class="reviews__param-name">Соотношение цена/качество</div>
+            <div class="reviews__param-progressbar">
+              <div class="reviews__param-value"></div>
+              <div class="reviews__param-progress"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="reviews__list">
+        <div class="reviews__column"></div>
+        <div class="reviews__column"></div>
+      </div>
+    </div>
+  </div>
+  <div class="tab-content" id="geo">
+    <div class="geo page-content">
+      <div class="geo__map">
+        <div class="geo__address">
+          <div class="geo__address-title">Адрес:</div>
+          <div class="geo__address-value">Москва, Бульварное кольцо, улица Петровка, дом 11/20</div>
+        </div>
+        <!-- //= ../../general/map-iframe -->
+    
+        <div id="map" class="map-iframe" style="position:relative;"></div>
+      </div>
+    
+      <div class="geo__title">Что есть рядом:</div>
+      <div class="geo__list">
+        <div class="geo__column"></div>
+        <div class="geo__column"></div>
+      </div>
+    </div>
+  </div>
+  <div class="tab-content" id="rules">
+    <div class="rules page-content">
+      <ol class="rules__list"></ol>
+    </div>
+  </div>
+  <div class="tab-content" id="desc">
+    <div class="hotel__description desc page-content">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe blanditiis nostrum, ipsam consectetur quasi rerum, eos
+      voluptatem fugit minima sed iure a fugiat accusantium ea sapiente quaerat laudantium sunt quam. Tenetur voluptatibus
+      eligendi excepturi! Quod ex tempora deserunt labore ullam itaque omnis, doloribus voluptatum officia assumenda
+      voluptates, corrupti eos, veritatis sed cupiditate voluptate explicabo architecto atque hic. Inventore quibusdam
+      nostrum vero quae quas ducimus velit quasi consequatur in unde harum corrupti, dignissimos ut sequi? Est quis
+      recusandae quia laborum nemo consequatur aspernatur, sunt quas. Totam vitae ut reiciendis excepturi autem a! Dolore
+      recusandae deleniti nesciunt facere vel deserunt sequi similique.
+    </div>
+  </div>
+</div>
+
+<div class="widget-chat">
+  <img class="widget-chat__img" src="../img/chat/message.png">
+  <div class="widget-chat__content">
+    <div class="chat">
+      <div class="chats">
+        <div class="chats__fix"></div>
+      </div>
+      <div class="chat__content" data-id="support">
+        <div class="chat__title">
+          <span class="chat__back">
+            <img src="../img/icons/arr.png">
+          </span>
+          <span class="chat__title-value"></span>
+        </div>
+        <div class="chat__messages"></div>
+    
+        <form class="chat__input-row form-chat-send">
+          <label class="chat__clip">
+            <img src="../img/icons/clip.png">
+            <input type="file" name="chat-file" accept="image/*">
+          </label>
+          <input type="text" name="chat-message" class="chat__input" placeholder="Сообщение...">
+          <button type="submit" class="chat__send" disabled><img src="../img/icons/send.png"></button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<script src="../js/hotel.js"></script>
+</body>
+
+</html>
