@@ -79,7 +79,7 @@ export function insertHotel(hotel) {
           : "",
       },
     ],
-    zoom: 12,
+    zoom: 10,
     fixZoom: true,
   });
 
