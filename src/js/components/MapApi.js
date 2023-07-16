@@ -115,4 +115,7 @@ export default class MapApi {
       clearInterval(interval);
     }, 1);
   }
+  removeAll() {
+    this.myMap.geoObjects.removeAll();
+  }
 }
