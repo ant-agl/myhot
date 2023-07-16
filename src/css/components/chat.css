@@ -72,6 +72,11 @@
   max-height: 20px;
   margin-top: 5px;
 }
+.chat__message-date {
+  text-align: center;
+  font-size: 12px;
+  margin-bottom: 15px;
+}
 .chats__count {
   color: #fff;
   background-color: #4169e1;

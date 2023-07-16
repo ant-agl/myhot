@@ -487,6 +487,17 @@ export default class Chat {
     }
 
     let messagePosition = isUser ? "chat__message_left" : "";
+
+    let dateMessage = moment(time).format("DD.MM.YYYY");
+    let isDateMessage =
+      this.$chat.find(`.chat__message-date[data-value="${dateMessage}"]`)
+        .length == 0;
+    if (isDateMessage) {
+      this.$chat.find(".chat__messages").append(`
+        <div class="chat__message-date" data-value="${dateMessage}">${dateMessage}</div>
+      `);
+    }
+
     this.$chat.find(".chat__messages").append(`
       <div class="chat__message ${messagePosition}" data-id="${id}">
         <div class="chat__avatar">
