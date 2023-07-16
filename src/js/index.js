@@ -99,5 +99,6 @@ $('[name="search"]').on("blur", function () {
   $('[name="dates"]').focus();
 });
 $('[name="dates"]').on("change", function () {
-  $(".search__input_guests").trigger("click");
+  if ($(this).val().split("-").length == 2)
+    $(".search__input_guests").trigger("click");
 });
