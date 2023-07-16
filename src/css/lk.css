@@ -6,7 +6,9 @@
 /*= components/input-review */
 /*= components/crop */
 
-@import "cropperjs/dist/cropper.min.css";
+@import "cropperjs";
+/* @import "cropperjs/cropper"; */
+/* @import "cropperjs/dist/cropper"; */
 
 .main__section::before {
   content: "";
