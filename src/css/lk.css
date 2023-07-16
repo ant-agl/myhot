@@ -4,6 +4,7 @@
 /*= components/mainButton */
 /*= components/colors */
 /*= components/input-review */
+/*= components/crop */
 
 .main__section::before {
   content: "";

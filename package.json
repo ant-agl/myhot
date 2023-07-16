@@ -17,6 +17,7 @@
     "@popperjs/core": "^2.11.6",
     "air-datepicker": "^3.3.5",
     "animate.css": "^4.1.1",
+    "cropperjs": "^1.5.13",
     "css-element-queries": "^1.2.3",
     "dual-range-bar": "^1.0.3",
     "jquery": "^3.6.4",

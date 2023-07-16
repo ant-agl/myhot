@@ -232,3 +232,11 @@ $("body").keyup(function (e) {
     $(".change-data.active").trigger("click");
   }
 });
+
+import Cropper from "cropperjs";
+const cropper = new Cropper($("#crop-avatar")[0], {
+  aspectRatio: 1 / 1,
+  viewMode: 3,
+});
+
+// $('[name="image"]').on("change", function () {});
