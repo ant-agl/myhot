@@ -239,12 +239,19 @@ let modalAvatar = new Modal("#modal-avatar", {
 
 import "cropperjs/dist/cropper.css";
 import Cropper from "cropperjs";
-const cropper = new Cropper($("#crop-avatar")[0], {
-  aspectRatio: 1 / 1,
-  viewMode: 2,
-});
+let cropper;
 
-// $('[name="image"]').on("change", function () {});
+$('[name="image"]').on("change", function () {
+  let url = $(this)[0].files[0];
+  $("#crop-avatar").attr("src", url);
+
+  cropper = new Cropper($("#crop-avatar")[0], {
+    aspectRatio: 1 / 1,
+    viewMode: 2,
+  });
+
+  modalAvatar.open();
+});
 
 $(".btn-save-avatar").on("click", function () {
   let croppedCanvas = cropper.getCroppedCanvas();
