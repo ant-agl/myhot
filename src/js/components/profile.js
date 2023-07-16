@@ -254,8 +254,8 @@ $(".btn-save-avatar").on("click", function () {
   let url = roundedCanvas.toDataURL();
   $(".main__photo-img").attr("src", url);
 
-  let file = new File(url, "avatar");
-  $('[name="image"]')[0].files[0] = file;
+  let blob = new Blob(url);
+  $('[name="image"]')[0].files[0] = blob;
 
   modalAvatar.close();
 });
