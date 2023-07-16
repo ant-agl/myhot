@@ -100,5 +100,5 @@ $('[name="search"]').on("blur", function () {
 });
 $('[name="dates"]').on("change", function () {
   if ($(this).val().split("-").length == 2)
-    $(".search__input_guests").trigger("click");
+    $(".search__input_guests").addClass("open");
 });
