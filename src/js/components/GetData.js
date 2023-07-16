@@ -699,6 +699,7 @@ export default class GetData {
 
     let myMap = new MapApi({
       btnOpenMap: ".btn-open-map",
+      zoom: 13,
     });
 
     if (!search) {
