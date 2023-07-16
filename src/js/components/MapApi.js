@@ -117,6 +117,7 @@ export default class MapApi {
     }, 1);
   }
   removeAll() {
+    this.countMarks = 0;
     this.myMap.geoObjects.removeAll();
   }
 }
