@@ -7,6 +7,7 @@ export default class MapApi {
   fixZoom = false;
   controls = ["zoomControl"];
   isReady = false;
+  countMarks = 0;
 
   constructor(options) {
     if ($("head #script-map").length == 0) {
@@ -47,6 +48,8 @@ export default class MapApi {
     var myGeoObjects = [];
 
     for (var i = 0; i < coords.length; i++) {
+      this.countMarks += 1;
+
       let hotel = coords[i];
       myGeoObjects[i] = new ymaps.GeoObject({
         geometry: {
@@ -74,7 +77,7 @@ export default class MapApi {
   autoCenter() {
     debugger;
     if (this.myClusterer) this.myMap.setBounds(this.myClusterer.getBounds());
-    if (this.fixZoom) this.setZoom(this.zoom);
+    if (this.fixZoom || this.countMarks <= 1) this.setZoom(this.zoom);
   }
   resizeMap() {
     this.myMap.container.fitToViewport();
