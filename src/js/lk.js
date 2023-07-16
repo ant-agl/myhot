@@ -33,20 +33,24 @@ import { get2data } from "./components/data2get";
 if (get2data().page) {
   $(`.main__menu-item[data-target="${get2data().page}"]`).trigger("click");
 }
-if (get2data().id_chat) {
-  let time = 0;
-  setTimeout(function openChat() {
-    let $item = $(
+
+let time = 0;
+setTimeout(function openChat() {
+  let $item;
+  if (get2data().id_chat) {
+    $item = $(
       `.tab-content#chat .chats__item[data-id="${get2data().id_chat}"]`
     );
-    if ($item.length) {
-      $item.trigger("click");
-    } else if (time <= 2000) {
-      time += 100;
-      setTimeout(openChat, 100);
-    }
-  });
-}
+  } else {
+    $item = $(`.tab-content#chat .chats__item.support-chat`);
+  }
+  if ($item.length) {
+    $item.trigger("click");
+  } else if (time <= 2000) {
+    time += 100;
+    setTimeout(openChat, 100);
+  }
+});
 
 import "./components/profile";
 
