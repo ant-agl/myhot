@@ -94,3 +94,10 @@ $("body").on("click", ".btn-go-sup", function (e) {
     $(".chats__item.support-chat").trigger("click");
   });
 });
+
+$('[name="search"]').on("blur", function () {
+  $('[name="dates"]').focus();
+});
+$('[name="dates"]').on("blur", function () {
+  $(".search__input_guests").trigger("click");
+});
