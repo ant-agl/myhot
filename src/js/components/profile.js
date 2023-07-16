@@ -233,6 +233,8 @@ $("body").keyup(function (e) {
   }
 });
 
+let modalAvatar = new Modal("#modal-avatar");
+
 import "cropperjs/dist/cropper.css";
 import Cropper from "cropperjs";
 const cropper = new Cropper($("#crop-avatar")[0], {
@@ -248,7 +250,8 @@ $(".btn-save-avatar").on("click", function () {
 
   // Show
   let url = roundedCanvas.toDataURL();
-  console.log(url);
+  $('[name="image"]').val(url);
+  modalAvatar.close();
 });
 
 function getRoundedCanvas(sourceCanvas) {

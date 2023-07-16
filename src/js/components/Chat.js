@@ -227,7 +227,7 @@ export default class Chat {
       },
       success: (data) => {
         data = JSON.parse(data);
-        console.log(data);
+
         data.messages?.forEach((message) => {
           let isUser =
             message.host?.sub == "users" || message.host?.sub == "anonym";
