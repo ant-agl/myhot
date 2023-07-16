@@ -381,7 +381,7 @@ export default class Chat {
     }
 
     let html = `
-      <div class="chats__item ${item.class} active" data-id="${item.id}">
+      <div class="chats__item ${item.class}" data-id="${item.id}">
         <div class="chats__img">
           <img src="/img/chat/support.jpg">
         </div>
