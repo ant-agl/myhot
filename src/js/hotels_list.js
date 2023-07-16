@@ -75,10 +75,10 @@ $("body").on("click", ".hotel-card__img-heart", function (e) {
   });
 });
 
-let timerInterval = false;
 $(".filters, .search input").on("change", updateSearch);
-$(".search .add-child, .search .delete-child").on("click", updateSearch);
+$(".form-search").on("click", ".add-child, .delete-child", updateSearch);
 
+let timerInterval = false;
 function updateSearch() {
   if (timerInterval) clearTimeout(timerInterval);
   timerInterval = setTimeout(() => {
