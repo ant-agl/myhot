@@ -241,3 +241,36 @@ const cropper = new Cropper($("#crop-avatar")[0], {
 });
 
 // $('[name="image"]').on("change", function () {});
+
+$(".btn-save-avatar").on("click", function () {
+  let croppedCanvas = cropper.getCroppedCanvas();
+  let roundedCanvas = getRoundedCanvas(croppedCanvas);
+
+  // Show
+  let url = roundedCanvas.toDataURL();
+  console.log(url);
+});
+
+function getRoundedCanvas(sourceCanvas) {
+  var canvas = document.createElement("canvas");
+  var context = canvas.getContext("2d");
+  var width = sourceCanvas.width;
+  var height = sourceCanvas.height;
+
+  canvas.width = width;
+  canvas.height = height;
+  context.imageSmoothingEnabled = true;
+  context.drawImage(sourceCanvas, 0, 0, width, height);
+  context.globalCompositeOperation = "destination-in";
+  context.beginPath();
+  context.arc(
+    width / 2,
+    height / 2,
+    Math.min(width, height) / 2,
+    0,
+    2 * Math.PI,
+    true
+  );
+  context.fill();
+  return canvas;
+}
