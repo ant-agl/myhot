@@ -33,6 +33,8 @@ import {
 } from "./insertDataHotel";
 import { insertServices } from "./insertServices";
 
+let myMap;
+
 export default class GetData {
   path = "https://bytrip.ru/handler/";
   path_php = "https://bytrip.ru/php/";
@@ -697,10 +699,12 @@ export default class GetData {
     let search = data2get(getData);
     let coords = [];
 
-    let myMap = new MapApi({
-      btnOpenMap: ".btn-open-map",
-      zoom: 13,
-    });
+    if (!myMap) {
+      myMap = new MapApi({
+        btnOpenMap: ".btn-open-map",
+        zoom: 13,
+      });
+    }
 
     if (!search) {
       this._notFoundHotels();
