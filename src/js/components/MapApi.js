@@ -72,6 +72,7 @@ export default class MapApi {
     this.autoCenter();
   }
   autoCenter() {
+    debugger;
     if (this.myClusterer) this.myMap.setBounds(this.myClusterer.getBounds());
     if (this.fixZoom) this.setZoom(this.zoom);
   }
