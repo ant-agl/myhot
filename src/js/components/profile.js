@@ -233,7 +233,9 @@ $("body").keyup(function (e) {
   }
 });
 
-let modalAvatar = new Modal("#modal-avatar");
+let modalAvatar = new Modal("#modal-avatar", {
+  closeToBackground: false,
+});
 
 import "cropperjs/dist/cropper.css";
 import Cropper from "cropperjs";
@@ -250,7 +252,8 @@ $(".btn-save-avatar").on("click", function () {
 
   // Show
   let url = roundedCanvas.toDataURL();
-  $('[name="image"]').val(url);
+  $(".main__photo-img").attr("src", url);
+  // $('[name="image"]').val(url);
   modalAvatar.close();
 });
 
