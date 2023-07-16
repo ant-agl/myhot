@@ -237,7 +237,7 @@ import "cropperjs/dist/cropper.css";
 import Cropper from "cropperjs";
 const cropper = new Cropper($("#crop-avatar")[0], {
   aspectRatio: 1 / 1,
-  viewMode: 3,
+  viewMode: 2,
 });
 
 // $('[name="image"]').on("change", function () {});
