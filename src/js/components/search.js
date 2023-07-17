@@ -154,7 +154,7 @@ $("body").on("keydown", function (e) {
     let $el = $("*:focus");
     if (
       $el.closest("form").length > 0 &&
-      !$el.closest("form").hasClass(".search")
+      !$el.closest("form").hasClass("search")
     ) {
       return;
     }
