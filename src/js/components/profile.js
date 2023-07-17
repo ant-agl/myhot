@@ -262,12 +262,12 @@ $(".btn-save-avatar").on("click", function () {
   let roundedCanvas = getRoundedCanvas(croppedCanvas);
 
   // Show
-  let url = roundedCanvas.toDataURL("image/jpeg");
+  let url = roundedCanvas.toDataURL();
   $(".main__photo-img").attr("src", url);
 
   roundedCanvas.toBlob(function (blob) {
     let dt = new DataTransfer();
-    dt.items.add(new File([blob], "avatar.jpg", { type: "image/jpeg" }));
+    dt.items.add(new File([blob], "avatar.png", { type: "image/png" }));
     let file_list = dt.files;
 
     document.querySelector('[name="image"]').files = file_list;
