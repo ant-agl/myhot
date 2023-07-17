@@ -428,8 +428,8 @@ export default class Chat {
     if (!id || !file) return;
     this.sendMessage(id, "", file);
 
-    // let dt = new DataTransfer();
-    // this.$chat.find('[name="chat-file"]')[0].files = dt.files;
+    let dt = new DataTransfer();
+    this.$chat.find('[name="chat-file"]')[0].files = dt.files;
   }
   sendMessage(id, text, file = undefined) {
     let formData = new FormData();
