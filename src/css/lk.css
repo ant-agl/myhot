@@ -280,6 +280,7 @@ select {
   flex-basis: 50%;
   border-radius: 20px;
   overflow: hidden;
+  display: block;
 }
 .hotel-card__img img {
   display: block;
@@ -327,6 +328,7 @@ select {
   display: flex;
   align-items: center;
   gap: 5px;
+  margin-bottom: 3px;
 }
 .hotel-card__geo::before {
   content: "";

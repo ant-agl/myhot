@@ -338,11 +338,11 @@ export default class GetData {
         `;
 
           htmlMobile += `
-          <a href="/hotel?id=${hotel.hotel_id}" class="hotel-card">
+          <div class="hotel-card">
             <div class="hotel-card__head">
-              <div class="hotel-card__img">
+              <a href="/hotel?id=${hotel.hotel_id}" class="hotel-card__img">
                 <img src="${hotel.joined_hotel_search[0].image}" alt="${hotel.joined_hotel_search[0].name}">
-              </div>
+              </a>
               <div class="hotel-card__main-info">
                 <div class="hotel-card__status">
                   <img src="../img/icons/cross.png" class="remove-favourites" data-id="${hotel.hotel_id}">
@@ -360,7 +360,7 @@ export default class GetData {
                 </div>
               </div>
             </div>
-          </a>
+          </div>
         `;
         });
 
