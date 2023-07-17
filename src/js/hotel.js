@@ -171,4 +171,4 @@ $("body").on("click", ".btn-msg-hotel", function (e) {
   });
 });
 
-import "./components/search";
+import "./components/search-room";
