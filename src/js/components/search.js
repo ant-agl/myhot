@@ -159,7 +159,7 @@ $("body").on("keydown", function (e) {
       return;
     }
 
-    if ($el.closest("form").hasClass(".search")) e.preventDefault();
+    if ($el.closest("form").hasClass("search")) e.preventDefault();
 
     if (
       $(".modal_open").length == 0 &&
