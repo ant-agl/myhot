@@ -109,7 +109,6 @@ $(".change-data").on("click", function () {
       formData.append(name, val);
     } else if (name == "image" && val) {
       formData.append(name, $(item)[0].files[0]);
-      debugger;
     } else if (val && val != lastVal) {
       if (name == "phone") val = val.replace(/\D/g, "");
 
@@ -263,7 +262,7 @@ $(".btn-save-avatar").on("click", function () {
   let roundedCanvas = getRoundedCanvas(croppedCanvas);
 
   // Show
-  let url = roundedCanvas.toDataURL();
+  let url = roundedCanvas.toDataURL("image/jpeg");
   $(".main__photo-img").attr("src", url);
 
   roundedCanvas.toBlob(function (blob) {
@@ -271,10 +270,6 @@ $(".btn-save-avatar").on("click", function () {
     dt.items.add(new File([blob], "avatar.jpg", { type: "image/jpeg" }));
     let file_list = dt.files;
 
-    console.log("Коллекция файлов создана:");
-    console.dir(file_list);
-
-    // Вставим созданную коллекцию в реальное поле:
     document.querySelector('[name="image"]').files = file_list;
   });
 
