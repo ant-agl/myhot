@@ -175,14 +175,14 @@ $(".change-data").on("click", function () {
   });
 });
 
-$(".input-avatar").on("change", function () {
-  let file = this.files[0];
-  let reader = new FileReader();
-  reader.readAsDataURL(file);
-  reader.onloadend = function () {
-    $(".main__photo-img").attr("src", reader.result);
-  };
-});
+// $(".input-avatar").on("change", function () {
+//   let file = this.files[0];
+//   let reader = new FileReader();
+//   reader.readAsDataURL(file);
+//   reader.onloadend = function () {
+//     $(".main__photo-img").attr("src", reader.result);
+//   };
+// });
 
 $(".btn-delete-account").on("click", function () {
   console.log("delete account");
@@ -242,17 +242,19 @@ import Cropper from "cropperjs";
 let cropper;
 
 $('[name="image"]').on("change", function () {
-  let FReader = new FileReader();
-  let file = $(this)[0].files[0];
-  let url = FReader.readAsDataURL(file);
-  $("#crop-avatar").attr("src", url);
+  let file = this.files[0];
+  let reader = new FileReader();
+  reader.readAsDataURL(file);
+  reader.onloadend = function () {
+    $("#crop-avatar").attr("src", reader.result);
 
-  cropper = new Cropper($("#crop-avatar")[0], {
-    aspectRatio: 1 / 1,
-    viewMode: 2,
-  });
+    cropper = new Cropper($("#crop-avatar")[0], {
+      aspectRatio: 1 / 1,
+      viewMode: 2,
+    });
 
-  modalAvatar.open();
+    modalAvatar.open();
+  };
 });
 
 $(".btn-save-avatar").on("click", function () {
