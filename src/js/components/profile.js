@@ -265,8 +265,17 @@ $(".btn-save-avatar").on("click", function () {
   let url = roundedCanvas.toDataURL();
   $(".main__photo-img").attr("src", url);
 
-  // let blob = new Blob(url);
-  // $('[name="image"]')[0].files[0] = blob;
+  roundedCanvas.toBlob(function (blob) {
+    let dt = new DataTransfer();
+    dt.items.add(new File([blob], "avatar.jpg")); //, {type: 'text/plain'}
+    let file_list = dt.files;
+
+    console.log("Коллекция файлов создана:");
+    console.dir(file_list);
+
+    // Вставим созданную коллекцию в реальное поле:
+    document.querySelector('[name="image"]').files = file_list;
+  });
 
   modalAvatar.close();
 });
