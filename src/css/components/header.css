@@ -45,6 +45,9 @@
   align-items: center;
   gap: 10px;
 }
+.logo__img {
+  width: 150px;
+}
 .logo__text {
   cursor: default;
   display: inline-block;
