@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, shrink-to-fit=no, user-scalable=0">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Raleway&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="/css/rules.css">
+  <link rel="icon" href="./img/favicon.svg">
+
+  <title>Публичный договор оферты</title>
+</head>
+
+<body>
+  <header class="header header-auth">
+    <div class="container">
+      <div class="header__content">
+        <a href="../" class="logo">
+          <img class="logo__img" src="/img/logo.svg" alt="Logo">
+        </a>
+        <div class="header__buttons">
+          <a class="link-underline req_object_button" href="https://hotel.bytrip.ru" target="_blank">зарегистрировать
+            объект</a>
+  
+          <div class="header__icon">
+            <div class="profile-menu">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M16 20C20.4183 20 24 16.4183 24 12C24 7.58172 20.4183 4 16 4C11.5817 4 8 7.58172 8 12C8 16.4183 11.5817 20 16 20Z"
+                  stroke="#005382" stroke-width="2" stroke-miterlimit="10" />
+                <path
+                  d="M4 27C5.216 24.8718 6.96515 23.1044 9.07161 21.8757C11.1781 20.6469 13.5676 20 16 20C18.4324 20 20.8219 20.6469 22.9284 21.8757C25.0348 23.1044 26.784 24.8718 28 27"
+                  stroke="#005382" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+              <ul class="profile-menu__list">
+                <li class="profile-menu__item"><a class="profile-menu__link" href="/lk">Иванов Иван
+                    Иванович</a></li>
+                <li class="profile-menu__item profile-menu__item_booking" style="display: none;"><a
+                    class="profile-menu__link" href="/booking">Бронирование</a></li>
+                <li class="profile-menu__item">
+                  <span class="profile-menu__link" data-modal-target="modal-logout">Выход</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  
+  <header class="header header-noauth">
+    <div class="container">
+      <div class="header__content">
+        <a href="../" class="logo">
+          <img class="logo__img" src="/img/logo.svg" alt="Logo">
+        </a>
+        <nav class="desktop_nav">
+          <div class="nav_nav">
+            <a class="btn btn_white req_object_button" href="https://hotel.bytrip.ru" target="_blank">зарегистрировать
+              объект</a>
+            <button class="uk-button btn log_in_button" type="button" data-modal-target="modal-login">войти</button>
+          </div>
+        </nav>
+        <nav class="mobile_nav" uk-navbar>
+          <div class="uk-navbar-left">
+            <a class="uk-navbar-toggle uk-navbar-toggle-animate " uk-navbar-toggle-icon href="#"></a>
+            <div class="uk-navbar-dropdown">
+              <ul class="uk-nav uk-navbar-dropdown-nav">
+                <li><a href="https://hotel.bytrip.ru" target="_blank">Зарегистрировать объект</a></li>
+                <li><a href="#" data-modal-target="modal-login">Войти</a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </header>
+  
+  <div class="modal" id="modal-logout">
+    <div class="modal__content modal__content_small">
+      <div class="modal__content-ovreflow">
+        <div class="modal__title">Вы уверены, что хотите выйти?</div>
+        <div class="modal__footer">
+          <button type="button" class="link-underline" data-modal-target-close="modal-logout">Остаться</button>
+          <button type="button" class="btn btn_danger btn-logout">Да</button>
+        </div>
+      </div>
+    </div>
+  </div>
+    <!-- Login -->
+    <div class="modal" id="modal-login">
+      <div class="modal__content modal__content_small">
+        <div class="modal__content-ovreflow">
+          <div class="modal__cross" data-modal-target-close="modal-login">
+            <img src="/img/icons/cross.png" alt="">
+          </div>
+          <div class="modal__pages">
+            <div class="modal__page active" data-page="0">
+              <h1 class="heading_form_h1 uk-modal-title">Вход в аккаунт</h1>
+              <div class="input-row">
+                <input data-validate="required phone" type="text" name="login" class="info_area mask-phone"
+                  placeholder="Телефон" required>
+              </div>
+              <div class="input-row">
+                <input data-validate="required" type="password" name="password" class="info_area" placeholder="Пароль"
+                  required>
+                <div class="toggle-show-password">
+                  <img class="toggle-show-password__img active" src="/img/icons/hide.png" alt="hide">
+                  <img class="toggle-show-password__img" src="/img/icons/show.png" alt="show">
+                </div>
+              </div>
+              <button type="button" class="modal__link" data-modal-target="modal-forgot"
+                data-modal-target-close="modal-login">Забыли пароль?</button>
+              <div class="botton_section_form">
+                <button class="link-underline" type="button" data-modal-target="modal-signin"
+                  data-modal-target-close="modal-login">Нет аккаунта?</button>
+                <button class="link-underline btn-login-hash" page-validate="true" type="button">Войти</button>
+              </div>
+            </div>
+            <div class="modal__page" data-page="1">
+              <div class="modal__title">Подтверждение почты</div>
+              <div class="modal__desc">Мы отправили код <span>на вашу почту</span></div>
+  
+              <div class="inputs-row">
+                <input type="tel" class="input-code-confirm">
+                <input type="tel" class="input-code-confirm">
+                <input type="tel" class="input-code-confirm">
+                <input type="tel" class="input-code-confirm">
+              </div>
+  
+              <div class="modal__message"></div>
+  
+              <button type="button" class="modal__link btn-repeat btn-login-hash" disabled>Отправить повторно</button>
+              <div class="modal__footer modal__footer_space">
+                <button type="button" class="link-underline" to-page="0">Назад</button>
+                <button type="button" class="link-underline modal__btn btn-confirm-password">Подтвердить</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Sign in -->
+    <div class="modal" id="modal-signin">
+      <div class="modal__content modal__content_small">
+        <div class="modal__content-ovreflow">
+          <div class="modal__cross" data-modal-target-close="modal-signin">
+            <img src="/img/icons/cross.png" alt="">
+          </div>
+          <div class="modal__pages">
+            <div class="modal__page active" data-page="0">
+              <h1 class="heading_form_h1 uk-modal-title">Информация о себе</h1>
+              <div class="input-row">
+                <input data-validate="required" type="text" name="surname" class="info_area" placeholder="Фамилия"
+                  required>
+              </div>
+              <div class="input-row">
+                <input data-validate="required" type="text" name="name" class="info_area" placeholder="Имя" required>
+              </div>
+              <div class="input-row">
+                <input type="text" name="patronymic" class="info_area" placeholder="Отчество (при наличии)">
+              </div>
+              <div class="input-row">
+                <input data-validate="required date" type="text" name="date" class="info_area" placeholder="Дата рождения"
+                  required readonly>
+              </div>
+              <div class="input-row">
+                <input data-validate="required mail" type="text" name="email" class="info_area" placeholder="e-mail"
+                  required>
+              </div>
+              <div class="input-row">
+                <input data-validate="required phone" type="text" name="phone" class="info_area mask-phone"
+                  placeholder="Номер телефона" required>
+              </div>
+  
+              <div class="botton_section_form">
+                <button class="link-underline" type="button" data-modal-target="modal-login"
+                  data-modal-target-close="modal-signin">Есть аккаунт?</button>
+                <p class="part_botton">1 из 3 этапов</p>
+                <button class="link-underline btn-reg-hash" page-validate="true" type="button">Далее</button>
+              </div>
+            </div>
+            <!-- <div class="modal__page" data-page="1">
+              <h1 class="heading_form_h1 uk-modal-title">Введите номер</h1>
+              <h2 class="heading_form_h2">Ваш номер телефона будет использоваться для входа в аккаунт</h2>
+              <div class="input-row">
+              </div>
+              <div class="botton_section_form">
+                <button class="link-underline" type="button" to-page="0">Назад</button>
+                <p class="part_botton">2 из 4 этапов</p>
+  
+              </div>
+            </div> -->
+            <div class="modal__page" data-page="1">
+              <div class="modal__title">Подтверждение телефона</div>
+              <div class="modal__desc">Мы отправили код <span>на ваш телефон</span></div>
+  
+              <div class="inputs-row">
+                <input type="tel" class="input-code-confirm">
+                <input type="tel" class="input-code-confirm">
+                <input type="tel" class="input-code-confirm">
+                <input type="tel" class="input-code-confirm">
+              </div>
+  
+              <div class="modal__message"></div>
+  
+              <button type="button" class="modal__link btn-repeat btn-reg-hash" disabled>Отправить повторно</button>
+              <div class="modal__footer modal__footer_space">
+                <button type="button" class="link-underline" to-page="0">Назад</button>
+                <p class="part_botton">2 из 3 этапов</p>
+                <button type="button" class="link-underline modal__btn btn-confirm-password">Подтвердить</button>
+              </div>
+            </div>
+            <div class="modal__page" data-page="2">
+              <div class="modal__title">Придумайте пароль</div>
+  
+              <div class="input-row">
+                <input data-validate="required min(8) password" type="password" name="password" class="info_area"
+                  placeholder="Пароль" required>
+                <div class="toggle-show-password">
+                  <img class="toggle-show-password__img active" src="/img/icons/hide.png" alt="hide">
+                  <img class="toggle-show-password__img" src="/img/icons/show.png" alt="show">
+                </div>
+              </div>
+              <div class="input-row__desc">*не менее 8 знаков</div>
+              <div class="input-row__desc">*должен включать цифры, оба регистра, спец. знак</div>
+              <div class="input-row">
+                <input data-validate="required min(8) repeat(password)" type="password" name="password_repeat"
+                  class="info_area" placeholder="Повторите пароль" required>
+                <div class="toggle-show-password">
+                  <img class="toggle-show-password__img active" src="/img/icons/hide.png" alt="hide">
+                  <img class="toggle-show-password__img" src="/img/icons/show.png" alt="show">
+                </div>
+              </div>
+              <div class="modal__footer modal__footer_space">
+                <button type="button" class="link-underline" to-page="0">Назад</button>
+                <p class="part_botton">3 из 3 этапов</p>
+                <button type="button" class="link-underline btn-signin">Зарегистрироваться</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Forgot password -->
+    <div class="modal" id="modal-forgot">
+      <div class="modal__content modal__content_small">
+        <div class="modal__content-ovreflow">
+          <div class="modal__cross" data-modal-target-close="modal-forgot">
+            <img src="/img/icons/cross.png" alt="">
+          </div>
+          <div class="modal__pages">
+            <div class="modal__page active" data-page="0">
+              <h1 class="heading_form_h1 uk-modal-title">Восстановление пароля</h1>
+              <div class="input-row">
+                <input data-validate="required phone" type="text" name="login" class="info_area mask-phone"
+                  placeholder="Телефон" required>
+              </div>
+              <div class="botton_section_form">
+                <button class="link-underline" type="button" data-modal-target="modal-login"
+                  data-modal-target-close="modal-forgot">Назад</button>
+                <p class="part_botton">1 из 3 этапов</p>
+                <button class="link-underline btn-hash-forgot" to-page="1" page-validate="true"
+                  type="button">Далее</button>
+              </div>
+            </div>
+            <div class="modal__page" data-page="1">
+              <div class="modal__title">Подтверждение смены пароля</div>
+              <div class="modal__desc">Мы отправили код <span>на вашу почту</span></div>
+  
+              <div class="inputs-row">
+                <input type="tel" class="input-code-confirm">
+                <input type="tel" class="input-code-confirm">
+                <input type="tel" class="input-code-confirm">
+                <input type="tel" class="input-code-confirm">
+              </div>
+  
+              <div class="modal__message"></div>
+  
+              <button type="button" class="modal__link btn-repeat btn-hash-forgot" disabled>Отправить повторно</button>
+              <div class="modal__footer modal__footer_space">
+                <button type="button" class="link-underline" to-page="0">Назад</button>
+                <p class="part_botton">2 из 3 этапов</p>
+                <button type="button" class="link-underline modal__btn btn-confirm-password"
+                  to-page="2">Подтвердить</button>
+              </div>
+            </div>
+            <div class="modal__page" data-page="2">
+              <div class="modal__title">Придумайте новый пароль</div>
+  
+              <div class="input-row">
+                <input data-validate="required min(8) password" type="password" name="password" class="info_area"
+                  placeholder="Пароль" required>
+                <div class="toggle-show-password">
+                  <img class="toggle-show-password__img active" src="/img/icons/hide.png" alt="hide">
+                  <img class="toggle-show-password__img" src="/img/icons/show.png" alt="show">
+                </div>
+              </div>
+              <div class="input-row__desc">*не менее 8 знаков</div>
+              <div class="input-row__desc">*должен включать цифры, оба регистра, спец. знак</div>
+              <div class="input-row">
+                <input data-validate="required min(8) repeat(password)" type="password" name="password_repeat"
+                  class="info_area" placeholder="Повторите пароль" required>
+                <div class="toggle-show-password">
+                  <img class="toggle-show-password__img active" src="/img/icons/hide.png" alt="hide">
+                  <img class="toggle-show-password__img" src="/img/icons/show.png" alt="show">
+                </div>
+              </div>
+              <div class="modal__footer modal__footer_space">
+                <button type="button" class="link-underline" to-page="0">Назад</button>
+                <p class="part_botton">3 из 3 этапов</p>
+                <button type="button" class="link-underline btn-forgot">Сохранить</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <div class="modal" id="modal-text" style="z-index: 99;">
+    <div class="modal__content modal__content_small">
+      <div class="modal__content-ovreflow">
+        <div class="modal__title"></div>
+      </div>
+    </div>
+  </div>
+
+<div class="container">
+  <h1 class="rules-title">Публичный договор оферты</h1>
+  <div class="rules-text">
+Российская Федерация							       г. Ростов-на-Дону
+Договор оферты опубликовано на странице сайта по адресу: www.bytrip.ru/rules/oferta
+Настоящий договор оферты представляет собой предложение общества с ограниченной ответственностью «ВИХАУ» в отношении оказания услуг размещения объекта, перечисленных на сайте www.bytrip.ru, и выражает намерение Организации заключить договор на оказание указанных услуг на условиях настоящей Оферты (далее – Договор и/или Оферта).
+1.	Термины и определения
+Сайт – совокупность веб-страниц, размещенных в сети Интернет по адресу: bytrip.ru, так же включая все под домены данного домена владельцем которого является Организация.
+Отельер – юридическое или физическое лицо, которое является собственником объекта размещения, либо представляет собственника объекта размещения, в том числе, разместившее после регистрации на Сайте информацию об объекте размещения на страницах своего Личного кабинета (hotel.bytrip.ru), в том числе имеющее доступ для работы с объектом размещения.
+Организация – общество с ограниченной ответственностью «ВИХАУ» (ОГРН 1236100011190, ИНН 6161098781, адрес 344092, г. Ростов-на-Дону, пр. Космонавтов 2/2, офис 21В)
+Объект размещения – любой объект, предназначенный для временного проживания Гостя: отели, апартаменты, туристические комплексы, дома отдыха, кемпинги, мотели, пансионаты, санатории и т.д.
+Номер — помещение в гостинице или отеле, состоящее из одного или более мест проживания.
+Личный кабинет гостя – страница, содержащая персональную информацию о лице, которое получило доступ к Сайту.
+Личный кабинет отельера – страница Отельера, которая размещается на странице hotel.bytrip.ru, для управления информацией об объекте размещения.
+Подписка – один из вариантов покупки доступа размещения объекта размещения. Данную услугу оплачивает непосредственно Отельер.
+Предоплата – один из вариантов покупки доступа, к бронированию объекта размещения на сайте. Данную услугу оплачивает Гость.
+Тарифы сайта – опубликованный документ на страницах Сайта, содержащий информацию о стоимости услуг, оказываемых Организацией.
+Пользовательские сервисы сайта – все сервисы, открытые в свободном доступе для посетителей сайта.
+Услуги – два варианта размещения объекта размещения на сайте, а именно Подписка и Предоплата. Выбор варианта осуществляется в личном кабинете отельера.
+Администратор – лицо, которое уполномочено Организацией, для осуществления управления, взаимодействия с Гостем и Отельером, для решения возникших трудностей, либо для иных целей по распоряжению Организацией.
+Акцепт - полное и безоговорочное принятие Гостем и Отельером условий настоящей Оферты.
+
+2.	Предмет Договора
+Организация обязуется по заданию Отельера оказать Услуги в соответствии с условиями настоящей оферты, а Гость и Отельер обязуется соблюдать (оплачивать) эти Услуги согласно настоящему соглашению.
+
+3.	Заключение Договора
+3.1	В соответствии со статьями 435, 437 и 438 Гражданского Кодекса РФ настоящая Оферта адресована Отельеру и Гостю, желающему воспользоваться сервисом исходя из представленных Услуг Организацией. Данное предложение является публичным со стороны Организации.
+3.2	Все условия настоящей Оферты являются обязательными для Отельеров и Гостей. Все условия настоящей Оферты считаются принятыми в случае внесения предоплаты Гостем или покупки/продления подписки Отельером.
+3.3	Договор заключается путём Акцепта (принятия) Гостем и Отельером настоящей Оферты, содержащей все существенные условия Договора. Договор имеет юридическую силу в соответствии со ст. 434 Гражданского Кодекса РФ и является равносильным договору в письменной форме, подписанному сторонами.
+3.4	Безоговорочный Акцепт (принятие) условий настоящей Оферты в соответствии со ст. 438 Гражданского Кодекса РФ заключается в осуществлении следующих действий:
+3.4.1	Для Гостя: внесение Предоплаты при бронировании объекта размещения.
+3.4.2	Для Отельера: оплата Подписки размещения для своего объекта.
+3.5	Период размещения объекта Отельера при оплате подписки определяется в соответствии с заказом Отельера при совершении оплаты на основании тарифов Сайта.
+4.	Порядок предоставления размещения объекта
+4.1	При оплате предоставляемых Услуг Сайтом:
+4.1.1	Отельер во время регистрации и/или в Личном кабинете отельера выбирает тариф, по которому будет размещён объект. В случае, если Отельер выбрал Подписку, то оплата происходит на странице выбора тарифа по кнопке «Оплатить». Стоимость данного варианта размещения определяется по действующим тарифным ставкам от 1000 (одной тысячи) рублей до 228 000 (двухсот двадцати восьми тысяч) рублей. Данный вариант предоставления размещения объекта предоставляется в течение одного рабочего дня, следующего за днём зачисления денежных средств на расчётный счёт Организации.
+4.1.2	Гость во время бронирования оплачивает Предоплату в размере 13% от стоимости всего заказа без учёта стоимости дополнительных (платных) услуг объекта. Оплата происходит при формировании заказа по кнопке «Оплатить». После оплаты происходит бронирование данного номера, с включенными бесплатными услугами.
+4.2	Отельер обязуется при выборе варианта размещения с Предоплатой, разместить Гостя в указанный срок последним. В случае несоблюдения Гостем всех условия Отельера и пользовательского соглашения (www.bytrip.ru/rules), Отельер вправе отказать в заселении Гостя.
+4.3	Отельер в течение срока размещения своего Объекта, на основании срока Подписки, вправе менять и/или изменять информацию об объекте размещения, если она не противоречит условиям пользовательского соглашения. Внесение изменения производится после проверки Администрацией Сайта на достоверность внесённых сведений.
+4.4	По окончанию срока размещения объекта, размещённая информация, фотографии и другие материалы размещённые Отельером, остаётся в Личном кабинете Отельера, но становятся недоступными для Гостей Сайта.
+4.5	Отельер предоставляет Гостю возможность проживать и использовать указанную Информацию о номерах/объекте размещения.
+4.6	Отельер обязуется исключить из стоимости размещения сумму Предоплаты в размере, указанном в пункте 4.1.2 данного Договора.
+4.7	Администрация Сайта вправе вмешаться во взаимодействие Отельера и Гостя по запросу в техническую поддержку.
+4.8	В течение всего срока размещения объекта на Сайте, Отельеру и Гостю предоставляется возможность связаться во внутреннем мессенджере для согласования условий проживания и других возникших вопросов.
+4.9	При размещении объекта по варианту «Предоплата», на странице объекта не публикуется: электронная почта, номер телефон и другая контактная информация объекта размещения.
+4.10	Организация, после внесение оплаты или выбора тарифа с Предоплатой, обязуется разметить объект размещения, предварительно проверив информацию на достоверность.
+5.	Стоимость Услуг и порядок расчётов
+5.1	Стоимость Предоплаты и Подписки, оказываемых Организацией, по Договору, являются неотъемлемой частью Договора. Оказание Услуг НДС не облагается в связи с применением Организацией упрощённой системы налогообложения.
+5.2	Организацией вправе изменять порядок, условия, стоимость и процент предоставляемых Услуг путём внесения изменений в данный Договор и тарифы Сайта. Уведомления о таких изменениях и дополнениях размещаются на Сайте не менее чем за 3 (три) дня до вступления их в силу.
+5.3	Оплата указанных Услуг производится через онлайн-кассу партнёра.
+5.4	В случае, если по каким-то причинам Организация возвращает деньги Гостю или Отельеру, то расходы по оплате различных комиссий вычитывается из суммы возвращаемых средств.
+5.5	В случае, если Гость и Отельер подтверждает отмену бронирования путём оповещения Технической поддержки (Администрации), сумма предоплаты не перечисляется Гостю в качестве компенсации. В случае, если причина отмены бронирования соответствует требованиям законодательства Российской Федерации, то Организация возвращает всю стоимость предоплаты с вычетом различных комиссий.
+6.	Срок действия и изменения условий Оферты.
+6.1	Оферта вступает в силу с момента размещения на Сайте и действует до момента отзыва Оферты Организации.
+6.2	Организация оставляет за собой право внести изменения в условия Оферты и/или отозвать Оферту в любой момент по своему усмотрению. В случае внесения изменений в Договор, то такие изменения вступают в силу с момента публикации на Сайте, если иной срок вступления изменений в силу не определён дополнительно при их публикации.
+7.	Срок действия Договора, основания его расторжения
+7.1	Договор вступает в силу с момента Акцепта настоящей Оферты Гостем и/или Отельером. Действует Договор до момента исполнения Организацией обязательств, указанных данной Офертой, либо до момента расторжения Договора.
+7.2	Договор может быть расторгнут Организацией в одностороннем порядке без возврата оплаты обоим Сторонам в случае совершения сторонами запрещенных действий, перечисленных в п.4.5 Пользовательского соглашения сайта www.bytrip.ru, опубликованного на Сайте. Моментом расторжения Договора в таком случае считается дата направления соответствующего электронного сообщения любой из сторон.
+7.3	Прекращение срока действия Договора по любому основанию не освобождает стороны от ответственности за нарушения условий Договора, возникшие в течение срока его действия.
+8.	Порядок рассмотрения претензий и споров
+8.1	Претензии по предоставляемым услуг возникшие у любой из сторон данного Договора принимаются к рассмотрению после обращения через Техническую поддержку и/или при направлении электронного обращения на почту support@bytrip.ru
+8.2	Все вопросы, не урегулированные настоящей Офертой или урегулированных не полностью, регулируются в соответствии с законодательством Российской Федерации.
+8.3	При не достижений между сторонами на переговорах спор, вытекающий из настоящего Договора, подлежит рассмотрению в судебном порядке по месту нахождения Организации.
+9.	Прочие условия
+9.1	Гость и Отельер обязаны не реже одного раза в неделю знакомиться с официальной информацией, связанной с оказанием Услуг, публикуемой на Сайте, включая изменения Пользовательского соглашения Сайта и других документов регулирующих деятельность Организации.
+
+  </div>
+</div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__columns">
+        <div class="footer__column">
+          <div class="footer__logo">
+            <img src="/img/logo-light.svg" alt="Logo">
+          </div>
+          <div class="footer__icons">
+            <a href="https://vk.com/bytripru" target="_blank" class="footer__icon"><img src="/img/icons/vk.png"
+                alt="VK"></a>
+            <a href="https://t.me/bytripru" target="_blank" class="footer__icon"><img src="/img/icons/tg.png"
+                alt="Telegram"></a>
+          </div>
+        </div>
+        <div class="footer__column">
+          <div class="footer__title">Документы</div>
+          <div class="footer__item">
+            <a href="/rules" target="_blank">Пользовательское соглашение</a>
+          </div>
+          <div class="footer__item">
+            <a href="#" target="_blank">Соглашение на обработку персональных данных</a>
+          </div>
+          <div class="footer__item">
+            <a href="#" target="_blank">Политика конфиденциальности</a>
+          </div>
+          <div class="footer__item">
+            <a href="/rules-oferta" target="_blank">Публичный договор оферты</a>
+          </div>
+          <div class="footer__item">
+            <a href="#" target="_blank">Договор непубличной оферты</a>
+          </div>
+          <div class="footer__item">
+            <a href="#" target="_blank">Услуги (тарификация) сайта</a>
+          </div>
+          <div class="footer__item">
+            <a href="/rules-booking" target="_blank">Правила бронирования жилья</a>
+          </div>
+          <div class="footer__item">
+            <a href="/rules-listining" target="_blank">Правила публикации объявлений</a>
+          </div>
+        </div>
+        <div class="footer__column">
+          <div class="footer__title">Контактные данные и реквизиты</div>
+          <div class="footer__item">ООО “ВИХАУ”</div>
+          <div class="footer__item">
+            <img src="/img/footer/1.png">
+            <span>Ростов-на-Дону, пр. Космонавтов 2/2, офис 421В</span>
+          </div>
+          <div class="footer__item">
+            <img src="/img/footer/2.png">
+            <a href="mailto:corp@bytrip.ru">Для сотрудничества: corp@bytrip.ru</a>
+          </div>
+          <div class="footer__item">
+            <img src="/img/footer/2.png">
+            <a href="mailto:support@bytrip.ru">Техническая поддержка: support@bytrip.ru</a>
+          </div>
+          <div class="footer__item">
+            <img src="/img/footer/3.png">
+            <a href="tel:+77777777777">+7 (777) 777-77-77</a>
+          </div>
+          <div class="footer__item">
+            <img src="/img/footer/4.png">
+            <span>ИНН: 6161098781</span>
+          </div>
+          <div class="footer__item">
+            <img src="/img/footer/5.png">
+            <span>ОГРН: 1236100011190</span>
+          </div>
+        </div>
+      </div>
+      <div class="footer__copy">Copyright 2023 All rights reserved | This template is made with by WEB-GEN</div>
+    </div>
+  </footer>
+  <script src="/js/rules.js"></script>
+</body>
+
+</html>
