@@ -364,6 +364,7 @@ export default class Chat {
     let countMessage = Number(item.message?.number_of_unread || 0);
     if (!item.last_host_staff) countMessage = 0;
 
+    let $chatItems = this.$chat.find(`.chats__item.${item.class}`);
     let $chatItem = this.$chat.find(
       `.chats__item.${item.class}[data-id="${item.id}"]`
     );
@@ -381,6 +382,8 @@ export default class Chat {
           .append(`<div class="chats__count">${countMessage}</div>`);
       }
       return;
+    } else if ($chatItems.length > 0) {
+      $chatItems.remove();
     }
 
     let html = `
