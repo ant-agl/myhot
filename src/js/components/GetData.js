@@ -322,10 +322,10 @@ export default class GetData {
           html += `
           <tr>
             <td>
-              <div class="table__image-block">
+              <a href="/hotel?id=${hotel.hotel_id}" class="table__image-block">
                 <img src="${hotel.joined_hotel_search[0].image}" alt="${hotel.joined_hotel_search[0].name}">
                 <span>${hotel.joined_hotel_search[0].name}</span>
-              </div>
+              </a>
             </td>
             <td>${geo}</td>
             <td>
