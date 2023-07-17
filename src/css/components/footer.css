@@ -25,6 +25,10 @@
 .footer__column:nth-child(1) {
   margin-right: auto;
 }
+.footer__logo {
+  margin-bottom: 30px;
+  width: 200px;
+}
 .footer__icons {
   display: flex;
   align-items: center;
