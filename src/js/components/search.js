@@ -162,7 +162,8 @@ $("body").on("keydown", function (e) {
     if (
       $(".modal_open").length == 0 &&
       $(".find-hint.active .find-hint__item.select").length == 0 &&
-      $(".widget-chat.open").length == 0
+      $(".widget-chat.open").length == 0 &&
+      $(".air-datepicker.-active-").length == 0
     ) {
       $(".search__button").eq(0).trigger("click");
     }
