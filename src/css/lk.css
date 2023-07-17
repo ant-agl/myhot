@@ -6,10 +6,6 @@
 /*= components/input-review */
 /*= components/crop */
 
-/* @import "cropperjs"; */
-/* @import "cropperjs/cropper"; */
-/* @import "cropperjs/dist/cropper"; */
-
 .main__section::before {
   content: "";
   display: block;

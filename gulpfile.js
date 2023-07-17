@@ -23,6 +23,7 @@ var path = {
       "build/hotel/",
       "build/booking/",
       "build/404/",
+      "build/rules/",
     ],
     js: "build/js/",
     css: "build/css/",
@@ -38,6 +39,7 @@ var path = {
       "src/hotel/*.html",
       "src/booking/*.html",
       "src/404/*.html",
+      "src/rules/*.html",
     ],
     js: [
       "./src/js/index.js",
