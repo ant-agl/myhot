@@ -275,6 +275,7 @@ $(".btn-save-avatar").on("click", function () {
 
     // Вставим созданную коллекцию в реальное поле:
     document.querySelector('[name="image"]').files = file_list;
+    debugger;
   });
 
   modalAvatar.close();
