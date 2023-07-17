@@ -170,3 +170,5 @@ $("body").on("click", ".btn-msg-hotel", function (e) {
     },
   });
 });
+
+import "./components/search";
