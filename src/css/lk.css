@@ -654,6 +654,7 @@ span.reviews-card__date-value {
 }
 .hotel-card_mobile .favourites-stars {
   width: 85px;
+  margin: 0;
 }
 .hotel-card_mobile .hotel-card__status {
   justify-content: flex-end;

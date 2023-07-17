@@ -338,7 +338,7 @@ export default class GetData {
         `;
 
           htmlMobile += `
-          <div class="hotel-card">
+          <a href="/hotel?id=${hotel.hotel_id}" class="hotel-card">
             <div class="hotel-card__head">
               <div class="hotel-card__img">
                 <img src="${hotel.joined_hotel_search[0].image}" alt="${hotel.joined_hotel_search[0].name}">
@@ -353,19 +353,14 @@ export default class GetData {
                 <div class="hotel-card__geo">
                   ${geo}
                 </div>
-              </div>
-            </div>
-            <div class="hotel-card__info">
-              <div class="hotel-card__info-row">
-                <span class="hotel-card__info-title">Рейтинг</span>
-                <span class="hotel-card__info-value">
+                <div class="hotel-card__stars">
                   <div class="stars favourites-stars">
                     <img src="../img/icons/stars/${hotel.joined_hotel_search[0].rating.stars}.png">
                   </div>
-                </span>
+                </div>
               </div>
             </div>
-          </div>
+          </a>
         `;
         });
 
