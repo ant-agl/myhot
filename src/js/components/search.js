@@ -150,17 +150,17 @@ $(".form-search").on("submit", function (e) {
 });
 
 $("body").on("keydown", function (e) {
-  let $el = $("*:focus");
-  if (
-    $el.closest("form").length > 0 &&
-    !$el.closest("form").hasClass(".search")
-  ) {
-    return;
-  }
-
-  if ($el.closest("form").hasClass(".search")) e.preventDefault();
-
   if (e.keyCode === 13) {
+    let $el = $("*:focus");
+    if (
+      $el.closest("form").length > 0 &&
+      !$el.closest("form").hasClass(".search")
+    ) {
+      return;
+    }
+
+    if ($el.closest("form").hasClass(".search")) e.preventDefault();
+
     if (
       $(".modal_open").length == 0 &&
       $(".find-hint.active .find-hint__item.select").length == 0 &&
