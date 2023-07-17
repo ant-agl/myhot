@@ -109,6 +109,7 @@ $(".change-data").on("click", function () {
       formData.append(name, val);
     } else if (name == "image" && val) {
       formData.append(name, $(item)[0].files[0]);
+      debugger;
     } else if (val && val != lastVal) {
       if (name == "phone") val = val.replace(/\D/g, "");
 
@@ -267,7 +268,7 @@ $(".btn-save-avatar").on("click", function () {
 
   roundedCanvas.toBlob(function (blob) {
     let dt = new DataTransfer();
-    dt.items.add(new File([blob], "avatar.jpg")); //, {type: 'text/plain'}
+    dt.items.add(new File([blob], "avatar.jpg", { type: "image/jpeg" }));
     let file_list = dt.files;
 
     console.log("Коллекция файлов создана:");
@@ -275,7 +276,6 @@ $(".btn-save-avatar").on("click", function () {
 
     // Вставим созданную коллекцию в реальное поле:
     document.querySelector('[name="image"]').files = file_list;
-    debugger;
   });
 
   modalAvatar.close();
