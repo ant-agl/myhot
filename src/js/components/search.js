@@ -158,6 +158,8 @@ $("body").on("keydown", function (e) {
     return;
   }
 
+  if ($el.closest("form").hasClass(".search")) e.preventDefault();
+
   if (e.keyCode === 13) {
     if (
       $(".modal_open").length == 0 &&
