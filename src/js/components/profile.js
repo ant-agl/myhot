@@ -250,7 +250,7 @@ $('[name="image"]').on("change", function () {
 
     cropper = new Cropper($("#crop-avatar")[0], {
       aspectRatio: 1 / 1,
-      viewMode: 2,
+      viewMode: 1,
     });
 
     modalAvatar.open();
