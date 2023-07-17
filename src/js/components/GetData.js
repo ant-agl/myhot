@@ -873,8 +873,6 @@ export default class GetData {
     );
   }
   hotel({ hotelId, input_date, output_date, person }) {
-    // if (!input_date) input_date = Math.floor(new Date().getTime() / 1000);
-    // if (!output_date) output_date = Math.floor(new Date().getTime() / 1000);
     if (!input_date) input_date = Math.floor(moment() / 1000);
     if (!output_date) output_date = Math.floor(moment().add(1, "days") / 1000);
     person = person ? person : 1;
