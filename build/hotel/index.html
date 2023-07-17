@@ -457,6 +457,47 @@
 <div class="tabs-content">
   <div class="tab-content tab-content_active" id="choose-room">
     <div class="choose-room">
+    
+      <form class="search form-search wow animate__animated  animate__fadeIn animate__zoomIn">
+        <div class="search__field">
+          <div class="search__icon">
+            <input data-validate="required" class="search__input search__input_search" type="text"
+              placeholder="Город, регион или отель" value="" name="search" autocomplete="off">
+            <div class="find-hint">
+              <div class="find-hint__overflow"></div>
+            </div>
+          </div>
+        </div>
+        <div class="search__field">
+          <div class="search__icon">
+            <input data-validate="required dates" class="search__input search__input_dates" type="text"
+              placeholder="Дата заезда - Дата выезда" value="" readonly name="dates">
+          </div>
+        </div>
+        <div class="search__field">
+          <div class="search__icon">
+            <div class="search__input search__input_guests count-guest">
+              <div class="count-guest__value"><span class="adult">1</span> взрослых, <span class="child">0</span> детей
+              </div>
+              <div class="count-guest__modal">
+                <div class="count-guest__modal-overflow">
+                  <div class="count-guest__row">
+                    <span>Количество взрослых</span>
+                    <div class="input-count">
+                      <span class="input-count__sign input-count__sign_minus">&ndash;</span>
+                      <input type="text" value="1" min="1" class="input-count__input count-adult" name="adult">
+                      <span class="input-count__sign input-count__sign_plus">+</span>
+                    </div>
+                  </div>
+                  <span class="add-child">Добавить ребенка +</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="search__button">найти</button>
+      </form>
+    
       <div class="dates-booking page-content">
         <div class="dates-booking__flex">
           <div class="dates-booking__date">
