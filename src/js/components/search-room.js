@@ -15,8 +15,8 @@ $(".form-search-room").on("submit", function (e) {
   if (!searchValid.validate()) return;
 
   let data = get2data();
-  data.input_date = Math.floor(from.getTime() / 1000);
-  data.output_date = Math.floor(to.getTime() / 1000);
+  // data.input_date = Math.floor(from.getTime() / 1000);
+  // data.output_date = Math.floor(to.getTime() / 1000);
 
   let getData = new GetData();
   if (!data.id) return;
