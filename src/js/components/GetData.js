@@ -875,6 +875,7 @@ export default class GetData {
   hotel({ hotelId, input_date, output_date, person }) {
     if (!input_date) input_date = Math.floor(new Date().getTime() / 1000);
     if (!output_date) output_date = Math.floor(new Date().getTime() / 1000);
+    person = person ? person : 1;
     $.get(
       this.path_php +
         `data_hotel.php?id_hotel=${hotelId}&input_date=${input_date}&output_date=${output_date}&person=${person}`,
