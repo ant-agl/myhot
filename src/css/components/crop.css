@@ -1,6 +1,7 @@
 .crop-block {
   margin: 10px auto 20px;
   width: 400px;
+  max-height: 400px;
   max-width: 100%;
 }
 #crop-avatar {
