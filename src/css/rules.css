@@ -1,6 +1,10 @@
 /*= default */
 /*= components/footer */
 
+.rules-title {
+  font-size: 30px;
+  margin-top: 20px;
+}
 .rules-text {
-  padding: 20px 0 300px;
+  padding-bottom: 300px;
 }
