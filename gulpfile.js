@@ -47,6 +47,7 @@ var path = {
       "./src/js/hotels_list.js",
       "./src/js/hotel.js",
       "./src/js/booking.js",
+      "./src/js/rules.js",
     ],
     css: [
       "src/css/index.css",
@@ -54,6 +55,7 @@ var path = {
       "src/css/hotels-list.css",
       "src/css/hotel.css",
       "src/css/booking.css",
+      "src/css/rules.css",
     ],
     img: "src/img/**/*.*",
     fonts: "src/fonts/**/*.*",
@@ -92,6 +94,7 @@ function jsBuild(done) {
           hotels_list: path.src.js[2],
           hotel: path.src.js[3],
           booking: path.src.js[4],
+          rules: path.src.js[5],
         },
         mode: "development", // production
         module: {
