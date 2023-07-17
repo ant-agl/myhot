@@ -248,7 +248,7 @@ $('[name="image"]').on("change", function () {
   reader.onloadend = function () {
     $("#crop-avatar").attr("src", reader.result);
 
-    cropper.destroy();
+    if (cropper) cropper.destroy();
     cropper = new Cropper($("#crop-avatar")[0], {
       aspectRatio: 1 / 1,
       viewMode: 2,
