@@ -344,6 +344,17 @@ body {
     flex-basis: 40%;
   }
 }
+@media (max-height: 700px) {
+  .map-big {
+    height: 340px;
+  }
+  .map-big.active {
+    max-height: 340px;
+  }
+  .map-iframe {
+    height: 300px;
+  }
+}
 @media (max-width: 900px) {
   .hotel-card {
     flex-basis: 100%;
