@@ -974,16 +974,12 @@ export default class GetData {
       }
     );
   }
-  getAllServices(hotelId, input_date, output_date) {
+  getAllServices() {
     return new Promise((resolve) => {
-      $.get(
-        this.path +
-          `get_all_services.php?id_hotel=${hotelId}&input_date=${input_date}&output_date=${output_date}`,
-        (allService) => {
-          allService = JSON.parse(allService);
-          resolve(allService);
-        }
-      );
+      $.get(this.path + "get_all_services.php", (allService) => {
+        allService = JSON.parse(allService);
+        resolve(allService);
+      });
     });
   }
 }

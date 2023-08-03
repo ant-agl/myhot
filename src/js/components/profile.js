@@ -140,7 +140,7 @@ $(".change-data").on("click", function () {
     $(".msg").removeClass("active");
   }, 1500);
 
-  if (data.email || data.phone || data.change_pass) {
+  if (data.email || data.phone || data.change_pass || data["2fa"]) {
     modalConfirm.open();
   }
 
