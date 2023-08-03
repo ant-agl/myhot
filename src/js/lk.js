@@ -294,6 +294,8 @@ $("body").on("click", ".btn-cancel-booking", function () {
     },
     success: (data) => {
       console.log(data);
+      data = JSON.parse(data);
+      modalCancelBooking.$modal.find(".return-sum").text(data.return);
       modalCancelBooking.open();
       modalCancelBooking.$modal
         .find(".btn-repeat.btn-cancel-booking")
