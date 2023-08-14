@@ -436,7 +436,7 @@
 }
 .card-room__images,
 .card-room__info {
-  flex: 1 1 50%;
+  width: 50%;
 }
 .card-room__images > div {
   border-radius: 20px;
