@@ -146,8 +146,8 @@ new ShowAll("free-service", {
 new ShowAll("paid-service", {
   minShowElements: 0,
   gap: 0,
-  textShow: "Выберете платные услуги —",
-  textHide: "Выберете платные услуги +",
+  textShow: "Выберите платные услуги —",
+  textHide: "Выберите платные услуги +",
 });
 
 $(".booking-btn").on("click", function (e) {

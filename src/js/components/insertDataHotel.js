@@ -400,7 +400,7 @@ export function insertDataRoom(room) {
             room.id
           }" data-target="paid-service__list-${
     room.id
-  }">Выберете платные услуги +</div>
+  }">Выберите платные услуги +</div>
           <div class="modal-room__paid-block" id="paid-service__list-${
             room.id
           }">
@@ -421,8 +421,8 @@ export function insertDataRoom(room) {
   new ShowAll(`paid-service-${room.id}`, {
     minShowElements: 0,
     gap: 0,
-    textShow: "Выберете платные услуги —",
-    textHide: "Выберете платные услуги +",
+    textShow: "Выберите платные услуги —",
+    textHide: "Выберите платные услуги +",
   });
 
   new BackgroundImage(`#modal-room-${room.id} .modal-room__main-img`, {
