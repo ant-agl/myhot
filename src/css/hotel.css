@@ -438,7 +438,7 @@
 .card-room__info {
   width: 50%;
 }
-.card-room__images > div {
+.card-room__images {
   border-radius: 20px;
   overflow: hidden;
 }
