@@ -309,8 +309,8 @@ export function insertRooms(rooms) {
       <div class="card-room page-content" data-id="${room.id}">
         <div class="card-room__title">${room.name}</div>
         <div class="card-room__body">
-          <div>
-            <div class="card-room__images">
+          <div class="card-room__images">
+            <div>
               <div class="card-room__slider-for-${i}"></div>
               <div class="card-room__slider-nav-${i}"></div>
             </div>
