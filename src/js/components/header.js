@@ -43,8 +43,8 @@ import isAuth from "./isAuth";
     let fio = `${auth.surname} ${auth.name}`;
     $(".profile-menu__link").first().text(fio);
 
-    if (auth.pre_reserve) $(".profile-menu__item_booking").show();
-    else $(".profile-menu__item_booking").hide();
+    if (auth.pre_reserve) $(".btn-link-booking").show();
+    else $(".btn-link-booking").hide();
   } else {
     $(".header-auth").hide();
     $(".header-noauth").show();
