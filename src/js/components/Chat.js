@@ -564,11 +564,13 @@ export default class Chat {
     if (w / h > rel) {
       // hImg = h;
       // wImg = (h / params.height) * params.width;
+
+      // hImg = "auto";
+      wImg = "700px";
+      hImg = (w / 700) * params.height;
+    } else {
       hImg = "80vh";
       wImg = "auto";
-    } else {
-      hImg = "auto";
-      wImg = "700px";
       // wImg = w;
       // hImg = (w / params.width) * params.height;
     }
