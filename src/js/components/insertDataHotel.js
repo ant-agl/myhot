@@ -148,6 +148,8 @@ export function insertRules(rules) {
 }
 export function insertNearby(nearby) {
   for (let name in nearby) {
+    if (!nearby[name]?.length) continue;
+
     let html = `<div class="geo__subtitle">${name}</div>`;
     nearby[name]?.forEach((geo) => {
       html += `
