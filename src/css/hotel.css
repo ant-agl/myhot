@@ -438,11 +438,12 @@
 .card-room__info {
   flex: 1 1 50%;
 }
-.card-room__images {
+.card-room__images > div {
   border-radius: 20px;
   overflow: hidden;
 }
-.card-room__images img {
+.card-room__slider-for__item,
+.card-room__slider-nav__item {
   display: block !important;
 }
 .card-room__main-img {
