@@ -417,7 +417,7 @@ export function insertDataRoom(room) {
               </div>
             </div>
           </div>
-          <div class="modal-room__title">Доступные бесплантые услуги для данного номера</div>
+          <div class="modal-room__title">Удобства номера</div>
           <div class="modal-room__free-list">
             <div class="modal-room__free-column">
             </div>
@@ -437,7 +437,7 @@ export function insertDataRoom(room) {
               <div class="modal-room__paid-column"></div>
             </div>
             <div class="modal-room__paid-total">
-              <span>Всего за платные услуги</span>
+              <span>Итого</span>
               <div class="modal-room__paid-total-value">0 руб.</div>
             </div>
           </div>
