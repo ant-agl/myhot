@@ -164,6 +164,9 @@ export function insertNearby(nearby) {
     let $col2 = $(".geo__column").eq(1);
     insertColumn($col1, $col2, html);
   }
+  if ($(".geo__column .geo__item").length == 0) {
+    $(".geo__column").eq(0).text("Пусто");
+  }
 }
 export function insertReviewsTotal(total) {
   for (let key in total) {
