@@ -66,7 +66,7 @@ export default class Chat {
 
     let chatId = $item.data("id");
     let hotelId = $item.data("hotel-id");
-    if (hotelId) {
+    if (hotelId !== undefined) {
       this.$chat
         .find(".chat__title-value")
         .attr("href", `/hotel?id=${hotelId}`);
