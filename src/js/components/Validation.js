@@ -96,6 +96,15 @@ export default class Validation {
     };
     return res;
   }
+  ru(val) {
+    var regex = /^а-яА-Я$/;
+    let success = regex.test(val);
+    let res = {
+      success,
+      text: this.textMail ?? "Только русские буквы",
+    };
+    return res;
+  }
   mail(val) {
     var regex =
       /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
