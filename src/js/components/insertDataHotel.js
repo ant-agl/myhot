@@ -310,8 +310,12 @@ export function insertRooms(rooms) {
         <div class="card-room__title">${room.name}</div>
         <div class="card-room__body">
           <div class="card-room__images">
+            <div class="card-room__slider-for-${i}"></div>
+            <div class="card-room__slider-nav-${i}"></div>
+          </div>
+          <div class="card-room__images" style="display:none;>
             <div class="card-room__main-img" data-url="${room.images[0]}"></div>
-            <div class="card-room__second-images">
+            <div class="card-room__second-images"">
               <div class="card-room__second-img" data-url="${
                 room.images[1]
               }"></div>
@@ -345,14 +349,52 @@ export function insertRooms(rooms) {
       </div>
     `;
     $(".card-rooms").append(html);
+
+    let imagesFor =
+      room.images?.map(
+        (url) =>
+          `<div class="card-room__slider-for__item" data-url="${url}"></div>`
+      ) ?? [];
+    let imagesNav =
+      room.images?.map(
+        (url) =>
+          `<div class="card-room__slider-nav__item" data-url="${url}"></div>`
+      ) ?? [];
+    $(".card-room__slider-for-" + i).html(imagesFor.join());
+    $(".card-room__slider-nav-" + i).html(imagesNav.join());
+
+    $(".card-room__slider-for-" + i).slick({
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      arrows: false,
+      fade: true,
+      asNavFor: ".card-room__slider-nav-" + i,
+      autoplay: true,
+    });
+    $(".card-room__slider-nav-" + i).slick({
+      arrows: false,
+      slidesToShow: 2,
+      slidesToScroll: 1,
+      asNavFor: ".card-room__slider-for-" + i,
+      focusOnSelect: true,
+      centerMode: true,
+      centerPadding: 0,
+    });
   });
   if (rooms.length == 0)
     $(".card-rooms").append("На выбранные даты свободных номеров нет");
-  new BackgroundImage(".card-room__main-img", {
+  // new BackgroundImage(".card-room__main-img", {
+  //   paddingBottom: "40%",
+  //   size: "cover",
+  // });
+  // new BackgroundImage(".card-room__second-img", {
+  //   paddingBottom: "20%",
+  //   size: "cover",
+  // });
+  new BackgroundImage(".card-room__slider-for__item", {
     paddingBottom: "40%",
-    size: "cover",
   });
-  new BackgroundImage(".card-room__second-img", {
+  new BackgroundImage(".card-room__slider-nav__item", {
     paddingBottom: "20%",
     size: "cover",
   });

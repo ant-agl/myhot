@@ -573,10 +573,6 @@ export default class Chat {
 
     setTimeout(() => {
       $img2.css({
-        // with: wImg,
-        // height: hImg,
-        // width: "700px",
-        // height: "auto",
         width: wImg + "px",
         height: hImg + "px",
         top: 0,
