@@ -5,3 +5,5 @@ build/php/
 build/handler/
 /build/.htaccess*
 build/Apache_2.4*
+*.xml
+build/robots.txt
