@@ -555,34 +555,30 @@ export default class Chat {
       });
 
     let $img2 = $(".open-img-chat img");
-    let w = $(window).outerWidth();
-    let h = $(window).outerHeight();
+    // let w = $(window).outerWidth();
+    // let h = $(window).outerHeight();
+    let w = 700;
+    let h = $(window).outerHeight() * 0.8;
 
     let hImg, wImg;
 
     let rel = params.width / params.height;
     if (w / h > rel) {
-      // hImg = h;
-      // wImg = (h / params.height) * params.width;
-
-      // hImg = "auto";
-      wImg = "700px";
-      hImg = (w / 700) * params.height;
+      hImg = h;
+      wImg = (h / params.height) * params.width;
     } else {
-      hImg = "80vh";
-      wImg = "auto";
-      // wImg = w;
-      // hImg = (w / params.width) * params.height;
+      wImg = w;
+      hImg = (w / params.width) * params.height;
     }
 
     setTimeout(() => {
       $img2.css({
-        with: wImg,
-        height: hImg,
+        // with: wImg,
+        // height: hImg,
         // width: "700px",
         // height: "auto",
-        // width: wImg + "px",
-        // height: hImg + "px",
+        width: wImg + "px",
+        height: hImg + "px",
         top: 0,
         bottom: 0,
         left: 0,
