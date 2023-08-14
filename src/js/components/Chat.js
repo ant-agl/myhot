@@ -562,17 +562,23 @@ export default class Chat {
 
     let rel = params.width / params.height;
     if (w / h > rel) {
-      hImg = h;
-      wImg = (h / params.height) * params.width;
+      // hImg = h;
+      // wImg = (h / params.height) * params.width;
+      hImg = "auto";
+      wImg = "700px";
     } else {
-      wImg = w;
-      hImg = (w / params.width) * params.height;
+      hImg = "80vh";
+      wImg = "auto";
+      // wImg = w;
+      // hImg = (w / params.width) * params.height;
     }
 
     setTimeout(() => {
       $img2.css({
-        width: "700px",
-        height: "auto",
+        with: wImg,
+        height: hImg,
+        // width: "700px",
+        // height: "auto",
         // width: wImg + "px",
         // height: hImg + "px",
         top: 0,
