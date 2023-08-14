@@ -540,16 +540,19 @@ export default class Chat {
 
     $("body").append(`<div class="open-img-chat"></div>`);
     $(".open-img-chat").addClass("active");
-    $img.clone().appendTo(".open-img-chat").css({
-      transition: "0.3s",
-      top: params.top,
-      left: params.left,
-      // width: params.width + "px",
-      // height: params.height + "px",
-      position: "fixed",
-      zIndex: "99999",
-      margin: "auto",
-    });
+    $img
+      .clone()
+      .appendTo(".open-img-chat")
+      .css({
+        transition: "0.3s",
+        top: params.top,
+        left: params.left,
+        width: params.width + "px",
+        height: params.height + "px",
+        position: "fixed",
+        zIndex: "99999",
+        margin: "auto",
+      });
 
     let $img2 = $(".open-img-chat img");
     let w = $(window).outerWidth();
@@ -569,9 +572,11 @@ export default class Chat {
     setTimeout(() => {
       $img2.css({
         width: "700px",
+        height: "auto",
         // width: wImg + "px",
         // height: hImg + "px",
         top: 0,
+        bottom: 0,
         left: 0,
         right: 0,
       });

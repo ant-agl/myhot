@@ -59,9 +59,11 @@
 
 .profile-menu {
   position: relative;
+}
+.profile-menu svg {
   transition: 0.2s;
 }
-.profile-menu:hover {
+.profile-menu svg:hover {
   transform: scale(1.1);
 }
 .profile-menu.active .profile-menu__list {
