@@ -35,7 +35,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 0 10px;
+  padding: 10px 0;
 }
 .header__icon {
   cursor: pointer;
