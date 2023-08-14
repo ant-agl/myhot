@@ -373,7 +373,7 @@ export function insertRooms(rooms) {
   if (rooms.length == 0)
     $(".card-rooms").append("На выбранные даты свободных номеров нет");
   new BackgroundImage(".card-room__slider-for__item", {
-    paddingBottom: "70%",
+    paddingBottom: "40%",
   });
   new BackgroundImage(".card-room__slider-nav__item", {
     paddingBottom: "40%",
