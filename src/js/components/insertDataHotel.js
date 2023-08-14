@@ -379,9 +379,6 @@ export function insertRooms(rooms) {
     paddingBottom: "40%",
     size: "cover",
   });
-  debugger;
-  let w = $(".card-room__images").outerWidth();
-  $(".card-room__slider-for .slick-track").css("width", w + "!important");
 }
 
 export function insertDataRoom(room) {
