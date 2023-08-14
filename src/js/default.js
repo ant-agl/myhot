@@ -5,7 +5,8 @@ import Chat from "./components/chat";
 new Chat(".widget-chat__content .chat");
 
 function changeHeightOnResize() {
-  $(".main__section").css("maxWidth", $(".main__content").outerWidth() - 320);
+  if ($(".main__subsection").length)
+    $(".main__section").css("maxWidth", $(".main__content").outerWidth() - 320);
 
   let headerH =
     $(".header").outerHeight(true) + ($(".search")?.outerHeight(true) ?? 0);

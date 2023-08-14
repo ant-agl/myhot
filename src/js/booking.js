@@ -37,7 +37,8 @@ $.ajax({
       `../img/icons/stars/${data.hotel.stars}.png`
     );
     if (data.favourite) $(".booking-hotel__heart").addClass("active");
-    $(".booking-hotel__name").text(data.hotel.name);
+    $(".booking-hotel__name").text(data.room.name);
+    $(".booking-hotel__hotel-name").text(data.hotel.name);
     $(".booking-hotel__address").text(data.hotel.address);
 
     let peoples = [];
@@ -53,7 +54,6 @@ $.ajax({
     let peoplesText = peoples.length > 0 ? peoples.join(", ") : "&mdash;";
 
     $(".booking-hotel__people").text(peoplesText);
-    $(".booking-hotel__description").text(data.hotel.description);
     $(".booking-hotel__price-value, .booking-total__room-price span").text(
       data.cost.night.toLocaleString()
     );
