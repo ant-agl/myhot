@@ -313,17 +313,6 @@ export function insertRooms(rooms) {
             <div class="card-room__slider-for-${i}"></div>
             <div class="card-room__slider-nav-${i}"></div>
           </div>
-          <div class="card-room__images" style="display:none;>
-            <div class="card-room__main-img" data-url="${room.images[0]}"></div>
-            <div class="card-room__second-images"">
-              <div class="card-room__second-img" data-url="${
-                room.images[1]
-              }"></div>
-              <div class="card-room__second-img" data-url="${
-                room.images[2]
-              }"></div>
-            </div>
-          </div>
           <div class="card-room__info">
             <ul class="card-room__list" id="rooms-list-${i}">
               ${room.description}
