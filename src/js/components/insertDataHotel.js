@@ -310,10 +310,8 @@ export function insertRooms(rooms) {
         <div class="card-room__title">${room.name}</div>
         <div class="card-room__body">
           <div class="card-room__images">
-            <div>
-              <div class="card-room__slider-for-${i}"></div>
-              <div class="card-room__slider-nav-${i}"></div>
-            </div>
+            <div class="card-room__slider-for-${i}"></div>
+            <div class="card-room__slider-nav-${i}"></div>
           </div>
           <div class="card-room__info">
             <ul class="card-room__list" id="rooms-list-${i}">
@@ -368,7 +366,7 @@ export function insertRooms(rooms) {
       slidesToScroll: 1,
       asNavFor: ".card-room__slider-for-" + i,
       focusOnSelect: true,
-      centerMode: true,
+      // centerMode: true,
       centerPadding: 0,
     });
   });
@@ -378,7 +376,7 @@ export function insertRooms(rooms) {
     paddingBottom: "40%",
   });
   new BackgroundImage(".card-room__slider-nav__item", {
-    paddingBottom: "20%",
+    paddingBottom: "40%",
     size: "cover",
   });
 }
