@@ -33,6 +33,10 @@ export default class Chat {
     this.$chat.on("click", ".chats__item", this.openChat.bind(this));
     this.$chat.on("click", ".chat__back", this.closeChat.bind(this));
 
+    this.$chat.on("click", ".chat__title-value", function (e) {
+      if ($(this).attr("href") == "#") e.preventDefault();
+    });
+
     let intervalIsMobile = setInterval(() => {
       if ($("body").css("display") == "none") return;
       this.addMobileClass();
@@ -61,6 +65,13 @@ export default class Chat {
     $item.find(".chats__count").remove();
 
     let chatId = $item.data("id");
+    let hotelId = $item.data("hotel-id");
+    if (hotelId)
+      this.$chat
+        .find(".chat__title-value")
+        .attr("href", `/hotel?id=${hotelId}`);
+    elsethis.$chat.find(".chat__title-value").attr("href", "#");
+
     if (this.intervalChat) clearTimeout(this.intervalChat);
 
     let $this = this;
