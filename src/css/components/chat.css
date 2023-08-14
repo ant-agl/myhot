@@ -191,6 +191,7 @@
   border: none;
   padding: 0 10px;
   border-radius: 100px;
+  font-family: Montserrat, sans-serif;
 }
 .chat__input:focus {
   outline: none;
