@@ -23,8 +23,8 @@
 .widget-chat__content {
   width: 300px;
   position: absolute;
-  bottom: 110%;
-  right: 0;
+  bottom: 0;
+  right: 110%;
   border: 1px solid #ccc;
   border-radius: 21px;
   overflow: hidden;
@@ -36,4 +36,8 @@
 .widget-chat.open .widget-chat__content {
   transform: scale(1);
   opacity: 1;
+}
+.widget-chat .chats,
+.widget-chat .chat__content {
+  max-height: 400px;
 }
