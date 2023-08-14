@@ -66,11 +66,13 @@ export default class Chat {
 
     let chatId = $item.data("id");
     let hotelId = $item.data("hotel-id");
-    if (hotelId)
+    if (hotelId) {
       this.$chat
         .find(".chat__title-value")
         .attr("href", `/hotel?id=${hotelId}`);
-    elsethis.$chat.find(".chat__title-value").attr("href", "#");
+    } else {
+      this.$chat.find(".chat__title-value").attr("href", "#");
+    }
 
     if (this.intervalChat) clearTimeout(this.intervalChat);
 
