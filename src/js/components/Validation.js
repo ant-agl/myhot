@@ -97,7 +97,7 @@ export default class Validation {
     return res;
   }
   ru(val) {
-    var regex = /^а-яА-Я$/;
+    var regex = /^[а-яА-Я]+$/;
     let success = regex.test(val);
     let res = {
       success,
