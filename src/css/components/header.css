@@ -59,6 +59,10 @@
 
 .profile-menu {
   position: relative;
+  transition: 0.2s;
+}
+.profile-menu:hover {
+  transform: scale(1.1);
 }
 .profile-menu.active .profile-menu__list {
   transform: scale(1);
