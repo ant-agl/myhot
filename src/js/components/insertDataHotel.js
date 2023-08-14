@@ -369,9 +369,6 @@ export function insertRooms(rooms) {
       // centerMode: true,
       centerPadding: 0,
     });
-
-    let w = $("..card-room__images").outerWidth();
-    $(".card-room__slider-for .slick-track").css("width", w + "!important");
   });
   if (rooms.length == 0)
     $(".card-rooms").append("На выбранные даты свободных номеров нет");
@@ -382,6 +379,9 @@ export function insertRooms(rooms) {
     paddingBottom: "40%",
     size: "cover",
   });
+  debugger;
+  let w = $(".card-room__images").outerWidth();
+  $(".card-room__slider-for .slick-track").css("width", w + "!important");
 }
 
 export function insertDataRoom(room) {
