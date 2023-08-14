@@ -446,9 +446,6 @@
 .card-room__slider-nav__item {
   display: block !important;
 }
-.card-room__slider-for .slick-track {
-  width: 100% !important;
-}
 .card-room__main-img {
   width: 100%;
 }

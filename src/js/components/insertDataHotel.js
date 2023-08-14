@@ -369,6 +369,9 @@ export function insertRooms(rooms) {
       // centerMode: true,
       centerPadding: 0,
     });
+
+    let w = $("..card-room__images").outerWidth();
+    $(".card-room__slider-for .slick-track").css("width", w + "!important");
   });
   if (rooms.length == 0)
     $(".card-rooms").append("На выбранные даты свободных номеров нет");
