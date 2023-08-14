@@ -442,6 +442,9 @@
   border-radius: 20px;
   overflow: hidden;
 }
+.card-room__images img {
+  display: block !important;
+}
 .card-room__main-img {
   width: 100%;
 }
