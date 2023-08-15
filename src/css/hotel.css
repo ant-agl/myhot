@@ -794,4 +794,8 @@
     font-size: 18px;
     line-height: 22px;
   }
+  .card-room__images,
+  .card-room__info {
+    width: 100%;
+  }
 }
