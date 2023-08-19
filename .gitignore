@@ -3,6 +3,8 @@ node_modules
 package-lock.json
 build/php/
 build/handler/
+*.webp
+
 /build/.htaccess*
 build/Apache_2.4*
 *.xml
